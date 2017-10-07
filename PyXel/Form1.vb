@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Text.RegularExpressions
 Imports FastColoredTextBoxNS
 
@@ -113,5 +114,48 @@ Public Class Form1
         fileName = "Sans Nom"
         isFileSaved = True
         FastColoredTextBox1.Text = ""
+    End Sub
+
+
+
+    Private Sub ButtonSpecAppMenu2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu2.Click
+        If isFileSaved = False Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MsgBox(msg, style, title)
+            If result = MsgBoxResult.Yes Then
+                SaveFile()
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        Application.Exit()
+    End Sub
+
+    Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        e.Cancel = True
+        If isFileSaved = False Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MsgBox(msg, style, title)
+            If result = MsgBoxResult.Yes Then
+                SaveFile()
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        Application.Exit()
+    End Sub
+
+    Private Sub ButtonSpecAppMenu1_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu1.Click
+        About.ShowDialog()
     End Sub
 End Class
