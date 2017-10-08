@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing.Printing
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports FastColoredTextBoxNS
@@ -18,8 +19,6 @@ Public Class Form1
     Dim fileName As String = "Sans Nom"
     Dim isFileSaved As Boolean = True
 
-
-
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
         If isFileSaved = False Then
             Dim msg As String
@@ -28,7 +27,7 @@ Public Class Form1
             msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
             style = MsgBoxStyle.YesNoCancel
             title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MsgBox(msg, style, title)
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             If result = MsgBoxResult.Yes Then
                 SaveFile()
             ElseIf result = MsgBoxResult.Cancel Then
@@ -74,6 +73,8 @@ Public Class Form1
                 Await outputFile.WriteAsync(FastColoredTextBox1.Text)
             End Using
             Me.Text = "PyXel - " + fileName
+            isFileSaved = True
+            isFileSet = True
         Else
             Dim saveFileDialog As New SaveFileDialog
             saveFileDialog.Filter = "Fichiers Python|*.py"
@@ -83,6 +84,8 @@ Public Class Form1
                 Using outputFile As New StreamWriter(fileName)
                     Await outputFile.WriteAsync(FastColoredTextBox1.Text)
                 End Using
+                isFileSaved = True
+                isFileSet = True
             End If
             Me.Text = "PyXel - " + fileName
         End If
@@ -132,7 +135,7 @@ Public Class Form1
             msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
             style = MsgBoxStyle.YesNoCancel
             title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MsgBox(msg, style, title)
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             If result = MsgBoxResult.Yes Then
                 SaveFile()
             ElseIf result = MsgBoxResult.Cancel Then
@@ -151,7 +154,7 @@ Public Class Form1
             msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
             style = MsgBoxStyle.YesNoCancel
             title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MsgBox(msg, style, title)
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             If result = MsgBoxResult.Yes Then
                 SaveFile()
             ElseIf result = MsgBoxResult.Cancel Then
@@ -216,5 +219,17 @@ Public Class Form1
 
     Private Sub KryptonRibbonQATButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton2.Click
         KryptonRibbonGroupButton4.PerformClick()
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton7_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton7.Click
+        MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    End Sub
+
+    Private Sub KryptonContextMenuItem5_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem5.Click
+        Dim printDialog As New PrintDialog()
+        If printDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Dim pd As New PrintDocument
+
+        End If
     End Sub
 End Class

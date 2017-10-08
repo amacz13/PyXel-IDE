@@ -235,6 +235,7 @@
   <ItemGroup>
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
+    <None Include="Resources\printer.png" />
     <None Include="Resources\logo16.png" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\dictionary.png" />

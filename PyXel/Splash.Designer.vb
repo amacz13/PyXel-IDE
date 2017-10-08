@@ -23,7 +23,17 @@ Partial Class Splash
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Splash))
+        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.SuspendLayout()
+        '
+        'KryptonLabel1
+        '
+        Me.KryptonLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.KryptonLabel1.Location = New System.Drawing.Point(482, 286)
+        Me.KryptonLabel1.Name = "KryptonLabel1"
+        Me.KryptonLabel1.Size = New System.Drawing.Size(6, 2)
+        Me.KryptonLabel1.TabIndex = 0
+        Me.KryptonLabel1.Values.Text = ""
         '
         'Splash
         '
@@ -32,12 +42,16 @@ Partial Class Splash
         Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash
         Me.ClientSize = New System.Drawing.Size(500, 300)
         Me.ControlBox = False
+        Me.Controls.Add(Me.KryptonLabel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Splash"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PyXel"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
+
+    Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

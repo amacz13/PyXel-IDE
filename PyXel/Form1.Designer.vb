@@ -31,6 +31,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.ButtonSpecAppMenu1 = New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu()
         Me.ButtonSpecAppMenu2 = New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu()
         Me.KryptonRibbonTab1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
@@ -64,7 +65,7 @@ Partial Class Form1
         Me.KryptonRibbon1.InDesignHelperMode = True
         Me.KryptonRibbon1.Name = "KryptonRibbon1"
         Me.KryptonRibbon1.QATButtons.AddRange(New System.ComponentModel.Component() {Me.KryptonRibbonQATButton1, Me.KryptonRibbonQATButton2})
-        Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem4})
+        Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem4, Me.KryptonContextMenuItem5})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonSpecs.AddRange(New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu() {Me.ButtonSpecAppMenu1, Me.ButtonSpecAppMenu2})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonText = "Fichier"
         Me.KryptonRibbon1.RibbonStrings.CustomizeQuickAccessToolbar = "Personnalisez les raccourics"
@@ -78,7 +79,6 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab3})
-        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1182, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -116,6 +116,12 @@ Partial Class Form1
         '
         Me.KryptonContextMenuItem4.Image = Global.PyXel.My.Resources.Resources.settings
         Me.KryptonContextMenuItem4.Text = "Paramètres"
+        '
+        'KryptonContextMenuItem5
+        '
+        Me.KryptonContextMenuItem5.Image = Global.PyXel.My.Resources.Resources.printer
+        Me.KryptonContextMenuItem5.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem5.Text = "Imprimer"
         '
         'ButtonSpecAppMenu1
         '
@@ -241,6 +247,7 @@ Partial Class Form1
         Me.FastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.FastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.FastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FastColoredTextBox1.Font = New System.Drawing.Font("Courier New", 9.75!)
         Me.FastColoredTextBox1.IsReplaceMode = False
         Me.FastColoredTextBox1.Location = New System.Drawing.Point(0, 115)
         Me.FastColoredTextBox1.Name = "FastColoredTextBox1"
@@ -301,4 +308,5 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonGroupButton7 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonGroupButton8 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonTab3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
+    Friend WithEvents KryptonContextMenuItem5 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
 End Class
