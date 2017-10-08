@@ -68,7 +68,7 @@ Public Class Form1
 
 
 
-    Public Async Sub SaveFile()
+    Public Async Function SaveFile() As Task
         If isFileSet Then
             Using outputFile As New StreamWriter(fileName)
                 Await outputFile.WriteAsync(FastColoredTextBox1.Text)
@@ -86,7 +86,7 @@ Public Class Form1
             End If
             Me.Text = "PyXel - " + fileName
         End If
-    End Sub
+    End Function
 
     Private Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
         SaveFile()
@@ -116,8 +116,9 @@ Public Class Form1
         'fileName = "Sans Nom"
         'isFileSaved = True
         'FastColoredTextBox1.Text = ""
-        Dim ExePath As String = Application.ExecutablePath
-        Process.Start(ExePath)
+        Dim newform As New Form1
+        newform.Show()
+
 
     End Sub
 
@@ -177,26 +178,24 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
-        If isFileSaved = False Then
-            SaveFile()
+        If My.Settings.PythonPath = "none" Then
+            MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Settings.ShowDialog()
+        Else
+            If isFileSaved = False Then
+                SaveFile()
+            End If
+            Shell(My.Settings.PythonPath + " " + fileName)
         End If
-        Shell(My.Settings.PythonPath + " " + fileName)
-
-        Dim cmdProcess As New Process
-        With cmdProcess
-            .StartInfo = New ProcessStartInfo(My.Settings.PythonPath, "exec(open(" + fileName + ").read())")
-            With .StartInfo
-                .CreateNoWindow = True
-                .UseShellExecute = False
-                .RedirectStandardOutput = True
-            End With
-            .Start()
-            .WaitForExit()
-        End With
     End Sub
 
     Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton5.Click
-        Shell(My.Settings.PythonPath)
+        If My.Settings.PythonPath = "none" Then
+            MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Settings.ShowDialog()
+        Else
+            Shell(My.Settings.PythonPath)
+        End If
     End Sub
 
     Private Sub KryptonRibbonGroupButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton2.Click
@@ -209,5 +208,13 @@ Public Class Form1
 
     Private Sub KryptonRibbonGroupButton6_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton6.Click
         FastColoredTextBox1.Paste()
+    End Sub
+
+    Private Sub KryptonContextMenuItem4_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem4.Click
+        Settings.ShowDialog()
+    End Sub
+
+    Private Sub KryptonRibbonQATButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton2.Click
+        KryptonRibbonGroupButton4.PerformClick()
     End Sub
 End Class

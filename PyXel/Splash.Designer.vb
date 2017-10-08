@@ -36,7 +36,7 @@ Partial Class Splash
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Splash"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Splash"
+        Me.Text = "PyXel"
         Me.ResumeLayout(False)
 
     End Sub

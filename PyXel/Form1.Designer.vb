@@ -51,10 +51,10 @@ Partial Class Form1
         Me.KryptonRibbonGroupTriple4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
         Me.KryptonRibbonGroupButton7 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         Me.KryptonRibbonGroupButton8 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonTab3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FastColoredTextBox1 = New FastColoredTextBoxNS.FastColoredTextBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.KryptonRibbonTab3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FastColoredTextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -78,6 +78,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab3})
+        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1182, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -90,7 +91,7 @@ Partial Class Form1
         'KryptonRibbonQATButton2
         '
         Me.KryptonRibbonQATButton2.Image = Global.PyXel.My.Resources.Resources.run16
-        Me.KryptonRibbonQATButton2.ShortcutKeys = System.Windows.Forms.Keys.F9
+        Me.KryptonRibbonQATButton2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
         Me.KryptonRibbonQATButton2.Text = "Executer"
         '
         'KryptonContextMenuItem1
@@ -221,6 +222,11 @@ Partial Class Form1
         Me.KryptonRibbonGroupButton8.ImageSmall = Global.PyXel.My.Resources.Resources.dictionary
         Me.KryptonRibbonGroupButton8.TextLine1 = "Dictionnaire"
         '
+        'KryptonRibbonTab3
+        '
+        Me.KryptonRibbonTab3.KeyTip = "V"
+        Me.KryptonRibbonTab3.Text = "Gestionnaire de Version"
+        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "file.py"
@@ -235,7 +241,6 @@ Partial Class Form1
         Me.FastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.FastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.FastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FastColoredTextBox1.Font = New System.Drawing.Font("Courier New", 9.75!)
         Me.FastColoredTextBox1.IsReplaceMode = False
         Me.FastColoredTextBox1.Location = New System.Drawing.Point(0, 115)
         Me.FastColoredTextBox1.Name = "FastColoredTextBox1"
@@ -245,11 +250,6 @@ Partial Class Form1
         Me.FastColoredTextBox1.Size = New System.Drawing.Size(1182, 418)
         Me.FastColoredTextBox1.TabIndex = 1
         Me.FastColoredTextBox1.Zoom = 100
-        '
-        'KryptonRibbonTab3
-        '
-        Me.KryptonRibbonTab3.KeyTip = "V"
-        Me.KryptonRibbonTab3.Text = "Gestionnaire de Version"
         '
         'Form1
         '
