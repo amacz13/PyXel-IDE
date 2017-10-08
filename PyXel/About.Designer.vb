@@ -53,6 +53,7 @@ Partial Class About
         Me.KryptonHeader2.TabIndex = 3
         Me.KryptonHeader2.Values.Description = ""
         Me.KryptonHeader2.Values.Heading = "Licence"
+        Me.KryptonHeader2.Values.Image = Nothing
         '
         'KryptonRichTextBox1
         '
@@ -81,6 +82,7 @@ Partial Class About
         Me.KryptonHeader1.TabIndex = 0
         Me.KryptonHeader1.Values.Description = "InDev 0.0.1"
         Me.KryptonHeader1.Values.Heading = "PyXel IDE"
+        Me.KryptonHeader1.Values.Image = Global.PyXel.My.Resources.Resources.logo16
         '
         'About
         '

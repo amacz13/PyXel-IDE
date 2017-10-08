@@ -18,6 +18,8 @@ Public Class Form1
     Dim fileName As String = "Sans Nom"
     Dim isFileSaved As Boolean = True
 
+
+
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
         If isFileSaved = False Then
             Dim msg As String
@@ -95,25 +97,28 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
-        If isFileSaved = False Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MsgBox(msg, style, title)
-            If result = MsgBoxResult.Yes Then
-                SaveFile()
-            ElseIf result = MsgBoxResult.Cancel Then
-                Exit Sub
-            End If
-        End If
+        'If isFileSaved = False Then
+        'Dim msg As String
+        'Dim title As String
+        'Dim style As MsgBoxStyle
+        'msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+        '  style = MsgBoxStyle.YesNoCancel
+        'title = "PyXel - Fichier non sauvegardé"
+        'Dim result As MsgBoxResult = MsgBox(msg, style, title)
+        'If result = MsgBoxResult.Yes Then
+        'SaveFile()
+        'ElseIf result = MsgBoxResult.Cancel Then
+        'Exit Sub
+        'End If
+        'End If
 
-        isFileSet = False
-        fileName = "Sans Nom"
-        isFileSaved = True
-        FastColoredTextBox1.Text = ""
+        'isFileSet = False
+        'fileName = "Sans Nom"
+        'isFileSaved = True
+        'FastColoredTextBox1.Text = ""
+        Dim ExePath As String = Application.ExecutablePath
+        Process.Start(ExePath)
+
     End Sub
 
 
@@ -157,5 +162,52 @@ Public Class Form1
 
     Private Sub ButtonSpecAppMenu1_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu1.Click
         About.ShowDialog()
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If My.Settings.PythonPath = "none" Then
+            Dim openFileDialog1 As New OpenFileDialog()
+            openFileDialog1.Filter = "Fichiers Executables|*.exe"
+            openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python"
+            If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Dim fn As String = openFileDialog1.FileName
+                My.Settings.PythonPath = fn
+            End If
+        End If
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
+        If isFileSaved = False Then
+            SaveFile()
+        End If
+        Shell(My.Settings.PythonPath + " " + fileName)
+
+        Dim cmdProcess As New Process
+        With cmdProcess
+            .StartInfo = New ProcessStartInfo(My.Settings.PythonPath, "exec(open(" + fileName + ").read())")
+            With .StartInfo
+                .CreateNoWindow = True
+                .UseShellExecute = False
+                .RedirectStandardOutput = True
+            End With
+            .Start()
+            .WaitForExit()
+        End With
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton5.Click
+        Shell(My.Settings.PythonPath)
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton2.Click
+        FastColoredTextBox1.Cut()
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton3_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton3.Click
+        FastColoredTextBox1.Copy()
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton6_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton6.Click
+        FastColoredTextBox1.Paste()
     End Sub
 End Class
