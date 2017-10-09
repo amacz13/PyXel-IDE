@@ -2,6 +2,7 @@
 Imports System.Drawing.Printing
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports ComponentFactory.Krypton.Navigator
 Imports FastColoredTextBoxNS
 
 Public Class Form1
@@ -48,7 +49,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub FastColoredTextBox1_TextChanged(sender As Object, e As TextChangedEventArgs) Handles FastColoredTextBox1.TextChanged
+    Private Sub FastColoredTextBox1_TextChanged(sender As Object, e As TextChangedEventArgs)
         e.ChangedRange.ClearStyle(greenStyle)
         e.ChangedRange.ClearStyle(orangeStyle)
         e.ChangedRange.ClearStyle(blueStyle)
@@ -119,11 +120,22 @@ Public Class Form1
         'fileName = "Sans Nom"
         'isFileSaved = True
         'FastColoredTextBox1.Text = ""
-        Dim newform As New Form1
-        newform.Show()
+        Dim newPage As New KryptonPage
+        newPage.Text = "Sans Nom"
+        Dim editor As New FastColoredTextBox
+        editor.Dock = DockStyle.Fill
+
+        KryptonDockableNavigator1.Pages.Add(newPage)
+        KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
+        KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        newPage.Controls.Add(editor)
+        'Dim newform As New Form1
+        'newform.Show()
 
 
     End Sub
+
+
 
 
 
@@ -231,5 +243,19 @@ Public Class Form1
             Dim pd As New PrintDocument
 
         End If
+    End Sub
+
+    Private Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As CloseActionEventArgs) Handles KryptonDockableNavigator1.CloseAction
+        If KryptonDockableNavigator1.Pages.Count = 2 Then
+            KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
+        End If
+    End Sub
+
+    Private Sub KryptonTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles KryptonTreeView1.AfterSelect
+        KryptonRibbon1.SelectedContext = "Fichiers"
+    End Sub
+
+    Private Sub FastColoredTextBox1_Click(sender As Object, e As EventArgs) Handles FastColoredTextBox1.Click
+        KryptonRibbon1.SelectedContext = "Console"
     End Sub
 End Class
