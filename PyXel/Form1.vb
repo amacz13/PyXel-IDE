@@ -20,6 +20,11 @@ Public Class Form1
     Dim fileName As String = "Sans Nom"
     Dim isFileSaved As Boolean = True
 
+    'MultiEditor
+    Dim tabs As New List(Of KryptonPage)
+    Dim editors As New List(Of FastColoredTextBox)
+
+
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
         If isFileSaved = False Then
             Dim msg As String
@@ -56,16 +61,15 @@ Public Class Form1
         e.ChangedRange.ClearStyle(redStyle)
         e.ChangedRange.ClearStyle(purpleStyle)
         e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
-        e.ChangedRange.SetStyle(blueStyle, "(print|input|if|else|for|in^t|range|while|try|except|catch|\(|\))")
-        e.ChangedRange.SetStyle(orangeStyle, "(int|float|string)")
-        e.ChangedRange.SetStyle(redStyle, "(def|import|as|from)")
+        e.ChangedRange.SetStyle(blueStyle, "(print|input|if|else|for|in\s|range|while|try|except|catch|return|\(|\)|\{|\}|\[|\])")
+        e.ChangedRange.SetStyle(orangeStyle, "(int|float|string|list|dict)")
+        e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         If FastColoredTextBox1.Text.Length > 0 Then
             Me.Text = "PyXel - " + fileName + "*"
             isFileSaved = False
         End If
     End Sub
-
 
 
     Public Async Function SaveFile() As Task
@@ -124,7 +128,9 @@ Public Class Form1
         newPage.Text = "Sans Nom"
         Dim editor As New FastColoredTextBox
         editor.Dock = DockStyle.Fill
-
+        tabs.Add(newPage)
+        editors.Add(editor)
+        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
         KryptonDockableNavigator1.Pages.Add(newPage)
         KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
         KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
@@ -181,6 +187,13 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If My.Settings.Theme = "blue" Then
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+        ElseIf My.Settings.Theme = "black" Then
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
+        Else
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
+        End If
         If My.Settings.PythonPath = "none" Then
             Dim openFileDialog1 As New OpenFileDialog()
             openFileDialog1.Filter = "Fichiers Executables|*.exe"
@@ -189,6 +202,7 @@ Public Class Form1
                 Dim fn As String = openFileDialog1.FileName
                 My.Settings.PythonPath = fn
             End If
+            AddHandler FastColoredTextBox1.TextChanged, AddressOf FastColoredTextBox1_TextChanged
         End If
     End Sub
 
@@ -246,6 +260,8 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As CloseActionEventArgs) Handles KryptonDockableNavigator1.CloseAction
+        Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
+
         If KryptonDockableNavigator1.Pages.Count = 2 Then
             KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
         End If
@@ -257,5 +273,15 @@ Public Class Form1
 
     Private Sub FastColoredTextBox1_Click(sender As Object, e As EventArgs) Handles FastColoredTextBox1.Click
         KryptonRibbon1.SelectedContext = "Console"
+    End Sub
+
+    Public Sub updatePalette()
+        If My.Settings.Theme = "blue" Then
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+        ElseIf My.Settings.Theme = "black" Then
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
+        Else
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
+        End If
     End Sub
 End Class
