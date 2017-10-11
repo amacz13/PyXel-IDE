@@ -51,4 +51,7 @@
         Form1.updatePalette()
         Help.updatePalette()
     End Sub
+
+
+
 End Class

@@ -249,6 +249,18 @@ Public Class Form1
         newPage.Controls.Add(editor)
         filesOpened.Add(pages, "Sans Nom")
         pagesSaved.Add(pages, True)
+
+        Dim x As Integer
+        For x = 0 To My.Computer.FileSystem.Drives.Count - 1
+            If My.Computer.FileSystem.Drives(x).IsReady = True Then
+                KryptonTreeView1.Nodes.Add(My.Computer.FileSystem.Drives(x).Name, My.Computer.FileSystem.Drives(x).Name)
+                KryptonTreeView1.Nodes(My.Computer.FileSystem.Drives(x).Name).Tag = My.Computer.FileSystem.Drives(x).Name
+                For Each SubDirectory As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.Drives(x).Name)
+                    KryptonTreeView1.Nodes(x).Nodes.Add(SubDirectory, Mid(SubDirectory, 4))
+                    KryptonTreeView1.Nodes(x).Nodes(SubDirectory).Tag = SubDirectory
+                Next
+            End If
+        Next
     End Sub
 
 

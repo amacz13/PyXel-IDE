@@ -23,22 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud0")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud4")
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud6")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud7")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud5", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode4})
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud1", New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode5})
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud2")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud8")
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud13")
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud15")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud14", New System.Windows.Forms.TreeNode() {TreeNode10})
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud9", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode11})
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud12")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud10", New System.Windows.Forms.TreeNode() {TreeNode13})
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud11")
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud3", New System.Windows.Forms.TreeNode() {TreeNode8, TreeNode12, TreeNode14, TreeNode15})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.KryptonRibbon1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbon()
         Me.ButtonSpecAny1 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
@@ -67,6 +51,7 @@ Partial Class Form1
         Me.ButtonSpecAppMenu2 = New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu()
         Me.KryptonRibbonContext1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
         Me.KryptonRibbonContext2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
+        Me.KryptonRibbonContext3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
         Me.KryptonRibbonTab1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.KryptonRibbonGroup1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
         Me.KryptonRibbonGroupTriple1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
@@ -79,7 +64,15 @@ Partial Class Form1
         Me.KryptonRibbonGroup2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
         Me.KryptonRibbonGroupTriple2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
         Me.KryptonRibbonGroupButton4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonContextMenu1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenu()
+        Me.KryptonContextMenuItems5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
+        Me.KryptonContextMenuItem15 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem16 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonRibbonGroupButton5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonContextMenu2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenu()
+        Me.KryptonContextMenuItems6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
+        Me.KryptonContextMenuItem17 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem18 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonRibbonTab2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.KryptonRibbonGroup3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
         Me.KryptonRibbonGroupTriple4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
@@ -125,7 +118,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonSpecs.AddRange(New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu() {Me.ButtonSpecAppMenu1, Me.ButtonSpecAppMenu2})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonText = "Fichier"
-        Me.KryptonRibbon1.RibbonContexts.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext() {Me.KryptonRibbonContext1, Me.KryptonRibbonContext2})
+        Me.KryptonRibbon1.RibbonContexts.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext() {Me.KryptonRibbonContext1, Me.KryptonRibbonContext2, Me.KryptonRibbonContext3})
         Me.KryptonRibbon1.RibbonStrings.CustomizeQuickAccessToolbar = "Personnalisez les raccourics"
         Me.KryptonRibbon1.RibbonStrings.Minimize = "Réduire le ruban"
         Me.KryptonRibbon1.RibbonStrings.MoreColors = "&Plus de couleurs..."
@@ -139,7 +132,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6})
         Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
-        Me.KryptonRibbon1.Size = New System.Drawing.Size(1182, 115)
+        Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
         '
         'ButtonSpecAny1
@@ -163,6 +156,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem1.Image = Global.PyXel.My.Resources.Resources.new32
         Me.KryptonContextMenuItem1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems1})
         Me.KryptonContextMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem1.SplitSubMenu = True
         Me.KryptonContextMenuItem1.Text = "Nouveau"
         '
         'KryptonContextMenuItems1
@@ -186,6 +180,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem2.Image = Global.PyXel.My.Resources.Resources.open32
         Me.KryptonContextMenuItem2.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems2})
         Me.KryptonContextMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem2.SplitSubMenu = True
         Me.KryptonContextMenuItem2.Text = "Ouvrir"
         '
         'KryptonContextMenuItems2
@@ -209,6 +204,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem3.Image = Global.PyXel.My.Resources.Resources.save321
         Me.KryptonContextMenuItem3.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems3})
         Me.KryptonContextMenuItem3.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem3.SplitSubMenu = True
         Me.KryptonContextMenuItem3.Text = "Enregistrer"
         '
         'KryptonContextMenuItems3
@@ -228,6 +224,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem5.Image = Global.PyXel.My.Resources.Resources.printer
         Me.KryptonContextMenuItem5.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems4})
         Me.KryptonContextMenuItem5.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem5.SplitSubMenu = True
         Me.KryptonContextMenuItem5.Text = "Imprimer"
         '
         'KryptonContextMenuItems4
@@ -266,6 +263,12 @@ Partial Class Form1
         Me.KryptonRibbonContext2.ContextColor = System.Drawing.Color.LimeGreen
         Me.KryptonRibbonContext2.ContextName = "Console"
         Me.KryptonRibbonContext2.ContextTitle = "Console"
+        '
+        'KryptonRibbonContext3
+        '
+        Me.KryptonRibbonContext3.ContextColor = System.Drawing.Color.Gold
+        Me.KryptonRibbonContext3.ContextName = "Projet"
+        Me.KryptonRibbonContext3.ContextTitle = "Projet"
         '
         'KryptonRibbonTab1
         '
@@ -323,15 +326,51 @@ Partial Class Form1
         '
         'KryptonRibbonGroupButton4
         '
+        Me.KryptonRibbonGroupButton4.ButtonType = ComponentFactory.Krypton.Ribbon.GroupButtonType.Split
         Me.KryptonRibbonGroupButton4.ImageLarge = Global.PyXel.My.Resources.Resources.run
         Me.KryptonRibbonGroupButton4.ImageSmall = Global.PyXel.My.Resources.Resources.run
+        Me.KryptonRibbonGroupButton4.KryptonContextMenu = Me.KryptonContextMenu1
         Me.KryptonRibbonGroupButton4.TextLine1 = "Executer"
+        '
+        'KryptonContextMenu1
+        '
+        Me.KryptonContextMenu1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems5})
+        '
+        'KryptonContextMenuItems5
+        '
+        Me.KryptonContextMenuItems5.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem15, Me.KryptonContextMenuItem16})
+        '
+        'KryptonContextMenuItem15
+        '
+        Me.KryptonContextMenuItem15.Text = "Avec Python 2.x"
+        '
+        'KryptonContextMenuItem16
+        '
+        Me.KryptonContextMenuItem16.Text = "Avec Python 3.x"
         '
         'KryptonRibbonGroupButton5
         '
+        Me.KryptonRibbonGroupButton5.ButtonType = ComponentFactory.Krypton.Ribbon.GroupButtonType.Split
         Me.KryptonRibbonGroupButton5.ImageLarge = Global.PyXel.My.Resources.Resources.console
         Me.KryptonRibbonGroupButton5.ImageSmall = Global.PyXel.My.Resources.Resources.console
+        Me.KryptonRibbonGroupButton5.KryptonContextMenu = Me.KryptonContextMenu2
         Me.KryptonRibbonGroupButton5.TextLine1 = "Console"
+        '
+        'KryptonContextMenu2
+        '
+        Me.KryptonContextMenu2.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems6})
+        '
+        'KryptonContextMenuItems6
+        '
+        Me.KryptonContextMenuItems6.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem17, Me.KryptonContextMenuItem18})
+        '
+        'KryptonContextMenuItem17
+        '
+        Me.KryptonContextMenuItem17.Text = "Avec Python 2.x"
+        '
+        'KryptonContextMenuItem18
+        '
+        Me.KryptonContextMenuItem18.Text = "Avec Python 3.x"
         '
         'KryptonRibbonTab2
         '
@@ -362,6 +401,7 @@ Partial Class Form1
         '
         'KryptonRibbonTab3
         '
+        Me.KryptonRibbonTab3.ContextName = "Projet"
         Me.KryptonRibbonTab3.KeyTip = "V"
         Me.KryptonRibbonTab3.Text = "Gestionnaire de Version"
         '
@@ -421,13 +461,14 @@ Partial Class Form1
         Me.KryptonDockableNavigator1.NavigatorMode = ComponentFactory.Krypton.Navigator.NavigatorMode.Group
         Me.KryptonDockableNavigator1.Palette = Me.KryptonPalette1
         Me.KryptonDockableNavigator1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(956, 418)
+        Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(1182, 546)
         Me.KryptonDockableNavigator1.TabIndex = 4
         Me.KryptonDockableNavigator1.Text = "KryptonDockableNavigator1"
         '
         'KryptonHeaderGroup1
         '
         Me.KryptonHeaderGroup1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.KryptonHeaderGroup1.HeaderVisibleSecondary = False
         Me.KryptonHeaderGroup1.Location = New System.Drawing.Point(0, 115)
         Me.KryptonHeaderGroup1.Name = "KryptonHeaderGroup1"
         Me.KryptonHeaderGroup1.Palette = Me.KryptonPalette1
@@ -436,7 +477,7 @@ Partial Class Form1
         'KryptonHeaderGroup1.Panel
         '
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonTreeView1)
-        Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(226, 418)
+        Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(226, 546)
         Me.KryptonHeaderGroup1.TabIndex = 5
         Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Fichiers"
         Me.KryptonHeaderGroup1.ValuesPrimary.Image = Global.PyXel.My.Resources.Resources.new32
@@ -446,40 +487,7 @@ Partial Class Form1
         Me.KryptonTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonTreeView1.Name = "KryptonTreeView1"
-        TreeNode1.Name = "Nœud0"
-        TreeNode1.Text = "Nœud0"
-        TreeNode2.Name = "Nœud4"
-        TreeNode2.Text = "Nœud4"
-        TreeNode3.Name = "Nœud6"
-        TreeNode3.Text = "Nœud6"
-        TreeNode4.Name = "Nœud7"
-        TreeNode4.Text = "Nœud7"
-        TreeNode5.Name = "Nœud5"
-        TreeNode5.Text = "Nœud5"
-        TreeNode6.Name = "Nœud1"
-        TreeNode6.Text = "Nœud1"
-        TreeNode7.Name = "Nœud2"
-        TreeNode7.Text = "Nœud2"
-        TreeNode8.Name = "Nœud8"
-        TreeNode8.Text = "Nœud8"
-        TreeNode9.Name = "Nœud13"
-        TreeNode9.Text = "Nœud13"
-        TreeNode10.Name = "Nœud15"
-        TreeNode10.Text = "Nœud15"
-        TreeNode11.Name = "Nœud14"
-        TreeNode11.Text = "Nœud14"
-        TreeNode12.Name = "Nœud9"
-        TreeNode12.Text = "Nœud9"
-        TreeNode13.Name = "Nœud12"
-        TreeNode13.Text = "Nœud12"
-        TreeNode14.Name = "Nœud10"
-        TreeNode14.Text = "Nœud10"
-        TreeNode15.Name = "Nœud11"
-        TreeNode15.Text = "Nœud11"
-        TreeNode16.Name = "Nœud3"
-        TreeNode16.Text = "Nœud3"
-        Me.KryptonTreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode6, TreeNode7, TreeNode16})
-        Me.KryptonTreeView1.Size = New System.Drawing.Size(224, 360)
+        Me.KryptonTreeView1.Size = New System.Drawing.Size(224, 509)
         Me.KryptonTreeView1.TabIndex = 0
         '
         'KryptonPanel1
@@ -488,14 +496,14 @@ Partial Class Form1
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel1.Location = New System.Drawing.Point(226, 115)
         Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(956, 418)
+        Me.KryptonPanel1.Size = New System.Drawing.Size(1182, 546)
         Me.KryptonPanel1.TabIndex = 6
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1182, 533)
+        Me.ClientSize = New System.Drawing.Size(1408, 661)
         Me.Controls.Add(Me.KryptonPanel1)
         Me.Controls.Add(Me.KryptonHeaderGroup1)
         Me.Controls.Add(Me.KryptonRibbon1)
@@ -582,4 +590,13 @@ Partial Class Form1
     Friend WithEvents KryptonContextMenuItems4 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
     Friend WithEvents KryptonContextMenuItem14 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonRibbonGroup5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup
+    Friend WithEvents KryptonRibbonContext3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
+    Friend WithEvents KryptonContextMenu1 As ComponentFactory.Krypton.Toolkit.KryptonContextMenu
+    Friend WithEvents KryptonContextMenuItems5 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
+    Friend WithEvents KryptonContextMenuItem15 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuItem16 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenu2 As ComponentFactory.Krypton.Toolkit.KryptonContextMenu
+    Friend WithEvents KryptonContextMenuItems6 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
+    Friend WithEvents KryptonContextMenuItem17 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuItem18 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
 End Class
