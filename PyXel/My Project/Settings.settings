@@ -6,7 +6,7 @@
       <Value Profile="(Default)">none</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0.1-Alpha-Snapshot</Value>
+      <Value Profile="(Default)">0.1-Alpha-Snapshot-17.1110</Value>
     </Setting>
     <Setting Name="Theme" Type="System.String" Scope="User">
       <Value Profile="(Default)">blue</Value>

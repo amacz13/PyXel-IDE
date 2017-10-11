@@ -28,8 +28,7 @@ Partial Class Splash
         '
         'KryptonLabel1
         '
-        Me.KryptonLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KryptonLabel1.Location = New System.Drawing.Point(482, 286)
+        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 12)
         Me.KryptonLabel1.Name = "KryptonLabel1"
         Me.KryptonLabel1.Size = New System.Drawing.Size(6, 2)
         Me.KryptonLabel1.TabIndex = 0
@@ -39,7 +38,7 @@ Partial Class Splash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash
+        Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash2
         Me.ClientSize = New System.Drawing.Size(500, 300)
         Me.ControlBox = False
         Me.Controls.Add(Me.KryptonLabel1)

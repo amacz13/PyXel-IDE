@@ -23,7 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud0")
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud4")
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud6")
@@ -40,6 +39,7 @@ Partial Class Form1
         Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud10", New System.Windows.Forms.TreeNode() {TreeNode13})
         Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud11")
         Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud3", New System.Windows.Forms.TreeNode() {TreeNode8, TreeNode12, TreeNode14, TreeNode15})
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.KryptonRibbon1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbon()
         Me.ButtonSpecAny1 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
@@ -98,18 +98,13 @@ Partial Class Form1
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.KryptonDockingManager1 = New ComponentFactory.Krypton.Docking.KryptonDockingManager()
-        Me.FastColoredTextBox1 = New FastColoredTextBoxNS.FastColoredTextBox()
         Me.KryptonDockableNavigator1 = New ComponentFactory.Krypton.Docking.KryptonDockableNavigator()
-        Me.KryptonPage1 = New ComponentFactory.Krypton.Navigator.KryptonPage()
         Me.KryptonHeaderGroup1 = New ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup()
         Me.KryptonTreeView1 = New ComponentFactory.Krypton.Toolkit.KryptonTreeView()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.FastColoredTextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
-        CType(Me.KryptonPage1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.KryptonPage1.SuspendLayout()
         CType(Me.KryptonHeaderGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonHeaderGroup1.Panel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonHeaderGroup1.Panel.SuspendLayout()
@@ -142,6 +137,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6})
+        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1182, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -417,53 +413,17 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "file.py"
         '
-        'FastColoredTextBox1
-        '
-        Me.FastColoredTextBox1.AutoCompleteBracketsList = New Char() {Global.Microsoft.VisualBasic.ChrW(40), Global.Microsoft.VisualBasic.ChrW(41), Global.Microsoft.VisualBasic.ChrW(123), Global.Microsoft.VisualBasic.ChrW(125), Global.Microsoft.VisualBasic.ChrW(91), Global.Microsoft.VisualBasic.ChrW(93), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(39), Global.Microsoft.VisualBasic.ChrW(39)}
-        Me.FastColoredTextBox1.AutoScrollMinSize = New System.Drawing.Size(27, 14)
-        Me.FastColoredTextBox1.BackBrush = Nothing
-        Me.FastColoredTextBox1.CharHeight = 14
-        Me.FastColoredTextBox1.CharWidth = 8
-        Me.FastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.FastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
-        Me.FastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FastColoredTextBox1.Font = New System.Drawing.Font("Courier New", 9.75!)
-        Me.FastColoredTextBox1.IsReplaceMode = False
-        Me.FastColoredTextBox1.Location = New System.Drawing.Point(0, 0)
-        Me.FastColoredTextBox1.Name = "FastColoredTextBox1"
-        Me.FastColoredTextBox1.Paddings = New System.Windows.Forms.Padding(0)
-        Me.FastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.FastColoredTextBox1.ServiceColors = CType(resources.GetObject("FastColoredTextBox1.ServiceColors"), FastColoredTextBoxNS.ServiceColors)
-        Me.FastColoredTextBox1.Size = New System.Drawing.Size(954, 416)
-        Me.FastColoredTextBox1.TabIndex = 3
-        Me.FastColoredTextBox1.Zoom = 100
-        '
         'KryptonDockableNavigator1
         '
         Me.KryptonDockableNavigator1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonDockableNavigator1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonDockableNavigator1.Name = "KryptonDockableNavigator1"
         Me.KryptonDockableNavigator1.NavigatorMode = ComponentFactory.Krypton.Navigator.NavigatorMode.Group
-        Me.KryptonDockableNavigator1.Pages.AddRange(New ComponentFactory.Krypton.Navigator.KryptonPage() {Me.KryptonPage1})
         Me.KryptonDockableNavigator1.Palette = Me.KryptonPalette1
         Me.KryptonDockableNavigator1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonDockableNavigator1.SelectedIndex = 0
         Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(956, 418)
         Me.KryptonDockableNavigator1.TabIndex = 4
         Me.KryptonDockableNavigator1.Text = "KryptonDockableNavigator1"
-        '
-        'KryptonPage1
-        '
-        Me.KryptonPage1.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
-        Me.KryptonPage1.Controls.Add(Me.FastColoredTextBox1)
-        Me.KryptonPage1.Flags = 65534
-        Me.KryptonPage1.LastVisibleSet = True
-        Me.KryptonPage1.MinimumSize = New System.Drawing.Size(50, 50)
-        Me.KryptonPage1.Name = "KryptonPage1"
-        Me.KryptonPage1.Size = New System.Drawing.Size(954, 416)
-        Me.KryptonPage1.Text = "Sans Nom"
-        Me.KryptonPage1.ToolTipTitle = "Page ToolTip"
-        Me.KryptonPage1.UniqueName = "7A552F7AF7894610D48CDCBBEB85CDC2"
         '
         'KryptonHeaderGroup1
         '
@@ -544,14 +504,11 @@ Partial Class Form1
         Me.Palette = Me.KryptonPalette1
         Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "PyXel - Sans Nom"
+        Me.Text = "PyXel IDE"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.FastColoredTextBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonDockableNavigator1.ResumeLayout(False)
-        CType(Me.KryptonPage1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.KryptonPage1.ResumeLayout(False)
         CType(Me.KryptonHeaderGroup1.Panel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonHeaderGroup1.Panel.ResumeLayout(False)
         CType(Me.KryptonHeaderGroup1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -595,9 +552,7 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonTab3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
     Friend WithEvents KryptonContextMenuItem5 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonDockingManager1 As ComponentFactory.Krypton.Docking.KryptonDockingManager
-    Friend WithEvents FastColoredTextBox1 As FastColoredTextBoxNS.FastColoredTextBox
     Friend WithEvents KryptonDockableNavigator1 As ComponentFactory.Krypton.Docking.KryptonDockableNavigator
-    Friend WithEvents KryptonPage1 As ComponentFactory.Krypton.Navigator.KryptonPage
     Friend WithEvents KryptonHeaderGroup1 As ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup
     Friend WithEvents KryptonPanel1 As ComponentFactory.Krypton.Toolkit.KryptonPanel
     Friend WithEvents KryptonTreeView1 As ComponentFactory.Krypton.Toolkit.KryptonTreeView

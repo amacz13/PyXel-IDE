@@ -34,12 +34,14 @@
         My.Settings.Theme = "blue"
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
         Form1.updatePalette()
+        Help.updatePalette()
     End Sub
 
     Private Sub KryptonRadioButton2_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton2.Click
         My.Settings.Theme = "silver"
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         Form1.updatePalette()
+        Help.updatePalette()
 
     End Sub
 
@@ -47,5 +49,6 @@
         My.Settings.Theme = "black"
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
         Form1.updatePalette()
+        Help.updatePalette()
     End Sub
 End Class

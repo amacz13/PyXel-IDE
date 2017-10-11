@@ -21,8 +21,13 @@ Public Class Form1
     Dim isFileSaved As Boolean = True
 
     'MultiEditor
-    Dim tabs As New List(Of KryptonPage)
-    Dim editors As New List(Of FastColoredTextBox)
+    Dim tabs As New Dictionary(Of Integer, KryptonPage)
+    Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
+    Dim editors As New Dictionary(Of Integer, FastColoredTextBox)
+    Dim editorsInversed As New Dictionary(Of FastColoredTextBox, Integer)
+    Dim pagesSaved As New Dictionary(Of Integer, Boolean)
+    Dim filesOpened As New Dictionary(Of Integer, String)
+    Dim pages As Integer = 0
 
 
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
@@ -46,11 +51,25 @@ Public Class Form1
         openFileDialog1.Title = "Ouvrir un fichier Python"
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Dim sr As New System.IO.StreamReader(openFileDialog1.FileName)
-            FastColoredTextBox1.Text = sr.ReadToEnd
-            sr.Close()
-            isFileSet = True
             fileName = openFileDialog1.FileName
-            Me.Text = "PyXel - " + fileName
+            Dim newPage As New KryptonPage
+            newPage.Text = fileName
+            Dim editor As New FastColoredTextBox
+            editor.Dock = DockStyle.Fill
+            pages += 1
+            tabs.Add(pages, newPage)
+            editors.Add(pages, editor)
+            tabsInversed.Add(newPage, pages)
+            editorsInversed.Add(editor, pages)
+            AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+            KryptonDockableNavigator1.Pages.Add(newPage)
+            KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
+            KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+            newPage.Controls.Add(editor)
+            editor.Text = sr.ReadToEnd
+            sr.Close()
+            pagesSaved.Add(pages, True)
+            filesOpened.Add(pages, fileName)
         End If
     End Sub
 
@@ -65,18 +84,25 @@ Public Class Form1
         e.ChangedRange.SetStyle(orangeStyle, "(int|float|string|list|dict)")
         e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-        If FastColoredTextBox1.Text.Length > 0 Then
-            Me.Text = "PyXel - " + fileName + "*"
-            isFileSaved = False
-        End If
+        Dim id As Integer = editorsInversed.Item(sender)
+        Dim tab As KryptonPage = tabs.Item(id)
+        tab.Text = filesOpened.Item(id) + "*"
+        pagesSaved.Item(id) = False
+        'If e.ChangedRange.Length > 0 Then
+        'Me.Text = "PyXel - " + fileName + "*"
+        'isFileSaved = False
+        'End If
     End Sub
 
 
+    Public Async Function SavePage(id As Integer) As Task
+
+    End Function
     Public Async Function SaveFile() As Task
         If isFileSet Then
-            Using outputFile As New StreamWriter(fileName)
-                Await outputFile.WriteAsync(FastColoredTextBox1.Text)
-            End Using
+            'Using outputFile As New StreamWriter(fileName)
+            'Await outputFile.WriteAsync(FastColoredTextBox1.Text)
+            'End Using
             Me.Text = "PyXel - " + fileName
             isFileSaved = True
             isFileSet = True
@@ -86,9 +112,9 @@ Public Class Form1
             saveFileDialog.Title = "Enregistrer un fichier Python"
             If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 fileName = saveFileDialog.FileName
-                Using outputFile As New StreamWriter(fileName)
-                    Await outputFile.WriteAsync(FastColoredTextBox1.Text)
-                End Using
+                'Using outputFile As New StreamWriter(fileName)
+                'Await outputFile.WriteAsync(FastColoredTextBox1.Text)
+                'End Using
                 isFileSaved = True
                 isFileSet = True
             End If
@@ -128,13 +154,18 @@ Public Class Form1
         newPage.Text = "Sans Nom"
         Dim editor As New FastColoredTextBox
         editor.Dock = DockStyle.Fill
-        tabs.Add(newPage)
-        editors.Add(editor)
+        pages += 1
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
         AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
         KryptonDockableNavigator1.Pages.Add(newPage)
         KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
         KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
         newPage.Controls.Add(editor)
+        filesOpened.Add(pages, "Sans Nom")
+        pagesSaved.Add(pages, True)
         'Dim newform As New Form1
         'newform.Show()
 
@@ -202,9 +233,25 @@ Public Class Form1
                 Dim fn As String = openFileDialog1.FileName
                 My.Settings.PythonPath = fn
             End If
-            AddHandler FastColoredTextBox1.TextChanged, AddressOf FastColoredTextBox1_TextChanged
         End If
+        Dim newPage As New KryptonPage
+        newPage.Text = "Sans Nom"
+        Dim editor As New FastColoredTextBox
+        editor.Dock = DockStyle.Fill
+        pages += 1
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
+        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+        KryptonDockableNavigator1.Pages.Add(newPage)
+        KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        newPage.Controls.Add(editor)
+        filesOpened.Add(pages, "Sans Nom")
+        pagesSaved.Add(pages, True)
     End Sub
+
+
 
     Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
         If My.Settings.PythonPath = "none" Then
@@ -228,15 +275,22 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton2.Click
-        FastColoredTextBox1.Cut()
+        Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Cut()
+
     End Sub
 
     Private Sub KryptonRibbonGroupButton3_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton3.Click
-        FastColoredTextBox1.Copy()
+        Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Copy()
     End Sub
 
     Private Sub KryptonRibbonGroupButton6_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton6.Click
-        FastColoredTextBox1.Paste()
+        Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Paste()
     End Sub
 
     Private Sub KryptonContextMenuItem4_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem4.Click
@@ -261,7 +315,27 @@ Public Class Form1
 
     Private Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As CloseActionEventArgs) Handles KryptonDockableNavigator1.CloseAction
         Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
-
+        Dim id As Integer = tabsInversed.Item(page)
+        If Not pagesSaved.Item(id) Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = MsgBoxResult.Yes Then
+                SavePage(id)
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        tabsInversed.Remove(tabs.Item(id))
+        tabs.Remove(id)
+        editorsInversed.Remove(editors.Item(id))
+        editors.Remove(id)
+        pagesSaved.Remove(id)
+        filesOpened.Remove(id)
         If KryptonDockableNavigator1.Pages.Count = 2 Then
             KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
         End If
@@ -271,7 +345,7 @@ Public Class Form1
         KryptonRibbon1.SelectedContext = "Fichiers"
     End Sub
 
-    Private Sub FastColoredTextBox1_Click(sender As Object, e As EventArgs) Handles FastColoredTextBox1.Click
+    Private Sub FastColoredTextBox1_Click(sender As Object, e As EventArgs)
         KryptonRibbon1.SelectedContext = "Console"
     End Sub
 
@@ -283,5 +357,9 @@ Public Class Form1
         Else
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         End If
+    End Sub
+
+    Private Sub ButtonSpecAny1_Click(sender As Object, e As EventArgs) Handles ButtonSpecAny1.Click
+        Help.Show()
     End Sub
 End Class
