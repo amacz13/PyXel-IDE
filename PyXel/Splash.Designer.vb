@@ -22,28 +22,30 @@ Partial Class Splash
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Splash))
-        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'KryptonLabel1
+        'Label1
         '
-        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 12)
-        Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(6, 2)
-        Me.KryptonLabel1.TabIndex = 0
-        Me.KryptonLabel1.Values.Text = ""
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(63, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Label1"
         '
         'Splash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash2
+        Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash_alpha
         Me.ClientSize = New System.Drawing.Size(500, 300)
         Me.ControlBox = False
-        Me.Controls.Add(Me.KryptonLabel1)
+        Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Splash"
@@ -53,7 +55,5 @@ Partial Class Splash
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents Timer1 As Timer
+    Friend WithEvents Label1 As Label
 End Class

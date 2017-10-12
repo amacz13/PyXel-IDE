@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0.1-Alpha-Snapshot-17.1110")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Alpha v0.1-PreRelease")>  _
         Public Property Version() As String
             Get
                 Return CType(Me("Version"),String)
@@ -87,6 +87,18 @@ Namespace My
             End Get
             Set
                 Me("Theme") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("none")>  _
+        Public Property Python2Path() As String
+            Get
+                Return CType(Me("Python2Path"),String)
+            End Get
+            Set
+                Me("Python2Path") = value
             End Set
         End Property
     End Class

@@ -6,10 +6,13 @@
       <Value Profile="(Default)">none</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0.1-Alpha-Snapshot-17.1110</Value>
+      <Value Profile="(Default)">Alpha v0.1-PreRelease</Value>
     </Setting>
     <Setting Name="Theme" Type="System.String" Scope="User">
       <Value Profile="(Default)">blue</Value>
+    </Setting>
+    <Setting Name="Python2Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">none</Value>
     </Setting>
   </Settings>
 </SettingsFile>

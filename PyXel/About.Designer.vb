@@ -23,73 +23,77 @@ Partial Class About
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(About))
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonHeader2 = New ComponentFactory.Krypton.Toolkit.KryptonHeader()
-        Me.KryptonRichTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
-        Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonHeader1 = New ComponentFactory.Krypton.Toolkit.KryptonHeader()
+        Me.KryptonRichTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
+        Me.Panel1.SuspendLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
+        'Panel1
+        '
+        Me.Panel1.BackgroundImage = Global.PyXel.My.Resources.Resources.splash_alpha
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(501, 300)
+        Me.Panel1.TabIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(63, 20)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Label1"
+        '
         'KryptonPanel1
         '
-        Me.KryptonPanel1.Controls.Add(Me.KryptonHeader2)
         Me.KryptonPanel1.Controls.Add(Me.KryptonRichTextBox1)
-        Me.KryptonPanel1.Controls.Add(Me.KryptonLabel1)
         Me.KryptonPanel1.Controls.Add(Me.KryptonHeader1)
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.KryptonPanel1.Location = New System.Drawing.Point(0, 300)
         Me.KryptonPanel1.Name = "KryptonPanel1"
-        Me.KryptonPanel1.Size = New System.Drawing.Size(441, 395)
-        Me.KryptonPanel1.TabIndex = 0
-        '
-        'KryptonHeader2
-        '
-        Me.KryptonHeader2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonHeader2.Location = New System.Drawing.Point(0, 63)
-        Me.KryptonHeader2.Name = "KryptonHeader2"
-        Me.KryptonHeader2.Size = New System.Drawing.Size(441, 31)
-        Me.KryptonHeader2.TabIndex = 3
-        Me.KryptonHeader2.Values.Description = ""
-        Me.KryptonHeader2.Values.Heading = "Licence"
-        Me.KryptonHeader2.Values.Image = Nothing
-        '
-        'KryptonRichTextBox1
-        '
-        Me.KryptonRichTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonRichTextBox1.Location = New System.Drawing.Point(0, 94)
-        Me.KryptonRichTextBox1.Name = "KryptonRichTextBox1"
-        Me.KryptonRichTextBox1.ReadOnly = True
-        Me.KryptonRichTextBox1.Size = New System.Drawing.Size(441, 301)
-        Me.KryptonRichTextBox1.TabIndex = 2
-        Me.KryptonRichTextBox1.Text = resources.GetString("KryptonRichTextBox1.Text")
-        '
-        'KryptonLabel1
-        '
-        Me.KryptonLabel1.Location = New System.Drawing.Point(12, 37)
-        Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(202, 20)
-        Me.KryptonLabel1.TabIndex = 1
-        Me.KryptonLabel1.Values.Text = "Un IDE léger et simple pour Python"
+        Me.KryptonPanel1.Size = New System.Drawing.Size(501, 257)
+        Me.KryptonPanel1.TabIndex = 1
         '
         'KryptonHeader1
         '
         Me.KryptonHeader1.Dock = System.Windows.Forms.DockStyle.Top
         Me.KryptonHeader1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonHeader1.Name = "KryptonHeader1"
-        Me.KryptonHeader1.Size = New System.Drawing.Size(441, 31)
+        Me.KryptonHeader1.Size = New System.Drawing.Size(501, 31)
         Me.KryptonHeader1.TabIndex = 0
-        Me.KryptonHeader1.Values.Description = "InDev 0.0.1"
-        Me.KryptonHeader1.Values.Heading = "PyXel IDE"
-        Me.KryptonHeader1.Values.Image = Global.PyXel.My.Resources.Resources.logo16
+        Me.KryptonHeader1.Values.Description = ""
+        Me.KryptonHeader1.Values.Heading = "Légal"
+        Me.KryptonHeader1.Values.Image = Nothing
+        '
+        'KryptonRichTextBox1
+        '
+        Me.KryptonRichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.KryptonRichTextBox1.Location = New System.Drawing.Point(0, 31)
+        Me.KryptonRichTextBox1.Name = "KryptonRichTextBox1"
+        Me.KryptonRichTextBox1.ReadOnly = True
+        Me.KryptonRichTextBox1.ShortcutsEnabled = False
+        Me.KryptonRichTextBox1.Size = New System.Drawing.Size(501, 226)
+        Me.KryptonRichTextBox1.TabIndex = 1
+        Me.KryptonRichTextBox1.Text = resources.GetString("KryptonRichTextBox1.Text")
         '
         'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(441, 395)
+        Me.ClientSize = New System.Drawing.Size(501, 557)
         Me.Controls.Add(Me.KryptonPanel1)
+        Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -98,6 +102,8 @@ Partial Class About
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "A propos de PyXel IDE"
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel1.ResumeLayout(False)
         Me.KryptonPanel1.PerformLayout()
@@ -105,9 +111,9 @@ Partial Class About
 
     End Sub
 
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label1 As Label
     Friend WithEvents KryptonPanel1 As ComponentFactory.Krypton.Toolkit.KryptonPanel
-    Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonHeader1 As ComponentFactory.Krypton.Toolkit.KryptonHeader
-    Friend WithEvents KryptonHeader2 As ComponentFactory.Krypton.Toolkit.KryptonHeader
     Friend WithEvents KryptonRichTextBox1 As ComponentFactory.Krypton.Toolkit.KryptonRichTextBox
 End Class
