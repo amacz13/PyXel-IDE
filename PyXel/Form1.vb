@@ -96,7 +96,28 @@ Public Class Form1
 
 
     Public Async Function SavePage(id As Integer) As Task
-
+        Dim editor As FastColoredTextBox = editors.Item(id)
+        If filesOpened.Item(id) = "Sans Nom" Then
+            Dim saveFileDialog As New SaveFileDialog
+            saveFileDialog.Filter = "Fichiers Python|*.py"
+            saveFileDialog.Title = "Enregistrer un fichier Python"
+            If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                fileName = saveFileDialog.FileName
+                Using outputFile As New StreamWriter(fileName)
+                    Await outputFile.WriteAsync(editor.Text)
+                End Using
+                pagesSaved.Item(id) = True
+                filesOpened.Item(id) = fileName
+            End If
+            tabs.Item(id).Text = fileName
+        Else
+            Dim fileName As String = filesOpened.Item(id)
+            Using outputFile As New StreamWriter(fileName)
+                Await outputFile.WriteAsync(editor.Text)
+            End Using
+            pagesSaved.Item(id) = True
+            tabs.Item(id).Text = fileName
+        End If
     End Function
     Public Async Function SaveFile() As Task
         If isFileSet Then
@@ -123,11 +144,11 @@ Public Class Form1
     End Function
 
     Private Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
-        SaveFile()
+        SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
     End Sub
 
     Private Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
-        SaveFile()
+        SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
     End Sub
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
@@ -136,7 +157,7 @@ Public Class Form1
         'Dim title As String
         'Dim style As MsgBoxStyle
         'msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-        '  style = MsgBoxStyle.YesNoCancel
+        'style = MsgBoxStyle.YesNoCancel
         'title = "PyXel - Fichier non sauvegardé"
         'Dim result As MsgBoxResult = MsgBox(msg, style, title)
         'If result = MsgBoxResult.Yes Then
@@ -353,14 +374,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub KryptonTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles KryptonTreeView1.AfterSelect
-        KryptonRibbon1.SelectedContext = "Fichiers"
-    End Sub
-
-    Private Sub FastColoredTextBox1_Click(sender As Object, e As EventArgs)
-        KryptonRibbon1.SelectedContext = "Console"
-    End Sub
-
     Public Sub updatePalette()
         If My.Settings.Theme = "blue" Then
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
@@ -373,5 +386,15 @@ Public Class Form1
 
     Private Sub ButtonSpecAny1_Click(sender As Object, e As EventArgs) Handles ButtonSpecAny1.Click
         Help.Show()
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton1.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        If editor.SelectedText.StartsWith("#") Then
+
+        Else
+            editor.SelectedText = "#" + editor.SelectedText
+        End If
+
     End Sub
 End Class
