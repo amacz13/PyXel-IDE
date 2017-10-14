@@ -27,7 +27,7 @@ Public Class Form1
     Dim editorsInversed As New Dictionary(Of FastColoredTextBox, Integer)
     Dim pagesSaved As New Dictionary(Of Integer, Boolean)
     Dim filesOpened As New Dictionary(Of Integer, String)
-    Dim pages As Integer = 0
+    Dim pages As New Integer
 
 
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
@@ -52,11 +52,13 @@ Public Class Form1
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Dim sr As New System.IO.StreamReader(openFileDialog1.FileName)
             fileName = openFileDialog1.FileName
+            pages += 1
+            pagesSaved.Add(pages, True)
+            filesOpened.Add(pages, fileName)
             Dim newPage As New KryptonPage
             newPage.Text = fileName
             Dim editor As New FastColoredTextBox
             editor.Dock = DockStyle.Fill
-            pages += 1
             tabs.Add(pages, newPage)
             editors.Add(pages, editor)
             tabsInversed.Add(newPage, pages)
@@ -68,8 +70,6 @@ Public Class Form1
             newPage.Controls.Add(editor)
             editor.Text = sr.ReadToEnd
             sr.Close()
-            pagesSaved.Add(pages, True)
-            filesOpened.Add(pages, fileName)
         End If
     End Sub
 
@@ -239,6 +239,9 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        KryptonHeaderGroup1.Hide()
+        ButtonSpecAny1.Visible = False
+        pages = 0
         If My.Settings.Theme = "blue" Then
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
         ElseIf My.Settings.Theme = "black" Then
@@ -270,7 +273,6 @@ Public Class Form1
         newPage.Controls.Add(editor)
         filesOpened.Add(pages, "Sans Nom")
         pagesSaved.Add(pages, True)
-
         Dim x As Integer
         For x = 0 To My.Computer.FileSystem.Drives.Count - 1
             If My.Computer.FileSystem.Drives(x).IsReady = True Then
@@ -335,7 +337,7 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton7_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton7.Click
-        MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub KryptonContextMenuItem5_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem5.Click
@@ -395,6 +397,11 @@ Public Class Form1
         Else
             editor.SelectedText = "#" + editor.SelectedText
         End If
+
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton8_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton8.Click
+        MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
 End Class

@@ -30,19 +30,8 @@ Partial Class Form1
         Me.KryptonRibbonQATButton1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonRibbonQATButton2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonContextMenuItem1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItems1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
-        Me.KryptonContextMenuItem6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem7 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem8 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItems2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
-        Me.KryptonContextMenuItem9 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem10 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem11 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItems3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
-        Me.KryptonContextMenuItem12 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem13 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItems4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonContextMenuItem14 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
@@ -130,6 +119,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6})
+        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -153,70 +143,20 @@ Partial Class Form1
         'KryptonContextMenuItem1
         '
         Me.KryptonContextMenuItem1.Image = Global.PyXel.My.Resources.Resources.new32
-        Me.KryptonContextMenuItem1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems1})
         Me.KryptonContextMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.KryptonContextMenuItem1.SplitSubMenu = True
         Me.KryptonContextMenuItem1.Text = "Nouveau"
-        '
-        'KryptonContextMenuItems1
-        '
-        Me.KryptonContextMenuItems1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem6, Me.KryptonContextMenuItem7, Me.KryptonContextMenuItem8})
-        '
-        'KryptonContextMenuItem6
-        '
-        Me.KryptonContextMenuItem6.Text = "Fichier Python"
-        '
-        'KryptonContextMenuItem7
-        '
-        Me.KryptonContextMenuItem7.Text = "Fichier Texte"
-        '
-        'KryptonContextMenuItem8
-        '
-        Me.KryptonContextMenuItem8.Text = "Interpréteur Python"
         '
         'KryptonContextMenuItem2
         '
         Me.KryptonContextMenuItem2.Image = Global.PyXel.My.Resources.Resources.open32
-        Me.KryptonContextMenuItem2.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems2})
         Me.KryptonContextMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.KryptonContextMenuItem2.SplitSubMenu = True
         Me.KryptonContextMenuItem2.Text = "Ouvrir"
-        '
-        'KryptonContextMenuItems2
-        '
-        Me.KryptonContextMenuItems2.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem9, Me.KryptonContextMenuItem10, Me.KryptonContextMenuItem11})
-        '
-        'KryptonContextMenuItem9
-        '
-        Me.KryptonContextMenuItem9.Text = "Un fichier local"
-        '
-        'KryptonContextMenuItem10
-        '
-        Me.KryptonContextMenuItem10.Text = "Un fichier distant"
-        '
-        'KryptonContextMenuItem11
-        '
-        Me.KryptonContextMenuItem11.Text = "Une sauvegarde de console"
         '
         'KryptonContextMenuItem3
         '
         Me.KryptonContextMenuItem3.Image = Global.PyXel.My.Resources.Resources.save321
-        Me.KryptonContextMenuItem3.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems3})
         Me.KryptonContextMenuItem3.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.KryptonContextMenuItem3.SplitSubMenu = True
         Me.KryptonContextMenuItem3.Text = "Enregistrer"
-        '
-        'KryptonContextMenuItems3
-        '
-        Me.KryptonContextMenuItems3.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem12, Me.KryptonContextMenuItem13})
-        '
-        'KryptonContextMenuItem12
-        '
-        Me.KryptonContextMenuItem12.Text = "Enregistrer sous"
-        '
-        'KryptonContextMenuItem13
-        '
-        Me.KryptonContextMenuItem13.Text = "Publier"
         '
         'KryptonContextMenuItem5
         '
@@ -225,6 +165,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem5.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
         Me.KryptonContextMenuItem5.SplitSubMenu = True
         Me.KryptonContextMenuItem5.Text = "Imprimer"
+        Me.KryptonContextMenuItem5.Visible = False
         '
         'KryptonContextMenuItems4
         '
@@ -326,10 +267,8 @@ Partial Class Form1
         '
         'KryptonRibbonGroupButton4
         '
-        Me.KryptonRibbonGroupButton4.ButtonType = ComponentFactory.Krypton.Ribbon.GroupButtonType.Split
         Me.KryptonRibbonGroupButton4.ImageLarge = Global.PyXel.My.Resources.Resources.run
         Me.KryptonRibbonGroupButton4.ImageSmall = Global.PyXel.My.Resources.Resources.run
-        Me.KryptonRibbonGroupButton4.KryptonContextMenu = Me.KryptonContextMenu1
         Me.KryptonRibbonGroupButton4.TextLine1 = "Executer"
         '
         'KryptonContextMenu1
@@ -350,10 +289,8 @@ Partial Class Form1
         '
         'KryptonRibbonGroupButton5
         '
-        Me.KryptonRibbonGroupButton5.ButtonType = ComponentFactory.Krypton.Ribbon.GroupButtonType.Split
         Me.KryptonRibbonGroupButton5.ImageLarge = Global.PyXel.My.Resources.Resources.console
         Me.KryptonRibbonGroupButton5.ImageSmall = Global.PyXel.My.Resources.Resources.console
-        Me.KryptonRibbonGroupButton5.KryptonContextMenu = Me.KryptonContextMenu2
         Me.KryptonRibbonGroupButton5.TextLine1 = "Console"
         '
         'KryptonContextMenu2
@@ -576,17 +513,6 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonContext2 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
     Friend WithEvents KryptonRibbonTab5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
     Friend WithEvents KryptonRibbonTab6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
-    Friend WithEvents KryptonContextMenuItems1 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
-    Friend WithEvents KryptonContextMenuItem6 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItem7 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItem8 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItems2 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
-    Friend WithEvents KryptonContextMenuItem9 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItem10 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItem11 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItems3 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
-    Friend WithEvents KryptonContextMenuItem12 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
-    Friend WithEvents KryptonContextMenuItem13 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItems4 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
     Friend WithEvents KryptonContextMenuItem14 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonRibbonGroup5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup

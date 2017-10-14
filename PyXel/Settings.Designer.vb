@@ -27,6 +27,7 @@ Partial Class Settings
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonDockableNavigator1 = New ComponentFactory.Krypton.Docking.KryptonDockableNavigator()
         Me.KryptonPage1 = New ComponentFactory.Krypton.Navigator.KryptonPage()
+        Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonButton3 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonTextBox3 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonButton2 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
@@ -42,9 +43,7 @@ Partial Class Settings
         Me.KryptonRadioButton3 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
         Me.KryptonRadioButton2 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
         Me.KryptonRadioButton1 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
-        Me.KryptonPage3 = New ComponentFactory.Krypton.Navigator.KryptonPage()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,7 +52,6 @@ Partial Class Settings
         Me.KryptonPage1.SuspendLayout()
         CType(Me.KryptonPage2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPage2.SuspendLayout()
-        CType(Me.KryptonPage3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonPanel1
@@ -73,7 +71,7 @@ Partial Class Settings
         Me.KryptonDockableNavigator1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonDockableNavigator1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonDockableNavigator1.Name = "KryptonDockableNavigator1"
-        Me.KryptonDockableNavigator1.Pages.AddRange(New ComponentFactory.Krypton.Navigator.KryptonPage() {Me.KryptonPage1, Me.KryptonPage2, Me.KryptonPage3})
+        Me.KryptonDockableNavigator1.Pages.AddRange(New ComponentFactory.Krypton.Navigator.KryptonPage() {Me.KryptonPage1, Me.KryptonPage2})
         Me.KryptonDockableNavigator1.Palette = Me.KryptonPalette1
         Me.KryptonDockableNavigator1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonDockableNavigator1.SelectedIndex = 0
@@ -104,6 +102,14 @@ Partial Class Settings
         Me.KryptonPage1.Text = "Général"
         Me.KryptonPage1.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage1.UniqueName = "54201FA19EA54097D69B7DEE6263BA24"
+        '
+        'KryptonLabel4
+        '
+        Me.KryptonLabel4.Location = New System.Drawing.Point(11, 98)
+        Me.KryptonLabel4.Name = "KryptonLabel4"
+        Me.KryptonLabel4.Size = New System.Drawing.Size(112, 20)
+        Me.KryptonLabel4.TabIndex = 12
+        Me.KryptonLabel4.Values.Text = "Dossier de Travail :"
         '
         'KryptonButton3
         '
@@ -233,26 +239,6 @@ Partial Class Settings
         Me.KryptonRadioButton1.TabIndex = 0
         Me.KryptonRadioButton1.Values.Text = "Thème Bleu"
         '
-        'KryptonPage3
-        '
-        Me.KryptonPage3.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
-        Me.KryptonPage3.Flags = 65534
-        Me.KryptonPage3.LastVisibleSet = True
-        Me.KryptonPage3.MinimumSize = New System.Drawing.Size(50, 50)
-        Me.KryptonPage3.Name = "KryptonPage3"
-        Me.KryptonPage3.Size = New System.Drawing.Size(945, 434)
-        Me.KryptonPage3.Text = "Addons"
-        Me.KryptonPage3.ToolTipTitle = "Page ToolTip"
-        Me.KryptonPage3.UniqueName = "AF1CD006D10E40ACE3BD9433B3F0DD55"
-        '
-        'KryptonLabel4
-        '
-        Me.KryptonLabel4.Location = New System.Drawing.Point(11, 98)
-        Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(112, 20)
-        Me.KryptonLabel4.TabIndex = 12
-        Me.KryptonLabel4.Values.Text = "Dossier de Travail :"
-        '
         'Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -277,7 +263,6 @@ Partial Class Settings
         CType(Me.KryptonPage2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPage2.ResumeLayout(False)
         Me.KryptonPage2.PerformLayout()
-        CType(Me.KryptonPage3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -286,7 +271,6 @@ Partial Class Settings
     Friend WithEvents KryptonDockableNavigator1 As ComponentFactory.Krypton.Docking.KryptonDockableNavigator
     Friend WithEvents KryptonPage1 As ComponentFactory.Krypton.Navigator.KryptonPage
     Friend WithEvents KryptonPage2 As ComponentFactory.Krypton.Navigator.KryptonPage
-    Friend WithEvents KryptonPage3 As ComponentFactory.Krypton.Navigator.KryptonPage
     Friend WithEvents KryptonButton1 As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents KryptonTextBox1 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel

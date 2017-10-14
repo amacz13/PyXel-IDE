@@ -26,8 +26,8 @@ Partial Class About
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
-        Me.KryptonHeader1 = New ComponentFactory.Krypton.Toolkit.KryptonHeader()
         Me.KryptonRichTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonRichTextBox()
+        Me.KryptonHeader1 = New ComponentFactory.Krypton.Toolkit.KryptonHeader()
         Me.Panel1.SuspendLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
@@ -65,17 +65,6 @@ Partial Class About
         Me.KryptonPanel1.Size = New System.Drawing.Size(501, 257)
         Me.KryptonPanel1.TabIndex = 1
         '
-        'KryptonHeader1
-        '
-        Me.KryptonHeader1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.KryptonHeader1.Location = New System.Drawing.Point(0, 0)
-        Me.KryptonHeader1.Name = "KryptonHeader1"
-        Me.KryptonHeader1.Size = New System.Drawing.Size(501, 31)
-        Me.KryptonHeader1.TabIndex = 0
-        Me.KryptonHeader1.Values.Description = ""
-        Me.KryptonHeader1.Values.Heading = "Légal"
-        Me.KryptonHeader1.Values.Image = Nothing
-        '
         'KryptonRichTextBox1
         '
         Me.KryptonRichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -86,6 +75,17 @@ Partial Class About
         Me.KryptonRichTextBox1.Size = New System.Drawing.Size(501, 226)
         Me.KryptonRichTextBox1.TabIndex = 1
         Me.KryptonRichTextBox1.Text = resources.GetString("KryptonRichTextBox1.Text")
+        '
+        'KryptonHeader1
+        '
+        Me.KryptonHeader1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.KryptonHeader1.Location = New System.Drawing.Point(0, 0)
+        Me.KryptonHeader1.Name = "KryptonHeader1"
+        Me.KryptonHeader1.Size = New System.Drawing.Size(501, 31)
+        Me.KryptonHeader1.TabIndex = 0
+        Me.KryptonHeader1.Values.Description = ""
+        Me.KryptonHeader1.Values.Heading = "Légal"
+        Me.KryptonHeader1.Values.Image = Nothing
         '
         'About
         '

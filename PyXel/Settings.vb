@@ -23,6 +23,15 @@
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles Me.Load
         KryptonTextBox1.Text = My.Settings.Python2Path
         KryptonTextBox2.Text = My.Settings.PythonPath
+        KryptonButton3.Hide()
+        KryptonButton1.Hide()
+        KryptonTextBox1.Hide()
+        KryptonTextBox3.Hide()
+        KryptonLabel2.Hide()
+        KryptonLabel1.Hide()
+        KryptonLabel4.Hide()
+        KryptonRadioButton4.Hide()
+        KryptonRadioButton5.Hide()
         If My.Settings.Theme = "blue" Then
             KryptonRadioButton1.Checked = True
             KryptonRadioButton2.Checked = False

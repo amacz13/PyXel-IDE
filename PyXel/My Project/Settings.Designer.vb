@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Alpha v0.1-PreRelease")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Alpha v0.1")>  _
         Public Property Version() As String
             Get
                 Return CType(Me("Version"),String)
