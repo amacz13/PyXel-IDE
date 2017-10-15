@@ -21,6 +21,7 @@
     End Sub
 
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.TextExtra = My.Settings.Version
         KryptonTextBox1.Text = My.Settings.Python2Path
         KryptonTextBox2.Text = My.Settings.PythonPath
         KryptonButton3.Hide()

@@ -240,6 +240,8 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         KryptonHeaderGroup1.Hide()
+        FirstLaunchWizard.ShowDialog()
+        Me.TextExtra = My.Settings.Version
         ButtonSpecAny1.Visible = False
         pages = 0
         If My.Settings.Theme = "blue" Then
