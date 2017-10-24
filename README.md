@@ -1,37 +1,11 @@
-## Welcome to GitHub Pages
+## PyXel IDE
 
-You can use the [editor on GitHub](https://github.com/amacz13/PyXel-IDE/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+PyXel is a modern, simple and lightweight Python Editor, which is actually on development.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Contribute
 
-### Markdown
+You can contribute to the development by forking the PyXel repository, by joining the development team (contact me at amacz13@outlook.fr) or simply by reporting bugs and issues
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Links
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/amacz13/PyXel-IDE/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Website (under development) : https://amacz13.fr/projects/pyxel
