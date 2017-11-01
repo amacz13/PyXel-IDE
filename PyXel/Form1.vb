@@ -25,6 +25,9 @@ Public Class Form1
     Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
     Dim editors As New Dictionary(Of Integer, FastColoredTextBox)
     Dim editorsInversed As New Dictionary(Of FastColoredTextBox, Integer)
+    Dim interpretersOutputs As New Dictionary(Of Integer, FastColoredTextBox)
+    Dim interpretersProcess As New Dictionary(Of Integer, System.Diagnostics.Process)
+    Dim interpretersProcessInverted As New Dictionary(Of System.Diagnostics.Process, Integer)
     Dim pagesSaved As New Dictionary(Of Integer, Boolean)
     Dim filesOpened As New Dictionary(Of Integer, String)
     Dim pages As New Integer
@@ -58,6 +61,9 @@ Public Class Form1
             Dim newPage As New KryptonPage
             newPage.Text = fileName
             Dim editor As New FastColoredTextBox
+            newPage.ImageLarge = My.Resources.new16
+            newPage.ImageMedium = My.Resources.new16
+            newPage.ImageSmall = My.Resources.new16
             editor.Dock = DockStyle.Fill
             tabs.Add(pages, newPage)
             editors.Add(pages, editor)
@@ -174,6 +180,9 @@ Public Class Form1
         Dim newPage As New KryptonPage
         newPage.Text = "Sans Nom"
         Dim editor As New FastColoredTextBox
+        newPage.ImageLarge = My.Resources.new16
+        newPage.ImageMedium = My.Resources.new16
+        newPage.ImageSmall = My.Resources.new16
         editor.Dock = DockStyle.Fill
         pages += 1
         tabs.Add(pages, newPage)
@@ -239,8 +248,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        KryptonHeaderGroup1.Hide()
-        FirstLaunchWizard.ShowDialog()
+        'KryptonHeaderGroup1.Hide()
+        'FirstLaunchWizard.ShowDialog()
         Me.TextExtra = My.Settings.Version
         ButtonSpecAny1.Visible = False
         pages = 0
@@ -263,6 +272,9 @@ Public Class Form1
         Dim newPage As New KryptonPage
         newPage.Text = "Sans Nom"
         Dim editor As New FastColoredTextBox
+        newPage.ImageLarge = My.Resources.new16
+        newPage.ImageMedium = My.Resources.new16
+        newPage.ImageSmall = My.Resources.new16
         editor.Dock = DockStyle.Fill
         pages += 1
         tabs.Add(pages, newPage)
@@ -406,4 +418,61 @@ Public Class Form1
         MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
+
+    'New Python 3 interpreter
+    Private Sub KryptonContextMenuItem8_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem8.Click
+        Dim newPage As New KryptonPage
+        newPage.Text = "Interpréteur Python 3"
+        Dim textbox As New TextBox
+        Dim editor As New FastColoredTextBox
+        editor.BackColor = Color.Black
+        editor.ForeColor = Color.White
+        newPage.ImageLarge = My.Resources.console16
+        newPage.ImageMedium = My.Resources.console16
+        newPage.ImageSmall = My.Resources.console16
+        textbox.Dock = DockStyle.Bottom
+        editor.Dock = DockStyle.Fill
+        editor.ReadOnly = True
+        pages += 1
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
+        'AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+        KryptonDockableNavigator1.Pages.Add(newPage)
+        KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        newPage.Controls.Add(textbox)
+        newPage.Controls.Add(editor)
+        KryptonRibbon1.SelectedContext = "Console"
+        Dim NewProcess As New System.Diagnostics.Process()
+        With NewProcess.StartInfo
+            .FileName = My.Settings.PythonPath
+            .RedirectStandardOutput = True
+            .RedirectStandardError = True
+            .RedirectStandardInput = True
+            .UseShellExecute = False
+            .WindowStyle = ProcessWindowStyle.Hidden
+            .CreateNoWindow = False
+        End With
+
+
+        interpretersOutputs.Add(pages, editor)
+        interpretersProcess.Add(pages, NewProcess)
+        interpretersProcessInverted.Add(NewProcess, pages)
+
+        ' Set our event handler to asynchronously read the sort output.
+        AddHandler NewProcess.OutputDataReceived, AddressOf OutputHandler
+        NewProcess.Start()
+        NewProcess.BeginOutputReadLine()
+
+        'NewProcess.WaitForExit()
+    End Sub
+
+    Private Sub OutputHandler(sendingProcess As Object, outLine As DataReceivedEventArgs)
+        If Not String.IsNullOrEmpty(outLine.Data) Then
+            interpretersOutputs.Item(interpretersProcessInverted.Item(sendingProcess)).Text += outLine.Data
+        End If
+    End Sub
+
+
 End Class

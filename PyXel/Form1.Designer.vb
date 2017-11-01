@@ -30,6 +30,12 @@ Partial Class Form1
         Me.KryptonRibbonQATButton1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonRibbonQATButton2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonContextMenuItem1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItems1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
+        Me.KryptonContextMenuItem6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem7 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuSeparator1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuSeparator()
+        Me.KryptonContextMenuItem8 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem9 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
@@ -53,15 +59,7 @@ Partial Class Form1
         Me.KryptonRibbonGroup2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
         Me.KryptonRibbonGroupTriple2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
         Me.KryptonRibbonGroupButton4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
-        Me.KryptonContextMenu1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenu()
-        Me.KryptonContextMenuItems5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
-        Me.KryptonContextMenuItem15 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem16 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonRibbonGroupButton5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
-        Me.KryptonContextMenu2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenu()
-        Me.KryptonContextMenuItems6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
-        Me.KryptonContextMenuItem17 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItem18 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonRibbonTab2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.KryptonRibbonGroup3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
         Me.KryptonRibbonGroupTriple4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
@@ -77,6 +75,14 @@ Partial Class Form1
         Me.KryptonRibbonTab5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.KryptonRibbonGroup5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
         Me.KryptonRibbonTab6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
+        Me.KryptonContextMenu1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenu()
+        Me.KryptonContextMenuItems5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
+        Me.KryptonContextMenuItem15 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem16 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenu2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenu()
+        Me.KryptonContextMenuItems6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
+        Me.KryptonContextMenuItem17 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem18 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.KryptonDockingManager1 = New ComponentFactory.Krypton.Docking.KryptonDockingManager()
@@ -103,6 +109,8 @@ Partial Class Form1
         Me.KryptonRibbon1.Palette = Me.KryptonPalette1
         Me.KryptonRibbon1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonRibbon1.QATButtons.AddRange(New System.ComponentModel.Component() {Me.KryptonRibbonQATButton1, Me.KryptonRibbonQATButton2})
+        Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorDark = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorLight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(205, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.KryptonRibbon1.RibbonAppButton.AppButtonImage = Global.PyXel.My.Resources.Resources.logo
         Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonSpecs.AddRange(New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu() {Me.ButtonSpecAppMenu1, Me.ButtonSpecAppMenu2})
@@ -143,8 +151,32 @@ Partial Class Form1
         'KryptonContextMenuItem1
         '
         Me.KryptonContextMenuItem1.Image = Global.PyXel.My.Resources.Resources.new32
+        Me.KryptonContextMenuItem1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems1})
         Me.KryptonContextMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem1.SplitSubMenu = True
         Me.KryptonContextMenuItem1.Text = "Nouveau"
+        '
+        'KryptonContextMenuItems1
+        '
+        Me.KryptonContextMenuItems1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem6, Me.KryptonContextMenuItem7, Me.KryptonContextMenuSeparator1, Me.KryptonContextMenuItem8, Me.KryptonContextMenuItem9})
+        '
+        'KryptonContextMenuItem6
+        '
+        Me.KryptonContextMenuItem6.Text = "Fichier Python"
+        '
+        'KryptonContextMenuItem7
+        '
+        Me.KryptonContextMenuItem7.Text = "Fichier Texte"
+        '
+        'KryptonContextMenuItem8
+        '
+        Me.KryptonContextMenuItem8.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
+        Me.KryptonContextMenuItem8.Text = "Interpréteur Python 3"
+        '
+        'KryptonContextMenuItem9
+        '
+        Me.KryptonContextMenuItem9.Text = "Interpréteur Python 2"
         '
         'KryptonContextMenuItem2
         '
@@ -271,43 +303,11 @@ Partial Class Form1
         Me.KryptonRibbonGroupButton4.ImageSmall = Global.PyXel.My.Resources.Resources.run
         Me.KryptonRibbonGroupButton4.TextLine1 = "Executer"
         '
-        'KryptonContextMenu1
-        '
-        Me.KryptonContextMenu1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems5})
-        '
-        'KryptonContextMenuItems5
-        '
-        Me.KryptonContextMenuItems5.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem15, Me.KryptonContextMenuItem16})
-        '
-        'KryptonContextMenuItem15
-        '
-        Me.KryptonContextMenuItem15.Text = "Avec Python 2.x"
-        '
-        'KryptonContextMenuItem16
-        '
-        Me.KryptonContextMenuItem16.Text = "Avec Python 3.x"
-        '
         'KryptonRibbonGroupButton5
         '
         Me.KryptonRibbonGroupButton5.ImageLarge = Global.PyXel.My.Resources.Resources.console
         Me.KryptonRibbonGroupButton5.ImageSmall = Global.PyXel.My.Resources.Resources.console
         Me.KryptonRibbonGroupButton5.TextLine1 = "Console"
-        '
-        'KryptonContextMenu2
-        '
-        Me.KryptonContextMenu2.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems6})
-        '
-        'KryptonContextMenuItems6
-        '
-        Me.KryptonContextMenuItems6.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem17, Me.KryptonContextMenuItem18})
-        '
-        'KryptonContextMenuItem17
-        '
-        Me.KryptonContextMenuItem17.Text = "Avec Python 2.x"
-        '
-        'KryptonContextMenuItem18
-        '
-        Me.KryptonContextMenuItem18.Text = "Avec Python 3.x"
         '
         'KryptonRibbonTab2
         '
@@ -386,6 +386,38 @@ Partial Class Form1
         Me.KryptonRibbonTab6.ContextName = "Console"
         Me.KryptonRibbonTab6.Text = "Live Debug"
         '
+        'KryptonContextMenu1
+        '
+        Me.KryptonContextMenu1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems5})
+        '
+        'KryptonContextMenuItems5
+        '
+        Me.KryptonContextMenuItems5.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem15, Me.KryptonContextMenuItem16})
+        '
+        'KryptonContextMenuItem15
+        '
+        Me.KryptonContextMenuItem15.Text = "Avec Python 2.x"
+        '
+        'KryptonContextMenuItem16
+        '
+        Me.KryptonContextMenuItem16.Text = "Avec Python 3.x"
+        '
+        'KryptonContextMenu2
+        '
+        Me.KryptonContextMenu2.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems6})
+        '
+        'KryptonContextMenuItems6
+        '
+        Me.KryptonContextMenuItems6.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem17, Me.KryptonContextMenuItem18})
+        '
+        'KryptonContextMenuItem17
+        '
+        Me.KryptonContextMenuItem17.Text = "Avec Python 2.x"
+        '
+        'KryptonContextMenuItem18
+        '
+        Me.KryptonContextMenuItem18.Text = "Avec Python 3.x"
+        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "file.py"
@@ -416,7 +448,7 @@ Partial Class Form1
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonTreeView1)
         Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(226, 546)
         Me.KryptonHeaderGroup1.TabIndex = 5
-        Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Fichiers"
+        Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Projets"
         Me.KryptonHeaderGroup1.ValuesPrimary.Image = Global.PyXel.My.Resources.Resources.new32
         '
         'KryptonTreeView1
@@ -525,4 +557,10 @@ Partial Class Form1
     Friend WithEvents KryptonContextMenuItems6 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
     Friend WithEvents KryptonContextMenuItem17 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItem18 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuItems1 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
+    Friend WithEvents KryptonContextMenuItem6 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuItem7 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuSeparator1 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuSeparator
+    Friend WithEvents KryptonContextMenuItem8 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuItem9 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
 End Class
