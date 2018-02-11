@@ -9,11 +9,11 @@ Public Class Form1
 
     'Styles CodeEditor
 
-    Dim greenStyle As Style = New TextStyle(Brushes.Green, Brushes.White, FontStyle.Italic)
-    Dim blueStyle As Style = New TextStyle(Brushes.Blue, Brushes.White, FontStyle.Regular)
-    Dim orangeStyle As Style = New TextStyle(Brushes.Orange, Brushes.White, FontStyle.Regular)
-    Dim redStyle As Style = New TextStyle(Brushes.Red, Brushes.White, FontStyle.Bold)
-    Dim purpleStyle As Style = New TextStyle(Brushes.Purple, Brushes.White, FontStyle.Bold)
+    Public Shared greenStyle As Style = New TextStyle(Brushes.Green, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Italic)
+    Public Shared blueStyle As Style = New TextStyle(Brushes.Blue, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
+    Public Shared orangeStyle As Style = New TextStyle(Brushes.Orange, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
+    Public Shared redStyle As Style = New TextStyle(Brushes.Red, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
+    Public Shared purpleStyle As Style = New TextStyle(Brushes.Purple, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
 
     'Variables Fichiers
     Dim isFileSet As Boolean = False
@@ -23,7 +23,7 @@ Public Class Form1
     'MultiEditor
     Dim tabs As New Dictionary(Of Integer, KryptonPage)
     Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
-    Dim editors As New Dictionary(Of Integer, FastColoredTextBox)
+    Public Shared editors As New Dictionary(Of Integer, FastColoredTextBox)
     Dim editorsInversed As New Dictionary(Of FastColoredTextBox, Integer)
     Dim interpretersOutputs As New Dictionary(Of Integer, FastColoredTextBox)
     Dim interpretersProcess As New Dictionary(Of Integer, System.Diagnostics.Process)
@@ -31,7 +31,19 @@ Public Class Form1
     Dim pagesSaved As New Dictionary(Of Integer, Boolean)
     Dim filesOpened As New Dictionary(Of Integer, String)
     Dim pages As New Integer
+    Private WithEvents proc As New Process
 
+    Public Shared Sub updateEditors()
+        greenStyle = New TextStyle(Brushes.Green, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Italic)
+        blueStyle = New TextStyle(Brushes.Blue, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
+        orangeStyle = New TextStyle(Brushes.Orange, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
+        redStyle = New TextStyle(Brushes.Red, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
+        purpleStyle = New TextStyle(Brushes.Purple, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
+        For Each item As KeyValuePair(Of Integer, FastColoredTextBox) In editors
+            item.Value.ForeColor = ApplicationSettings.editorForeColor
+            item.Value.BackColor = ApplicationSettings.editorBackColor
+        Next
+    End Sub
 
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
         If isFileSaved = False Then
@@ -86,8 +98,9 @@ Public Class Form1
         e.ChangedRange.ClearStyle(redStyle)
         e.ChangedRange.ClearStyle(purpleStyle)
         e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
-        e.ChangedRange.SetStyle(blueStyle, "(print|input|if|else|for|in\s|range|while|try|except|catch|return|\(|\)|\{|\}|\[|\])")
-        e.ChangedRange.SetStyle(orangeStyle, "(int|float|string|list|dict)")
+        e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
+        e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
+        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)")
         e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         Dim id As Integer = editorsInversed.Item(sender)
@@ -253,25 +266,12 @@ Public Class Form1
         Me.TextExtra = My.Settings.Version
         ButtonSpecAny1.Visible = False
         pages = 0
-        If My.Settings.Theme = "blue" Then
-            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
-        ElseIf My.Settings.Theme = "black" Then
-            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
-        Else
-            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
-        End If
-        If My.Settings.PythonPath = "none" Then
-            Dim openFileDialog1 As New OpenFileDialog()
-            openFileDialog1.Filter = "Fichiers Executables|*.exe"
-            openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python"
-            If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                Dim fn As String = openFileDialog1.FileName
-                My.Settings.PythonPath = fn
-            End If
-        End If
+        KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
         Dim newPage As New KryptonPage
         newPage.Text = "Sans Nom"
         Dim editor As New FastColoredTextBox
+        editor.BackColor = ApplicationSettings.editorBackColor
+        editor.ForeColor = ApplicationSettings.editorForeColor
         newPage.ImageLarge = My.Resources.new16
         newPage.ImageMedium = My.Resources.new16
         newPage.ImageSmall = My.Resources.new16
@@ -298,28 +298,58 @@ Public Class Form1
                 Next
             End If
         Next
+        FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
+        FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
     End Sub
 
 
 
     Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
-        If My.Settings.PythonPath = "none" Then
+        If ApplicationSettings.python3 = "none" Then
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             If isFileSaved = False Then
                 SaveFile()
             End If
-            Shell(My.Settings.PythonPath + " " + fileName)
+            'MessageBox.Show(My.Settings.PythonPath + " " + fileName, "Début exec", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            proc.StartInfo.FileName = ApplicationSettings.python3 '+ " " + fileName
+            proc.StartInfo.Arguments = fileName
+            proc.StartInfo.CreateNoWindow = True
+            proc.StartInfo.UseShellExecute = False
+            proc.EnableRaisingEvents = True 'Use this if you want to receive the ProcessExited event
+            proc.StartInfo.RedirectStandardOutput = True
+            proc.Start()
+            proc.BeginOutputReadLine()
+            KryptonRibbonGroupButton4.Enabled = False
+            'Shell(My.Settings.PythonPath + " " + fileName)
         End If
     End Sub
 
+    Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.Exited
+        KryptonRibbonGroupButton4.Enabled = True
+    End Sub
+
+    Private Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.OutputDataReceived
+        If e.Data <> Nothing Then
+            Invoke(New OutputRecievedDel(AddressOf OutputRecieved), e.Data)
+        End If
+    End Sub
+
+    Private Delegate Sub OutputRecievedDel(ByVal out As String)
+
+    Private Sub OutputRecieved(ByVal out As String)
+        'FastColoredTextBox1.Lines.Add(out)
+        FastColoredTextBox1.Text += out
+        'MessageBox.Show(out, "Données recues", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+    End Sub
+
     Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton5.Click
-        If My.Settings.PythonPath = "none" Then
+        If ApplicationSettings.python3 = "none" Then
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
-            Shell(My.Settings.PythonPath)
+            Shell(ApplicationSettings.python3)
         End If
     End Sub
 
@@ -420,53 +450,53 @@ Public Class Form1
     End Sub
 
     'New Python 3 interpreter
-    Private Sub KryptonContextMenuItem8_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem8.Click
-        Dim newPage As New KryptonPage
-        newPage.Text = "Interpréteur Python 3"
-        Dim textbox As New TextBox
-        Dim editor As New FastColoredTextBox
-        editor.BackColor = Color.Black
-        editor.ForeColor = Color.White
-        newPage.ImageLarge = My.Resources.console16
-        newPage.ImageMedium = My.Resources.console16
-        newPage.ImageSmall = My.Resources.console16
-        textbox.Dock = DockStyle.Bottom
-        editor.Dock = DockStyle.Fill
-        editor.ReadOnly = True
-        pages += 1
-        tabs.Add(pages, newPage)
-        editors.Add(pages, editor)
-        tabsInversed.Add(newPage, pages)
-        editorsInversed.Add(editor, pages)
-        'AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-        KryptonDockableNavigator1.Pages.Add(newPage)
-        KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-        newPage.Controls.Add(textbox)
-        newPage.Controls.Add(editor)
-        KryptonRibbon1.SelectedContext = "Console"
-        Dim NewProcess As New System.Diagnostics.Process()
-        With NewProcess.StartInfo
-            .FileName = My.Settings.PythonPath
-            .RedirectStandardOutput = True
-            .RedirectStandardError = True
-            .RedirectStandardInput = True
-            .UseShellExecute = False
-            .WindowStyle = ProcessWindowStyle.Hidden
-            .CreateNoWindow = False
-        End With
+    'Private Sub KryptonContextMenuItem8_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem8.Click
+    '    Dim newPage As New KryptonPage
+    '    newPage.Text = "Interpréteur Python 3"
+    '    Dim textbox As New TextBox
+    '    Dim editor As New FastColoredTextBox
+    '    editor.BackColor = Color.Black
+    '    editor.ForeColor = Color.White
+    '    newPage.ImageLarge = My.Resources.console16
+    '    newPage.ImageMedium = My.Resources.console16
+    '    newPage.ImageSmall = My.Resources.console16
+    '    textbox.Dock = DockStyle.Bottom
+    '    editor.Dock = DockStyle.Fill
+    '    editor.ReadOnly = True
+    '    pages += 1
+    '    tabs.Add(pages, newPage)
+    '    editors.Add(pages, editor)
+    '    tabsInversed.Add(newPage, pages)
+    '    editorsInversed.Add(editor, pages)
+    '    'AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+    '    KryptonDockableNavigator1.Pages.Add(newPage)
+    '    KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+    '    newPage.Controls.Add(textbox)
+    '    newPage.Controls.Add(editor)
+    '    KryptonRibbon1.SelectedContext = "Console"
+    '    Dim NewProcess As New System.Diagnostics.Process()
+    '    With NewProcess.StartInfo
+    '        .FileName = My.Settings.PythonPath
+    '        .RedirectStandardOutput = True
+    '        .RedirectStandardError = True
+    '        .RedirectStandardInput = True
+    '        .UseShellExecute = False
+    '        .WindowStyle = ProcessWindowStyle.Hidden
+    '        .CreateNoWindow = False
+    '    End With
 
 
-        interpretersOutputs.Add(pages, editor)
-        interpretersProcess.Add(pages, NewProcess)
-        interpretersProcessInverted.Add(NewProcess, pages)
+    '    interpretersOutputs.Add(pages, editor)
+    '    interpretersProcess.Add(pages, NewProcess)
+    '    interpretersProcessInverted.Add(NewProcess, pages)
 
-        ' Set our event handler to asynchronously read the sort output.
-        AddHandler NewProcess.OutputDataReceived, AddressOf OutputHandler
-        NewProcess.Start()
-        NewProcess.BeginOutputReadLine()
+    '    ' Set our event handler to asynchronously read the sort output.
+    '    AddHandler NewProcess.OutputDataReceived, AddressOf OutputHandler
+    '    NewProcess.Start()
+    '    NewProcess.BeginOutputReadLine()
 
-        'NewProcess.WaitForExit()
-    End Sub
+    '    'NewProcess.WaitForExit()
+    'End Sub
 
     Private Sub OutputHandler(sendingProcess As Object, outLine As DataReceivedEventArgs)
         If Not String.IsNullOrEmpty(outLine.Data) Then
