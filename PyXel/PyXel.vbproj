@@ -98,26 +98,33 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ComponentFactory.Krypton.Design">
-      <HintPath>D:\Téléchargements\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Design.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ComponentFactory.Krypton.Design.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Docking">
-      <HintPath>D:\Téléchargements\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Navigator">
-      <HintPath>D:\Téléchargements\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Ribbon">
-      <HintPath>D:\Téléchargements\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ComponentFactory.Krypton.Ribbon.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Toolkit">
-      <HintPath>D:\Téléchargements\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Workspace">
-      <HintPath>D:\Téléchargements\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
-    <Reference Include="FastColoredTextBox">
-      <HintPath>D:\Téléchargements\FastColoredTextBox-master\FastColoredTextBox-master\Binary\FastColoredTextBox.dll</HintPath>
+    <Reference Include="FastColoredTextBox, Version=2.16.23.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\FastColoredTextBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -268,6 +275,13 @@
     <None Include="Resources\comment.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ComponentFactory.Krypton.Design.dll" />
+    <Content Include="ComponentFactory.Krypton.Docking.dll" />
+    <Content Include="ComponentFactory.Krypton.Navigator.dll" />
+    <Content Include="ComponentFactory.Krypton.Ribbon.dll" />
+    <Content Include="ComponentFactory.Krypton.Toolkit.dll" />
+    <Content Include="ComponentFactory.Krypton.Workspace.dll" />
+    <Content Include="FastColoredTextBox.dll" />
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <None Include="Resources\console16.png" />
