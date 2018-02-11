@@ -1,4 +1,4 @@
-## PyXel IDE
+## PyXel IDE [![Build Status](https://travis-ci.org/amacz13/PyXel-IDE.svg?branch=master)](https://travis-ci.org/amacz13/PyXel-IDE)
 
 PyXel is a modern, simple and lightweight Python Editor, which is actually on development.
 
