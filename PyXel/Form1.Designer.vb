@@ -90,6 +90,11 @@ Partial Class Form1
         Me.KryptonHeaderGroup1 = New ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup()
         Me.KryptonTreeView1 = New ComponentFactory.Krypton.Toolkit.KryptonTreeView()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonRibbonGroup6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
+        Me.KryptonRibbonGroupTriple6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
+        Me.KryptonRibbonGroupButton12 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton13 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton14 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
@@ -127,8 +132,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6})
-        Me.KryptonRibbon1.SelectedContext = Nothing
-        Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
+        Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab3
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
         '
@@ -339,6 +343,7 @@ Partial Class Form1
         'KryptonRibbonTab3
         '
         Me.KryptonRibbonTab3.ContextName = "Projet"
+        Me.KryptonRibbonTab3.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup6})
         Me.KryptonRibbonTab3.KeyTip = "V"
         Me.KryptonRibbonTab3.Text = "Gestionnaire de Version"
         '
@@ -468,6 +473,15 @@ Partial Class Form1
         Me.KryptonPanel1.Size = New System.Drawing.Size(1182, 546)
         Me.KryptonPanel1.TabIndex = 6
         '
+        'KryptonRibbonGroup6
+        '
+        Me.KryptonRibbonGroup6.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple6})
+        Me.KryptonRibbonGroup6.TextLine1 = "GIT"
+        '
+        'KryptonRibbonGroupTriple6
+        '
+        Me.KryptonRibbonGroupTriple6.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton12, Me.KryptonRibbonGroupButton13, Me.KryptonRibbonGroupButton14})
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -563,4 +577,9 @@ Partial Class Form1
     Friend WithEvents KryptonContextMenuSeparator1 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuSeparator
     Friend WithEvents KryptonContextMenuItem8 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItem9 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonRibbonGroup6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup
+    Friend WithEvents KryptonRibbonGroupTriple6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
+    Friend WithEvents KryptonRibbonGroupButton12 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton13 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton14 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
 End Class
