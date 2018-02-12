@@ -10,7 +10,7 @@ Public Class Splash
         Label1.ForeColor = Color.White
         Label1.Text = My.Settings.Version
         'MessageBox.Show(My.Application.Info.DirectoryPath, "AppPath", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        If (Not File.Exists(My.Application.Info.DirectoryPath + "\config.xml")) Then
+        If (Not File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")) Then
             createConfig()
         Else
             readConfig()
@@ -18,7 +18,7 @@ Public Class Splash
     End Sub
 
     Private Sub createConfig()
-        Dim writer As New XmlTextWriter(My.Application.Info.DirectoryPath + "\config.xml", System.Text.Encoding.UTF8)
+        Dim writer As New XmlTextWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml", System.Text.Encoding.UTF8)
         writer.WriteStartDocument(True)
         writer.Formatting = Formatting.Indented
         writer.Indentation = 2
@@ -64,7 +64,7 @@ Public Class Splash
 
     Private Sub readConfig()
         Dim xmlDoc As New XmlDocument()
-        xmlDoc.Load(My.Application.Info.DirectoryPath + "\config.xml")
+        xmlDoc.Load(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")
         Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/PyXel/General")
         For Each node As XmlNode In nodes
             ApplicationSettings.lang = node.SelectSingleNode("Language").InnerText

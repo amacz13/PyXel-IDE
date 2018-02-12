@@ -128,8 +128,8 @@ Public Class Settings
     End Sub
 
     Private Sub createConfig()
-        System.IO.File.Delete(My.Application.Info.DirectoryPath + "\config.xml")
-        Dim writer As New XmlTextWriter(My.Application.Info.DirectoryPath + "\config.xml", System.Text.Encoding.UTF8)
+        System.IO.File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")
+        Dim writer As New XmlTextWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml", System.Text.Encoding.UTF8)
         writer.WriteStartDocument(True)
         writer.Formatting = Formatting.Indented
         writer.Indentation = 2

@@ -316,6 +316,12 @@ Public Class Form1
                 SaveFile()
             End If
             'MessageBox.Show(My.Settings.PythonPath + " " + fileName, "Début exec", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            If inExec Then
+                proc.CancelOutputRead()
+                proc.Kill()
+                KryptonRibbonGroupButton4.Enabled = True
+                inExec = False
+            End If
             proc.StartInfo.FileName = ApplicationSettings.python3 '+ " " + fileName
             proc.StartInfo.Arguments = fileName
             proc.StartInfo.CreateNoWindow = True
@@ -324,19 +330,20 @@ Public Class Form1
             proc.StartInfo.RedirectStandardOutput = True
             proc.Start()
             proc.BeginOutputReadLine()
-            KryptonRibbonGroupButton4.Enabled = False
+            'KryptonRibbonGroupButton4.Enabled = False
             inExec = True
-            Do While inExec
+            'Do While inExec
 
-            Loop
-            proc.CancelOutputRead()
-            KryptonRibbonGroupButton4.Enabled = True
+            'Loop
+
+            'KryptonRibbonGroupButton4.Enabled = True
             'Shell(My.Settings.PythonPath + " " + fileName)
         End If
     End Sub
 
     Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.EventArgs) Handles proc.Exited
         inExec = False
+        proc.CancelOutputRead()
     End Sub
 
     Private Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.OutputDataReceived
@@ -503,6 +510,7 @@ Public Class Form1
 
     Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton15.Click
         If inExec Then
+            proc.CancelOutputRead()
             proc.Kill()
             KryptonRibbonGroupButton4.Enabled = True
             inExec = False
