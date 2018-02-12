@@ -82,13 +82,39 @@ Public Class Splash
         Next
         nodes = xmlDoc.DocumentElement.SelectNodes("/PyXel/Colors/Editor")
         For Each node As XmlNode In nodes
-            ApplicationSettings.editorForeColor = Color.FromName(node.SelectSingleNode("ForeColor").InnerText)
-            ApplicationSettings.editorBackColor = Color.FromName(node.SelectSingleNode("BackColor").InnerText)
+            Dim fc As String = node.SelectSingleNode("ForeColor").InnerText
+            Dim bc As String = node.SelectSingleNode("BackColor").InnerText
+            If fc = "Black" Then
+                ApplicationSettings.editorForeColor = Color.Black
+            Else
+                ApplicationSettings.editorForeColor = Color.FromArgb(fc)
+            End If
+            If bc = "White" Then
+                ApplicationSettings.editorBackColor = Color.White
+            Else
+                ApplicationSettings.editorBackColor = Color.FromArgb(bc)
+            End If
+
+            'ApplicationSettings.editorForeColor = Color.FromName(node.SelectSingleNode("ForeColor").InnerText)
+            'ApplicationSettings.editorBackColor = Color.FromName(node.SelectSingleNode("BackColor").InnerText)
         Next
         nodes = xmlDoc.DocumentElement.SelectNodes("/PyXel/Colors/Interpreter")
         For Each node As XmlNode In nodes
-            ApplicationSettings.interpreterForeColor = Color.FromName(node.SelectSingleNode("ForeColor").InnerText)
-            ApplicationSettings.interpreterBackColor = Color.FromName(node.SelectSingleNode("BackColor").InnerText)
+
+            Dim fc As String = node.SelectSingleNode("ForeColor").InnerText
+            Dim bc As String = node.SelectSingleNode("BackColor").InnerText
+            If fc = "White" Then
+                ApplicationSettings.interpreterForeColor = Color.White
+            Else
+                ApplicationSettings.interpreterForeColor = Color.FromArgb(fc)
+            End If
+            If bc = "Black" Then
+                ApplicationSettings.interpreterBackColor = Color.Black
+            Else
+                ApplicationSettings.interpreterBackColor = Color.FromArgb(bc)
+            End If
+            'ApplicationSettings.interpreterForeColor = Color.FromName(node.SelectSingleNode("ForeColor").InnerText)
+            'ApplicationSettings.interpreterBackColor = Color.FromName(node.SelectSingleNode("BackColor").InnerText)
         Next
         nodes = xmlDoc.DocumentElement.SelectNodes("/PyXel/PythonPath")
         For Each node As XmlNode In nodes

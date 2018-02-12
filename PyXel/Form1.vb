@@ -20,6 +20,8 @@ Public Class Form1
     Dim fileName As String = "Sans Nom"
     Dim isFileSaved As Boolean = True
 
+    Dim inExec As Boolean = False
+
     'MultiEditor
     Dim tabs As New Dictionary(Of Integer, KryptonPage)
     Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
@@ -261,7 +263,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'KryptonHeaderGroup1.Hide()
+        KryptonHeaderGroup1.Hide()
+        KryptonTextBox1.Hide()
         'FirstLaunchWizard.ShowDialog()
         Me.TextExtra = My.Settings.Version
         ButtonSpecAny1.Visible = False
@@ -322,12 +325,18 @@ Public Class Form1
             proc.Start()
             proc.BeginOutputReadLine()
             KryptonRibbonGroupButton4.Enabled = False
+            inExec = True
+            Do While inExec
+
+            Loop
+            proc.CancelOutputRead()
+            KryptonRibbonGroupButton4.Enabled = True
             'Shell(My.Settings.PythonPath + " " + fileName)
         End If
     End Sub
 
-    Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.Exited
-        KryptonRibbonGroupButton4.Enabled = True
+    Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.EventArgs) Handles proc.Exited
+        inExec = False
     End Sub
 
     Private Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.OutputDataReceived
@@ -340,7 +349,7 @@ Public Class Form1
 
     Private Sub OutputRecieved(ByVal out As String)
         'FastColoredTextBox1.Lines.Add(out)
-        FastColoredTextBox1.Text += out
+        FastColoredTextBox1.Text += vbNewLine + out
         'MessageBox.Show(out, "Données recues", MessageBoxButtons.OK, MessageBoxIcon.Stop)
     End Sub
 
@@ -421,13 +430,7 @@ Public Class Form1
     End Sub
 
     Public Sub updatePalette()
-        If My.Settings.Theme = "blue" Then
-            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
-        ElseIf My.Settings.Theme = "black" Then
-            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
-        Else
-            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
-        End If
+        KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
     End Sub
 
     Private Sub ButtonSpecAny1_Click(sender As Object, e As EventArgs) Handles ButtonSpecAny1.Click
@@ -498,11 +501,11 @@ Public Class Form1
     '    'NewProcess.WaitForExit()
     'End Sub
 
-    Private Sub OutputHandler(sendingProcess As Object, outLine As DataReceivedEventArgs)
-        If Not String.IsNullOrEmpty(outLine.Data) Then
-            interpretersOutputs.Item(interpretersProcessInverted.Item(sendingProcess)).Text += outLine.Data
+    Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton15.Click
+        If inExec Then
+            proc.Kill()
+            KryptonRibbonGroupButton4.Enabled = True
+            inExec = False
         End If
     End Sub
-
-
 End Class

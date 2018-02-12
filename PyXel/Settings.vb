@@ -1,4 +1,6 @@
-﻿Imports ComponentFactory.Krypton.Toolkit
+﻿Imports System.ComponentModel
+Imports System.Xml
+Imports ComponentFactory.Krypton.Toolkit
 
 Public Class Settings
     Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) Handles KryptonButton1.Click
@@ -37,12 +39,12 @@ Public Class Settings
         KryptonLabel4.Hide()
         KryptonRadioButton4.Hide()
         KryptonRadioButton5.Hide()
-        If My.Settings.Theme = "blue" Then
+        If ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue Then
             KryptonRadioButton1.Checked = True
             KryptonRadioButton2.Checked = False
             KryptonRadioButton3.Checked = False
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
-        ElseIf My.Settings.Theme = "black" Then
+        ElseIf ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black Then
             KryptonRadioButton1.Checked = False
             KryptonRadioButton2.Checked = False
             KryptonRadioButton3.Checked = True
@@ -80,14 +82,14 @@ Public Class Settings
     End Sub
 
     Private Sub KryptonRadioButton1_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton1.Click
-        My.Settings.Theme = "blue"
+        ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
         Form1.updatePalette()
         Help.updatePalette()
     End Sub
 
     Private Sub KryptonRadioButton2_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton2.Click
-        My.Settings.Theme = "silver"
+        ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         Form1.updatePalette()
         Help.updatePalette()
@@ -95,7 +97,7 @@ Public Class Settings
     End Sub
 
     Private Sub KryptonRadioButton3_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton3.Click
-        My.Settings.Theme = "black"
+        ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
         Form1.updatePalette()
         Help.updatePalette()
@@ -119,5 +121,64 @@ Public Class Settings
     Private Sub KryptonColorButton3_SelectedColorChanged(sender As Object, e As ColorEventArgs) Handles KryptonColorButton3.SelectedColorChanged
         ApplicationSettings.interpreterForeColor = e.Color
         Form1.FastColoredTextBox1.ForeColor = e.Color
+    End Sub
+
+    Private Sub Settings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        createConfig()
+    End Sub
+
+    Private Sub createConfig()
+        System.IO.File.Delete(My.Application.Info.DirectoryPath + "\config.xml")
+        Dim writer As New XmlTextWriter(My.Application.Info.DirectoryPath + "\config.xml", System.Text.Encoding.UTF8)
+        writer.WriteStartDocument(True)
+        writer.Formatting = Formatting.Indented
+        writer.Indentation = 2
+        writer.WriteStartElement("PyXel")
+        writer.WriteStartElement("General")
+        writer.WriteStartElement("Language")
+        writer.WriteString(ApplicationSettings.lang)
+        writer.WriteEndElement()
+        writer.WriteStartElement("Theme")
+        Select Case ApplicationSettings.theme
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+                writer.WriteString("Blue")
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
+                writer.WriteString("Black")
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
+                writer.WriteString("Silver")
+            Case Else
+                writer.WriteString("Blue")
+        End Select
+        writer.WriteEndElement()
+        writer.WriteEndElement()
+        writer.WriteStartElement("Colors")
+        writer.WriteStartElement("Editor")
+        writer.WriteStartElement("ForeColor")
+        writer.WriteString(ApplicationSettings.editorForeColor.ToArgb)
+        writer.WriteEndElement()
+        writer.WriteStartElement("BackColor")
+        writer.WriteString(ApplicationSettings.editorBackColor.ToArgb)
+        writer.WriteEndElement()
+        writer.WriteEndElement()
+        writer.WriteStartElement("Interpreter")
+        writer.WriteStartElement("ForeColor")
+        writer.WriteString(ApplicationSettings.interpreterForeColor.ToArgb)
+        writer.WriteEndElement()
+        writer.WriteStartElement("BackColor")
+        writer.WriteString(ApplicationSettings.interpreterBackColor.ToArgb)
+        writer.WriteEndElement()
+        writer.WriteEndElement()
+        writer.WriteEndElement()
+        writer.WriteStartElement("PythonPath")
+        writer.WriteStartElement("Python2")
+        writer.WriteString(ApplicationSettings.python2)
+        writer.WriteEndElement()
+        writer.WriteStartElement("Python3")
+        writer.WriteString(ApplicationSettings.python3)
+        writer.WriteEndElement()
+        writer.WriteEndElement()
+        writer.WriteEndElement()
+        writer.WriteEndDocument()
+        writer.Close()
     End Sub
 End Class

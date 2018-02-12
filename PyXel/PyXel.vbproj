@@ -285,6 +285,7 @@
     <Content Include="FastColoredTextBox.dll" />
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
+    <None Include="Resources\cancel.png" />
     <None Include="Resources\console16.png" />
     <None Include="Resources\new16.png" />
     <None Include="Resources\splash-new.png" />
