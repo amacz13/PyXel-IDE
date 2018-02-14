@@ -43,7 +43,7 @@ Partial Class Splash
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gray
-        Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash_new
+        Me.BackgroundImage = Global.PyXel.My.Resources.Resources.splash_alpha0_3
         Me.ClientSize = New System.Drawing.Size(500, 300)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label1)
