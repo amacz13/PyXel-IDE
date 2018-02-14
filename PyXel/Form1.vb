@@ -14,6 +14,7 @@ Public Class Form1
     Public Shared orangeStyle As Style = New TextStyle(Brushes.Orange, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
     Public Shared redStyle As Style = New TextStyle(Brushes.Red, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
     Public Shared purpleStyle As Style = New TextStyle(Brushes.Purple, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
+    Public Shared salmonStyle As Style = New TextStyle(Brushes.Salmon, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
 
     'Variables Fichiers
     Dim isFileSet As Boolean = False
@@ -41,6 +42,7 @@ Public Class Form1
         orangeStyle = New TextStyle(Brushes.Orange, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
         redStyle = New TextStyle(Brushes.Red, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
         purpleStyle = New TextStyle(Brushes.Purple, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
+        salmonStyle = New TextStyle(Brushes.Salmon, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
         For Each item As KeyValuePair(Of Integer, FastColoredTextBox) In editors
             item.Value.ForeColor = ApplicationSettings.editorForeColor
             item.Value.BackColor = ApplicationSettings.editorBackColor
@@ -93,6 +95,12 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub FastColoredTextBox1_AutoIndentNeeded(sender As Object, e As AutoIndentEventArgs)
+        If e.LineText.Trim.Contains("def") Or e.LineText.Trim.Contains("if") Or e.LineText.Trim.Contains("else") Or e.LineText.Trim.Contains("elif") Or e.LineText.Trim.Contains("for") Or e.LineText.Trim.Contains("while") Then
+            e.ShiftNextLines = e.TabLength
+        End If
+    End Sub
+
     Private Sub FastColoredTextBox1_TextChanged(sender As Object, e As TextChangedEventArgs)
         e.ChangedRange.ClearStyle(greenStyle)
         e.ChangedRange.ClearStyle(orangeStyle)
@@ -104,6 +112,7 @@ Public Class Form1
         e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
         e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)")
         e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
+        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         Dim id As Integer = editorsInversed.Item(sender)
         Dim tab As KryptonPage = tabs.Item(id)
@@ -194,10 +203,20 @@ Public Class Form1
         'FastColoredTextBox1.Text = ""
         Dim newPage As New KryptonPage
         newPage.Text = "Sans Nom"
+
+        'editor Configuration
         Dim editor As New FastColoredTextBox
-        newPage.ImageLarge = My.Resources.new16
-        newPage.ImageMedium = My.Resources.new16
-        newPage.ImageSmall = My.Resources.new16
+        editor.BackColor = ApplicationSettings.editorBackColor
+        editor.ForeColor = ApplicationSettings.editorForeColor
+        editor.LeftBracket = "{"
+        editor.RightBracket = "}"
+        editor.LeftBracket2 = "("
+        editor.RightBracket2 = ")"
+        editor.AutoCompleteBrackets = True
+        editor.CommentPrefix = "#"
+        AddHandler editor.AutoIndentNeeded, AddressOf FastColoredTextBox1_AutoIndentNeeded
+        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+
         editor.Dock = DockStyle.Fill
         pages += 1
         tabs.Add(pages, newPage)
@@ -272,9 +291,20 @@ Public Class Form1
         KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
         Dim newPage As New KryptonPage
         newPage.Text = "Sans Nom"
+
+        'Editor configuration
         Dim editor As New FastColoredTextBox
         editor.BackColor = ApplicationSettings.editorBackColor
         editor.ForeColor = ApplicationSettings.editorForeColor
+        editor.LeftBracket = "{"
+        editor.RightBracket = "}"
+        editor.LeftBracket2 = "("
+        editor.RightBracket2 = ")"
+        editor.AutoCompleteBrackets = True
+        editor.CommentPrefix = "#"
+        AddHandler editor.AutoIndentNeeded, AddressOf FastColoredTextBox1_AutoIndentNeeded
+        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+
         newPage.ImageLarge = My.Resources.new16
         newPage.ImageMedium = My.Resources.new16
         newPage.ImageSmall = My.Resources.new16
@@ -284,7 +314,6 @@ Public Class Form1
         editors.Add(pages, editor)
         tabsInversed.Add(newPage, pages)
         editorsInversed.Add(editor, pages)
-        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
         KryptonDockableNavigator1.Pages.Add(newPage)
         KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
         newPage.Controls.Add(editor)
@@ -515,5 +544,22 @@ Public Class Form1
             KryptonRibbonGroupButton4.Enabled = True
             inExec = False
         End If
+    End Sub
+
+    Private Async Sub KryptonContextMenuItem6_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem6.Click
+        Dim id As Integer = tabsInversed.Item(KryptonDockableNavigator1.SelectedPage)
+        Dim editor As FastColoredTextBox = editors.Item(id)
+        Dim saveFileDialog As New SaveFileDialog
+        saveFileDialog.Filter = "Fichiers HTML|*.html"
+        saveFileDialog.Title = "Exporter en HTML"
+        If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            fileName = saveFileDialog.FileName
+            Using outputFile As New StreamWriter(fileName)
+                Await outputFile.WriteAsync(editor.Html)
+            End Using
+            pagesSaved.Item(id) = True
+            filesOpened.Item(id) = fileName
+        End If
+        tabs.Item(id).Text = fileName
     End Sub
 End Class

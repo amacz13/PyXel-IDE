@@ -2,17 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="PythonPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">none</Value>
-    </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Alpha v0.2</Value>
-    </Setting>
-    <Setting Name="Theme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">blue</Value>
-    </Setting>
-    <Setting Name="Python2Path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">none</Value>
+      <Value Profile="(Default)">SNAPSHOT 18.1402 Alpha-v0.3</Value>
     </Setting>
   </Settings>
 </SettingsFile>

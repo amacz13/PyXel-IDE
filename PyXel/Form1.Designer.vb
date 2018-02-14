@@ -32,6 +32,7 @@ Partial Class Form1
         Me.KryptonContextMenuItem1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItems4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonContextMenuItem14 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
@@ -122,7 +123,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorDark = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorLight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(205, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.KryptonRibbon1.RibbonAppButton.AppButtonImage = Global.PyXel.My.Resources.Resources.logo
-        Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
+        Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem6, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonSpecs.AddRange(New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu() {Me.ButtonSpecAppMenu1, Me.ButtonSpecAppMenu2})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonText = "Fichier"
         Me.KryptonRibbon1.RibbonContexts.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext() {Me.KryptonRibbonContext1, Me.KryptonRibbonContext2, Me.KryptonRibbonContext3})
@@ -176,6 +177,11 @@ Partial Class Form1
         Me.KryptonContextMenuItem3.Image = Global.PyXel.My.Resources.Resources.save321
         Me.KryptonContextMenuItem3.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
         Me.KryptonContextMenuItem3.Text = "Enregistrer"
+        '
+        'KryptonContextMenuItem6
+        '
+        Me.KryptonContextMenuItem6.Image = Global.PyXel.My.Resources.Resources.html32
+        Me.KryptonContextMenuItem6.Text = "Exporter en HTML"
         '
         'KryptonContextMenuItem5
         '
@@ -494,6 +500,7 @@ Partial Class Form1
         '
         'FastColoredTextBox1
         '
+        Me.FastColoredTextBox1.AutoCompleteBrackets = True
         Me.FastColoredTextBox1.AutoCompleteBracketsList = New Char() {Global.Microsoft.VisualBasic.ChrW(40), Global.Microsoft.VisualBasic.ChrW(41), Global.Microsoft.VisualBasic.ChrW(123), Global.Microsoft.VisualBasic.ChrW(125), Global.Microsoft.VisualBasic.ChrW(91), Global.Microsoft.VisualBasic.ChrW(93), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(39), Global.Microsoft.VisualBasic.ChrW(39)}
         Me.FastColoredTextBox1.AutoScrollMinSize = New System.Drawing.Size(2, 14)
         Me.FastColoredTextBox1.BackBrush = Nothing
@@ -630,4 +637,5 @@ Partial Class Form1
     Friend WithEvents FastColoredTextBox1 As FastColoredTextBoxNS.FastColoredTextBox
     Friend WithEvents KryptonTextBox1 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonRibbonGroupButton15 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonContextMenuItem6 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
 End Class
