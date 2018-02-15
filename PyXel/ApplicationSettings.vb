@@ -1,5 +1,9 @@
 ﻿Public Class ApplicationSettings
 
+    'PyXel Launch Conditions
+    Public Shared isFileOpened As Boolean = False
+    Public Shared fileOpened As String
+
     'General Settings
     Public Shared lang As String = "French"
     Public Shared theme As ComponentFactory.Krypton.Toolkit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue

@@ -10,6 +10,11 @@ Namespace My
     ' NetworkAvailabilityChanged : Déclenché quand la connexion réseau est connectée ou déconnectée.
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
+            If e.CommandLine.Count > 0 Then
+                ApplicationSettings.isFileOpened = True
+                ApplicationSettings.fileOpened = e.CommandLine.Item(0)
+            End If
+
         End Sub
 
 

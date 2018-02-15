@@ -64,20 +64,6 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
-        If isFileSaved = False Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
-                SaveFile()
-            ElseIf result = MsgBoxResult.Cancel Then
-                Exit Sub
-            End If
-        End If
 
         Dim openFileDialog1 As New OpenFileDialog()
         openFileDialog1.Filter = "Fichiers Python|*.py"
@@ -163,36 +149,13 @@ Public Class Form1
             tabs.Item(id).Text = fileName
         End If
     End Function
-    Public Async Function SaveFile() As Task
-        If isFileSet Then
-            'Using outputFile As New StreamWriter(fileName)
-            'Await outputFile.WriteAsync(FastColoredTextBox1.Text)
-            'End Using
-            Me.Text = "PyXel - " + fileName
-            isFileSaved = True
-            isFileSet = True
-        Else
-            Dim saveFileDialog As New SaveFileDialog
-            saveFileDialog.Filter = "Fichiers Python|*.py"
-            saveFileDialog.Title = "Enregistrer un fichier Python"
-            If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                fileName = saveFileDialog.FileName
-                'Using outputFile As New StreamWriter(fileName)
-                'Await outputFile.WriteAsync(FastColoredTextBox1.Text)
-                'End Using
-                isFileSaved = True
-                isFileSet = True
-            End If
-            Me.Text = "PyXel - " + fileName
-        End If
-    End Function
 
-    Private Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
-        SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+    Private Async Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
+        Await SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
     End Sub
 
-    Private Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
-        SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+    Private Async Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
+        Await SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
     End Sub
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
@@ -254,7 +217,7 @@ Public Class Form1
 
 
 
-    Private Sub ButtonSpecAppMenu2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu2.Click
+    Private Async Sub ButtonSpecAppMenu2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu2.Click
         If isFileSaved = False Then
             Dim msg As String
             Dim title As String
@@ -264,7 +227,11 @@ Public Class Form1
             title = "PyXel - Fichier non sauvegardé"
             Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             If result = MsgBoxResult.Yes Then
-                SaveFile()
+                For Each item As KeyValuePair(Of Integer, Boolean) In pagesSaved
+                    If item.Value = False Then
+                        Await SavePage(item.Key)
+                    End If
+                Next
             ElseIf result = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
@@ -272,7 +239,7 @@ Public Class Form1
         Application.Exit()
     End Sub
 
-    Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Async Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
         If isFileSaved = False Then
             Dim msg As String
@@ -283,7 +250,11 @@ Public Class Form1
             title = "PyXel - Fichier non sauvegardé"
             Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             If result = MsgBoxResult.Yes Then
-                SaveFile()
+                For Each item As KeyValuePair(Of Integer, Boolean) In pagesSaved
+                    If item.Value = False Then
+                        Await SavePage(item.Key)
+                    End If
+                Next
             ElseIf result = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
@@ -331,32 +302,52 @@ Public Class Form1
         KryptonDockableNavigator1.Pages.Add(newPage)
         KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
         newPage.Controls.Add(editor)
-        filesOpened.Add(pages, "Sans Nom")
         pagesSaved.Add(pages, True)
-        Dim x As Integer
-        For x = 0 To My.Computer.FileSystem.Drives.Count - 1
-            If My.Computer.FileSystem.Drives(x).IsReady = True Then
-                KryptonTreeView1.Nodes.Add(My.Computer.FileSystem.Drives(x).Name, My.Computer.FileSystem.Drives(x).Name)
-                KryptonTreeView1.Nodes(My.Computer.FileSystem.Drives(x).Name).Tag = My.Computer.FileSystem.Drives(x).Name
-                For Each SubDirectory As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.Drives(x).Name)
-                    KryptonTreeView1.Nodes(x).Nodes.Add(SubDirectory, Mid(SubDirectory, 4))
-                    KryptonTreeView1.Nodes(x).Nodes(SubDirectory).Tag = SubDirectory
-                Next
-            End If
-        Next
+        If ApplicationSettings.isFileOpened = True Then
+            filesOpened.Add(pages, ApplicationSettings.fileOpened)
+            Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
+            editor.Text = sr.ReadToEnd
+            sr.Close()
+        Else
+            filesOpened.Add(pages, "Sans Nom")
+        End If
+        'Dim x As Integer
+        'For x = 0 To My.Computer.FileSystem.Drives.Count - 1
+        '    If My.Computer.FileSystem.Drives(x).IsReady = True Then
+        '        KryptonTreeView1.Nodes.Add(My.Computer.FileSystem.Drives(x).Name, My.Computer.FileSystem.Drives(x).Name)
+        '        KryptonTreeView1.Nodes(My.Computer.FileSystem.Drives(x).Name).Tag = My.Computer.FileSystem.Drives(x).Name
+        '        For Each SubDirectory As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.Drives(x).Name)
+        '            KryptonTreeView1.Nodes(x).Nodes.Add(SubDirectory, Mid(SubDirectory, 4))
+        '            KryptonTreeView1.Nodes(x).Nodes(SubDirectory).Tag = SubDirectory
+        '        Next
+        '    End If
+        'Next
         FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
         FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
     End Sub
 
 
 
-    Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
+    Private Async Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
         If ApplicationSettings.python3 = "none" Then
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
-            If isFileSaved = False Then
-                SaveFile()
+            Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
+            Dim id As Integer = tabsInversed.Item(page)
+            If Not pagesSaved.Item(id) Then
+                Dim msg As String
+                Dim title As String
+                Dim style As MsgBoxStyle
+                msg = "Vous devez sauvegarder ce fichier pour l'interpréter. Voulez-vous continuer ?"   ' Define message.
+                style = MsgBoxStyle.YesNoCancel
+                title = "PyXel - Fichier non sauvegardé"
+                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = MsgBoxResult.Yes Then
+                    Await SavePage(id)
+                ElseIf result = MsgBoxResult.Cancel Then
+                    Exit Sub
+                End If
             End If
             'MessageBox.Show(My.Settings.PythonPath + " " + fileName, "Début exec", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             If inExec Then
@@ -444,14 +435,15 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonContextMenuItem5_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem5.Click
-        Dim printDialog As New PrintDialog()
-        If printDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim pd As New PrintDocument
-
-        End If
+        Dim id As Integer = tabsInversed.Item(KryptonDockableNavigator1.SelectedPage)
+        Dim editor As FastColoredTextBox = editors.Item(id)
+        Dim ps As New PrintDialogSettings
+        ps.IncludeLineNumbers = True
+        ps.ShowPrintDialog = True
+        editor.Print(ps)
     End Sub
 
-    Private Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As CloseActionEventArgs) Handles KryptonDockableNavigator1.CloseAction
+    Private Async Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As CloseActionEventArgs) Handles KryptonDockableNavigator1.CloseAction
         Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
@@ -463,7 +455,7 @@ Public Class Form1
             title = "PyXel - Fichier non sauvegardé"
             Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = MsgBoxResult.Yes Then
-                SavePage(id)
+                Await SavePage(id)
             ElseIf result = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
@@ -489,17 +481,18 @@ Public Class Form1
 
     Private Sub KryptonRibbonGroupButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton1.Click
         Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
-        If editor.SelectedText.StartsWith("#") Then
-
+        If editor.SelectedText.Length = 0 Then
+            editor.InsertLinePrefix("#")
+        ElseIf editor.GetLine(editor.Selection.Start.iLine).Text.Chars(0) = "#" Then
+            editor.RemoveLinePrefix("#")
         Else
-            editor.SelectedText = "#" + editor.SelectedText
+            editor.InsertLinePrefix("#")
         End If
 
     End Sub
 
     Private Sub KryptonRibbonGroupButton8_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton8.Click
         MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
     End Sub
 
     'New Python 3 interpreter
@@ -575,5 +568,15 @@ Public Class Form1
             filesOpened.Item(id) = fileName
         End If
         tabs.Item(id).Text = fileName
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton9_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton9.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        editor.BookmarkLine(editor.Selection.Start.iLine)
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton10_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton10.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        editor.UnbookmarkLine(editor.Selection.Start.iLine)
     End Sub
 End Class
