@@ -7,6 +7,18 @@ Imports FastColoredTextBoxNS
 
 Public Class Form1
 
+    Enum Languages
+        Python
+        C
+        HTML
+        PHP
+        JS
+        Lua
+        CSharp
+        VBNet
+    End Enum
+
+
     'Styles CodeEditor
 
     Public Shared greenStyle As Style = New TextStyle(Brushes.Green, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Italic)
@@ -28,6 +40,8 @@ Public Class Form1
     Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
     Public Shared editors As New Dictionary(Of Integer, FastColoredTextBox)
     Dim editorsInversed As New Dictionary(Of FastColoredTextBox, Integer)
+    Public Shared editorsIdLanguage As New Dictionary(Of Integer, Languages)
+    Dim editorsLanguage As New Dictionary(Of FastColoredTextBox, Languages)
     Dim interpretersOutputs As New Dictionary(Of Integer, FastColoredTextBox)
     Dim interpretersProcess As New Dictionary(Of Integer, System.Diagnostics.Process)
     Dim interpretersProcessInverted As New Dictionary(Of System.Diagnostics.Process, Integer)
