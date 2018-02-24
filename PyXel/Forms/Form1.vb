@@ -36,8 +36,10 @@ Public Class Form1
     Dim inExec As Boolean = False
 
     'MultiEditor
-    Dim tabs As New Dictionary(Of Integer, KryptonPage)
-    Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
+    'Dim tabs As New Dictionary(Of Integer, KryptonPage)
+    'Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
+    Dim tabs As New Dictionary(Of Integer, TabPage)
+    Dim tabsInversed As New Dictionary(Of TabPage, Integer)
     Public Shared editors As New Dictionary(Of Integer, FastColoredTextBox)
     Dim editorsInversed As New Dictionary(Of FastColoredTextBox, Integer)
     Public Shared editorsIdLanguage As New Dictionary(Of Integer, Languages)
@@ -47,6 +49,7 @@ Public Class Form1
     Dim interpretersProcessInverted As New Dictionary(Of System.Diagnostics.Process, Integer)
     Dim pagesSaved As New Dictionary(Of Integer, Boolean)
     Dim filesOpened As New Dictionary(Of Integer, String)
+    Dim displayNames As New Dictionary(Of Integer, String)
     Dim pages As New Integer
     Private WithEvents proc As New Process
 
@@ -68,30 +71,38 @@ Public Class Form1
         Dim openFileDialog1 As New OpenFileDialog()
         openFileDialog1.Filter = "Fichiers Python|*.py"
         openFileDialog1.Title = "Ouvrir un fichier Python"
+        openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            Dim sr As New System.IO.StreamReader(openFileDialog1.FileName)
-            fileName = openFileDialog1.FileName
-            pages += 1
-            pagesSaved.Add(pages, True)
-            filesOpened.Add(pages, fileName)
-            Dim newPage As New KryptonPage
-            newPage.Text = fileName
-            Dim editor As New FastColoredTextBox
-            newPage.ImageLarge = My.Resources.new16
-            newPage.ImageMedium = My.Resources.new16
-            newPage.ImageSmall = My.Resources.new16
-            editor.Dock = DockStyle.Fill
-            tabs.Add(pages, newPage)
-            editors.Add(pages, editor)
-            tabsInversed.Add(newPage, pages)
-            editorsInversed.Add(editor, pages)
-            AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-            KryptonDockableNavigator1.Pages.Add(newPage)
-            KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
-            KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-            newPage.Controls.Add(editor)
-            editor.Text = sr.ReadToEnd
-            sr.Close()
+            For x = 0 To openFileDialog1.FileNames.Count - 1
+                Dim sr As New System.IO.StreamReader(openFileDialog1.FileNames(x))
+                fileName = openFileDialog1.FileNames(x)
+                pages += 1
+                pagesSaved.Add(pages, True)
+                filesOpened.Add(pages, fileName)
+                'Dim newPage As New KryptonPage
+                'newPage.Text = fileName
+                Dim newPage As New TabPage
+                newPage.Text = System.IO.Path.GetFileName(fileName)
+                Dim editor As New FastColoredTextBox
+                'newPage.ImageLarge = My.Resources.new16
+                'newPage.ImageMedium = My.Resources.new16
+                'newPage.ImageSmall = My.Resources.new16
+                displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
+                editor.Dock = DockStyle.Fill
+                tabs.Add(pages, newPage)
+                editors.Add(pages, editor)
+                tabsInversed.Add(newPage, pages)
+                editorsInversed.Add(editor, pages)
+                AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+                'KryptonDockableNavigator1.Pages.Add(newPage)
+                'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
+                'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+                CustomTabControl1.TabPages.Add(newPage)
+                CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+                newPage.Controls.Add(editor)
+                editor.Text = sr.ReadToEnd
+                sr.Close()
+            Next
         End If
     End Sub
 
@@ -115,8 +126,8 @@ Public Class Form1
         e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         Dim id As Integer = editorsInversed.Item(sender)
-        Dim tab As KryptonPage = tabs.Item(id)
-        tab.Text = filesOpened.Item(id) + "*"
+        Dim tab As TabPage = tabs.Item(id)
+        tab.Text = displayNames.Item(id) + "*"
         pagesSaved.Item(id) = False
         'If e.ChangedRange.Length > 0 Then
         'Me.Text = "PyXel - " + fileName + "*"
@@ -138,6 +149,7 @@ Public Class Form1
                 End Using
                 pagesSaved.Item(id) = True
                 filesOpened.Item(id) = fileName
+                displayNames.Item(id) = System.IO.Path.GetFileName(fileName)
             End If
             tabs.Item(id).Text = fileName
         Else
@@ -146,16 +158,16 @@ Public Class Form1
                 Await outputFile.WriteAsync(editor.Text)
             End Using
             pagesSaved.Item(id) = True
-            tabs.Item(id).Text = fileName
+            tabs.Item(id).Text = displayNames.Item(id)
         End If
     End Function
 
     Private Async Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
-        Await SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
     End Sub
 
     Private Async Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
-        Await SavePage(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
     End Sub
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
@@ -178,7 +190,9 @@ Public Class Form1
         'fileName = "Sans Nom"
         'isFileSaved = True
         'FastColoredTextBox1.Text = ""
-        Dim newPage As New KryptonPage
+        'Dim newPage As New KryptonPage
+        'newPage.Text = "Sans Nom"
+        Dim newPage As New TabPage
         newPage.Text = "Sans Nom"
 
         'editor Configuration
@@ -201,12 +215,15 @@ Public Class Form1
         tabsInversed.Add(newPage, pages)
         editorsInversed.Add(editor, pages)
         AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-        KryptonDockableNavigator1.Pages.Add(newPage)
-        KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
-        KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        'KryptonDockableNavigator1.Pages.Add(newPage)
+        'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
+        'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        CustomTabControl1.TabPages.Add(newPage)
+        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
         newPage.Controls.Add(editor)
         filesOpened.Add(pages, "Sans Nom")
         pagesSaved.Add(pages, True)
+        displayNames.Add(pages, "Sans Nom")
         'Dim newform As New Form1
         'newform.Show()
 
@@ -274,7 +291,10 @@ Public Class Form1
         ButtonSpecAny1.Visible = False
         pages = 0
         KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
-        Dim newPage As New KryptonPage
+        'Dim newPage As New KryptonPage
+        'newPage.Text = "Sans Nom"
+
+        Dim newPage As New TabPage
         newPage.Text = "Sans Nom"
 
         'Editor configuration
@@ -290,26 +310,30 @@ Public Class Form1
         AddHandler editor.AutoIndentNeeded, AddressOf FastColoredTextBox1_AutoIndentNeeded
         AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
 
-        newPage.ImageLarge = My.Resources.new16
-        newPage.ImageMedium = My.Resources.new16
-        newPage.ImageSmall = My.Resources.new16
+        'newPage.ImageLarge = My.Resources.new16
+        'newPage.ImageMedium = My.Resources.new16
+        'newPage.ImageSmall = My.Resources.new16
         editor.Dock = DockStyle.Fill
         pages += 1
         tabs.Add(pages, newPage)
         editors.Add(pages, editor)
         tabsInversed.Add(newPage, pages)
         editorsInversed.Add(editor, pages)
-        KryptonDockableNavigator1.Pages.Add(newPage)
-        KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        'KryptonDockableNavigator1.Pages.Add(newPage)
+        'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+        CustomTabControl1.TabPages.Add(newPage)
+        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
         newPage.Controls.Add(editor)
         pagesSaved.Add(pages, True)
         If ApplicationSettings.isFileOpened = True Then
             filesOpened.Add(pages, ApplicationSettings.fileOpened)
+            displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
             Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
             editor.Text = sr.ReadToEnd
             sr.Close()
         Else
             filesOpened.Add(pages, "Sans Nom")
+            displayNames.Add(pages, "Sans Nom")
         End If
         'Dim x As Integer
         'For x = 0 To My.Computer.FileSystem.Drives.Count - 1
@@ -333,7 +357,8 @@ Public Class Form1
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
-            Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
+            'Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
+            Dim page As TabPage = CustomTabControl1.SelectedTab
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
                 Dim msg As String
@@ -404,20 +429,26 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton2.Click
-        Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'Dim id As Integer = tabsInversed.Item(tab)
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(tab)
         editors.Item(id).Cut()
 
     End Sub
 
     Private Sub KryptonRibbonGroupButton3_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton3.Click
-        Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'Dim id As Integer = tabsInversed.Item(tab)
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(tab)
         editors.Item(id).Copy()
     End Sub
 
     Private Sub KryptonRibbonGroupButton6_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton6.Click
-        Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'Dim id As Integer = tabsInversed.Item(tab)
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(tab)
         editors.Item(id).Paste()
     End Sub
@@ -435,7 +466,7 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonContextMenuItem5_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem5.Click
-        Dim id As Integer = tabsInversed.Item(KryptonDockableNavigator1.SelectedPage)
+        Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim ps As New PrintDialogSettings
         ps.IncludeLineNumbers = True
@@ -443,8 +474,10 @@ Public Class Form1
         editor.Print(ps)
     End Sub
 
-    Private Async Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As CloseActionEventArgs) Handles KryptonDockableNavigator1.CloseAction
-        Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
+    Private Async Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As TabControlCancelEventArgs) Handles CustomTabControl1.TabClosing
+        'Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
+        'e.Cancel = True
+        Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim msg As String
@@ -466,9 +499,10 @@ Public Class Form1
         editors.Remove(id)
         pagesSaved.Remove(id)
         filesOpened.Remove(id)
-        If KryptonDockableNavigator1.Pages.Count = 2 Then
-            KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
-        End If
+        displayNames.Remove(id)
+        'If KryptonDockableNavigator1.Pages.Count = 2 Then
+        'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
+        'End If
     End Sub
 
     Public Sub updatePalette()
@@ -480,7 +514,7 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton1.Click
-        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
         If editor.SelectedText.Length = 0 Then
             editor.InsertLinePrefix("#")
         ElseIf editor.GetLine(editor.Selection.Start.iLine).Text.Chars(0) = "#" Then
@@ -554,7 +588,7 @@ Public Class Form1
     End Sub
 
     Private Async Sub KryptonContextMenuItem6_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem6.Click
-        Dim id As Integer = tabsInversed.Item(KryptonDockableNavigator1.SelectedPage)
+        Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim saveFileDialog As New SaveFileDialog
         saveFileDialog.Filter = "Fichiers HTML|*.html"
@@ -571,12 +605,12 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton9_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton9.Click
-        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
         editor.BookmarkLine(editor.Selection.Start.iLine)
     End Sub
 
     Private Sub KryptonRibbonGroupButton10_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton10.Click
-        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(KryptonDockableNavigator1.SelectedPage))
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
         editor.UnbookmarkLine(editor.Selection.Start.iLine)
     End Sub
 End Class

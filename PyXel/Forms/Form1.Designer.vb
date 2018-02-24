@@ -85,6 +85,7 @@ Partial Class Form1
         Me.KryptonTreeView1 = New ComponentFactory.Krypton.Toolkit.KryptonTreeView()
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
+        Me.CustomTabControl1 = New System.Windows.Forms.CustomTabControl()
         Me.FastColoredTextBox1 = New FastColoredTextBoxNS.FastColoredTextBox()
         Me.KryptonTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,15 +402,15 @@ Partial Class Form1
         '
         'KryptonDockableNavigator1
         '
-        Me.KryptonDockableNavigator1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KryptonDockableNavigator1.Location = New System.Drawing.Point(0, 0)
+        Me.KryptonDockableNavigator1.Location = New System.Drawing.Point(47, 99)
         Me.KryptonDockableNavigator1.Name = "KryptonDockableNavigator1"
         Me.KryptonDockableNavigator1.NavigatorMode = ComponentFactory.Krypton.Navigator.NavigatorMode.Group
         Me.KryptonDockableNavigator1.Palette = Me.KryptonPalette1
         Me.KryptonDockableNavigator1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(1182, 261)
+        Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(601, 128)
         Me.KryptonDockableNavigator1.TabIndex = 4
         Me.KryptonDockableNavigator1.Text = "KryptonDockableNavigator1"
+        Me.KryptonDockableNavigator1.Visible = False
         '
         'KryptonHeaderGroup1
         '
@@ -423,6 +424,7 @@ Partial Class Form1
         'KryptonHeaderGroup1.Panel
         '
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonTreeView1)
+        Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonDockableNavigator1)
         Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(226, 437)
         Me.KryptonHeaderGroup1.TabIndex = 5
         Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Projets"
@@ -441,6 +443,8 @@ Partial Class Form1
         Me.KryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonPanel1.Location = New System.Drawing.Point(226, 115)
         Me.KryptonPanel1.Name = "KryptonPanel1"
+        Me.KryptonPanel1.Palette = Me.KryptonPalette1
+        Me.KryptonPanel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel1.Size = New System.Drawing.Size(1182, 437)
         Me.KryptonPanel1.TabIndex = 6
         '
@@ -454,7 +458,7 @@ Partial Class Form1
         '
         'KryptonSplitContainer1.Panel1
         '
-        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.KryptonDockableNavigator1)
+        Me.KryptonSplitContainer1.Panel1.Controls.Add(Me.CustomTabControl1)
         '
         'KryptonSplitContainer1.Panel2
         '
@@ -464,6 +468,36 @@ Partial Class Form1
         Me.KryptonSplitContainer1.Size = New System.Drawing.Size(1182, 437)
         Me.KryptonSplitContainer1.SplitterDistance = 261
         Me.KryptonSplitContainer1.TabIndex = 5
+        '
+        'CustomTabControl1
+        '
+        Me.CustomTabControl1.DisplayStyle = System.Windows.Forms.TabStyle.Chrome
+        '
+        '
+        '
+        Me.CustomTabControl1.DisplayStyleProvider.BorderColor = System.Drawing.SystemColors.ControlDark
+        Me.CustomTabControl1.DisplayStyleProvider.BorderColorHot = System.Drawing.SystemColors.ControlDark
+        Me.CustomTabControl1.DisplayStyleProvider.BorderColorSelected = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(157, Byte), Integer), CType(CType(185, Byte), Integer))
+        Me.CustomTabControl1.DisplayStyleProvider.CloserColor = System.Drawing.Color.DarkGray
+        Me.CustomTabControl1.DisplayStyleProvider.CloserColorActive = System.Drawing.Color.White
+        Me.CustomTabControl1.DisplayStyleProvider.FocusTrack = False
+        Me.CustomTabControl1.DisplayStyleProvider.HotTrack = True
+        Me.CustomTabControl1.DisplayStyleProvider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.CustomTabControl1.DisplayStyleProvider.Opacity = 1.0!
+        Me.CustomTabControl1.DisplayStyleProvider.Overlap = 16
+        Me.CustomTabControl1.DisplayStyleProvider.Padding = New System.Drawing.Point(7, 5)
+        Me.CustomTabControl1.DisplayStyleProvider.Radius = 16
+        Me.CustomTabControl1.DisplayStyleProvider.ShowTabCloser = True
+        Me.CustomTabControl1.DisplayStyleProvider.TextColor = System.Drawing.SystemColors.ControlText
+        Me.CustomTabControl1.DisplayStyleProvider.TextColorDisabled = System.Drawing.SystemColors.ControlDark
+        Me.CustomTabControl1.DisplayStyleProvider.TextColorSelected = System.Drawing.SystemColors.ControlText
+        Me.CustomTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CustomTabControl1.HotTrack = True
+        Me.CustomTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.CustomTabControl1.Name = "CustomTabControl1"
+        Me.CustomTabControl1.SelectedIndex = 0
+        Me.CustomTabControl1.Size = New System.Drawing.Size(1182, 261)
+        Me.CustomTabControl1.TabIndex = 5
         '
         'FastColoredTextBox1
         '
@@ -597,4 +631,5 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonTab5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
     Friend WithEvents KryptonRibbonGroupButton9 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonGroupButton10 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents CustomTabControl1 As CustomTabControl
 End Class

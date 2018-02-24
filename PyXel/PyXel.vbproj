@@ -144,6 +144,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\FastColoredTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="Jacksonsoft.CustomTabControl, Version=1.0.1.5, Culture=neutral, PublicKeyToken=53c237210c7e462d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Jacksonsoft.CustomTabControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -304,6 +308,7 @@
     <Content Include="ComponentFactory.Krypton.Workspace.dll" />
     <Content Include="FastColoredTextBox.dll" />
     <Content Include="icon.ico" />
+    <Content Include="Jacksonsoft.CustomTabControl.dll" />
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <None Include="Resources\splash alpha0.3.png" />
