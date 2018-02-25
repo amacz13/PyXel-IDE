@@ -40,8 +40,10 @@ Partial Class Settings
         Me.KryptonTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPage2 = New ComponentFactory.Krypton.Navigator.KryptonPage()
-        Me.KryptonColorButton3 = New ComponentFactory.Krypton.Toolkit.KryptonColorButton()
+        Me.KryptonButton5 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.KryptonButton4 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonColorButton3 = New ComponentFactory.Krypton.Toolkit.KryptonColorButton()
         Me.KryptonColorButton4 = New ComponentFactory.Krypton.Toolkit.KryptonColorButton()
         Me.KryptonLabel7 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonColorButton2 = New ComponentFactory.Krypton.Toolkit.KryptonColorButton()
@@ -210,6 +212,8 @@ Partial Class Settings
         'KryptonPage2
         '
         Me.KryptonPage2.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
+        Me.KryptonPage2.Controls.Add(Me.KryptonButton5)
+        Me.KryptonPage2.Controls.Add(Me.KryptonButton4)
         Me.KryptonPage2.Controls.Add(Me.KryptonColorButton3)
         Me.KryptonPage2.Controls.Add(Me.KryptonColorButton4)
         Me.KryptonPage2.Controls.Add(Me.KryptonLabel7)
@@ -228,6 +232,26 @@ Partial Class Settings
         Me.KryptonPage2.Text = "Personnalisation"
         Me.KryptonPage2.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage2.UniqueName = "1388149E86964C206FA093B3F59F40FA"
+        '
+        'KryptonButton5
+        '
+        Me.KryptonButton5.Location = New System.Drawing.Point(479, 166)
+        Me.KryptonButton5.Name = "KryptonButton5"
+        Me.KryptonButton5.Palette = Me.KryptonPalette1
+        Me.KryptonButton5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton5.Size = New System.Drawing.Size(142, 25)
+        Me.KryptonButton5.TabIndex = 12
+        Me.KryptonButton5.Values.Text = "Plus de paramètres"
+        '
+        'KryptonButton4
+        '
+        Me.KryptonButton4.Location = New System.Drawing.Point(479, 100)
+        Me.KryptonButton4.Name = "KryptonButton4"
+        Me.KryptonButton4.Palette = Me.KryptonPalette1
+        Me.KryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton4.Size = New System.Drawing.Size(142, 25)
+        Me.KryptonButton4.TabIndex = 11
+        Me.KryptonButton4.Values.Text = "Plus de paramètres"
         '
         'KryptonColorButton3
         '
@@ -385,4 +409,6 @@ Partial Class Settings
     Friend WithEvents KryptonColorButton3 As ComponentFactory.Krypton.Toolkit.KryptonColorButton
     Friend WithEvents KryptonColorButton4 As ComponentFactory.Krypton.Toolkit.KryptonColorButton
     Friend WithEvents KryptonLabel7 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonButton5 As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents KryptonButton4 As ComponentFactory.Krypton.Toolkit.KryptonButton
 End Class

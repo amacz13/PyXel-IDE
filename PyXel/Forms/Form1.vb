@@ -63,47 +63,12 @@ Public Class Form1
         For Each item As KeyValuePair(Of Integer, FastColoredTextBox) In editors
             item.Value.ForeColor = ApplicationSettings.editorForeColor
             item.Value.BackColor = ApplicationSettings.editorBackColor
+            item.Value.Font = ApplicationSettings.editorFont
         Next
     End Sub
 
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
-
-        Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers Python|*.py"
-        openFileDialog1.Title = "Ouvrir un fichier Python"
-        openFileDialog1.Multiselect = True
-        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            For x = 0 To openFileDialog1.FileNames.Count - 1
-                Dim sr As New System.IO.StreamReader(openFileDialog1.FileNames(x))
-                fileName = openFileDialog1.FileNames(x)
-                pages += 1
-                pagesSaved.Add(pages, True)
-                filesOpened.Add(pages, fileName)
-                'Dim newPage As New KryptonPage
-                'newPage.Text = fileName
-                Dim newPage As New TabPage
-                newPage.Text = System.IO.Path.GetFileName(fileName)
-                Dim editor As New FastColoredTextBox
-                'newPage.ImageLarge = My.Resources.new16
-                'newPage.ImageMedium = My.Resources.new16
-                'newPage.ImageSmall = My.Resources.new16
-                displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
-                editor.Dock = DockStyle.Fill
-                tabs.Add(pages, newPage)
-                editors.Add(pages, editor)
-                tabsInversed.Add(newPage, pages)
-                editorsInversed.Add(editor, pages)
-                AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-                'KryptonDockableNavigator1.Pages.Add(newPage)
-                'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
-                'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-                CustomTabControl1.TabPages.Add(newPage)
-                CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-                newPage.Controls.Add(editor)
-                editor.Text = sr.ReadToEnd
-                sr.Close()
-            Next
-        End If
+        OpenFile()
     End Sub
 
     Private Sub FastColoredTextBox1_AutoIndentNeeded(sender As Object, e As AutoIndentEventArgs)
@@ -171,6 +136,51 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
+
+        openNewTab()
+
+    End Sub
+
+    Private Sub OpenFile()
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Python|*.py"
+        openFileDialog1.Title = "Ouvrir un fichier Python"
+        openFileDialog1.Multiselect = True
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            For x = 0 To openFileDialog1.FileNames.Count - 1
+                Dim sr As New System.IO.StreamReader(openFileDialog1.FileNames(x))
+                fileName = openFileDialog1.FileNames(x)
+                pages += 1
+                pagesSaved.Add(pages, True)
+                filesOpened.Add(pages, fileName)
+                'Dim newPage As New KryptonPage
+                'newPage.Text = fileName
+                Dim newPage As New TabPage
+                newPage.Text = System.IO.Path.GetFileName(fileName)
+                Dim editor As New FastColoredTextBox
+                'newPage.ImageLarge = My.Resources.new16
+                'newPage.ImageMedium = My.Resources.new16
+                'newPage.ImageSmall = My.Resources.new16
+                displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
+                editor.Dock = DockStyle.Fill
+                tabs.Add(pages, newPage)
+                editors.Add(pages, editor)
+                tabsInversed.Add(newPage, pages)
+                editorsInversed.Add(editor, pages)
+                AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
+                'KryptonDockableNavigator1.Pages.Add(newPage)
+                'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
+                'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
+                CustomTabControl1.TabPages.Add(newPage)
+                CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+                newPage.Controls.Add(editor)
+                editor.Text = sr.ReadToEnd
+                sr.Close()
+            Next
+        End If
+    End Sub
+
+    Private Sub openNewTab()
         'If isFileSaved = False Then
         'Dim msg As String
         'Dim title As String
@@ -226,11 +236,7 @@ Public Class Form1
         displayNames.Add(pages, "Sans Nom")
         'Dim newform As New Form1
         'newform.Show()
-
-
     End Sub
-
-
 
 
 
@@ -286,9 +292,10 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         KryptonHeaderGroup1.Hide()
         KryptonTextBox1.Hide()
+        KryptonRibbon1.SelectedContext = "Python"
         'FirstLaunchWizard.ShowDialog()
         Me.TextExtra = My.Settings.Version
-        ButtonSpecAny1.Visible = False
+        'ButtonSpecAny1.Visible = False
         pages = 0
         KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
         'Dim newPage As New KryptonPage
@@ -352,7 +359,7 @@ Public Class Form1
 
 
 
-    Private Async Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
+    Private Async Sub KryptonRibbonGroupButton14_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton14.Click
         If ApplicationSettings.python3 = "none" Then
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
@@ -378,7 +385,7 @@ Public Class Form1
             If inExec Then
                 proc.CancelOutputRead()
                 proc.Kill()
-                KryptonRibbonGroupButton4.Enabled = True
+                KryptonRibbonGroupButton14.Enabled = True
                 inExec = False
             End If
             proc.StartInfo.FileName = ApplicationSettings.python3 '+ " " + fileName
@@ -419,7 +426,7 @@ Public Class Form1
         'MessageBox.Show(out, "Données recues", MessageBoxButtons.OK, MessageBoxIcon.Stop)
     End Sub
 
-    Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton5.Click
+    Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
         If ApplicationSettings.python3 = "none" Then
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
@@ -455,10 +462,6 @@ Public Class Form1
 
     Private Sub KryptonContextMenuItem4_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem4.Click
         Settings.ShowDialog()
-    End Sub
-
-    Private Sub KryptonRibbonQATButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton2.Click
-        KryptonRibbonGroupButton4.PerformClick()
     End Sub
 
     Private Sub KryptonRibbonGroupButton7_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton7.Click
@@ -500,6 +503,9 @@ Public Class Form1
         pagesSaved.Remove(id)
         filesOpened.Remove(id)
         displayNames.Remove(id)
+        If CustomTabControl1.TabCount = 1 Then
+            openNewTab()
+        End If
         'If KryptonDockableNavigator1.Pages.Count = 2 Then
         'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
         'End If
@@ -578,11 +584,11 @@ Public Class Form1
     '    'NewProcess.WaitForExit()
     'End Sub
 
-    Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton15.Click
+    Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton17.Click
         If inExec Then
             proc.CancelOutputRead()
             proc.Kill()
-            KryptonRibbonGroupButton4.Enabled = True
+            KryptonRibbonGroupButton14.Enabled = True
             inExec = False
         End If
     End Sub
@@ -612,5 +618,28 @@ Public Class Form1
     Private Sub KryptonRibbonGroupButton10_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton10.Click
         Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
         editor.UnbookmarkLine(editor.Selection.Start.iLine)
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton11_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton11.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
+        editor.ShowFindDialog()
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton12_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton12.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
+        editor.ShowReplaceDialog()
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton13_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton13.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
+        editor.ShowGoToDialog()
+    End Sub
+
+    Private Sub KryptonRibbonQATButton3_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton3.Click
+        openNewTab()
+    End Sub
+
+    Private Sub KryptonRibbonQATButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton4.Click
+        OpenFile()
     End Sub
 End Class

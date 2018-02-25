@@ -17,6 +17,17 @@ Public Class Splash
         Else
             readConfig()
         End If
+        If (Not File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")) Then
+            Dim sw As StreamWriter = New StreamWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")
+            sw.Close()
+        Else
+            Dim sr As StreamReader = New StreamReader(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")
+            Do While sr.Peek() >= 0
+                Dim str As String = sr.ReadLine()
+                ApplicationSettings.recentDocs.Add(System.IO.Path.GetFileName(str), str)
+                sr.Close()
+            Loop
+        End If
     End Sub
 
     Private Sub createConfig()

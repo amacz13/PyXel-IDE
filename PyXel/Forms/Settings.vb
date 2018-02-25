@@ -30,15 +30,15 @@ Public Class Settings
         Me.TextExtra = My.Settings.Version
         KryptonTextBox1.Text = ApplicationSettings.python2
         KryptonTextBox2.Text = ApplicationSettings.python3
-        KryptonButton3.Hide()
-        KryptonButton1.Hide()
-        KryptonTextBox1.Hide()
+        'KryptonButton3.Hide()
+        'KryptonButton1.Hide()
+        'KryptonTextBox1.Hide()
         KryptonTextBox3.Hide()
-        KryptonLabel2.Hide()
-        KryptonLabel1.Hide()
+        'KryptonLabel2.Hide()
+        'KryptonLabel1.Hide()
         KryptonLabel4.Hide()
-        KryptonRadioButton4.Hide()
-        KryptonRadioButton5.Hide()
+        'KryptonRadioButton4.Hide()
+        'KryptonRadioButton5.Hide()
         If ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue Then
             KryptonRadioButton1.Checked = True
             KryptonRadioButton2.Checked = False
@@ -180,5 +180,46 @@ Public Class Settings
         writer.WriteEndElement()
         writer.WriteEndDocument()
         writer.Close()
+    End Sub
+
+    Private Sub KryptonRadioButton4_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton4.Click
+        ApplicationSettings.lang = "French"
+        MsgBox("La langue de PyXel a été définie sur : Français." + vbNewLine + "Les changement prendront effet après un redémarrage de l'application.", MsgBoxStyle.Information, "PyXel")
+    End Sub
+    Private Sub KryptonRadioButton5_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton5.Click
+        ApplicationSettings.lang = "English"
+        MsgBox("PyXel's language is now defined to : English." + vbNewLine + "This modification will be applied after a restart of the application.", MsgBoxStyle.Information, "PyXel")
+    End Sub
+
+    Private Sub KryptonButton5_Click(sender As Object, e As EventArgs) Handles KryptonButton5.Click
+        Dim fontDial As New FontDialog
+        fontDial.Color = ApplicationSettings.interpreterForeColor
+        fontDial.ShowColor = False
+        If fontDial.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim selFont As Font = fontDial.Font
+            Dim fontName As String = selFont.FontFamily.Name
+            Dim bold As Boolean = selFont.Bold
+            Dim italic As Boolean = selFont.Italic
+            Dim underline As Boolean = selFont.Underline
+            Dim size As Integer = selFont.SizeInPoints
+            ApplicationSettings.interpreterFont = selFont
+            Form1.FastColoredTextBox1.Font = selFont
+        End If
+    End Sub
+
+    Private Sub KryptonButton4_Click(sender As Object, e As EventArgs) Handles KryptonButton4.Click
+        Dim fontDial As New FontDialog
+        fontDial.Color = ApplicationSettings.interpreterForeColor
+        fontDial.ShowColor = False
+        If fontDial.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim selFont As Font = fontDial.Font
+            Dim fontName As String = selFont.FontFamily.Name
+            Dim bold As Boolean = selFont.Bold
+            Dim italic As Boolean = selFont.Italic
+            Dim underline As Boolean = selFont.Underline
+            Dim size As Integer = selFont.SizeInPoints
+            ApplicationSettings.editorFont = selFont
+            Form1.updateEditors()
+        End If
     End Sub
 End Class
