@@ -13,14 +13,14 @@ Roadmap
   - [x] Print and Export as HTML
   - [x] Syntax Highlighting Improvement
   - [x] Editor Improvement
-  - [ ] GUI Improvements
-  - [ ] Interpreter/Console Improvements
-  - [ ] MultiLanguages Support
-  - [ ] Autocompletion
+  - [x] GUI Improvements
 - Version 0.4-Alpha (Expected release date : March-April 2018)
   - [ ] Projects
   - [ ] New Installer
   - [ ] Help Center
+  - [ ] Interpreter/Console Improvements
+  - [ ] MultiLanguages Support
+  - [ ] Autocompletion
 - ...
 - Version 1.0-Beta (Expected release date : 2019)
 
