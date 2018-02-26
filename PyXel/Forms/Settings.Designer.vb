@@ -140,6 +140,8 @@ Partial Class Settings
         '
         Me.KryptonButton2.Location = New System.Drawing.Point(889, 67)
         Me.KryptonButton2.Name = "KryptonButton2"
+        Me.KryptonButton2.Palette = Me.KryptonPalette1
+        Me.KryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonButton2.Size = New System.Drawing.Size(45, 25)
         Me.KryptonButton2.TabIndex = 8
         Me.KryptonButton2.Values.Text = "..."
@@ -189,6 +191,8 @@ Partial Class Settings
         '
         Me.KryptonButton1.Location = New System.Drawing.Point(889, 37)
         Me.KryptonButton1.Name = "KryptonButton1"
+        Me.KryptonButton1.Palette = Me.KryptonPalette1
+        Me.KryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonButton1.Size = New System.Drawing.Size(45, 25)
         Me.KryptonButton1.TabIndex = 2
         Me.KryptonButton1.Values.Text = "..."

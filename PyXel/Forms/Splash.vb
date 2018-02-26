@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Net
 Imports System.Xml
 
 Public Class Splash
@@ -28,7 +29,41 @@ Public Class Splash
                 sr.Close()
             Loop
         End If
+        'If (Not Directory.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\langs")) Then
+        '    If CheckForInternetConnection() Then
+        '        Dim msg As String
+        '        Dim title As String
+        '        Dim style As MsgBoxStyle
+        '        msg = "We need to download language files in order PyXel to run properly." + vbNewLine + "Do you want to do this now ?"  ' Define message.
+        '        title = "PyXel - Language"
+        '        Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        '        If result = MsgBoxResult.Yes Then
+        '            Directory.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\langs")
+        '            My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/languagefiles/french.xml", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\langs\french.xml")
+        '            My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/languagefiles/english.xml", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\langs\english.xml")
+        '            MsgBox("PyXel has downloaded language files successfully.", MsgBoxStyle.Information, "PyXel")
+        '        ElseIf result = MsgBoxResult.Cancel Then
+        '            MsgBox("PyXel will not download language files." + vbNewLine + "While language files are not downloaded, PyXel language will be in French." + vbNewLine + "We will try to download language file at the next start of PyXel.", MsgBoxStyle.Critical, "PyXel - Error")
+        '        End If
+        '    Else
+        '        MsgBox("You're currently offline. PyXel can't download language files." + vbNewLine + "While language files are not downloaded, PyXel language will be in French." + vbNewLine + "We will try to download language file at the next start of PyXel.", MsgBoxStyle.Critical, "PyXel - Error")
+        '    End If
+        'Else
+
+        End If
     End Sub
+
+    Private Function CheckForInternetConnection() As Boolean
+        Try
+            Using client = New WebClient()
+                Using stream = client.OpenRead("http://www.google.com")
+                    Return True
+                End Using
+            End Using
+        Catch
+            Return False
+        End Try
+    End Function
 
     Private Sub createConfig()
         Dim writer As New XmlTextWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml", System.Text.Encoding.UTF8)

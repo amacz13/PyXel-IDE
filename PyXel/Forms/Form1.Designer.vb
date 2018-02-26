@@ -143,7 +143,6 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5})
-        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -366,7 +365,7 @@ Partial Class Form1
         '
         Me.KryptonRibbonTab7.ContextName = "Python"
         Me.KryptonRibbonTab7.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup5, Me.KryptonRibbonGroup6})
-        Me.KryptonRibbonTab7.Text = "Interpéteur"
+        Me.KryptonRibbonTab7.Text = "Outils Python"
         '
         'KryptonRibbonGroup5
         '
@@ -409,12 +408,12 @@ Partial Class Form1
         'KryptonRibbonTab8
         '
         Me.KryptonRibbonTab8.ContextName = "HTML"
-        Me.KryptonRibbonTab8.Text = "Visualisation"
+        Me.KryptonRibbonTab8.Text = "Outils HTML"
         '
         'KryptonRibbonTab3
         '
         Me.KryptonRibbonTab3.ContextName = "C"
-        Me.KryptonRibbonTab3.Text = "Compilation et Débogage"
+        Me.KryptonRibbonTab3.Text = "Outils C"
         '
         'KryptonRibbonTab4
         '
@@ -572,7 +571,6 @@ Partial Class Form1
         Me.FastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.FastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.FastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FastColoredTextBox1.Font = New System.Drawing.Font("Courier New", 9.75!)
         Me.FastColoredTextBox1.IsReplaceMode = False
         Me.FastColoredTextBox1.Location = New System.Drawing.Point(0, 0)
         Me.FastColoredTextBox1.Name = "FastColoredTextBox1"

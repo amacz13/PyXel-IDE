@@ -30,7 +30,7 @@ Public Class Settings
         Me.TextExtra = My.Settings.Version
         KryptonTextBox1.Text = ApplicationSettings.python2
         KryptonTextBox2.Text = ApplicationSettings.python3
-        'KryptonButton3.Hide()
+        KryptonButton3.Hide()
         'KryptonButton1.Hide()
         'KryptonTextBox1.Hide()
         KryptonTextBox3.Hide()
