@@ -26,6 +26,7 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.KryptonRibbon1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbon()
         Me.ButtonSpecAny1 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
+        Me.ButtonSpecAny2 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonRibbonQATButton3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonRibbonQATButton4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
@@ -35,8 +36,6 @@ Partial Class Form1
         Me.KryptonContextMenuItem3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem6 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
-        Me.KryptonContextMenuItems4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
-        Me.KryptonContextMenuItem14 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.ButtonSpecAppMenu1 = New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu()
         Me.ButtonSpecAppMenu2 = New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu()
@@ -120,7 +119,7 @@ Partial Class Form1
         '
         'KryptonRibbon1
         '
-        Me.KryptonRibbon1.ButtonSpecs.AddRange(New ComponentFactory.Krypton.Toolkit.ButtonSpecAny() {Me.ButtonSpecAny1})
+        Me.KryptonRibbon1.ButtonSpecs.AddRange(New ComponentFactory.Krypton.Toolkit.ButtonSpecAny() {Me.ButtonSpecAny1, Me.ButtonSpecAny2})
         Me.KryptonRibbon1.InDesignHelperMode = True
         Me.KryptonRibbon1.Name = "KryptonRibbon1"
         Me.KryptonRibbon1.Palette = Me.KryptonPalette1
@@ -151,6 +150,13 @@ Partial Class Form1
         '
         Me.ButtonSpecAny1.Image = Global.PyXel.My.Resources.Resources.help161
         Me.ButtonSpecAny1.UniqueName = "6312365E6BF54B9C2891B5961D6F0528"
+        Me.ButtonSpecAny1.Visible = False
+        '
+        'ButtonSpecAny2
+        '
+        Me.ButtonSpecAny2.Image = Global.PyXel.My.Resources.Resources.update16
+        Me.ButtonSpecAny2.Text = "Mise à jour disponible"
+        Me.ButtonSpecAny2.UniqueName = "907090DEE4DF48F7EB86713BAD61EA45"
         '
         'KryptonRibbonQATButton3
         '
@@ -194,18 +200,9 @@ Partial Class Form1
         'KryptonContextMenuItem5
         '
         Me.KryptonContextMenuItem5.Image = Global.PyXel.My.Resources.Resources.print32
-        Me.KryptonContextMenuItem5.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems4})
         Me.KryptonContextMenuItem5.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
         Me.KryptonContextMenuItem5.SplitSubMenu = True
         Me.KryptonContextMenuItem5.Text = "Imprimer"
-        '
-        'KryptonContextMenuItems4
-        '
-        Me.KryptonContextMenuItems4.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem14})
-        '
-        'KryptonContextMenuItem14
-        '
-        Me.KryptonContextMenuItem14.Text = "Aperçu avant impression"
         '
         'KryptonContextMenuItem4
         '
@@ -661,8 +658,6 @@ Partial Class Form1
     Friend WithEvents KryptonTreeView1 As ComponentFactory.Krypton.Toolkit.KryptonTreeView
     Friend WithEvents ButtonSpecAny1 As ComponentFactory.Krypton.Toolkit.ButtonSpecAny
     Friend WithEvents KryptonPalette1 As ComponentFactory.Krypton.Toolkit.KryptonPalette
-    Friend WithEvents KryptonContextMenuItems4 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
-    Friend WithEvents KryptonContextMenuItem14 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonRibbonContext3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
     Friend WithEvents KryptonContextMenu1 As ComponentFactory.Krypton.Toolkit.KryptonContextMenu
     Friend WithEvents KryptonContextMenuItems5 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
@@ -705,4 +700,5 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonGroupButton20 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonQATButton3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
     Friend WithEvents KryptonRibbonQATButton4 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
+    Friend WithEvents ButtonSpecAny2 As ComponentFactory.Krypton.Toolkit.ButtonSpecAny
 End Class

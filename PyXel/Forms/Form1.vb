@@ -241,47 +241,61 @@ Public Class Form1
 
 
     Private Async Sub ButtonSpecAppMenu2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu2.Click
-        If isFileSaved = False Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
-                For Each item As KeyValuePair(Of Integer, Boolean) In pagesSaved
-                    If item.Value = False Then
-                        Await SavePage(item.Key)
-                    End If
-                Next
-            ElseIf result = MsgBoxResult.Cancel Then
-                Exit Sub
+        For Each page As TabPage In CustomTabControl1.TabPages
+            Dim id As Integer = tabsInversed.Item(page)
+            If Not pagesSaved.Item(id) Then
+                CustomTabControl1.SelectedTab = page
+                Dim msg As String
+                Dim title As String
+                Dim style As MsgBoxStyle
+                msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+                style = MsgBoxStyle.YesNoCancel
+                title = "PyXel - Fichier non sauvegardé"
+                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = MsgBoxResult.Yes Then
+                    Await SavePage(id)
+                ElseIf result = MsgBoxResult.Cancel Then
+                    Exit Sub
+                End If
             End If
-        End If
+            tabsInversed.Remove(tabs.Item(id))
+            tabs.Remove(id)
+            editorsInversed.Remove(editors.Item(id))
+            editors.Remove(id)
+            pagesSaved.Remove(id)
+            filesOpened.Remove(id)
+            displayNames.Remove(id)
+        Next
         Application.Exit()
     End Sub
 
     Private Async Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
-        If isFileSaved = False Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
-                For Each item As KeyValuePair(Of Integer, Boolean) In pagesSaved
-                    If item.Value = False Then
-                        Await SavePage(item.Key)
-                    End If
-                Next
-            ElseIf result = MsgBoxResult.Cancel Then
-                Exit Sub
+        For Each page As TabPage In CustomTabControl1.TabPages
+            Dim id As Integer = tabsInversed.Item(page)
+            If Not pagesSaved.Item(id) Then
+                CustomTabControl1.SelectedTab = page
+                Dim msg As String
+                Dim title As String
+                Dim style As MsgBoxStyle
+                msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+                style = MsgBoxStyle.YesNoCancel
+                title = "PyXel - Fichier non sauvegardé"
+                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = MsgBoxResult.Yes Then
+                    Await SavePage(id)
+                ElseIf result = MsgBoxResult.Cancel Then
+                    Exit Sub
+                End If
             End If
-        End If
+            tabsInversed.Remove(tabs.Item(id))
+            tabs.Remove(id)
+            editorsInversed.Remove(editors.Item(id))
+            editors.Remove(id)
+            pagesSaved.Remove(id)
+            filesOpened.Remove(id)
+            displayNames.Remove(id)
+        Next
         Application.Exit()
     End Sub
 
@@ -355,6 +369,29 @@ Public Class Form1
         'Next
         FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
         FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
+        Try
+            If (File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")) Then
+                System.IO.File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            End If
+            My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/currentversion.txt", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            Dim versionReader As New System.IO.StreamReader(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            Dim version As String = versionReader.ReadToEnd
+            'MsgBox("Down : " + version.Length.ToString + " / Current : " + My.Settings.Version.Length.ToString)
+            versionReader.Close()
+            If String.Compare(My.Settings.Version, version) = 0 Then
+                ButtonSpecAny2.Visible = False
+            Else
+                ButtonSpecAny2.Text = version
+                ButtonSpecAny2.Visible = True
+            End If
+
+
+            'MsgBox(version)
+        Catch
+            'No Internet Connection
+            'MsgBox("No Internet !")
+            ButtonSpecAny2.Visible = False
+        End Try
     End Sub
 
 
@@ -389,7 +426,7 @@ Public Class Form1
                 inExec = False
             End If
             proc.StartInfo.FileName = ApplicationSettings.python3 '+ " " + fileName
-            proc.StartInfo.Arguments = fileName
+            proc.StartInfo.Arguments = filesOpened(id)
             proc.StartInfo.CreateNoWindow = True
             proc.StartInfo.UseShellExecute = False
             proc.EnableRaisingEvents = True 'Use this if you want to receive the ProcessExited event
@@ -641,5 +678,9 @@ Public Class Form1
 
     Private Sub KryptonRibbonQATButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton4.Click
         OpenFile()
+    End Sub
+
+    Private Sub ButtonSpecAny2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAny2.Click
+        Process.Start("https://pyxel.amacz13.fr")
     End Sub
 End Class
