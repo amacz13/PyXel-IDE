@@ -50,7 +50,7 @@ Public Class Splash
         '    End If
         'Else
 
-        End If
+        'End If
     End Sub
 
     Private Function CheckForInternetConnection() As Boolean
