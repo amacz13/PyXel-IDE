@@ -9,11 +9,6 @@ Despite PyXel is still in alpha, it is stable enough to be used in all day devel
 
 Roadmap
 -
-- Version 0.3-Alpha (Expected release date : February 2018)
-  - [x] Print and Export as HTML
-  - [x] Syntax Highlighting Improvement
-  - [x] Editor Improvement
-  - [x] GUI Improvements
 - Version 0.4-Alpha (Expected release date : March-April 2018)
   - [ ] Projects
   - [ ] New Installer
