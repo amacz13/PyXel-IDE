@@ -47,6 +47,7 @@ Public Class Form1
     Dim interpretersOutputs As New Dictionary(Of Integer, FastColoredTextBox)
     Dim interpretersProcess As New Dictionary(Of Integer, System.Diagnostics.Process)
     Dim interpretersProcessInverted As New Dictionary(Of System.Diagnostics.Process, Integer)
+    Dim firstLoad As New Dictionary(Of Integer, Boolean)
     Dim pagesSaved As New Dictionary(Of Integer, Boolean)
     Dim filesOpened As New Dictionary(Of Integer, String)
     Dim displayNames As New Dictionary(Of Integer, String)
@@ -79,28 +80,36 @@ Public Class Form1
     End Sub
 
     Private Sub FastColoredTextBox1_TextChanged(sender As Object, e As TextChangedEventArgs)
+        Dim id As Integer = editorsInversed.Item(sender)
+        'menus.Item(id).SearchPattern = e.ChangedRange.Text
+        If Not firstLoad.Item(id) Then
+            'menus.Item(id).Show()
+            Dim tab As TabPage = tabs.Item(id)
+            tab.Text = displayNames.Item(id) + "*"
+            pagesSaved.Item(id) = False
+            'If e.ChangedRange.Length > 0 Then
+            'Me.Text = "PyXel - " + fileName + "*"
+            'isFileSaved = False
+        End If
+        If firstLoad.Item(id) Then
+            firstLoad.Item(id) = False
+        End If
         e.ChangedRange.ClearStyle(greenStyle)
         e.ChangedRange.ClearStyle(orangeStyle)
         e.ChangedRange.ClearStyle(blueStyle)
         e.ChangedRange.ClearStyle(redStyle)
         e.ChangedRange.ClearStyle(purpleStyle)
+        e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
         e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
         e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
         e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
-        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)")
+        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
         e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
         e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-        Dim id As Integer = editorsInversed.Item(sender)
-        Dim tab As TabPage = tabs.Item(id)
-        tab.Text = displayNames.Item(id) + "*"
-        pagesSaved.Item(id) = False
-        'If e.ChangedRange.Length > 0 Then
-        'Me.Text = "PyXel - " + fileName + "*"
-        'isFileSaved = False
-        'End If
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
     End Sub
-
 
     Public Async Function SavePage(id As Integer) As Task
         Dim editor As FastColoredTextBox = editors.Item(id)
@@ -117,7 +126,7 @@ Public Class Form1
                 filesOpened.Item(id) = fileName
                 displayNames.Item(id) = System.IO.Path.GetFileName(fileName)
             End If
-            tabs.Item(id).Text = fileName
+            tabs.Item(id).Text = System.IO.Path.GetFileName(fileName)
         Else
             Dim fileName As String = filesOpened.Item(id)
             Using outputFile As New StreamWriter(fileName)
@@ -149,7 +158,6 @@ Public Class Form1
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             For x = 0 To openFileDialog1.FileNames.Count - 1
-                Dim sr As New System.IO.StreamReader(openFileDialog1.FileNames(x))
                 fileName = openFileDialog1.FileNames(x)
                 pages += 1
                 pagesSaved.Add(pages, True)
@@ -159,8 +167,6 @@ Public Class Form1
                 Dim newPage As New TabPage
                 newPage.Text = System.IO.Path.GetFileName(fileName)
                 Dim editor As New FastColoredTextBox
-                Dim menu As New AutocompleteMenu(editor)
-                AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
                 'newPage.ImageLarge = My.Resources.new16
                 'newPage.ImageMedium = My.Resources.new16
                 'newPage.ImageSmall = My.Resources.new16
@@ -177,8 +183,12 @@ Public Class Form1
                 CustomTabControl1.TabPages.Add(newPage)
                 CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
                 newPage.Controls.Add(editor)
-                editor.Text = sr.ReadToEnd
-                sr.Close()
+                Dim menu As New AutocompleteMenu(editor)
+                AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+                menus.Add(pages, menu)
+                firstLoad.Add(pages, True)
+                editor.OpenFile(fileName)
+                'MsgBox(fileName)
             Next
         End If
     End Sub
@@ -223,6 +233,9 @@ Public Class Form1
 
         editor.Dock = DockStyle.Fill
         pages += 1
+        Dim menu As New AutocompleteMenu(editor)
+        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+        menus.Add(pages, menu)
         tabs.Add(pages, newPage)
         editors.Add(pages, editor)
         tabsInversed.Add(newPage, pages)
@@ -237,6 +250,7 @@ Public Class Form1
         filesOpened.Add(pages, "Sans Nom")
         pagesSaved.Add(pages, True)
         displayNames.Add(pages, "Sans Nom")
+        firstLoad.Add(pages, True)
         'Dim newform As New Form1
         'newform.Show()
     End Sub
@@ -268,6 +282,9 @@ Public Class Form1
             pagesSaved.Remove(id)
             filesOpened.Remove(id)
             displayNames.Remove(id)
+            menus.Remove(id)
+            firstLoad.Remove(id)
+
         Next
         Application.Exit()
     End Sub
@@ -298,6 +315,8 @@ Public Class Form1
             pagesSaved.Remove(id)
             filesOpened.Remove(id)
             displayNames.Remove(id)
+            menus.Remove(id)
+            firstLoad.Remove(id)
         Next
         Application.Exit()
     End Sub
@@ -339,6 +358,9 @@ Public Class Form1
         'newPage.ImageSmall = My.Resources.new16
         editor.Dock = DockStyle.Fill
         pages += 1
+        Dim menu As New AutocompleteMenu(editor)
+        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+        menus.Add(pages, menu)
         tabs.Add(pages, newPage)
         editors.Add(pages, editor)
         tabsInversed.Add(newPage, pages)
@@ -349,6 +371,7 @@ Public Class Form1
         CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
         newPage.Controls.Add(editor)
         pagesSaved.Add(pages, True)
+        firstLoad.Add(pages, True)
         If ApplicationSettings.isFileOpened = True Then
             filesOpened.Add(pages, ApplicationSettings.fileOpened)
             displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
@@ -543,6 +566,7 @@ Public Class Form1
         pagesSaved.Remove(id)
         filesOpened.Remove(id)
         displayNames.Remove(id)
+        firstLoad.Remove(id)
         If CustomTabControl1.TabCount = 1 Then
             openNewTab()
         End If
@@ -690,5 +714,9 @@ Public Class Form1
     Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
         Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
         editor.CollapseBlock(editor.Selection.Start.iLine, editor.Selection.End.iLine)
+    End Sub
+
+    Private Sub CustomTabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CustomTabControl1.SelectedIndexChanged
+        Me.Text = "PyXel IDE - " + CustomTabControl1.SelectedTab.Text
     End Sub
 End Class
