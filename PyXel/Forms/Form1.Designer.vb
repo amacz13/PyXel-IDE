@@ -99,6 +99,11 @@ Partial Class Form1
         Me.CustomTabControl1 = New System.Windows.Forms.CustomTabControl()
         Me.FastColoredTextBox1 = New FastColoredTextBoxNS.FastColoredTextBox()
         Me.KryptonTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonRibbonGroupSeparator3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator()
+        Me.KryptonRibbonGroupTriple2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
+        Me.KryptonRibbonGroupButton4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton15 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
@@ -142,6 +147,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5})
+        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -280,7 +286,7 @@ Partial Class Form1
         '
         'KryptonRibbonGroup1
         '
-        Me.KryptonRibbonGroup1.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupSeparator1, Me.KryptonRibbonGroupTriple3, Me.KryptonRibbonGroupSeparator2, Me.KryptonRibbonGroupTriple5})
+        Me.KryptonRibbonGroup1.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupSeparator1, Me.KryptonRibbonGroupTriple3, Me.KryptonRibbonGroupSeparator2, Me.KryptonRibbonGroupTriple5, Me.KryptonRibbonGroupSeparator3, Me.KryptonRibbonGroupTriple2})
         Me.KryptonRibbonGroup1.TextLine1 = "Code"
         '
         'KryptonRibbonGroupTriple3
@@ -568,6 +574,7 @@ Partial Class Form1
         Me.FastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.FastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.FastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FastColoredTextBox1.Font = New System.Drawing.Font("Courier New", 9.75!)
         Me.FastColoredTextBox1.IsReplaceMode = False
         Me.FastColoredTextBox1.Location = New System.Drawing.Point(0, 0)
         Me.FastColoredTextBox1.Name = "FastColoredTextBox1"
@@ -588,6 +595,14 @@ Partial Class Form1
         Me.KryptonTextBox1.Name = "KryptonTextBox1"
         Me.KryptonTextBox1.Size = New System.Drawing.Size(1182, 23)
         Me.KryptonTextBox1.TabIndex = 0
+        '
+        'KryptonRibbonGroupTriple2
+        '
+        Me.KryptonRibbonGroupTriple2.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton4, Me.KryptonRibbonGroupButton5, Me.KryptonRibbonGroupButton15})
+        '
+        'KryptonRibbonGroupButton4
+        '
+        Me.KryptonRibbonGroupButton4.TextLine1 = "Collapse Code"
         '
         'Form1
         '
@@ -701,4 +716,9 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonQATButton3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
     Friend WithEvents KryptonRibbonQATButton4 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
     Friend WithEvents ButtonSpecAny2 As ComponentFactory.Krypton.Toolkit.ButtonSpecAny
+    Friend WithEvents KryptonRibbonGroupSeparator3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator
+    Friend WithEvents KryptonRibbonGroupTriple2 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
+    Friend WithEvents KryptonRibbonGroupButton4 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton15 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
 End Class

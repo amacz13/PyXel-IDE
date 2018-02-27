@@ -50,6 +50,7 @@ Public Class Form1
     Dim pagesSaved As New Dictionary(Of Integer, Boolean)
     Dim filesOpened As New Dictionary(Of Integer, String)
     Dim displayNames As New Dictionary(Of Integer, String)
+    Dim menus As New Dictionary(Of Integer, AutocompleteMenu)
     Dim pages As New Integer
     Private WithEvents proc As New Process
 
@@ -158,6 +159,8 @@ Public Class Form1
                 Dim newPage As New TabPage
                 newPage.Text = System.IO.Path.GetFileName(fileName)
                 Dim editor As New FastColoredTextBox
+                Dim menu As New AutocompleteMenu(editor)
+                AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
                 'newPage.ImageLarge = My.Resources.new16
                 'newPage.ImageMedium = My.Resources.new16
                 'newPage.ImageSmall = My.Resources.new16
@@ -682,5 +685,10 @@ Public Class Form1
 
     Private Sub ButtonSpecAny2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAny2.Click
         Process.Start("https://pyxel.amacz13.fr")
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton4.Click
+        Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
+        editor.CollapseBlock(editor.Selection.Start.iLine, editor.Selection.End.iLine)
     End Sub
 End Class
