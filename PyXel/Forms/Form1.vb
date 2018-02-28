@@ -18,7 +18,6 @@ Public Class Form1
         VBNet
     End Enum
 
-
     'Styles CodeEditor
 
     Public Shared greenStyle As Style = New TextStyle(Brushes.Green, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Italic)
@@ -28,16 +27,15 @@ Public Class Form1
     Public Shared purpleStyle As Style = New TextStyle(Brushes.Purple, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Bold)
     Public Shared salmonStyle As Style = New TextStyle(Brushes.Salmon, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Regular)
 
-    'Variables Fichiers
-    Dim isFileSet As Boolean = False
-    Dim fileName As String = "Sans Nom"
-    Dim isFileSaved As Boolean = True
-
+    'Python Interpreter
+    Private WithEvents proc As New Process
+    Dim consoleSender As StreamWriter
     Dim inExec As Boolean = False
 
-    'MultiEditor
-    'Dim tabs As New Dictionary(Of Integer, KryptonPage)
-    'Dim tabsInversed As New Dictionary(Of KryptonPage, Integer)
+    'Number of files opened
+    Dim pages As New Integer
+
+    'Dictionnaries
     Dim tabs As New Dictionary(Of Integer, TabPage)
     Dim tabsInversed As New Dictionary(Of TabPage, Integer)
     Public Shared editors As New Dictionary(Of Integer, FastColoredTextBox)
@@ -52,9 +50,8 @@ Public Class Form1
     Dim filesOpened As New Dictionary(Of Integer, String)
     Dim displayNames As New Dictionary(Of Integer, String)
     Dim menus As New Dictionary(Of Integer, AutocompleteMenu)
-    Dim pages As New Integer
-    Private WithEvents proc As New Process
-    Dim consoleSender As StreamWriter
+
+    'Utilities Sub
 
     Public Shared Sub updateEditors()
         greenStyle = New TextStyle(Brushes.Green, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Italic)
@@ -69,28 +66,110 @@ Public Class Form1
             item.Value.Font = ApplicationSettings.editorFont
         Next
     End Sub
-
-    Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
-        OpenFile()
-    End Sub
-
-    Private Sub FastColoredTextBox1_AutoIndentNeeded(sender As Object, e As AutoIndentEventArgs)
-        If e.LineText.Trim.Contains("def") Or e.LineText.Trim.Contains("if") Or e.LineText.Trim.Contains("else") Or e.LineText.Trim.Contains("elif") Or e.LineText.Trim.Contains("for") Or e.LineText.Trim.Contains("while") Then
-            e.ShiftNextLines = e.TabLength
+    Public Async Function SavePage(id As Integer) As Task
+        Dim editor As FastColoredTextBox = editors.Item(id)
+        If filesOpened.Item(id) = "Sans Nom" Then
+            Dim saveFileDialog As New SaveFileDialog
+            saveFileDialog.Filter = "Fichiers Python|*.py"
+            saveFileDialog.Title = "Enregistrer un fichier Python"
+            If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Dim fileName As String
+                fileName = saveFileDialog.FileName
+                Using outputFile As New StreamWriter(fileName)
+                    Await outputFile.WriteAsync(editor.Text)
+                End Using
+                pagesSaved.Item(id) = True
+                filesOpened.Item(id) = fileName
+                displayNames.Item(id) = System.IO.Path.GetFileName(fileName)
+            End If
+            tabs.Item(id).Text = System.IO.Path.GetFileName(filesOpened.Item(id))
+        Else
+            Dim fileName As String = filesOpened.Item(id)
+            Using outputFile As New StreamWriter(fileName)
+                Await outputFile.WriteAsync(editor.Text)
+            End Using
+            pagesSaved.Item(id) = True
+            tabs.Item(id).Text = displayNames.Item(id)
+        End If
+    End Function
+    Private Sub OpenFile()
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Python|*.py"
+        openFileDialog1.Title = "Ouvrir un fichier Python"
+        openFileDialog1.Multiselect = True
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            For x = 0 To openFileDialog1.FileNames.Count - 1
+                Dim fileName As String
+                fileName = openFileDialog1.FileNames(x)
+                pages += 1
+                pagesSaved.Add(pages, True)
+                filesOpened.Add(pages, fileName)
+                Dim newPage As New TabPage
+                newPage.Text = System.IO.Path.GetFileName(fileName)
+                Dim editor As New FastColoredTextBox
+                configEditor(editor)
+                displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
+                editor.Dock = DockStyle.Fill
+                tabs.Add(pages, newPage)
+                editors.Add(pages, editor)
+                tabsInversed.Add(newPage, pages)
+                editorsInversed.Add(editor, pages)
+                CustomTabControl1.TabPages.Add(newPage)
+                CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+                newPage.Controls.Add(editor)
+                Dim menu As New AutocompleteMenu(editor)
+                AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+                menus.Add(pages, menu)
+                firstLoad.Add(pages, True)
+                editor.OpenFile(fileName)
+            Next
         End If
     End Sub
+    Private Sub openNewTab()
+        Dim newPage As New TabPage
+        newPage.Text = "Sans Nom"
 
-    Private Sub FastColoredTextBox1_TextChanged(sender As Object, e As TextChangedEventArgs)
+        'editor Configuration
+        Dim editor As New FastColoredTextBox
+        configEditor(editor)
+
+
+        pages += 1
+        Dim menu As New AutocompleteMenu(editor)
+        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+        menus.Add(pages, menu)
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
+        CustomTabControl1.TabPages.Add(newPage)
+        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+        newPage.Controls.Add(editor)
+        filesOpened.Add(pages, "Sans Nom")
+        pagesSaved.Add(pages, True)
+        displayNames.Add(pages, "Sans Nom")
+        firstLoad.Add(pages, True)
+    End Sub
+
+    Private Sub configEditor(editor As FastColoredTextBox)
+        editor.BackColor = ApplicationSettings.editorBackColor
+        editor.ForeColor = ApplicationSettings.editorForeColor
+        editor.LeftBracket = "{"
+        editor.RightBracket = "}"
+        editor.LeftBracket2 = "("
+        editor.RightBracket2 = ")"
+        editor.AutoCompleteBrackets = True
+        editor.CommentPrefix = "#"
+        AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
+        AddHandler editor.TextChanged, AddressOf TextChanged
+        editor.Dock = DockStyle.Fill
+    End Sub
+    Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
         Dim id As Integer = editorsInversed.Item(sender)
-        'menus.Item(id).SearchPattern = e.ChangedRange.Text
         If Not firstLoad.Item(id) Then
-            'menus.Item(id).Show()
             Dim tab As TabPage = tabs.Item(id)
             tab.Text = displayNames.Item(id) + "*"
             pagesSaved.Item(id) = False
-            'If e.ChangedRange.Length > 0 Then
-            'Me.Text = "PyXel - " + fileName + "*"
-            'isFileSaved = False
         End If
         If firstLoad.Item(id) Then
             firstLoad.Item(id) = False
@@ -112,31 +191,86 @@ Public Class Form1
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
     End Sub
 
-    Public Async Function SavePage(id As Integer) As Task
-        Dim editor As FastColoredTextBox = editors.Item(id)
-        If filesOpened.Item(id) = "Sans Nom" Then
-            Dim saveFileDialog As New SaveFileDialog
-            saveFileDialog.Filter = "Fichiers Python|*.py"
-            saveFileDialog.Title = "Enregistrer un fichier Python"
-            If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                fileName = saveFileDialog.FileName
-                Using outputFile As New StreamWriter(fileName)
-                    Await outputFile.WriteAsync(editor.Text)
-                End Using
-                pagesSaved.Item(id) = True
-                filesOpened.Item(id) = fileName
-                displayNames.Item(id) = System.IO.Path.GetFileName(fileName)
-            End If
-            tabs.Item(id).Text = System.IO.Path.GetFileName(fileName)
-        Else
-            Dim fileName As String = filesOpened.Item(id)
-            Using outputFile As New StreamWriter(fileName)
-                Await outputFile.WriteAsync(editor.Text)
-            End Using
-            pagesSaved.Item(id) = True
-            tabs.Item(id).Text = displayNames.Item(id)
+    Private Sub AutoIndent(sender As Object, e As AutoIndentEventArgs)
+        If e.LineText.Trim.Contains("def") Or e.LineText.Trim.Contains("if") Or e.LineText.Trim.Contains("else") Or e.LineText.Trim.Contains("elif") Or e.LineText.Trim.Contains("for") Or e.LineText.Trim.Contains("while") Then
+            e.ShiftNextLines = e.TabLength
         End If
-    End Function
+    End Sub
+
+    Private Sub checkForUpdates()
+        Try
+            If (File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")) Then
+                System.IO.File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            End If
+            My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/currentversion.txt", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            Dim versionReader As New System.IO.StreamReader(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            Dim version As String = versionReader.ReadToEnd
+            versionReader.Close()
+            If String.Compare(My.Settings.Version, version) = 0 Then
+                ButtonSpecAny2.Visible = False
+            Else
+                ButtonSpecAny2.Text = version
+                ButtonSpecAny2.Visible = True
+            End If
+        Catch
+            ButtonSpecAny2.Visible = False
+        End Try
+    End Sub
+
+    'Form Loading Event
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        KryptonHeaderGroup1.Hide()
+        KryptonRibbon1.SelectedContext = "Python"
+        Me.TextExtra = My.Settings.Version
+        pages = 0
+        KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
+
+        Dim newPage As New TabPage
+        newPage.Text = "Sans Nom"
+
+        'Editor configuration
+        Dim editor As New FastColoredTextBox
+        configEditor(editor)
+
+        pages += 1
+        Dim menu As New AutocompleteMenu(editor)
+        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+        menus.Add(pages, menu)
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
+        CustomTabControl1.TabPages.Add(newPage)
+        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+        newPage.Controls.Add(editor)
+        pagesSaved.Add(pages, True)
+        firstLoad.Add(pages, True)
+
+        'Open file which launched the app
+        If ApplicationSettings.isFileOpened = True Then
+            filesOpened.Add(pages, ApplicationSettings.fileOpened)
+            displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
+            Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
+            editor.Text = sr.ReadToEnd
+            sr.Close()
+        Else
+            'No file launched the app, just adding a blank tab
+            filesOpened.Add(pages, "Sans Nom")
+            displayNames.Add(pages, "Sans Nom")
+        End If
+
+        'Interpreter Console Configuration
+        FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
+        FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
+
+        checkForUpdates()
+    End Sub
+
+    Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
+        OpenFile()
+    End Sub
+
+
 
     Private Async Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
         Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
@@ -147,116 +281,8 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
-
         openNewTab()
-
     End Sub
-
-    Private Sub OpenFile()
-        Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers Python|*.py"
-        openFileDialog1.Title = "Ouvrir un fichier Python"
-        openFileDialog1.Multiselect = True
-        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            For x = 0 To openFileDialog1.FileNames.Count - 1
-                fileName = openFileDialog1.FileNames(x)
-                pages += 1
-                pagesSaved.Add(pages, True)
-                filesOpened.Add(pages, fileName)
-                'Dim newPage As New KryptonPage
-                'newPage.Text = fileName
-                Dim newPage As New TabPage
-                newPage.Text = System.IO.Path.GetFileName(fileName)
-                Dim editor As New FastColoredTextBox
-                'newPage.ImageLarge = My.Resources.new16
-                'newPage.ImageMedium = My.Resources.new16
-                'newPage.ImageSmall = My.Resources.new16
-                displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
-                editor.Dock = DockStyle.Fill
-                tabs.Add(pages, newPage)
-                editors.Add(pages, editor)
-                tabsInversed.Add(newPage, pages)
-                editorsInversed.Add(editor, pages)
-                AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-                'KryptonDockableNavigator1.Pages.Add(newPage)
-                'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
-                'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-                CustomTabControl1.TabPages.Add(newPage)
-                CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-                newPage.Controls.Add(editor)
-                Dim menu As New AutocompleteMenu(editor)
-                AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-                menus.Add(pages, menu)
-                firstLoad.Add(pages, True)
-                editor.OpenFile(fileName)
-                'MsgBox(fileName)
-            Next
-        End If
-    End Sub
-
-    Private Sub openNewTab()
-        'If isFileSaved = False Then
-        'Dim msg As String
-        'Dim title As String
-        'Dim style As MsgBoxStyle
-        'msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-        'style = MsgBoxStyle.YesNoCancel
-        'title = "PyXel - Fichier non sauvegardé"
-        'Dim result As MsgBoxResult = MsgBox(msg, style, title)
-        'If result = MsgBoxResult.Yes Then
-        'SaveFile()
-        'ElseIf result = MsgBoxResult.Cancel Then
-        'Exit Sub
-        'End If
-        'End If
-
-        'isFileSet = False
-        'fileName = "Sans Nom"
-        'isFileSaved = True
-        'FastColoredTextBox1.Text = ""
-        'Dim newPage As New KryptonPage
-        'newPage.Text = "Sans Nom"
-        Dim newPage As New TabPage
-        newPage.Text = "Sans Nom"
-
-        'editor Configuration
-        Dim editor As New FastColoredTextBox
-        editor.BackColor = ApplicationSettings.editorBackColor
-        editor.ForeColor = ApplicationSettings.editorForeColor
-        editor.LeftBracket = "{"
-        editor.RightBracket = "}"
-        editor.LeftBracket2 = "("
-        editor.RightBracket2 = ")"
-        editor.AutoCompleteBrackets = True
-        editor.CommentPrefix = "#"
-        AddHandler editor.AutoIndentNeeded, AddressOf FastColoredTextBox1_AutoIndentNeeded
-        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-
-        editor.Dock = DockStyle.Fill
-        pages += 1
-        Dim menu As New AutocompleteMenu(editor)
-        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-        menus.Add(pages, menu)
-        tabs.Add(pages, newPage)
-        editors.Add(pages, editor)
-        tabsInversed.Add(newPage, pages)
-        editorsInversed.Add(editor, pages)
-        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-        'KryptonDockableNavigator1.Pages.Add(newPage)
-        'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.BarRibbonTabGroup
-        'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-        CustomTabControl1.TabPages.Add(newPage)
-        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        newPage.Controls.Add(editor)
-        filesOpened.Add(pages, "Sans Nom")
-        pagesSaved.Add(pages, True)
-        displayNames.Add(pages, "Sans Nom")
-        firstLoad.Add(pages, True)
-        'Dim newform As New Form1
-        'newform.Show()
-    End Sub
-
-
 
     Private Async Sub ButtonSpecAppMenu2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu2.Click
         For Each page As TabPage In CustomTabControl1.TabPages
@@ -285,7 +311,6 @@ Public Class Form1
             displayNames.Remove(id)
             menus.Remove(id)
             firstLoad.Remove(id)
-
         Next
         Application.Exit()
     End Sub
@@ -325,102 +350,6 @@ Public Class Form1
     Private Sub ButtonSpecAppMenu1_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu1.Click
         About.ShowDialog()
     End Sub
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        KryptonHeaderGroup1.Hide()
-        'KryptonTextBox1.Hide()
-        KryptonRibbon1.SelectedContext = "Python"
-        'FirstLaunchWizard.ShowDialog()
-        Me.TextExtra = My.Settings.Version
-        'ButtonSpecAny1.Visible = False
-        pages = 0
-        KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
-        'Dim newPage As New KryptonPage
-        'newPage.Text = "Sans Nom"
-
-        Dim newPage As New TabPage
-        newPage.Text = "Sans Nom"
-
-        'Editor configuration
-        Dim editor As New FastColoredTextBox
-        editor.BackColor = ApplicationSettings.editorBackColor
-        editor.ForeColor = ApplicationSettings.editorForeColor
-        editor.LeftBracket = "{"
-        editor.RightBracket = "}"
-        editor.LeftBracket2 = "("
-        editor.RightBracket2 = ")"
-        editor.AutoCompleteBrackets = True
-        editor.CommentPrefix = "#"
-        AddHandler editor.AutoIndentNeeded, AddressOf FastColoredTextBox1_AutoIndentNeeded
-        AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-
-        'newPage.ImageLarge = My.Resources.new16
-        'newPage.ImageMedium = My.Resources.new16
-        'newPage.ImageSmall = My.Resources.new16
-        editor.Dock = DockStyle.Fill
-        pages += 1
-        Dim menu As New AutocompleteMenu(editor)
-        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-        menus.Add(pages, menu)
-        tabs.Add(pages, newPage)
-        editors.Add(pages, editor)
-        tabsInversed.Add(newPage, pages)
-        editorsInversed.Add(editor, pages)
-        'KryptonDockableNavigator1.Pages.Add(newPage)
-        'KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-        CustomTabControl1.TabPages.Add(newPage)
-        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        newPage.Controls.Add(editor)
-        pagesSaved.Add(pages, True)
-        firstLoad.Add(pages, True)
-        If ApplicationSettings.isFileOpened = True Then
-            filesOpened.Add(pages, ApplicationSettings.fileOpened)
-            displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
-            Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
-            editor.Text = sr.ReadToEnd
-            sr.Close()
-        Else
-            filesOpened.Add(pages, "Sans Nom")
-            displayNames.Add(pages, "Sans Nom")
-        End If
-        'Dim x As Integer
-        'For x = 0 To My.Computer.FileSystem.Drives.Count - 1
-        '    If My.Computer.FileSystem.Drives(x).IsReady = True Then
-        '        KryptonTreeView1.Nodes.Add(My.Computer.FileSystem.Drives(x).Name, My.Computer.FileSystem.Drives(x).Name)
-        '        KryptonTreeView1.Nodes(My.Computer.FileSystem.Drives(x).Name).Tag = My.Computer.FileSystem.Drives(x).Name
-        '        For Each SubDirectory As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.Drives(x).Name)
-        '            KryptonTreeView1.Nodes(x).Nodes.Add(SubDirectory, Mid(SubDirectory, 4))
-        '            KryptonTreeView1.Nodes(x).Nodes(SubDirectory).Tag = SubDirectory
-        '        Next
-        '    End If
-        'Next
-        FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
-        FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
-        Try
-            If (File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")) Then
-                System.IO.File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
-            End If
-            My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/currentversion.txt", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
-            Dim versionReader As New System.IO.StreamReader(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
-            Dim version As String = versionReader.ReadToEnd
-            'MsgBox("Down : " + version.Length.ToString + " / Current : " + My.Settings.Version.Length.ToString)
-            versionReader.Close()
-            If String.Compare(My.Settings.Version, version) = 0 Then
-                ButtonSpecAny2.Visible = False
-            Else
-                ButtonSpecAny2.Text = version
-                ButtonSpecAny2.Visible = True
-            End If
-
-
-            'MsgBox(version)
-        Catch
-            'No Internet Connection
-            'MsgBox("No Internet !")
-            ButtonSpecAny2.Visible = False
-        End Try
-    End Sub
-
 
 
     Private Async Sub KryptonRibbonGroupButton14_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton14.Click
@@ -667,14 +596,13 @@ Public Class Form1
         saveFileDialog.Filter = "Fichiers HTML|*.html"
         saveFileDialog.Title = "Exporter en HTML"
         If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fileName As String
             fileName = saveFileDialog.FileName
             Using outputFile As New StreamWriter(fileName)
                 Await outputFile.WriteAsync(editor.Html)
             End Using
-            pagesSaved.Item(id) = True
             filesOpened.Item(id) = fileName
         End If
-        tabs.Item(id).Text = fileName
     End Sub
 
     Private Sub KryptonRibbonGroupButton9_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton9.Click
