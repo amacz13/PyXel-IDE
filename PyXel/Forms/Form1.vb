@@ -54,6 +54,7 @@ Public Class Form1
     Dim menus As New Dictionary(Of Integer, AutocompleteMenu)
     Dim pages As New Integer
     Private WithEvents proc As New Process
+    Dim consoleSender As StreamWriter
 
     Public Shared Sub updateEditors()
         greenStyle = New TextStyle(Brushes.Green, New SolidBrush(ApplicationSettings.editorBackColor), FontStyle.Italic)
@@ -327,7 +328,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         KryptonHeaderGroup1.Hide()
-        KryptonTextBox1.Hide()
+        'KryptonTextBox1.Hide()
         KryptonRibbon1.SelectedContext = "Python"
         'FirstLaunchWizard.ShowDialog()
         Me.TextExtra = My.Settings.Version
@@ -457,8 +458,10 @@ Public Class Form1
             proc.StartInfo.UseShellExecute = False
             proc.EnableRaisingEvents = True 'Use this if you want to receive the ProcessExited event
             proc.StartInfo.RedirectStandardOutput = True
+            proc.StartInfo.RedirectStandardInput = True
             proc.Start()
             proc.BeginOutputReadLine()
+            consoleSender = proc.StandardInput
             'KryptonRibbonGroupButton4.Enabled = False
             inExec = True
             'Do While inExec
@@ -718,5 +721,12 @@ Public Class Form1
 
     Private Sub CustomTabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CustomTabControl1.SelectedIndexChanged
         Me.Text = "PyXel IDE - " + CustomTabControl1.SelectedTab.Text
+    End Sub
+
+    Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles KryptonTextBox1.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            consoleSender.WriteLine(KryptonTextBox1.Text)
+            KryptonTextBox1.Text = ""
+        End If
     End Sub
 End Class
