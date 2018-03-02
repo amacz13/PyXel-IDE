@@ -357,7 +357,6 @@ Public Class Form1
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
-            'Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
             Dim page As TabPage = CustomTabControl1.SelectedTab
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
@@ -374,31 +373,23 @@ Public Class Form1
                     Exit Sub
                 End If
             End If
-            'MessageBox.Show(My.Settings.PythonPath + " " + fileName, "Début exec", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             If inExec Then
                 proc.CancelOutputRead()
                 proc.Kill()
                 KryptonRibbonGroupButton14.Enabled = True
                 inExec = False
             End If
-            proc.StartInfo.FileName = ApplicationSettings.python3 '+ " " + fileName
+            proc.StartInfo.FileName = ApplicationSettings.python3
             proc.StartInfo.Arguments = filesOpened(id)
             proc.StartInfo.CreateNoWindow = True
             proc.StartInfo.UseShellExecute = False
-            proc.EnableRaisingEvents = True 'Use this if you want to receive the ProcessExited event
+            proc.EnableRaisingEvents = True
             proc.StartInfo.RedirectStandardOutput = True
             proc.StartInfo.RedirectStandardInput = True
             proc.Start()
             proc.BeginOutputReadLine()
             consoleSender = proc.StandardInput
-            'KryptonRibbonGroupButton4.Enabled = False
             inExec = True
-            'Do While inExec
-
-            'Loop
-
-            'KryptonRibbonGroupButton4.Enabled = True
-            'Shell(My.Settings.PythonPath + " " + fileName)
         End If
     End Sub
 
@@ -416,9 +407,7 @@ Public Class Form1
     Private Delegate Sub OutputRecievedDel(ByVal out As String)
 
     Private Sub OutputRecieved(ByVal out As String)
-        'FastColoredTextBox1.Lines.Add(out)
         FastColoredTextBox1.Text += vbNewLine + out
-        'MessageBox.Show(out, "Données recues", MessageBoxButtons.OK, MessageBoxIcon.Stop)
     End Sub
 
     Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
@@ -431,8 +420,6 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton2_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton2.Click
-        'Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
-        'Dim id As Integer = tabsInversed.Item(tab)
         Dim tab As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(tab)
         editors.Item(id).Cut()
@@ -440,16 +427,12 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton3_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton3.Click
-        'Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
-        'Dim id As Integer = tabsInversed.Item(tab)
         Dim tab As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(tab)
         editors.Item(id).Copy()
     End Sub
 
     Private Sub KryptonRibbonGroupButton6_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton6.Click
-        'Dim tab As KryptonPage = KryptonDockableNavigator1.SelectedPage
-        'Dim id As Integer = tabsInversed.Item(tab)
         Dim tab As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(tab)
         editors.Item(id).Paste()
@@ -473,15 +456,13 @@ Public Class Form1
     End Sub
 
     Private Async Sub KryptonDockableNavigator1_CloseAction(sender As Object, e As TabControlCancelEventArgs) Handles CustomTabControl1.TabClosing
-        'Dim page As KryptonPage = KryptonDockableNavigator1.SelectedPage
-        'e.Cancel = True
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim msg As String
             Dim title As String
             Dim style As MsgBoxStyle
-            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
+            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"
             style = MsgBoxStyle.YesNoCancel
             title = "PyXel - Fichier non sauvegardé"
             Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -502,9 +483,6 @@ Public Class Form1
         If CustomTabControl1.TabCount = 1 Then
             openNewTab()
         End If
-        'If KryptonDockableNavigator1.Pages.Count = 2 Then
-        'KryptonDockableNavigator1.NavigatorMode = NavigatorMode.Group
-        'End If
     End Sub
 
     Public Sub updatePalette()
@@ -530,55 +508,6 @@ Public Class Form1
     Private Sub KryptonRibbonGroupButton8_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton8.Click
         MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
-
-    'New Python 3 interpreter
-    'Private Sub KryptonContextMenuItem8_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem8.Click
-    '    Dim newPage As New KryptonPage
-    '    newPage.Text = "Interpréteur Python 3"
-    '    Dim textbox As New TextBox
-    '    Dim editor As New FastColoredTextBox
-    '    editor.BackColor = Color.Black
-    '    editor.ForeColor = Color.White
-    '    newPage.ImageLarge = My.Resources.console16
-    '    newPage.ImageMedium = My.Resources.console16
-    '    newPage.ImageSmall = My.Resources.console16
-    '    textbox.Dock = DockStyle.Bottom
-    '    editor.Dock = DockStyle.Fill
-    '    editor.ReadOnly = True
-    '    pages += 1
-    '    tabs.Add(pages, newPage)
-    '    editors.Add(pages, editor)
-    '    tabsInversed.Add(newPage, pages)
-    '    editorsInversed.Add(editor, pages)
-    '    'AddHandler editor.TextChanged, AddressOf FastColoredTextBox1_TextChanged
-    '    KryptonDockableNavigator1.Pages.Add(newPage)
-    '    KryptonDockableNavigator1.SelectedIndex = KryptonDockableNavigator1.Pages.Count - 1
-    '    newPage.Controls.Add(textbox)
-    '    newPage.Controls.Add(editor)
-    '    KryptonRibbon1.SelectedContext = "Console"
-    '    Dim NewProcess As New System.Diagnostics.Process()
-    '    With NewProcess.StartInfo
-    '        .FileName = My.Settings.PythonPath
-    '        .RedirectStandardOutput = True
-    '        .RedirectStandardError = True
-    '        .RedirectStandardInput = True
-    '        .UseShellExecute = False
-    '        .WindowStyle = ProcessWindowStyle.Hidden
-    '        .CreateNoWindow = False
-    '    End With
-
-
-    '    interpretersOutputs.Add(pages, editor)
-    '    interpretersProcess.Add(pages, NewProcess)
-    '    interpretersProcessInverted.Add(NewProcess, pages)
-
-    '    ' Set our event handler to asynchronously read the sort output.
-    '    AddHandler NewProcess.OutputDataReceived, AddressOf OutputHandler
-    '    NewProcess.Start()
-    '    NewProcess.BeginOutputReadLine()
-
-    '    'NewProcess.WaitForExit()
-    'End Sub
 
     Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton17.Click
         If inExec Then
