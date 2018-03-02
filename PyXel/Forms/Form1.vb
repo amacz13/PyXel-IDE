@@ -81,8 +81,8 @@ Public Class Form1
                 pagesSaved.Item(id) = True
                 filesOpened.Item(id) = fileName
                 displayNames.Item(id) = System.IO.Path.GetFileName(fileName)
+                tabs.Item(id).Text = System.IO.Path.GetFileName(filesOpened.Item(id))
             End If
-            tabs.Item(id).Text = System.IO.Path.GetFileName(filesOpened.Item(id))
         Else
             Dim fileName As String = filesOpened.Item(id)
             Using outputFile As New StreamWriter(fileName)
@@ -163,6 +163,7 @@ Public Class Form1
         AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
         AddHandler editor.TextChanged, AddressOf TextChanged
         editor.Dock = DockStyle.Fill
+        editor.Font = ApplicationSettings.editorFont
     End Sub
     Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
         Dim id As Integer = editorsInversed.Item(sender)
@@ -219,7 +220,7 @@ Public Class Form1
 
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        KryptonHeaderGroup1.Hide()
+        'KryptonHeaderGroup1.Hide()
         KryptonRibbon1.SelectedContext = "Python"
         Me.TextExtra = My.Settings.Version
         pages = 0
@@ -248,11 +249,18 @@ Public Class Form1
 
         'Open file which launched the app
         If ApplicationSettings.isFileOpened = True Then
-            filesOpened.Add(pages, ApplicationSettings.fileOpened)
-            displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
-            Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
-            editor.Text = sr.ReadToEnd
-            sr.Close()
+            Try
+                filesOpened.Add(pages, ApplicationSettings.fileOpened)
+                displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
+                Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
+                editor.Text = sr.ReadToEnd
+                sr.Close()
+            Catch
+                MessageBox.Show("Une erreur est survenue lors de l'ouverture du fichier", "PyXel - Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                filesOpened.Add(pages, "Sans Nom")
+                displayNames.Add(pages, "Sans Nom")
+            End Try
+
         Else
             'No file launched the app, just adding a blank tab
             filesOpened.Add(pages, "Sans Nom")
@@ -518,7 +526,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Async Sub KryptonContextMenuItem6_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem6.Click
+    Private Async Sub KryptonContextMenuItem6_Click(sender As Object, e As EventArgs)
         Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim saveFileDialog As New SaveFileDialog
@@ -586,4 +594,5 @@ Public Class Form1
             KryptonTextBox1.Text = ""
         End If
     End Sub
+
 End Class
