@@ -11,7 +11,7 @@
     <AssemblyName>PyXel</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -146,6 +146,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
+    <Reference Include="ConsoleControl">
+      <HintPath>.\ConsoleControl.dll</HintPath>
+    </Reference>
     <Reference Include="FastColoredTextBox, Version=2.16.23.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\FastColoredTextBox.dll</HintPath>
@@ -255,7 +258,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="My Project\app.manifest" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

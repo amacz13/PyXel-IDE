@@ -115,12 +115,12 @@ Public Class Settings
 
     Private Sub KryptonColorButton4_SelectedColorChanged(sender As Object, e As ColorEventArgs) Handles KryptonColorButton4.SelectedColorChanged
         ApplicationSettings.interpreterBackColor = e.Color
-        Form1.FastColoredTextBox1.BackColor = e.Color
+        Form1.ConsoleControl1.BackColor = e.Color
     End Sub
 
     Private Sub KryptonColorButton3_SelectedColorChanged(sender As Object, e As ColorEventArgs) Handles KryptonColorButton3.SelectedColorChanged
         ApplicationSettings.interpreterForeColor = e.Color
-        Form1.FastColoredTextBox1.ForeColor = e.Color
+        Form1.ConsoleControl1.ForeColor = e.Color
     End Sub
 
     Private Sub Settings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -203,7 +203,7 @@ Public Class Settings
             Dim underline As Boolean = selFont.Underline
             Dim size As Integer = selFont.SizeInPoints
             ApplicationSettings.interpreterFont = selFont
-            Form1.FastColoredTextBox1.Font = selFont
+            Form1.ConsoleControl1.Font = selFont
         End If
     End Sub
 

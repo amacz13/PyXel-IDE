@@ -147,8 +147,7 @@ Partial Class Form1
         Me.KryptonSplitContainer2 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.KryptonSplitContainer1 = New ComponentFactory.Krypton.Toolkit.KryptonSplitContainer()
         Me.CustomTabControl1 = New System.Windows.Forms.CustomTabControl()
-        Me.FastColoredTextBox1 = New FastColoredTextBoxNS.FastColoredTextBox()
-        Me.KryptonTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.ConsoleControl1 = New ConsoleControl.ConsoleControl()
         Me.KryptonContextMenuItems1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonContextMenuSeparator3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuSeparator()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,7 +171,6 @@ Partial Class Form1
         CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel2.SuspendLayout()
         Me.KryptonSplitContainer1.SuspendLayout()
-        CType(Me.FastColoredTextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KryptonRibbon1
@@ -814,8 +812,7 @@ Partial Class Form1
         '
         'KryptonSplitContainer1.Panel2
         '
-        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.FastColoredTextBox1)
-        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.KryptonTextBox1)
+        Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.ConsoleControl1)
         Me.KryptonSplitContainer1.SeparatorStyle = ComponentFactory.Krypton.Toolkit.SeparatorStyle.HighProfile
         Me.KryptonSplitContainer1.Size = New System.Drawing.Size(934, 437)
         Me.KryptonSplitContainer1.SplitterDistance = 258
@@ -851,38 +848,16 @@ Partial Class Form1
         Me.CustomTabControl1.Size = New System.Drawing.Size(934, 258)
         Me.CustomTabControl1.TabIndex = 5
         '
-        'FastColoredTextBox1
+        'ConsoleControl1
         '
-        Me.FastColoredTextBox1.AutoCompleteBrackets = True
-        Me.FastColoredTextBox1.AutoCompleteBracketsList = New Char() {Global.Microsoft.VisualBasic.ChrW(40), Global.Microsoft.VisualBasic.ChrW(41), Global.Microsoft.VisualBasic.ChrW(123), Global.Microsoft.VisualBasic.ChrW(125), Global.Microsoft.VisualBasic.ChrW(91), Global.Microsoft.VisualBasic.ChrW(93), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(39), Global.Microsoft.VisualBasic.ChrW(39)}
-        Me.FastColoredTextBox1.AutoScrollMinSize = New System.Drawing.Size(2, 18)
-        Me.FastColoredTextBox1.BackBrush = Nothing
-        Me.FastColoredTextBox1.CharHeight = 18
-        Me.FastColoredTextBox1.CharWidth = 9
-        Me.FastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.FastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
-        Me.FastColoredTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FastColoredTextBox1.Font = New System.Drawing.Font("Consolas", 12.0!)
-        Me.FastColoredTextBox1.IsReplaceMode = False
-        Me.FastColoredTextBox1.Location = New System.Drawing.Point(0, 0)
-        Me.FastColoredTextBox1.Name = "FastColoredTextBox1"
-        Me.FastColoredTextBox1.Paddings = New System.Windows.Forms.Padding(0)
-        Me.FastColoredTextBox1.ReadOnly = True
-        Me.FastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.FastColoredTextBox1.ServiceColors = CType(resources.GetObject("FastColoredTextBox1.ServiceColors"), FastColoredTextBoxNS.ServiceColors)
-        Me.FastColoredTextBox1.ShowCaretWhenInactive = True
-        Me.FastColoredTextBox1.ShowLineNumbers = False
-        Me.FastColoredTextBox1.Size = New System.Drawing.Size(934, 151)
-        Me.FastColoredTextBox1.TabIndex = 1
-        Me.FastColoredTextBox1.Zoom = 100
-        '
-        'KryptonTextBox1
-        '
-        Me.KryptonTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.KryptonTextBox1.Location = New System.Drawing.Point(0, 151)
-        Me.KryptonTextBox1.Name = "KryptonTextBox1"
-        Me.KryptonTextBox1.Size = New System.Drawing.Size(934, 23)
-        Me.KryptonTextBox1.TabIndex = 0
+        Me.ConsoleControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ConsoleControl1.IsInputEnabled = True
+        Me.ConsoleControl1.Location = New System.Drawing.Point(0, 0)
+        Me.ConsoleControl1.Name = "ConsoleControl1"
+        Me.ConsoleControl1.SendKeyboardCommandsToProcess = False
+        Me.ConsoleControl1.ShowDiagnostics = False
+        Me.ConsoleControl1.Size = New System.Drawing.Size(934, 174)
+        Me.ConsoleControl1.TabIndex = 0
         '
         'Form1
         '
@@ -918,10 +893,8 @@ Partial Class Form1
         Me.KryptonSplitContainer1.Panel1.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.Panel2.ResumeLayout(False)
-        Me.KryptonSplitContainer1.Panel2.PerformLayout()
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.ResumeLayout(False)
-        CType(Me.FastColoredTextBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -967,8 +940,6 @@ Partial Class Form1
     Friend WithEvents KryptonContextMenuItems6 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems
     Friend WithEvents KryptonContextMenuItem17 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonSplitContainer1 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
-    Friend WithEvents FastColoredTextBox1 As FastColoredTextBoxNS.FastColoredTextBox
-    Friend WithEvents KryptonTextBox1 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonRibbonContext4 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
     Friend WithEvents KryptonRibbonContext5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
     Friend WithEvents KryptonRibbonContext6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
@@ -1054,4 +1025,5 @@ Partial Class Form1
     Friend WithEvents KryptonContextMenuItem25 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItem26 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
+    Friend WithEvents ConsoleControl1 As ConsoleControl.ConsoleControl
 End Class

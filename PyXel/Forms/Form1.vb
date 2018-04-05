@@ -186,7 +186,7 @@ Public Class Form1
         e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
         e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
         e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
-        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)")
+        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
@@ -268,8 +268,11 @@ Public Class Form1
         End If
 
         'Interpreter Console Configuration
-        FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
-        FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
+        ConsoleControl1.BackColor = ApplicationSettings.interpreterBackColor
+        ConsoleControl1.ForeColor = ApplicationSettings.interpreterForeColor
+
+        'FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
+        'FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
 
         checkForUpdates()
     End Sub
@@ -381,42 +384,63 @@ Public Class Form1
                     Exit Sub
                 End If
             End If
-            If inExec Then
-                proc.CancelOutputRead()
-                proc.Kill()
-                KryptonRibbonGroupButton14.Enabled = True
-                inExec = False
+
+            'If inExec Then
+            '    proc.CancelOutputRead()
+            '    proc.Kill()
+            '    KryptonRibbonGroupButton14.Enabled = True
+            '    inExec = False
+            'End If
+            'proc.StartInfo.FileName = ApplicationSettings.python3
+            'proc.StartInfo.Arguments = filesOpened(id)
+            'proc.StartInfo.CreateNoWindow = True
+            'proc.StartInfo.UseShellExecute = False
+            'proc.EnableRaisingEvents = True
+            'proc.StartInfo.RedirectStandardOutput = True
+            'proc.StartInfo.RedirectStandardInput = True
+            'proc.Start()
+            'proc.BeginOutputReadLine()
+            'consoleSender = proc.StandardInput
+            'inExec = True
+            If ConsoleControl1.IsProcessRunning Then
+                Dim msg As String
+                Dim title As String
+                Dim style As MsgBoxStyle
+                msg = "Un processus est en cours d'exécution. Voulez-vous l'interrompre ?"   ' Define message.
+                style = MsgBoxStyle.YesNoCancel
+                title = "PyXel - Processus en cours"
+                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = MsgBoxResult.Yes Then
+                    ConsoleControl1.StopProcess()
+                ElseIf result = MsgBoxResult.Cancel Then
+                    Exit Sub
+                End If
             End If
-            proc.StartInfo.FileName = ApplicationSettings.python3
-            proc.StartInfo.Arguments = filesOpened(id)
-            proc.StartInfo.CreateNoWindow = True
-            proc.StartInfo.UseShellExecute = False
-            proc.EnableRaisingEvents = True
-            proc.StartInfo.RedirectStandardOutput = True
-            proc.StartInfo.RedirectStandardInput = True
-            proc.Start()
-            proc.BeginOutputReadLine()
-            consoleSender = proc.StandardInput
-            inExec = True
+            Threading.Thread.Sleep(500)
+            Try
+                ConsoleControl1.StartProcess(ApplicationSettings.python3, filesOpened(id))
+            Catch
+                MessageBox.Show("Une erreur est survenue lors de l'exécution du programme", "PyXel - Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
     End Sub
 
-    Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.EventArgs) Handles proc.Exited
-        inExec = False
-        proc.CancelOutputRead()
-    End Sub
+    'Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.EventArgs) Handles proc.Exited
+    '    inExec = False
+    '    proc.CancelOutputRead()
+    'End Sub
 
-    Private Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.OutputDataReceived
-        If e.Data <> Nothing Then
-            Invoke(New OutputRecievedDel(AddressOf OutputRecieved), e.Data)
-        End If
-    End Sub
+    'Private Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.OutputDataReceived
+    '    If e.Data <> Nothing Then
+    '        Invoke(New OutputRecievedDel(AddressOf OutputRecieved), e.Data)
+    '    End If
+    'End Sub
 
-    Private Delegate Sub OutputRecievedDel(ByVal out As String)
+    'Private Delegate Sub OutputRecievedDel(ByVal out As String)
 
-    Private Sub OutputRecieved(ByVal out As String)
-        FastColoredTextBox1.Text += vbNewLine + out
-    End Sub
+    'Private Sub OutputRecieved(ByVal out As String)
+    '    FastColoredTextBox1.Text += vbNewLine + out
+    'End Sub
 
     Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
         If ApplicationSettings.python3 = "none" Then
@@ -518,11 +542,8 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton17.Click
-        If inExec Then
-            proc.CancelOutputRead()
-            proc.Kill()
-            KryptonRibbonGroupButton14.Enabled = True
-            inExec = False
+        If ConsoleControl1.IsProcessRunning Then
+            ConsoleControl1.StopProcess()
         End If
     End Sub
 
@@ -588,11 +609,11 @@ Public Class Form1
         Me.Text = "PyXel IDE - " + CustomTabControl1.SelectedTab.Text
     End Sub
 
-    Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles KryptonTextBox1.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            consoleSender.WriteLine(KryptonTextBox1.Text)
-            KryptonTextBox1.Text = ""
-        End If
-    End Sub
+    'Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs)
+    '    If e.KeyCode = Keys.Enter Then
+    '        consoleSender.WriteLine(KryptonTextBox1.Text)
+    '        KryptonTextBox1.Text = ""
+    '    End If
+    'End Sub
 
 End Class
