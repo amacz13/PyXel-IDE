@@ -3,6 +3,7 @@ Imports System.Drawing.Printing
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports ComponentFactory.Krypton.Navigator
+Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
 
 Public Class Form1
@@ -160,6 +161,7 @@ Public Class Form1
         editor.RightBracket2 = ")"
         editor.AutoCompleteBrackets = True
         editor.CommentPrefix = "#"
+        editor.ContextMenuStrip = ContextMenuStrip2
         AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
         AddHandler editor.TextChanged, AddressOf TextChanged
         editor.Dock = DockStyle.Fill
@@ -232,6 +234,7 @@ Public Class Form1
         'Editor configuration
         Dim editor As New FastColoredTextBox
         configEditor(editor)
+        editor.ContextMenuStrip = ContextMenuStrip2
 
         pages += 1
         Dim menu As New AutocompleteMenu(editor)
@@ -274,7 +277,12 @@ Public Class Form1
         'FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
         'FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
 
+        'Update Checking
         checkForUpdates()
+
+        'ContextMenus Configuration
+        CustomTabControl1.ContextMenuStrip = ContextMenuStrip1
+
     End Sub
 
     Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
