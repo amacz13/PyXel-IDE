@@ -23,6 +23,28 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud2")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud3")
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud5")
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud6")
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud7")
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud4", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode4, TreeNode5})
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud0", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode6})
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud1")
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud9")
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud21")
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud20", New System.Windows.Forms.TreeNode() {TreeNode10})
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud18", New System.Windows.Forms.TreeNode() {TreeNode11})
+        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud19")
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud10", New System.Windows.Forms.TreeNode() {TreeNode12, TreeNode13})
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud16")
+        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud17")
+        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud12", New System.Windows.Forms.TreeNode() {TreeNode15, TreeNode16})
+        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud13")
+        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud14")
+        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud15")
+        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud11", New System.Windows.Forms.TreeNode() {TreeNode17, TreeNode18, TreeNode19, TreeNode20})
+        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nœud8", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode14, TreeNode21})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.KryptonRibbon1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbon()
         Me.ButtonSpecAny1 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
@@ -150,6 +172,15 @@ Partial Class Form1
         Me.ConsoleControl1 = New ConsoleControl.ConsoleControl()
         Me.KryptonContextMenuItems1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
         Me.KryptonContextMenuSeparator3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuSeparator()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
@@ -171,6 +202,8 @@ Partial Class Form1
         CType(Me.KryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonSplitContainer1.Panel2.SuspendLayout()
         Me.KryptonSplitContainer1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonRibbon1
@@ -198,6 +231,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5})
+        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -756,7 +790,7 @@ Partial Class Form1
         '
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonTreeView1)
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonDockableNavigator1)
-        Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(469, 437)
+        Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(468, 437)
         Me.KryptonHeaderGroup1.TabIndex = 5
         Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Projets"
         Me.KryptonHeaderGroup1.ValuesPrimary.Image = Global.PyXel.My.Resources.Resources.project16
@@ -766,7 +800,52 @@ Partial Class Form1
         Me.KryptonTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonTreeView1.Name = "KryptonTreeView1"
-        Me.KryptonTreeView1.Size = New System.Drawing.Size(467, 405)
+        TreeNode1.Name = "Nœud2"
+        TreeNode1.Text = "Nœud2"
+        TreeNode2.Name = "Nœud3"
+        TreeNode2.Text = "Nœud3"
+        TreeNode3.Name = "Nœud5"
+        TreeNode3.Text = "Nœud5"
+        TreeNode4.Name = "Nœud6"
+        TreeNode4.Text = "Nœud6"
+        TreeNode5.Name = "Nœud7"
+        TreeNode5.Text = "Nœud7"
+        TreeNode6.Name = "Nœud4"
+        TreeNode6.Text = "Nœud4"
+        TreeNode7.Name = "Nœud0"
+        TreeNode7.Text = "Nœud0"
+        TreeNode8.Name = "Nœud1"
+        TreeNode8.Text = "Nœud1"
+        TreeNode9.Name = "Nœud9"
+        TreeNode9.Text = "Nœud9"
+        TreeNode10.Name = "Nœud21"
+        TreeNode10.Text = "Nœud21"
+        TreeNode11.Name = "Nœud20"
+        TreeNode11.Text = "Nœud20"
+        TreeNode12.Name = "Nœud18"
+        TreeNode12.Text = "Nœud18"
+        TreeNode13.Name = "Nœud19"
+        TreeNode13.Text = "Nœud19"
+        TreeNode14.Name = "Nœud10"
+        TreeNode14.Text = "Nœud10"
+        TreeNode15.Name = "Nœud16"
+        TreeNode15.Text = "Nœud16"
+        TreeNode16.Name = "Nœud17"
+        TreeNode16.Text = "Nœud17"
+        TreeNode17.Name = "Nœud12"
+        TreeNode17.Text = "Nœud12"
+        TreeNode18.Name = "Nœud13"
+        TreeNode18.Text = "Nœud13"
+        TreeNode19.Name = "Nœud14"
+        TreeNode19.Text = "Nœud14"
+        TreeNode20.Name = "Nœud15"
+        TreeNode20.Text = "Nœud15"
+        TreeNode21.Name = "Nœud11"
+        TreeNode21.Text = "Nœud11"
+        TreeNode22.Name = "Nœud8"
+        TreeNode22.Text = "Nœud8"
+        Me.KryptonTreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode7, TreeNode8, TreeNode22})
+        Me.KryptonTreeView1.Size = New System.Drawing.Size(466, 405)
         Me.KryptonTreeView1.TabIndex = 0
         '
         'KryptonPanel1
@@ -795,7 +874,7 @@ Partial Class Form1
         '
         Me.KryptonSplitContainer2.Panel2.Controls.Add(Me.KryptonSplitContainer1)
         Me.KryptonSplitContainer2.Size = New System.Drawing.Size(1408, 437)
-        Me.KryptonSplitContainer2.SplitterDistance = 469
+        Me.KryptonSplitContainer2.SplitterDistance = 468
         Me.KryptonSplitContainer2.TabIndex = 6
         '
         'KryptonSplitContainer1
@@ -814,7 +893,7 @@ Partial Class Form1
         '
         Me.KryptonSplitContainer1.Panel2.Controls.Add(Me.ConsoleControl1)
         Me.KryptonSplitContainer1.SeparatorStyle = ComponentFactory.Krypton.Toolkit.SeparatorStyle.HighProfile
-        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(934, 437)
+        Me.KryptonSplitContainer1.Size = New System.Drawing.Size(935, 437)
         Me.KryptonSplitContainer1.SplitterDistance = 258
         Me.KryptonSplitContainer1.TabIndex = 5
         '
@@ -845,7 +924,7 @@ Partial Class Form1
         Me.CustomTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.CustomTabControl1.Name = "CustomTabControl1"
         Me.CustomTabControl1.SelectedIndex = 0
-        Me.CustomTabControl1.Size = New System.Drawing.Size(934, 258)
+        Me.CustomTabControl1.Size = New System.Drawing.Size(935, 258)
         Me.CustomTabControl1.TabIndex = 5
         '
         'ConsoleControl1
@@ -856,8 +935,70 @@ Partial Class Form1
         Me.ConsoleControl1.Name = "ConsoleControl1"
         Me.ConsoleControl1.SendKeyboardCommandsToProcess = False
         Me.ConsoleControl1.ShowDiagnostics = False
-        Me.ConsoleControl1.Size = New System.Drawing.Size(934, 174)
+        Me.ConsoleControl1.Size = New System.Drawing.Size(935, 174)
         Me.ConsoleControl1.TabIndex = 0
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(155, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Image = Global.PyXel.My.Resources.Resources.close1
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(154, 22)
+        Me.ToolStripMenuItem1.Text = "Fermer l'onglet"
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4, Me.ToolStripSeparator1, Me.ToolStripMenuItem5, Me.ToolStripMenuItem6})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(117, 120)
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Image = Global.PyXel.My.Resources.Resources.cut1
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItem2.Text = "Couper"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Image = Global.PyXel.My.Resources.Resources.copy1
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItem3.Text = "Copier"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Image = Global.PyXel.My.Resources.Resources.paste1
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItem4.Text = "Coller"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(113, 6)
+        '
+        'ToolStripMenuItem5
+        '
+        Me.ToolStripMenuItem5.Image = Global.PyXel.My.Resources.Resources.undo
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItem5.Text = "Annuler"
+        '
+        'ToolStripMenuItem6
+        '
+        Me.ToolStripMenuItem6.Enabled = False
+        Me.ToolStripMenuItem6.Image = Global.PyXel.My.Resources.Resources.redo
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItem6.Text = "Revenir"
         '
         'Form1
         '
@@ -895,6 +1036,8 @@ Partial Class Form1
         Me.KryptonSplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.KryptonSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonSplitContainer1.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1026,4 +1169,13 @@ Partial Class Form1
     Friend WithEvents KryptonContextMenuItem26 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
     Friend WithEvents ConsoleControl1 As ConsoleControl.ConsoleControl
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem4 As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents ToolStripMenuItem5 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem6 As ToolStripMenuItem
 End Class
