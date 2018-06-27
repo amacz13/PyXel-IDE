@@ -226,6 +226,7 @@ Public Class Form1
         KryptonRibbon1.SelectedContext = "Python"
         Me.TextExtra = My.Settings.Version
         pages = 0
+        KryptonPanel1.Palette = KryptonPalette1
         KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
 
         Dim newPage As New TabPage
@@ -285,23 +286,116 @@ Public Class Form1
 
     End Sub
 
-    Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
-        OpenFile()
-    End Sub
+    '
+    'File Menu Subs
+    '
+    ' 1. New Project / File
+    ' 2. Open
+    ' 3. Save
+    ' 4. Import
+    ' 5. Export
+    ' 6. Send
+    ' 7. Print
+    ' 8. Settings
+    ' 9. About
+    ' 10. Exit
+    '
 
+    '
+    ' 1. New Project / File
+    '
 
-
-    Private Async Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
-        Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
-    End Sub
-
-    Private Async Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
-        Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
-    End Sub
+    '
+    ' A. New File (Quick, create an empty file without syntax highlighting before the file is save)
+    '
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
         openNewTab()
     End Sub
+
+    '
+    ' B. New Project
+    '
+
+    Private Sub NewProjectClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem13.Click
+        NewProjectWizard.ShowDialog()
+    End Sub
+
+    '
+    ' C. New Python File
+    '
+
+    Private Sub NewPythonClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem7.Click
+        'Create New Python File
+        MsgBox("New Py File")
+    End Sub
+
+    '
+    ' D. New HTML File
+    '
+
+    Private Sub NewHTMLClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem8.Click
+        'Create New HTML File
+        MsgBox("New HTML File")
+    End Sub
+
+    '
+    ' E. New CSS File
+    '
+
+    Private Sub NewCSSClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem9.Click
+        'Create New CSS File
+        MsgBox("New CSS File")
+    End Sub
+
+    '
+    ' F. New JS File
+    '
+
+    Private Sub NewJSClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem10.Click
+        'Create New JS File
+        MsgBox("New JS File")
+    End Sub
+
+    '
+    ' G. New PHP File
+    '
+
+    Private Sub NewPHPClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem11.Click
+        'Create New PHP File
+        MsgBox("New PHP File")
+    End Sub
+
+    '
+    ' H. New C File
+    '
+
+    Private Sub NewCClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem12.Click
+        'Create New C File
+        MsgBox("New C File")
+    End Sub
+
+    '
+    ' I. New C++ File
+    '
+
+    Private Sub NewCPPClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem14.Click
+        'Create New C++ File
+        MsgBox("New C++ File")
+    End Sub
+
+    '
+    ' I. New H File
+    '
+
+    Private Sub NewHClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem16.Click
+        'Create New H File
+        MsgBox("New H File")
+    End Sub
+
+    '
+    ' 10. Exit Application
+    '
 
     Private Async Sub ButtonSpecAppMenu2_Click(sender As Object, e As EventArgs) Handles ButtonSpecAppMenu2.Click
         For Each page As TabPage In CustomTabControl1.TabPages
@@ -333,6 +427,24 @@ Public Class Form1
         Next
         Application.Exit()
     End Sub
+
+    Private Sub KryptonContextMenuItem2_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem2.Click
+        OpenFile()
+    End Sub
+
+
+
+    Private Async Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
+        Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
+    End Sub
+
+    Private Async Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
+        Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
+    End Sub
+
+
+
+
 
     Private Async Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True

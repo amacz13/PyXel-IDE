@@ -207,6 +207,12 @@
     <Compile Include="Forms\Help.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\NewProjectWizard.Designer.vb">
+      <DependentUpon>NewProjectWizard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewProjectWizard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Help.resx">
       <DependentUpon>Help.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewProjectWizard.resx">
+      <DependentUpon>NewProjectWizard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
