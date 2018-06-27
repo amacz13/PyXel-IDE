@@ -9,11 +9,11 @@ Despite PyXel is still in alpha, it is stable enough to be used in all day devel
 
 Roadmap
 -
-- Version 0.4-Alpha (Expected release date : March-April 2018)
+- Version 0.4-Alpha (Expected release date : August 2018)
   - [ ] Projects
   - [ ] New Installer
   - [ ] Help Center
-  - [ ] Interpreter/Console Improvements
+  - [X] Interpreter/Console Improvements
   - [ ] MultiLanguages Support
   - [ ] Autocompletion
 - ...
