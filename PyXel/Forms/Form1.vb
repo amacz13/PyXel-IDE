@@ -192,6 +192,17 @@ Public Class Form1
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+
+        Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
+        Dim keywords As String() = {"print", "int", "input"}
+        popupMenu.SearchPattern = "[\w\.:=!<>]"
+        Dim items As New List(Of AutocompleteItem)()
+        For Each item As String In keywords
+            items.Add(New AutocompleteItem(item))
+        Next
+
+        'set as autocomplete source
+        popupMenu.Items.SetAutocompleteItems(items)
     End Sub
 
     Private Sub AutoIndent(sender As Object, e As AutoIndentEventArgs)
