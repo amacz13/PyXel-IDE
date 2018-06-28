@@ -69,10 +69,24 @@ Public Class Form1
     End Sub
     Public Async Function SavePage(id As Integer) As Task
         Dim editor As FastColoredTextBox = editors.Item(id)
+        Dim lang As Languages = editorsLanguage.Item(editor)
         If filesOpened.Item(id) = "Sans Nom" Then
             Dim saveFileDialog As New SaveFileDialog
-            saveFileDialog.Filter = "Fichiers Python|*.py"
-            saveFileDialog.Title = "Enregistrer un fichier Python"
+            Select Case lang
+                Case Languages.Python
+                    saveFileDialog.Filter = "Fichiers Python|*.py"
+                    saveFileDialog.Title = "Enregistrer un fichier Python"
+                Case Languages.HTML
+                    saveFileDialog.Filter = "Fichiers HTML|*.html"
+                    saveFileDialog.Title = "Enregistrer un fichier HTML"
+                Case Languages.PHP
+                    saveFileDialog.Filter = "Fichiers PHP|*.php"
+                    saveFileDialog.Title = "Enregistrer un fichier PHP"
+                Case Languages.JS
+                    saveFileDialog.Filter = "Fichiers JS|*.js"
+                    saveFileDialog.Title = "Enregistrer un fichier JS"
+
+            End Select
             If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 Dim fileName As String
                 fileName = saveFileDialog.FileName
@@ -95,8 +109,8 @@ Public Class Form1
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers Python|*.py"
-        openFileDialog1.Title = "Ouvrir un fichier Python"
+        openFileDialog1.Filter = "Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js"
+        openFileDialog1.Title = "Ouvrir un fichier"
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             For x = 0 To openFileDialog1.FileNames.Count - 1
@@ -107,8 +121,24 @@ Public Class Form1
                 filesOpened.Add(pages, fileName)
                 Dim newPage As New TabPage
                 newPage.Text = System.IO.Path.GetFileName(fileName)
+                Dim ext As String = System.IO.Path.GetExtension(fileName)
+                MsgBox(ext)
                 Dim editor As New FastColoredTextBox
-                configEditor(editor)
+                Dim lang As Languages
+                Select Case ext
+                    Case ".py"
+                        lang = Languages.Python
+                    Case ".html"
+                        lang = Languages.HTML
+                        editor.Language = Language.HTML
+                    Case ".php"
+                        lang = Languages.PHP
+                        editor.Language = Language.PHP
+                    Case ".js"
+                        lang = Languages.JS
+                        editor.Language = Language.JS
+                End Select
+                configEditor(editor, lang)
                 displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
                 editor.Dock = DockStyle.Fill
                 tabs.Add(pages, newPage)
@@ -126,46 +156,123 @@ Public Class Form1
             Next
         End If
     End Sub
-    Private Sub openNewTab()
-        Dim newPage As New TabPage
-        newPage.Text = "Sans Nom"
+    Private Sub openNewTab(lang As Languages)
+        If lang = Languages.Python Then
+            Dim newPage As New TabPage
+            newPage.Text = "Sans Nom"
 
-        'editor Configuration
-        Dim editor As New FastColoredTextBox
-        configEditor(editor)
+            'editor Configuration
+            Dim editor As New FastColoredTextBox
+            configEditor(editor, Languages.Python)
 
 
-        pages += 1
-        Dim menu As New AutocompleteMenu(editor)
-        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-        menus.Add(pages, menu)
-        tabs.Add(pages, newPage)
-        editors.Add(pages, editor)
-        tabsInversed.Add(newPage, pages)
-        editorsInversed.Add(editor, pages)
-        CustomTabControl1.TabPages.Add(newPage)
-        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        newPage.Controls.Add(editor)
-        filesOpened.Add(pages, "Sans Nom")
-        pagesSaved.Add(pages, True)
-        displayNames.Add(pages, "Sans Nom")
-        firstLoad.Add(pages, True)
+            pages += 1
+            Dim menu As New AutocompleteMenu(editor)
+            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+            menus.Add(pages, menu)
+            tabs.Add(pages, newPage)
+            editors.Add(pages, editor)
+            tabsInversed.Add(newPage, pages)
+            editorsInversed.Add(editor, pages)
+            CustomTabControl1.TabPages.Add(newPage)
+            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+            newPage.Controls.Add(editor)
+            filesOpened.Add(pages, "Sans Nom")
+            pagesSaved.Add(pages, True)
+            displayNames.Add(pages, "Sans Nom")
+            firstLoad.Add(pages, True)
+        ElseIf lang = Languages.HTML Then
+            Dim newPage As New TabPage
+            newPage.Text = "Sans Nom"
+
+            'editor Configuration
+            Dim editor As New FastColoredTextBox
+            configEditor(editor, Languages.HTML)
+            editor.Language = Language.HTML
+
+            pages += 1
+            Dim menu As New AutocompleteMenu(editor)
+            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+            menus.Add(pages, menu)
+            tabs.Add(pages, newPage)
+            editors.Add(pages, editor)
+            tabsInversed.Add(newPage, pages)
+            editorsInversed.Add(editor, pages)
+            CustomTabControl1.TabPages.Add(newPage)
+            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+            newPage.Controls.Add(editor)
+            filesOpened.Add(pages, "Sans Nom")
+            pagesSaved.Add(pages, True)
+            displayNames.Add(pages, "Sans Nom")
+            firstLoad.Add(pages, True)
+        ElseIf lang = Languages.PHP Then
+            Dim newPage As New TabPage
+            newPage.Text = "Sans Nom"
+
+            'editor Configuration
+            Dim editor As New FastColoredTextBox
+            configEditor(editor, Languages.PHP)
+            editor.Language = Language.PHP
+
+            pages += 1
+            Dim menu As New AutocompleteMenu(editor)
+            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+            menus.Add(pages, menu)
+            tabs.Add(pages, newPage)
+            editors.Add(pages, editor)
+            tabsInversed.Add(newPage, pages)
+            editorsInversed.Add(editor, pages)
+            CustomTabControl1.TabPages.Add(newPage)
+            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+            newPage.Controls.Add(editor)
+            filesOpened.Add(pages, "Sans Nom")
+            pagesSaved.Add(pages, True)
+            displayNames.Add(pages, "Sans Nom")
+            firstLoad.Add(pages, True)
+        ElseIf lang = Languages.JS Then
+            Dim newPage As New TabPage
+            newPage.Text = "Sans Nom"
+
+            'editor Configuration
+            Dim editor As New FastColoredTextBox
+            configEditor(editor, Languages.JS)
+            editor.Language = Language.JS
+
+            pages += 1
+            Dim menu As New AutocompleteMenu(editor)
+            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+            menus.Add(pages, menu)
+            tabs.Add(pages, newPage)
+            editors.Add(pages, editor)
+            tabsInversed.Add(newPage, pages)
+            editorsInversed.Add(editor, pages)
+            CustomTabControl1.TabPages.Add(newPage)
+            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+            newPage.Controls.Add(editor)
+            filesOpened.Add(pages, "Sans Nom")
+            pagesSaved.Add(pages, True)
+            displayNames.Add(pages, "Sans Nom")
+            firstLoad.Add(pages, True)
+        End If
     End Sub
 
-    Private Sub configEditor(editor As FastColoredTextBox)
+    Private Sub configEditor(editor As FastColoredTextBox, lang As Languages)
+        editorsLanguage.Add(editor, lang)
         editor.BackColor = ApplicationSettings.editorBackColor
         editor.ForeColor = ApplicationSettings.editorForeColor
-        editor.LeftBracket = "{"
-        editor.RightBracket = "}"
-        editor.LeftBracket2 = "("
-        editor.RightBracket2 = ")"
-        editor.AutoCompleteBrackets = True
-        editor.CommentPrefix = "#"
         editor.ContextMenuStrip = ContextMenuStrip2
-        AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
-        AddHandler editor.TextChanged, AddressOf TextChanged
         editor.Dock = DockStyle.Fill
         editor.Font = ApplicationSettings.editorFont
+        If lang = Languages.Python Then
+            editor.LeftBracket = "{"
+            editor.RightBracket = "}"
+            editor.LeftBracket2 = "("
+            editor.RightBracket2 = ")"
+            editor.AutoCompleteBrackets = True
+            editor.CommentPrefix = "#"
+            AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
+            AddHandler editor.TextChanged, AddressOf TextChanged
+        End If
     End Sub
     Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
         Dim id As Integer = editorsInversed.Item(sender)
@@ -234,6 +341,8 @@ Public Class Form1
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         'KryptonHeaderGroup1.Hide()
+
+        KryptonRibbon1.AllowFormIntegrate = False
         KryptonRibbon1.SelectedContext = "Python"
         Me.TextExtra = My.Settings.Version
         pages = 0
@@ -245,7 +354,7 @@ Public Class Form1
 
         'Editor configuration
         Dim editor As New FastColoredTextBox
-        configEditor(editor)
+        configEditor(editor, Languages.Python)
         editor.ContextMenuStrip = ContextMenuStrip2
 
         pages += 1
@@ -321,7 +430,7 @@ Public Class Form1
     '
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
-        openNewTab()
+        openNewTab(Languages.Python)
     End Sub
 
     '
@@ -347,7 +456,7 @@ Public Class Form1
 
     Private Sub NewHTMLClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem8.Click
         'Create New HTML File
-        MsgBox("New HTML File")
+        openNewTab(Languages.HTML)
     End Sub
 
     '
@@ -365,7 +474,7 @@ Public Class Form1
 
     Private Sub NewJSClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem10.Click
         'Create New JS File
-        MsgBox("New JS File")
+        openNewTab(Languages.JS)
     End Sub
 
     '
@@ -374,7 +483,7 @@ Public Class Form1
 
     Private Sub NewPHPClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem11.Click
         'Create New PHP File
-        MsgBox("New PHP File")
+        openNewTab(Languages.PHP)
     End Sub
 
     '
@@ -644,7 +753,7 @@ Public Class Form1
         displayNames.Remove(id)
         firstLoad.Remove(id)
         If CustomTabControl1.TabCount = 1 Then
-            openNewTab()
+            openNewTab(Languages.Python)
         End If
     End Sub
 
@@ -720,7 +829,7 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonQATButton3_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton3.Click
-        openNewTab()
+        openNewTab(Languages.Python)
     End Sub
 
     Private Sub KryptonRibbonQATButton4_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton4.Click
@@ -738,6 +847,20 @@ Public Class Form1
 
     Private Sub CustomTabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CustomTabControl1.SelectedIndexChanged
         Me.Text = "PyXel IDE - " + CustomTabControl1.SelectedTab.Text
+        Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
+        Dim editor As FastColoredTextBox = editors.Item(id)
+        Dim lang As Languages = editorsLanguage.Item(editor)
+        Select Case lang
+            Case Languages.Python
+                KryptonRibbon1.SelectedContext = "Python"
+            Case Languages.HTML
+                KryptonRibbon1.SelectedContext = "HTML"
+            Case Languages.PHP
+                KryptonRibbon1.SelectedContext = "HTML"
+            Case Languages.JS
+                KryptonRibbon1.SelectedContext = "HTML"
+
+        End Select
     End Sub
 
     'Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs)
