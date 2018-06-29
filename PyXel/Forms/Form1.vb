@@ -6,6 +6,7 @@ Imports ComponentFactory.Krypton.Navigator
 Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
 
+
 Public Class Form1
 
     Enum Languages
@@ -35,6 +36,9 @@ Public Class Form1
 
     'Number of files opened
     Dim pages As New Integer
+
+    'ImagesList
+    Dim list As New ImageList
 
     'Dictionnaries
     Dim tabs As New Dictionary(Of Integer, TabPage)
@@ -160,7 +164,7 @@ Public Class Form1
         If lang = Languages.Python Then
             Dim newPage As New TabPage
             newPage.Text = "Sans Nom"
-
+            newPage.ImageIndex = 5
             'editor Configuration
             Dim editor As New FastColoredTextBox
             configEditor(editor, Languages.Python)
@@ -184,6 +188,7 @@ Public Class Form1
         ElseIf lang = Languages.HTML Then
             Dim newPage As New TabPage
             newPage.Text = "Sans Nom"
+            newPage.ImageIndex = 2
 
             'editor Configuration
             Dim editor As New FastColoredTextBox
@@ -208,6 +213,7 @@ Public Class Form1
         ElseIf lang = Languages.PHP Then
             Dim newPage As New TabPage
             newPage.Text = "Sans Nom"
+            newPage.ImageIndex = 3
 
             'editor Configuration
             Dim editor As New FastColoredTextBox
@@ -232,6 +238,7 @@ Public Class Form1
         ElseIf lang = Languages.JS Then
             Dim newPage As New TabPage
             newPage.Text = "Sans Nom"
+            newPage.ImageIndex = 4
 
             'editor Configuration
             Dim editor As New FastColoredTextBox
@@ -263,6 +270,7 @@ Public Class Form1
         editor.ContextMenuStrip = ContextMenuStrip2
         editor.Dock = DockStyle.Fill
         editor.Font = ApplicationSettings.editorFont
+        AddHandler editor.TextChanged, AddressOf TextChanged
         If lang = Languages.Python Then
             editor.LeftBracket = "{"
             editor.RightBracket = "}"
@@ -271,7 +279,6 @@ Public Class Form1
             editor.AutoCompleteBrackets = True
             editor.CommentPrefix = "#"
             AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
-            AddHandler editor.TextChanged, AddressOf TextChanged
         End If
     End Sub
     Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
@@ -284,32 +291,37 @@ Public Class Form1
         If firstLoad.Item(id) Then
             firstLoad.Item(id) = False
         End If
-        e.ChangedRange.ClearStyle(greenStyle)
-        e.ChangedRange.ClearStyle(orangeStyle)
-        e.ChangedRange.ClearStyle(blueStyle)
-        e.ChangedRange.ClearStyle(redStyle)
-        e.ChangedRange.ClearStyle(purpleStyle)
-        e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
-        e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
-        e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
-        e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
-        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
-        e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
-        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
-        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
-        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+        Dim lang As Languages = editorsLanguage.Item(sender)
+        Select Case lang
+            Case Languages.Python
+                e.ChangedRange.ClearStyle(greenStyle)
+                e.ChangedRange.ClearStyle(orangeStyle)
+                e.ChangedRange.ClearStyle(blueStyle)
+                e.ChangedRange.ClearStyle(redStyle)
+                e.ChangedRange.ClearStyle(purpleStyle)
+                e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
+                e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
+                e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
+                e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
+                e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
+                e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
+                e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
+                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
 
-        Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
-        Dim keywords As String() = {"print", "int", "input"}
-        popupMenu.SearchPattern = "[\w\.:=!<>]"
-        Dim items As New List(Of AutocompleteItem)()
-        For Each item As String In keywords
-            items.Add(New AutocompleteItem(item))
-        Next
+                Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
+                Dim keywords As String() = {"print", "int", "input"}
+                popupMenu.SearchPattern = "[\w\.:=!<>]"
+                Dim items As New List(Of AutocompleteItem)()
+                For Each item As String In keywords
+                    items.Add(New AutocompleteItem(item))
+                Next
 
-        'set as autocomplete source
-        popupMenu.Items.SetAutocompleteItems(items)
+                'set as autocomplete source
+                popupMenu.Items.SetAutocompleteItems(items)
+        End Select
+
     End Sub
 
     Private Sub AutoIndent(sender As Object, e As AutoIndentEventArgs)
@@ -340,8 +352,17 @@ Public Class Form1
 
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'KryptonHeaderGroup1.Hide()
+        'Updating ImageList
+        list.Images.Add(My.Resources.c16)
+        list.Images.Add(My.Resources.css16)
+        list.Images.Add(My.Resources.html16)
+        list.Images.Add(My.Resources.php16)
+        list.Images.Add(My.Resources.js16)
+        list.Images.Add(My.Resources.python16)
 
+
+        'KryptonHeaderGroup1.Hide()
+        CustomTabControl1.ImageList = list
         KryptonRibbon1.AllowFormIntegrate = False
         KryptonRibbon1.SelectedContext = "Python"
         Me.TextExtra = My.Settings.Version
@@ -351,6 +372,7 @@ Public Class Form1
 
         Dim newPage As New TabPage
         newPage.Text = "Sans Nom"
+        newPage.ImageIndex = 5
 
         'Editor configuration
         Dim editor As New FastColoredTextBox
