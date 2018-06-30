@@ -126,21 +126,25 @@ Public Class Form1
                 Dim newPage As New TabPage
                 newPage.Text = System.IO.Path.GetFileName(fileName)
                 Dim ext As String = System.IO.Path.GetExtension(fileName)
-                MsgBox(ext)
+                'MsgBox(ext)
                 Dim editor As New FastColoredTextBox
                 Dim lang As Languages
                 Select Case ext
                     Case ".py"
                         lang = Languages.Python
+                        newPage.ImageIndex = 5
                     Case ".html"
                         lang = Languages.HTML
                         editor.Language = Language.HTML
+                        newPage.ImageIndex = 2
                     Case ".php"
                         lang = Languages.PHP
                         editor.Language = Language.PHP
+                        newPage.ImageIndex = 3
                     Case ".js"
                         lang = Languages.JS
                         editor.Language = Language.JS
+                        newPage.ImageIndex = 4
                 End Select
                 configEditor(editor, lang)
                 displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
@@ -883,6 +887,58 @@ Public Class Form1
                 KryptonRibbon1.SelectedContext = "HTML"
 
         End Select
+    End Sub
+
+    'Open web file in IE
+    Private Async Sub KryptonRibbonGroupButton21_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton21.Click
+        Dim page As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(page)
+        If Not pagesSaved.Item(id) Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = MsgBoxResult.Yes Then
+                Await SavePage(id)
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        'MsgBox(filesOpened(id))
+        System.Diagnostics.Process.Start("iexplore.exe", filesOpened(id))
+        'System.Diagnostics.Process.Start("microsoft-edge:", filesOpened(id))
+    End Sub
+
+    'Open web file in Firefox
+    Private Async Sub KryptonRibbonGroupButton22_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton22.Click
+        Dim page As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(page)
+        If Not pagesSaved.Item(id) Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = MsgBoxResult.Yes Then
+                Await SavePage(id)
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        'MsgBox(filesOpened(id))
+        If Environment.Is64BitOperatingSystem Then
+            Try
+                System.Diagnostics.Process.Start("C:\Program Files\Mozilla Firefox\firefox.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
+            Catch
+                MsgBox("Pyxel only support version of Mozilla Firefox corresponding to your os architecture (64 bits here). Please install a 64 bits version of Mozilla Firefox !")
+            End Try
+
+        End If
     End Sub
 
     'Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs)
