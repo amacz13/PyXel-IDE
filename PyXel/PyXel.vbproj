@@ -336,6 +336,7 @@
     <Content Include="Jacksonsoft.CustomTabControl.dll" />
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
+    <None Include="Resources\edge.png" />
     <None Include="Resources\close1.png" />
     <None Include="Resources\redo.png" />
     <None Include="Resources\undo.png" />

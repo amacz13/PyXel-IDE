@@ -113,7 +113,7 @@ Public Class Form1
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js"
+        openFileDialog1.Filter = "Fichiers supportés par PyXel|*.py;*.html;*.php;*.js;*.php3;*.php5|Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js"
         openFileDialog1.Title = "Ouvrir un fichier"
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -421,8 +421,31 @@ Public Class Form1
         ConsoleControl1.BackColor = ApplicationSettings.interpreterBackColor
         ConsoleControl1.ForeColor = ApplicationSettings.interpreterForeColor
 
-        'FastColoredTextBox1.BackColor = ApplicationSettings.interpreterBackColor
-        'FastColoredTextBox1.ForeColor = ApplicationSettings.interpreterForeColor
+        'Detect Windows version in order to purpose Edge on Windows 10 systems
+        If My.Computer.Info.OSFullName.Contains("Windows 10") Then
+            KryptonRibbonGroupButton21.ImageLarge = My.Resources.edge
+            KryptonRibbonGroupButton21.ImageSmall = My.Resources.edge
+            KryptonRibbonGroupButton21.TextLine1 = "Microsoft"
+            KryptonRibbonGroupButton21.TextLine2 = "Edge"
+
+        End If
+
+        'Detect Installed Browsers
+        If Not File.Exists("C:\Program Files\Mozilla Firefox\firefox.exe") Then
+            KryptonRibbonGroupButton22.Enabled = False
+            KryptonRibbonGroupButton22.ToolTipTitle = "Mozilla Firefox missing"
+            KryptonRibbonGroupButton22.ToolTipBody = "Please install Mozilla Firefox and restart PyXel in order to preview your file in Mozilla Firefox."
+        End If
+        If Not File.Exists("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") Then
+            KryptonRibbonGroupButton23.Enabled = False
+            KryptonRibbonGroupButton23.ToolTipTitle = "Google Chrome missing"
+            KryptonRibbonGroupButton23.ToolTipBody = "Please install Google Chrome and restart PyXel in order to preview your file in Google Chrome."
+        End If
+        If Not File.Exists("C:\Program Files\Opera\launcher.exe") Then
+            KryptonRibbonGroupButton24.Enabled = False
+            KryptonRibbonGroupButton24.ToolTipTitle = "Opera missing"
+            KryptonRibbonGroupButton24.ToolTipBody = "Please install Opera and restart PyXel in order to preview your file in Opera."
+        End If
 
         'Update Checking
         checkForUpdates()
@@ -473,7 +496,7 @@ Public Class Form1
 
     Private Sub NewPythonClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem7.Click
         'Create New Python File
-        MsgBox("New Py File")
+        openNewTab(Languages.Python)
     End Sub
 
     '
@@ -907,9 +930,11 @@ Public Class Form1
                 Exit Sub
             End If
         End If
-        'MsgBox(filesOpened(id))
-        System.Diagnostics.Process.Start("iexplore.exe", filesOpened(id))
-        'System.Diagnostics.Process.Start("microsoft-edge:", filesOpened(id))
+        If My.Computer.Info.OSFullName.Contains("Windows 10") Then
+            System.Diagnostics.Process.Start("shell:Appsfolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge", filesOpened(id))
+        Else
+            System.Diagnostics.Process.Start("iexplore.exe", filesOpened(id))
+        End If
     End Sub
 
     'Open web file in Firefox
@@ -936,6 +961,57 @@ Public Class Form1
                 System.Diagnostics.Process.Start("C:\Program Files\Mozilla Firefox\firefox.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
             Catch
                 MsgBox("Pyxel only support version of Mozilla Firefox corresponding to your os architecture (64 bits here). Please install a 64 bits version of Mozilla Firefox !")
+            End Try
+
+        End If
+    End Sub
+
+    'Open web file in Chrome
+    Private Async Sub KryptonRibbonGroupButton23_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton23.Click
+        Dim page As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(page)
+        If Not pagesSaved.Item(id) Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = MsgBoxResult.Yes Then
+                Await SavePage(id)
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        'MsgBox(filesOpened(id))
+        System.Diagnostics.Process.Start("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
+    End Sub
+
+    'Open web file in Opera
+    Private Async Sub KryptonRibbonGroupButton24_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton24.Click
+        Dim page As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(page)
+        If Not pagesSaved.Item(id) Then
+            Dim msg As String
+            Dim title As String
+            Dim style As MsgBoxStyle
+            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
+            style = MsgBoxStyle.YesNoCancel
+            title = "PyXel - Fichier non sauvegardé"
+            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = MsgBoxResult.Yes Then
+                Await SavePage(id)
+            ElseIf result = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        'MsgBox(filesOpened(id))
+        If Environment.Is64BitOperatingSystem Then
+            Try
+                System.Diagnostics.Process.Start("C:\Program Files\Opera\launcher.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
+            Catch
+                MsgBox("Pyxel only support version of Opera corresponding to your os architecture (64 bits here). Please install a 64 bits version of Opera !")
             End Try
 
         End If
