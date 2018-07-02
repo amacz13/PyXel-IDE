@@ -37,8 +37,9 @@ Public Class Form1
     'Number of files opened
     Dim pages As New Integer
 
-    'ImagesList
+    'ImagesLists
     Dim list As New ImageList
+    Dim ImagesTreeView As New ImageList
 
     'Dictionnaries
     Dim tabs As New Dictionary(Of Integer, TabPage)
@@ -113,7 +114,7 @@ Public Class Form1
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers supportés par PyXel|*.py;*.html;*.php;*.js;*.php3;*.php5|Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js"
+        openFileDialog1.Filter = "Fichiers supportés par PyXel|*.pxl;*.py;*.html;*.php;*.js;*.php3;*.php5|Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js"
         openFileDialog1.Title = "Ouvrir un fichier"
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -130,6 +131,9 @@ Public Class Form1
                 Dim editor As New FastColoredTextBox
                 Dim lang As Languages
                 Select Case ext
+                    Case ".pxl"
+                        Project.OpenProject(fileName)
+                        Continue For
                     Case ".py"
                         lang = Languages.Python
                         newPage.ImageIndex = 5
@@ -164,6 +168,51 @@ Public Class Form1
             Next
         End If
     End Sub
+
+    Private Sub OpenFile(fileName As String)
+        pages += 1
+        pagesSaved.Add(pages, True)
+        filesOpened.Add(pages, fileName)
+        Dim newPage As New TabPage
+        newPage.Text = System.IO.Path.GetFileName(fileName)
+        Dim ext As String = System.IO.Path.GetExtension(fileName)
+        'MsgBox(ext)
+        Dim editor As New FastColoredTextBox
+        Dim lang As Languages
+        Select Case ext
+            Case ".py"
+                lang = Languages.Python
+                newPage.ImageIndex = 5
+            Case ".html"
+                lang = Languages.HTML
+                editor.Language = Language.HTML
+                newPage.ImageIndex = 2
+            Case ".php"
+                lang = Languages.PHP
+                editor.Language = Language.PHP
+                newPage.ImageIndex = 3
+            Case ".js"
+                lang = Languages.JS
+                editor.Language = Language.JS
+                newPage.ImageIndex = 4
+        End Select
+        configEditor(editor, lang)
+        displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
+        editor.Dock = DockStyle.Fill
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
+        CustomTabControl1.TabPages.Add(newPage)
+        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+        newPage.Controls.Add(editor)
+        Dim menu As New AutocompleteMenu(editor)
+        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+        menus.Add(pages, menu)
+        firstLoad.Add(pages, True)
+        editor.OpenFile(fileName)
+    End Sub
+
     Private Sub openNewTab(lang As Languages)
         If lang = Languages.Python Then
             Dim newPage As New TabPage
@@ -446,6 +495,21 @@ Public Class Form1
             KryptonRibbonGroupButton24.ToolTipTitle = "Opera missing"
             KryptonRibbonGroupButton24.ToolTipBody = "Please install Opera and restart PyXel in order to preview your file in Opera."
         End If
+
+        'Create ImageList for TreeView
+        ImagesTreeView.Images.Add("c", My.Resources.c16)
+        ImagesTreeView.Images.Add("css", My.Resources.css16)
+        ImagesTreeView.Images.Add("html", My.Resources.html16)
+        ImagesTreeView.Images.Add("php", My.Resources.php16)
+        ImagesTreeView.Images.Add("js", My.Resources.js16)
+        ImagesTreeView.Images.Add("py", My.Resources.python16)
+        ImagesTreeView.Images.Add("file", My.Resources.new321)
+        ImagesTreeView.Images.Add("folder", My.Resources.open321)
+        ImagesTreeView.Images.Add("project", My.Resources.project161)
+        KryptonTreeView1.ImageList = ImagesTreeView
+
+        'Hiding Projects panel when no project is loaded
+        KryptonSplitContainer2.Panel1Collapsed = True
 
         'Update Checking
         checkForUpdates()
@@ -895,20 +959,44 @@ Public Class Form1
     End Sub
 
     Private Sub CustomTabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CustomTabControl1.SelectedIndexChanged
-        Me.Text = "PyXel IDE - " + CustomTabControl1.SelectedTab.Text
+        Try
+            Me.Text = "PyXel IDE - " + CustomTabControl1.SelectedTab.Text
+        Catch
+            Me.Text = "PyXel IDE"
+        End Try
+
         Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim lang As Languages = editorsLanguage.Item(editor)
         Select Case lang
             Case Languages.Python
-                KryptonRibbon1.SelectedContext = "Python"
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    KryptonRibbon1.SelectedContext = "Python,Projet"
+                Else
+                    KryptonRibbon1.SelectedContext = "Python"
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = False
             Case Languages.HTML
-                KryptonRibbon1.SelectedContext = "HTML"
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    KryptonRibbon1.SelectedContext = "HTML,Projet"
+                Else
+                    KryptonRibbon1.SelectedContext = "HTML"
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.PHP
-                KryptonRibbon1.SelectedContext = "HTML"
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    KryptonRibbon1.SelectedContext = "HTML,Projet"
+                Else
+                    KryptonRibbon1.SelectedContext = "HTML"
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.JS
-                KryptonRibbon1.SelectedContext = "HTML"
-
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    KryptonRibbon1.SelectedContext = "HTML,Projet"
+                Else
+                    KryptonRibbon1.SelectedContext = "HTML"
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = True
         End Select
     End Sub
 
@@ -1016,6 +1104,15 @@ Public Class Form1
 
         End If
     End Sub
+
+    Private Sub KryptonTreeView1_NodeMouseDoubleClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles KryptonTreeView1.NodeMouseDoubleClick
+        Dim clickedNode As TreeNode = e.Node
+        If clickedNode.SelectedImageKey IsNot "project" And clickedNode.SelectedImageKey IsNot "folder" And clickedNode.SelectedImageKey IsNot "file" Then
+            OpenFile(clickedNode.Tag)
+        End If
+
+    End Sub
+
 
     'Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs)
     '    If e.KeyCode = Keys.Enter Then
