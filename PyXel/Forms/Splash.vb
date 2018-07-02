@@ -119,13 +119,13 @@ Public Class Splash
             Dim theme As String = node.SelectSingleNode("Theme").InnerText
             Select Case theme
                 Case "Blue"
-                    ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+                    ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
                 Case "Silver"
                     ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
                 Case "Black"
                     ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
                 Case Else
-                    ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+                    ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
             End Select
         Next
         nodes = xmlDoc.DocumentElement.SelectNodes("/PyXel/Colors/Editor")
