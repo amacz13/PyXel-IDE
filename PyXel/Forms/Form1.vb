@@ -5,7 +5,7 @@ Imports System.Text.RegularExpressions
 Imports ComponentFactory.Krypton.Navigator
 Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
-
+Imports Microsoft.Samples
 
 Public Class Form1
 
@@ -828,6 +828,7 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton7_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton7.Click
+
         MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 

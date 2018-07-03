@@ -3,7 +3,7 @@ Imports System.Xml
 Imports ComponentFactory.Krypton.Toolkit
 
 Public Class Settings
-    Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) Handles KryptonButton1.Click
+    Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) 
         Dim openFileDialog1 As New OpenFileDialog()
         openFileDialog1.Filter = "Fichiers Executables|*.exe"
         openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 2"
@@ -13,7 +13,7 @@ Public Class Settings
             KryptonTextBox1.Text = fn
         End If
     End Sub
-    Private Sub KryptonButton2_Click(sender As Object, e As EventArgs) Handles KryptonButton2.Click
+    Private Sub KryptonButton2_Click(sender As Object, e As EventArgs) 
         Dim openFileDialog1 As New OpenFileDialog()
         openFileDialog1.Filter = "Fichiers Executables|*.exe"
         openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 3"
@@ -30,13 +30,13 @@ Public Class Settings
         Me.TextExtra = My.Settings.Version
         KryptonTextBox1.Text = ApplicationSettings.python2
         KryptonTextBox2.Text = ApplicationSettings.python3
-        KryptonButton3.Hide()
+        'KryptonButton3.Hide()
         'KryptonButton1.Hide()
         'KryptonTextBox1.Hide()
-        KryptonTextBox3.Hide()
+        'KryptonTextBox3.Hide()
         'KryptonLabel2.Hide()
         'KryptonLabel1.Hide()
-        KryptonLabel4.Hide()
+        'KryptonLabel4.Hide()
         'KryptonRadioButton4.Hide()
         'KryptonRadioButton5.Hide()
         If ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue Then
@@ -81,26 +81,30 @@ Public Class Settings
         KryptonColorButton4.Strings.StandardColors = "Couleurs standards..."
     End Sub
 
+    Private Sub UpdatePalettes()
+
+        Form1.updatePalette()
+        Help.updatePalette()
+
+    End Sub
+
     Private Sub KryptonRadioButton1_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton1.Click
         ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
-        Form1.updatePalette()
-        Help.updatePalette()
+        UpdatePalettes()
     End Sub
 
     Private Sub KryptonRadioButton2_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton2.Click
         ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
-        Form1.updatePalette()
-        Help.updatePalette()
+        UpdatePalettes()
 
     End Sub
 
     Private Sub KryptonRadioButton3_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton3.Click
         ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
-        Form1.updatePalette()
-        Help.updatePalette()
+        UpdatePalettes()
     End Sub
 
     Private Sub KryptonColorButton1_SelectedColorChanged(sender As Object, e As ColorEventArgs) Handles KryptonColorButton1.SelectedColorChanged
@@ -182,14 +186,18 @@ Public Class Settings
         writer.Close()
     End Sub
 
-    Private Sub KryptonRadioButton4_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton4.Click
-        ApplicationSettings.lang = "French"
-        MsgBox("La langue de PyXel a été définie sur : Français." + vbNewLine + "Les changement prendront effet après un redémarrage de l'application.", MsgBoxStyle.Information, "PyXel")
+    Private Sub ChangeLanguage(lang As String)
+        Select Case lang
+            Case "fr"
+                ApplicationSettings.lang = "French"
+                MsgBox("La langue de PyXel a été définie sur : Français." + vbNewLine + "Les changement prendront effet après un redémarrage de l'application.", MsgBoxStyle.Information, "PyXel")
+            Case "en"
+                ApplicationSettings.lang = "English"
+                MsgBox("PyXel's language is now defined to : English." + vbNewLine + "This modification will be applied after a restart of the application.", MsgBoxStyle.Information, "PyXel")
+        End Select
+
     End Sub
-    Private Sub KryptonRadioButton5_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton5.Click
-        ApplicationSettings.lang = "English"
-        MsgBox("PyXel's language is now defined to : English." + vbNewLine + "This modification will be applied after a restart of the application.", MsgBoxStyle.Information, "PyXel")
-    End Sub
+
 
     Private Sub KryptonButton5_Click(sender As Object, e As EventArgs) Handles KryptonButton5.Click
         Dim fontDial As New FontDialog
@@ -222,4 +230,5 @@ Public Class Settings
             Form1.updateEditors()
         End If
     End Sub
+
 End Class
