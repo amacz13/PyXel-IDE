@@ -324,6 +324,9 @@ Public Class Form1
         editor.Dock = DockStyle.Fill
         editor.Font = ApplicationSettings.editorFont
         AddHandler editor.TextChanged, AddressOf TextChanged
+        editor.AllowDrop = True
+        AddHandler editor.DragEnter, AddressOf DragEnter
+        AddHandler editor.DragDrop, AddressOf DragDrop
         If lang = Languages.Python Then
             editor.LeftBracket = "{"
             editor.RightBracket = "}"
@@ -413,6 +416,14 @@ Public Class Form1
         list.Images.Add(My.Resources.js16)
         list.Images.Add(My.Resources.python16)
 
+        'Allow Dropping file into Ribbon and TabControl
+        KryptonRibbon1.AllowDrop = True
+        AddHandler KryptonRibbon1.DragEnter, AddressOf DragEnter
+        AddHandler KryptonRibbon1.DragDrop, AddressOf DragDrop
+        Me.AllowDrop = True
+        CustomTabControl1.AllowDrop = True
+        AddHandler CustomTabControl1.DragEnter, AddressOf DragEnter
+        AddHandler CustomTabControl1.DragDrop, AddressOf DragDrop
 
         'KryptonHeaderGroup1.Hide()
         CustomTabControl1.ImageList = list
@@ -1112,6 +1123,19 @@ Public Class Form1
             OpenFile(clickedNode.Tag)
         End If
 
+    End Sub
+
+    Private Sub DragEnter(sender As Object, e As DragEventArgs)
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        End If
+    End Sub
+
+    Private Sub DragDrop(sender As Object, e As DragEventArgs)
+        Dim files As String() = e.Data.GetData(DataFormats.FileDrop)
+        For Each file In files
+            OpenFile(file)
+        Next
     End Sub
 
 

@@ -27,9 +27,11 @@ Partial Class Settings
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonDockableNavigator1 = New ComponentFactory.Krypton.Docking.KryptonDockableNavigator()
         Me.KryptonPage1 = New ComponentFactory.Krypton.Navigator.KryptonPage()
+        Me.KryptonCheckButton2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckButton()
+        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
+        Me.KryptonCheckButton1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckButton()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonComboBox1 = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
-        Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPage2 = New ComponentFactory.Krypton.Navigator.KryptonPage()
         Me.KryptonButton5 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
@@ -54,8 +56,6 @@ Partial Class Settings
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPage5 = New ComponentFactory.Krypton.Navigator.KryptonPage()
         Me.KryptonPage6 = New ComponentFactory.Krypton.Navigator.KryptonPage()
-        Me.KryptonCheckButton1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckButton()
-        Me.KryptonCheckButton2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckButton()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,7 +95,7 @@ Partial Class Settings
         Me.KryptonDockableNavigator1.Pages.AddRange(New ComponentFactory.Krypton.Navigator.KryptonPage() {Me.KryptonPage1, Me.KryptonPage2, Me.KryptonPage3, Me.KryptonPage4, Me.KryptonPage5, Me.KryptonPage6})
         Me.KryptonDockableNavigator1.Palette = Me.KryptonPalette1
         Me.KryptonDockableNavigator1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonDockableNavigator1.SelectedIndex = 0
+        Me.KryptonDockableNavigator1.SelectedIndex = 1
         Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(1894, 887)
         Me.KryptonDockableNavigator1.TabIndex = 0
         Me.KryptonDockableNavigator1.Text = "KryptonDockableNavigator1"
@@ -118,6 +118,31 @@ Partial Class Settings
         Me.KryptonPage1.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage1.UniqueName = "54201FA19EA54097D69B7DEE6263BA24"
         '
+        'KryptonCheckButton2
+        '
+        Me.KryptonCheckButton2.Location = New System.Drawing.Point(213, 197)
+        Me.KryptonCheckButton2.Name = "KryptonCheckButton2"
+        Me.KryptonCheckButton2.Palette = Me.KryptonPalette1
+        Me.KryptonCheckButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonCheckButton2.Size = New System.Drawing.Size(185, 43)
+        Me.KryptonCheckButton2.TabIndex = 7
+        Me.KryptonCheckButton2.Values.Text = "Insider"
+        '
+        'KryptonPalette1
+        '
+        Me.KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
+        '
+        'KryptonCheckButton1
+        '
+        Me.KryptonCheckButton1.Checked = True
+        Me.KryptonCheckButton1.Location = New System.Drawing.Point(22, 197)
+        Me.KryptonCheckButton1.Name = "KryptonCheckButton1"
+        Me.KryptonCheckButton1.Palette = Me.KryptonPalette1
+        Me.KryptonCheckButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonCheckButton1.Size = New System.Drawing.Size(185, 43)
+        Me.KryptonCheckButton1.TabIndex = 6
+        Me.KryptonCheckButton1.Values.Text = "Stable"
+        '
         'KryptonLabel4
         '
         Me.KryptonLabel4.Location = New System.Drawing.Point(22, 147)
@@ -136,10 +161,6 @@ Partial Class Settings
         Me.KryptonComboBox1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonComboBox1.Size = New System.Drawing.Size(893, 37)
         Me.KryptonComboBox1.TabIndex = 4
-        '
-        'KryptonPalette1
-        '
-        Me.KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
         '
         'KryptonLabel2
         '
@@ -421,27 +442,6 @@ Partial Class Settings
         Me.KryptonPage6.Text = "C / C++"
         Me.KryptonPage6.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage6.UniqueName = "716E62464D95409D978C95226539172C"
-        '
-        'KryptonCheckButton1
-        '
-        Me.KryptonCheckButton1.Checked = True
-        Me.KryptonCheckButton1.Location = New System.Drawing.Point(22, 197)
-        Me.KryptonCheckButton1.Name = "KryptonCheckButton1"
-        Me.KryptonCheckButton1.Palette = Me.KryptonPalette1
-        Me.KryptonCheckButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonCheckButton1.Size = New System.Drawing.Size(185, 43)
-        Me.KryptonCheckButton1.TabIndex = 6
-        Me.KryptonCheckButton1.Values.Text = "Stable"
-        '
-        'KryptonCheckButton2
-        '
-        Me.KryptonCheckButton2.Location = New System.Drawing.Point(213, 197)
-        Me.KryptonCheckButton2.Name = "KryptonCheckButton2"
-        Me.KryptonCheckButton2.Palette = Me.KryptonPalette1
-        Me.KryptonCheckButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonCheckButton2.Size = New System.Drawing.Size(185, 43)
-        Me.KryptonCheckButton2.TabIndex = 7
-        Me.KryptonCheckButton2.Values.Text = "Insider"
         '
         'Settings
         '
