@@ -1,11 +1,7 @@
 ﻿Imports System.ComponentModel
-Imports System.Drawing.Printing
 Imports System.IO
 Imports System.Text.RegularExpressions
-Imports ComponentFactory.Krypton.Navigator
-Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
-Imports Microsoft.Samples
 
 Public Class Form1
 
@@ -325,8 +321,8 @@ Public Class Form1
         editor.Font = ApplicationSettings.editorFont
         AddHandler editor.TextChanged, AddressOf TextChanged
         editor.AllowDrop = True
-        AddHandler editor.DragEnter, AddressOf DragEnter
-        AddHandler editor.DragDrop, AddressOf DragDrop
+        AddHandler editor.DragEnter, AddressOf PyXelDragEnter
+        AddHandler editor.DragDrop, AddressOf PyXelDragDrop
         If lang = Languages.Python Then
             editor.LeftBracket = "{"
             editor.RightBracket = "}"
@@ -418,14 +414,13 @@ Public Class Form1
 
         'Allow Dropping file into Ribbon and TabControl
         KryptonRibbon1.AllowDrop = True
-        AddHandler KryptonRibbon1.DragEnter, AddressOf DragEnter
-        AddHandler KryptonRibbon1.DragDrop, AddressOf DragDrop
+        AddHandler KryptonRibbon1.DragEnter, AddressOf PyXelDragEnter
+        AddHandler KryptonRibbon1.DragDrop, AddressOf PyXelDragDrop
         Me.AllowDrop = True
         CustomTabControl1.AllowDrop = True
-        AddHandler CustomTabControl1.DragEnter, AddressOf DragEnter
-        AddHandler CustomTabControl1.DragDrop, AddressOf DragDrop
+        AddHandler CustomTabControl1.DragEnter, AddressOf PyXelDragEnter
+        AddHandler CustomTabControl1.DragDrop, AddressOf PyXelDragDrop
 
-        'KryptonHeaderGroup1.Hide()
         CustomTabControl1.ImageList = list
         KryptonRibbon1.AllowFormIntegrate = False
         KryptonRibbon1.SelectedContext = "Python"
@@ -1125,18 +1120,26 @@ Public Class Form1
 
     End Sub
 
-    Private Sub DragEnter(sender As Object, e As DragEventArgs)
+    Private Sub PyXelDragEnter(sender As Object, e As DragEventArgs)
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
         End If
     End Sub
 
-    Private Sub DragDrop(sender As Object, e As DragEventArgs)
+    Private Sub PyXelDragDrop(sender As Object, e As DragEventArgs)
         Dim files As String() = e.Data.GetData(DataFormats.FileDrop)
         For Each file In files
             OpenFile(file)
         Next
     End Sub
+
+    Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+        If e.KeyCode = Keys.F1 Then
+            Help.Show()
+        End If
+    End Sub
+
+
 
 
     'Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs)

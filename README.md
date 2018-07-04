@@ -12,10 +12,11 @@ Roadmap
 - Version 0.4-Alpha (Expected release date : August 2018)
   - [X] Projects
   - [ ] New Installer
-  - [ ] Help Center
+  - [X] Help Center
   - [X] Interpreter/Console Improvements
   - [X] MultiLanguages Support
   - [X] Autocompletion
+  - [X] Drag'n'Drop
 - ...
 - Version 1.0-Beta (Expected release date : 2019)
 

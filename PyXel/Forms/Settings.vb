@@ -30,15 +30,6 @@ Public Class Settings
         Me.TextExtra = My.Settings.Version
         KryptonTextBox1.Text = ApplicationSettings.python2
         KryptonTextBox2.Text = ApplicationSettings.python3
-        'KryptonButton3.Hide()
-        'KryptonButton1.Hide()
-        'KryptonTextBox1.Hide()
-        'KryptonTextBox3.Hide()
-        'KryptonLabel2.Hide()
-        'KryptonLabel1.Hide()
-        'KryptonLabel4.Hide()
-        'KryptonRadioButton4.Hide()
-        'KryptonRadioButton5.Hide()
         If ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue Then
             KryptonRadioButton1.Checked = True
             KryptonRadioButton2.Checked = False
@@ -55,6 +46,9 @@ Public Class Settings
             KryptonRadioButton3.Checked = False
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         End If
+
+        KryptonComboBox1.SelectedText = "Français"
+
         KryptonColorButton1.SelectedColor = ApplicationSettings.editorBackColor
         KryptonColorButton2.SelectedColor = ApplicationSettings.editorForeColor
         KryptonColorButton3.SelectedColor = ApplicationSettings.interpreterForeColor

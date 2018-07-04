@@ -80,7 +80,6 @@ Partial Class Form1
         Me.KryptonRibbonGroupButton3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         Me.KryptonRibbonGroupButton6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         Me.KryptonRibbonGroup1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
-        Me.KryptonRibbonGroupSeparator1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator()
         Me.KryptonRibbonGroupTriple3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
         Me.KryptonRibbonGroupButton1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         Me.KryptonRibbonGroupButton9 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
@@ -218,7 +217,7 @@ Partial Class Form1
         '
         Me.ButtonSpecAny1.Image = Global.PyXel.My.Resources.Resources.help161
         Me.ButtonSpecAny1.UniqueName = "6312365E6BF54B9C2891B5961D6F0528"
-        Me.ButtonSpecAny1.Visible = False
+        Me.ButtonSpecAny1.Visible = True
         '
         'ButtonSpecAny2
         '
@@ -484,7 +483,7 @@ Partial Class Form1
         '
         'KryptonRibbonGroup1
         '
-        Me.KryptonRibbonGroup1.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupSeparator1, Me.KryptonRibbonGroupTriple3, Me.KryptonRibbonGroupSeparator2, Me.KryptonRibbonGroupTriple5, Me.KryptonRibbonGroupSeparator3, Me.KryptonRibbonGroupTriple2})
+        Me.KryptonRibbonGroup1.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple3, Me.KryptonRibbonGroupSeparator2, Me.KryptonRibbonGroupTriple5, Me.KryptonRibbonGroupSeparator3, Me.KryptonRibbonGroupTriple2})
         Me.KryptonRibbonGroup1.TextLine1 = "Code"
         '
         'KryptonRibbonGroupTriple3
@@ -799,6 +798,8 @@ Partial Class Form1
         Me.KryptonSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KryptonSplitContainer2.Location = New System.Drawing.Point(0, 0)
         Me.KryptonSplitContainer2.Name = "KryptonSplitContainer2"
+        Me.KryptonSplitContainer2.Panel1Collapsed = True
+
         '
         'KryptonSplitContainer2.Panel1
         '
@@ -994,7 +995,6 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonGroupButton2 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonGroupButton3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonGroupButton6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
-    Friend WithEvents KryptonRibbonGroupSeparator1 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator
     Friend WithEvents KryptonRibbonGroupTriple3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
     Friend WithEvents KryptonRibbonGroupButton1 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonGroup3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup

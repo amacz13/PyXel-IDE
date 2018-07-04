@@ -20,7 +20,7 @@
     Public Shared interpreterFont As New Font("Consolas", 12)
 
     'Python Path
-    Public Shared python2 As String = "none"
+    Public Shared python2 As String = ""
     Public Shared python3 As String = "C:\Windows\py.exe"
 
 End Class

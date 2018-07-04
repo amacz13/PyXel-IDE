@@ -27,13 +27,19 @@ Partial Class Settings
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
         Me.KryptonDockableNavigator1 = New ComponentFactory.Krypton.Docking.KryptonDockableNavigator()
         Me.KryptonPage1 = New ComponentFactory.Krypton.Navigator.KryptonPage()
-        Me.KryptonCheckButton2 = New ComponentFactory.Krypton.Toolkit.KryptonCheckButton()
+        Me.KryptonPanel2 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonRadioButton6 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
+        Me.KryptonRadioButton7 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
+        Me.KryptonRadioButton8 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
-        Me.KryptonCheckButton1 = New ComponentFactory.Krypton.Toolkit.KryptonCheckButton()
+        Me.KryptonLabel8 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonRadioButton5 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
+        Me.KryptonRadioButton4 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
         Me.KryptonLabel4 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonComboBox1 = New ComponentFactory.Krypton.Toolkit.KryptonComboBox()
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPage2 = New ComponentFactory.Krypton.Navigator.KryptonPage()
+        Me.KryptonRadioButton9 = New ComponentFactory.Krypton.Toolkit.KryptonRadioButton()
         Me.KryptonButton5 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonButton4 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.KryptonColorButton3 = New ComponentFactory.Krypton.Toolkit.KryptonColorButton()
@@ -55,21 +61,41 @@ Partial Class Settings
         Me.KryptonTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPage5 = New ComponentFactory.Krypton.Navigator.KryptonPage()
+        Me.KryptonButton7 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonTextBox5 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel11 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonButton6 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonTextBox4 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel10 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonButton3 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonTextBox3 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel9 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonPage6 = New ComponentFactory.Krypton.Navigator.KryptonPage()
+        Me.KryptonButton8 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonTextBox6 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel12 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
+        Me.KryptonButton9 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonTextBox7 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel13 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
         CType(Me.KryptonPage1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPage1.SuspendLayout()
+        CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.KryptonPanel2.SuspendLayout()
         CType(Me.KryptonComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonPage2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPage2.SuspendLayout()
         CType(Me.KryptonPage3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.KryptonPage3.SuspendLayout()
         CType(Me.KryptonPage4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPage4.SuspendLayout()
         CType(Me.KryptonPage5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.KryptonPage5.SuspendLayout()
         CType(Me.KryptonPage6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.KryptonPage6.SuspendLayout()
         Me.SuspendLayout()
         '
         'KryptonPanel1
@@ -95,7 +121,7 @@ Partial Class Settings
         Me.KryptonDockableNavigator1.Pages.AddRange(New ComponentFactory.Krypton.Navigator.KryptonPage() {Me.KryptonPage1, Me.KryptonPage2, Me.KryptonPage3, Me.KryptonPage4, Me.KryptonPage5, Me.KryptonPage6})
         Me.KryptonDockableNavigator1.Palette = Me.KryptonPalette1
         Me.KryptonDockableNavigator1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonDockableNavigator1.SelectedIndex = 1
+        Me.KryptonDockableNavigator1.SelectedIndex = 0
         Me.KryptonDockableNavigator1.Size = New System.Drawing.Size(1894, 887)
         Me.KryptonDockableNavigator1.TabIndex = 0
         Me.KryptonDockableNavigator1.Text = "KryptonDockableNavigator1"
@@ -103,8 +129,10 @@ Partial Class Settings
         'KryptonPage1
         '
         Me.KryptonPage1.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
-        Me.KryptonPage1.Controls.Add(Me.KryptonCheckButton2)
-        Me.KryptonPage1.Controls.Add(Me.KryptonCheckButton1)
+        Me.KryptonPage1.Controls.Add(Me.KryptonPanel2)
+        Me.KryptonPage1.Controls.Add(Me.KryptonLabel8)
+        Me.KryptonPage1.Controls.Add(Me.KryptonRadioButton5)
+        Me.KryptonPage1.Controls.Add(Me.KryptonRadioButton4)
         Me.KryptonPage1.Controls.Add(Me.KryptonLabel4)
         Me.KryptonPage1.Controls.Add(Me.KryptonComboBox1)
         Me.KryptonPage1.Controls.Add(Me.KryptonLabel2)
@@ -118,36 +146,80 @@ Partial Class Settings
         Me.KryptonPage1.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage1.UniqueName = "54201FA19EA54097D69B7DEE6263BA24"
         '
-        'KryptonCheckButton2
+        'KryptonPanel2
         '
-        Me.KryptonCheckButton2.Location = New System.Drawing.Point(213, 197)
-        Me.KryptonCheckButton2.Name = "KryptonCheckButton2"
-        Me.KryptonCheckButton2.Palette = Me.KryptonPalette1
-        Me.KryptonCheckButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonCheckButton2.Size = New System.Drawing.Size(185, 43)
-        Me.KryptonCheckButton2.TabIndex = 7
-        Me.KryptonCheckButton2.Values.Text = "Insider"
+        Me.KryptonPanel2.Controls.Add(Me.KryptonRadioButton6)
+        Me.KryptonPanel2.Controls.Add(Me.KryptonRadioButton7)
+        Me.KryptonPanel2.Controls.Add(Me.KryptonRadioButton8)
+        Me.KryptonPanel2.Location = New System.Drawing.Point(22, 319)
+        Me.KryptonPanel2.Name = "KryptonPanel2"
+        Me.KryptonPanel2.Palette = Me.KryptonPalette1
+        Me.KryptonPanel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonPanel2.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.TabLowProfile
+        Me.KryptonPanel2.Size = New System.Drawing.Size(794, 48)
+        Me.KryptonPanel2.TabIndex = 12
+        '
+        'KryptonRadioButton6
+        '
+        Me.KryptonRadioButton6.Checked = True
+        Me.KryptonRadioButton6.Location = New System.Drawing.Point(32, 3)
+        Me.KryptonRadioButton6.Name = "KryptonRadioButton6"
+        Me.KryptonRadioButton6.Size = New System.Drawing.Size(65, 37)
+        Me.KryptonRadioButton6.TabIndex = 9
+        Me.KryptonRadioButton6.Values.Text = "Oui"
+        '
+        'KryptonRadioButton7
+        '
+        Me.KryptonRadioButton7.Location = New System.Drawing.Point(163, 3)
+        Me.KryptonRadioButton7.Name = "KryptonRadioButton7"
+        Me.KryptonRadioButton7.Size = New System.Drawing.Size(102, 37)
+        Me.KryptonRadioButton7.TabIndex = 10
+        Me.KryptonRadioButton7.Values.Text = "Discret"
+        '
+        'KryptonRadioButton8
+        '
+        Me.KryptonRadioButton8.Location = New System.Drawing.Point(324, 3)
+        Me.KryptonRadioButton8.Name = "KryptonRadioButton8"
+        Me.KryptonRadioButton8.Size = New System.Drawing.Size(73, 37)
+        Me.KryptonRadioButton8.TabIndex = 11
+        Me.KryptonRadioButton8.Values.Text = "Non"
         '
         'KryptonPalette1
         '
         Me.KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
         '
-        'KryptonCheckButton1
+        'KryptonLabel8
         '
-        Me.KryptonCheckButton1.Checked = True
-        Me.KryptonCheckButton1.Location = New System.Drawing.Point(22, 197)
-        Me.KryptonCheckButton1.Name = "KryptonCheckButton1"
-        Me.KryptonCheckButton1.Palette = Me.KryptonPalette1
-        Me.KryptonCheckButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonCheckButton1.Size = New System.Drawing.Size(185, 43)
-        Me.KryptonCheckButton1.TabIndex = 6
-        Me.KryptonCheckButton1.Values.Text = "Stable"
+        Me.KryptonLabel8.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel8.Location = New System.Drawing.Point(22, 269)
+        Me.KryptonLabel8.Name = "KryptonLabel8"
+        Me.KryptonLabel8.Size = New System.Drawing.Size(315, 37)
+        Me.KryptonLabel8.TabIndex = 8
+        Me.KryptonLabel8.Values.Text = "Recherche de mises à jour"
+        '
+        'KryptonRadioButton5
+        '
+        Me.KryptonRadioButton5.Location = New System.Drawing.Point(185, 203)
+        Me.KryptonRadioButton5.Name = "KryptonRadioButton5"
+        Me.KryptonRadioButton5.Size = New System.Drawing.Size(100, 37)
+        Me.KryptonRadioButton5.TabIndex = 7
+        Me.KryptonRadioButton5.Values.Text = "Insider"
+        '
+        'KryptonRadioButton4
+        '
+        Me.KryptonRadioButton4.Checked = True
+        Me.KryptonRadioButton4.Location = New System.Drawing.Point(54, 203)
+        Me.KryptonRadioButton4.Name = "KryptonRadioButton4"
+        Me.KryptonRadioButton4.Size = New System.Drawing.Size(94, 37)
+        Me.KryptonRadioButton4.TabIndex = 6
+        Me.KryptonRadioButton4.Values.Text = "Stable"
         '
         'KryptonLabel4
         '
+        Me.KryptonLabel4.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
         Me.KryptonLabel4.Location = New System.Drawing.Point(22, 147)
         Me.KryptonLabel4.Name = "KryptonLabel4"
-        Me.KryptonLabel4.Size = New System.Drawing.Size(237, 37)
+        Me.KryptonLabel4.Size = New System.Drawing.Size(250, 37)
         Me.KryptonLabel4.TabIndex = 5
         Me.KryptonLabel4.Values.Text = "Canal de Mise à jour"
         '
@@ -155,7 +227,7 @@ Partial Class Settings
         '
         Me.KryptonComboBox1.DropDownWidth = 893
         Me.KryptonComboBox1.Items.AddRange(New Object() {"Français", "English", "Deutsch"})
-        Me.KryptonComboBox1.Location = New System.Drawing.Point(22, 81)
+        Me.KryptonComboBox1.Location = New System.Drawing.Point(54, 81)
         Me.KryptonComboBox1.Name = "KryptonComboBox1"
         Me.KryptonComboBox1.Palette = Me.KryptonPalette1
         Me.KryptonComboBox1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
@@ -164,18 +236,20 @@ Partial Class Settings
         '
         'KryptonLabel2
         '
+        Me.KryptonLabel2.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
         Me.KryptonLabel2.Location = New System.Drawing.Point(22, 29)
         Me.KryptonLabel2.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonLabel2.Name = "KryptonLabel2"
         Me.KryptonLabel2.Palette = Me.KryptonPalette1
         Me.KryptonLabel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel2.Size = New System.Drawing.Size(106, 37)
+        Me.KryptonLabel2.Size = New System.Drawing.Size(99, 37)
         Me.KryptonLabel2.TabIndex = 3
-        Me.KryptonLabel2.Values.Text = "Langue : "
+        Me.KryptonLabel2.Values.Text = "Langue"
         '
         'KryptonPage2
         '
         Me.KryptonPage2.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
+        Me.KryptonPage2.Controls.Add(Me.KryptonRadioButton9)
         Me.KryptonPage2.Controls.Add(Me.KryptonButton5)
         Me.KryptonPage2.Controls.Add(Me.KryptonButton4)
         Me.KryptonPage2.Controls.Add(Me.KryptonColorButton3)
@@ -197,6 +271,17 @@ Partial Class Settings
         Me.KryptonPage2.Text = "Personnalisation"
         Me.KryptonPage2.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage2.UniqueName = "1388149E86964C206FA093B3F59F40FA"
+        '
+        'KryptonRadioButton9
+        '
+        Me.KryptonRadioButton9.Location = New System.Drawing.Point(639, 81)
+        Me.KryptonRadioButton9.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonRadioButton9.Name = "KryptonRadioButton9"
+        Me.KryptonRadioButton9.Palette = Me.KryptonPalette1
+        Me.KryptonRadioButton9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonRadioButton9.Size = New System.Drawing.Size(113, 37)
+        Me.KryptonRadioButton9.TabIndex = 13
+        Me.KryptonRadioButton9.Values.Text = "Modern"
         '
         'KryptonButton5
         '
@@ -334,6 +419,9 @@ Partial Class Settings
         'KryptonPage3
         '
         Me.KryptonPage3.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
+        Me.KryptonPage3.Controls.Add(Me.KryptonButton8)
+        Me.KryptonPage3.Controls.Add(Me.KryptonTextBox6)
+        Me.KryptonPage3.Controls.Add(Me.KryptonLabel12)
         Me.KryptonPage3.Flags = 65534
         Me.KryptonPage3.LastVisibleSet = True
         Me.KryptonPage3.MinimumSize = New System.Drawing.Size(50, 50)
@@ -363,18 +451,18 @@ Partial Class Settings
         '
         'KryptonButton2
         '
-        Me.KryptonButton2.Location = New System.Drawing.Point(1778, 143)
+        Me.KryptonButton2.Location = New System.Drawing.Point(1296, 252)
         Me.KryptonButton2.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonButton2.Name = "KryptonButton2"
         Me.KryptonButton2.Palette = Me.KryptonPalette1
         Me.KryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonButton2.Size = New System.Drawing.Size(90, 48)
+        Me.KryptonButton2.Size = New System.Drawing.Size(71, 39)
         Me.KryptonButton2.TabIndex = 14
         Me.KryptonButton2.Values.Text = "..."
         '
         'KryptonTextBox2
         '
-        Me.KryptonTextBox2.Location = New System.Drawing.Point(504, 145)
+        Me.KryptonTextBox2.Location = New System.Drawing.Point(22, 252)
         Me.KryptonTextBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonTextBox2.Name = "KryptonTextBox2"
         Me.KryptonTextBox2.ReadOnly = True
@@ -383,27 +471,28 @@ Partial Class Settings
         '
         'KryptonLabel3
         '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(22, 151)
+        Me.KryptonLabel3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel3.Location = New System.Drawing.Point(22, 191)
         Me.KryptonLabel3.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Size = New System.Drawing.Size(464, 37)
+        Me.KryptonLabel3.Size = New System.Drawing.Size(485, 37)
         Me.KryptonLabel3.TabIndex = 12
-        Me.KryptonLabel3.Values.Text = "Emplacement de l'exécutable Python 3.x :"
+        Me.KryptonLabel3.Values.Text = "Emplacement de l'exécutable Python 3.x"
         '
         'KryptonButton1
         '
-        Me.KryptonButton1.Location = New System.Drawing.Point(1778, 85)
+        Me.KryptonButton1.Location = New System.Drawing.Point(1296, 99)
         Me.KryptonButton1.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonButton1.Name = "KryptonButton1"
         Me.KryptonButton1.Palette = Me.KryptonPalette1
         Me.KryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonButton1.Size = New System.Drawing.Size(90, 48)
+        Me.KryptonButton1.Size = New System.Drawing.Size(71, 39)
         Me.KryptonButton1.TabIndex = 11
         Me.KryptonButton1.Values.Text = "..."
         '
         'KryptonTextBox1
         '
-        Me.KryptonTextBox1.Location = New System.Drawing.Point(504, 87)
+        Me.KryptonTextBox1.Location = New System.Drawing.Point(22, 99)
         Me.KryptonTextBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonTextBox1.Name = "KryptonTextBox1"
         Me.KryptonTextBox1.ReadOnly = True
@@ -412,16 +501,26 @@ Partial Class Settings
         '
         'KryptonLabel1
         '
-        Me.KryptonLabel1.Location = New System.Drawing.Point(22, 93)
+        Me.KryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel1.Location = New System.Drawing.Point(22, 35)
         Me.KryptonLabel1.Margin = New System.Windows.Forms.Padding(6)
         Me.KryptonLabel1.Name = "KryptonLabel1"
-        Me.KryptonLabel1.Size = New System.Drawing.Size(464, 37)
+        Me.KryptonLabel1.Size = New System.Drawing.Size(485, 37)
         Me.KryptonLabel1.TabIndex = 9
-        Me.KryptonLabel1.Values.Text = "Emplacement de l'exécutable Python 2.x :"
+        Me.KryptonLabel1.Values.Text = "Emplacement de l'exécutable Python 2.x"
         '
         'KryptonPage5
         '
         Me.KryptonPage5.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
+        Me.KryptonPage5.Controls.Add(Me.KryptonButton7)
+        Me.KryptonPage5.Controls.Add(Me.KryptonTextBox5)
+        Me.KryptonPage5.Controls.Add(Me.KryptonLabel11)
+        Me.KryptonPage5.Controls.Add(Me.KryptonButton6)
+        Me.KryptonPage5.Controls.Add(Me.KryptonTextBox4)
+        Me.KryptonPage5.Controls.Add(Me.KryptonLabel10)
+        Me.KryptonPage5.Controls.Add(Me.KryptonButton3)
+        Me.KryptonPage5.Controls.Add(Me.KryptonTextBox3)
+        Me.KryptonPage5.Controls.Add(Me.KryptonLabel9)
         Me.KryptonPage5.Flags = 65534
         Me.KryptonPage5.LastVisibleSet = True
         Me.KryptonPage5.MinimumSize = New System.Drawing.Size(50, 50)
@@ -431,9 +530,102 @@ Partial Class Settings
         Me.KryptonPage5.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage5.UniqueName = "834CDA7246034AEAEDB7FDC56D0274C5"
         '
+        'KryptonButton7
+        '
+        Me.KryptonButton7.Location = New System.Drawing.Point(1296, 317)
+        Me.KryptonButton7.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonButton7.Name = "KryptonButton7"
+        Me.KryptonButton7.Palette = Me.KryptonPalette1
+        Me.KryptonButton7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton7.Size = New System.Drawing.Size(71, 39)
+        Me.KryptonButton7.TabIndex = 20
+        Me.KryptonButton7.Values.Text = "..."
+        '
+        'KryptonTextBox5
+        '
+        Me.KryptonTextBox5.Location = New System.Drawing.Point(22, 317)
+        Me.KryptonTextBox5.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonTextBox5.Name = "KryptonTextBox5"
+        Me.KryptonTextBox5.ReadOnly = True
+        Me.KryptonTextBox5.Size = New System.Drawing.Size(1262, 39)
+        Me.KryptonTextBox5.TabIndex = 19
+        '
+        'KryptonLabel11
+        '
+        Me.KryptonLabel11.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel11.Location = New System.Drawing.Point(22, 265)
+        Me.KryptonLabel11.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonLabel11.Name = "KryptonLabel11"
+        Me.KryptonLabel11.Size = New System.Drawing.Size(418, 37)
+        Me.KryptonLabel11.TabIndex = 18
+        Me.KryptonLabel11.Values.Text = "Emplacement du navigateur Opera"
+        '
+        'KryptonButton6
+        '
+        Me.KryptonButton6.Location = New System.Drawing.Point(1296, 206)
+        Me.KryptonButton6.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonButton6.Name = "KryptonButton6"
+        Me.KryptonButton6.Palette = Me.KryptonPalette1
+        Me.KryptonButton6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton6.Size = New System.Drawing.Size(71, 39)
+        Me.KryptonButton6.TabIndex = 17
+        Me.KryptonButton6.Values.Text = "..."
+        '
+        'KryptonTextBox4
+        '
+        Me.KryptonTextBox4.Location = New System.Drawing.Point(22, 206)
+        Me.KryptonTextBox4.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonTextBox4.Name = "KryptonTextBox4"
+        Me.KryptonTextBox4.ReadOnly = True
+        Me.KryptonTextBox4.Size = New System.Drawing.Size(1262, 39)
+        Me.KryptonTextBox4.TabIndex = 16
+        '
+        'KryptonLabel10
+        '
+        Me.KryptonLabel10.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel10.Location = New System.Drawing.Point(22, 157)
+        Me.KryptonLabel10.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonLabel10.Name = "KryptonLabel10"
+        Me.KryptonLabel10.Size = New System.Drawing.Size(529, 37)
+        Me.KryptonLabel10.TabIndex = 15
+        Me.KryptonLabel10.Values.Text = "Emplacement du navigateur Google Chrome"
+        '
+        'KryptonButton3
+        '
+        Me.KryptonButton3.Location = New System.Drawing.Point(1296, 99)
+        Me.KryptonButton3.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonButton3.Name = "KryptonButton3"
+        Me.KryptonButton3.Palette = Me.KryptonPalette1
+        Me.KryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton3.Size = New System.Drawing.Size(71, 39)
+        Me.KryptonButton3.TabIndex = 14
+        Me.KryptonButton3.Values.Text = "..."
+        '
+        'KryptonTextBox3
+        '
+        Me.KryptonTextBox3.Location = New System.Drawing.Point(22, 99)
+        Me.KryptonTextBox3.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonTextBox3.Name = "KryptonTextBox3"
+        Me.KryptonTextBox3.ReadOnly = True
+        Me.KryptonTextBox3.Size = New System.Drawing.Size(1262, 39)
+        Me.KryptonTextBox3.TabIndex = 13
+        '
+        'KryptonLabel9
+        '
+        Me.KryptonLabel9.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel9.Location = New System.Drawing.Point(22, 35)
+        Me.KryptonLabel9.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonLabel9.Name = "KryptonLabel9"
+        Me.KryptonLabel9.Size = New System.Drawing.Size(521, 37)
+        Me.KryptonLabel9.TabIndex = 12
+        Me.KryptonLabel9.Values.Text = "Emplacement du navigateur Mozilla Firefox"
+        '
         'KryptonPage6
         '
         Me.KryptonPage6.AutoHiddenSlideSize = New System.Drawing.Size(200, 200)
+        Me.KryptonPage6.Controls.Add(Me.KryptonButton9)
+        Me.KryptonPage6.Controls.Add(Me.KryptonTextBox7)
+        Me.KryptonPage6.Controls.Add(Me.KryptonLabel13)
         Me.KryptonPage6.Flags = 65534
         Me.KryptonPage6.LastVisibleSet = True
         Me.KryptonPage6.MinimumSize = New System.Drawing.Size(50, 50)
@@ -442,6 +634,66 @@ Partial Class Settings
         Me.KryptonPage6.Text = "C / C++"
         Me.KryptonPage6.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage6.UniqueName = "716E62464D95409D978C95226539172C"
+        '
+        'KryptonButton8
+        '
+        Me.KryptonButton8.Location = New System.Drawing.Point(1296, 99)
+        Me.KryptonButton8.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonButton8.Name = "KryptonButton8"
+        Me.KryptonButton8.Palette = Me.KryptonPalette1
+        Me.KryptonButton8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton8.Size = New System.Drawing.Size(71, 39)
+        Me.KryptonButton8.TabIndex = 14
+        Me.KryptonButton8.Values.Text = "..."
+        '
+        'KryptonTextBox6
+        '
+        Me.KryptonTextBox6.Location = New System.Drawing.Point(22, 99)
+        Me.KryptonTextBox6.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonTextBox6.Name = "KryptonTextBox6"
+        Me.KryptonTextBox6.ReadOnly = True
+        Me.KryptonTextBox6.Size = New System.Drawing.Size(1262, 39)
+        Me.KryptonTextBox6.TabIndex = 13
+        '
+        'KryptonLabel12
+        '
+        Me.KryptonLabel12.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel12.Location = New System.Drawing.Point(22, 35)
+        Me.KryptonLabel12.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonLabel12.Name = "KryptonLabel12"
+        Me.KryptonLabel12.Size = New System.Drawing.Size(341, 37)
+        Me.KryptonLabel12.TabIndex = 12
+        Me.KryptonLabel12.Values.Text = "Espace de Travail par défaut"
+        '
+        'KryptonButton9
+        '
+        Me.KryptonButton9.Location = New System.Drawing.Point(1296, 93)
+        Me.KryptonButton9.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonButton9.Name = "KryptonButton9"
+        Me.KryptonButton9.Palette = Me.KryptonPalette1
+        Me.KryptonButton9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton9.Size = New System.Drawing.Size(71, 39)
+        Me.KryptonButton9.TabIndex = 14
+        Me.KryptonButton9.Values.Text = "..."
+        '
+        'KryptonTextBox7
+        '
+        Me.KryptonTextBox7.Location = New System.Drawing.Point(22, 93)
+        Me.KryptonTextBox7.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonTextBox7.Name = "KryptonTextBox7"
+        Me.KryptonTextBox7.ReadOnly = True
+        Me.KryptonTextBox7.Size = New System.Drawing.Size(1262, 39)
+        Me.KryptonTextBox7.TabIndex = 13
+        '
+        'KryptonLabel13
+        '
+        Me.KryptonLabel13.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl
+        Me.KryptonLabel13.Location = New System.Drawing.Point(22, 29)
+        Me.KryptonLabel13.Margin = New System.Windows.Forms.Padding(6)
+        Me.KryptonLabel13.Name = "KryptonLabel13"
+        Me.KryptonLabel13.Size = New System.Drawing.Size(411, 37)
+        Me.KryptonLabel13.TabIndex = 12
+        Me.KryptonLabel13.Values.Text = "Emplacement du compilateur GCC"
         '
         'Settings
         '
@@ -465,16 +717,25 @@ Partial Class Settings
         CType(Me.KryptonPage1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPage1.ResumeLayout(False)
         Me.KryptonPage1.PerformLayout()
+        CType(Me.KryptonPanel2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonPanel2.ResumeLayout(False)
+        Me.KryptonPanel2.PerformLayout()
         CType(Me.KryptonComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KryptonPage2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPage2.ResumeLayout(False)
         Me.KryptonPage2.PerformLayout()
         CType(Me.KryptonPage3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonPage3.ResumeLayout(False)
+        Me.KryptonPage3.PerformLayout()
         CType(Me.KryptonPage4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPage4.ResumeLayout(False)
         Me.KryptonPage4.PerformLayout()
         CType(Me.KryptonPage5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonPage5.ResumeLayout(False)
+        Me.KryptonPage5.PerformLayout()
         CType(Me.KryptonPage6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.KryptonPage6.ResumeLayout(False)
+        Me.KryptonPage6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -507,8 +768,29 @@ Partial Class Settings
     Friend WithEvents KryptonButton1 As ComponentFactory.Krypton.Toolkit.KryptonButton
     Friend WithEvents KryptonTextBox1 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
     Friend WithEvents KryptonLabel1 As ComponentFactory.Krypton.Toolkit.KryptonLabel
-    Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
     Friend WithEvents KryptonComboBox1 As ComponentFactory.Krypton.Toolkit.KryptonComboBox
-    Friend WithEvents KryptonCheckButton2 As ComponentFactory.Krypton.Toolkit.KryptonCheckButton
-    Friend WithEvents KryptonCheckButton1 As ComponentFactory.Krypton.Toolkit.KryptonCheckButton
+    Friend WithEvents KryptonRadioButton4 As ComponentFactory.Krypton.Toolkit.KryptonRadioButton
+    Friend WithEvents KryptonLabel4 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonRadioButton8 As ComponentFactory.Krypton.Toolkit.KryptonRadioButton
+    Friend WithEvents KryptonRadioButton7 As ComponentFactory.Krypton.Toolkit.KryptonRadioButton
+    Friend WithEvents KryptonRadioButton6 As ComponentFactory.Krypton.Toolkit.KryptonRadioButton
+    Friend WithEvents KryptonLabel8 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonRadioButton5 As ComponentFactory.Krypton.Toolkit.KryptonRadioButton
+    Friend WithEvents KryptonPanel2 As ComponentFactory.Krypton.Toolkit.KryptonPanel
+    Friend WithEvents KryptonRadioButton9 As ComponentFactory.Krypton.Toolkit.KryptonRadioButton
+    Friend WithEvents KryptonButton7 As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents KryptonTextBox5 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel11 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonButton6 As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents KryptonTextBox4 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel10 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonButton3 As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents KryptonTextBox3 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel9 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonButton8 As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents KryptonTextBox6 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel12 As ComponentFactory.Krypton.Toolkit.KryptonLabel
+    Friend WithEvents KryptonButton9 As ComponentFactory.Krypton.Toolkit.KryptonButton
+    Friend WithEvents KryptonTextBox7 As ComponentFactory.Krypton.Toolkit.KryptonTextBox
+    Friend WithEvents KryptonLabel13 As ComponentFactory.Krypton.Toolkit.KryptonLabel
 End Class

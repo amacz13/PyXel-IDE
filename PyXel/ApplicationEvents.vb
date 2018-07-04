@@ -17,6 +17,8 @@ Namespace My
 
         End Sub
 
-
+        Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
+            MsgBox("A fatal error occured, please restart PyXel.", MsgBoxStyle.Critical, "PyXel Error")
+        End Sub
     End Class
 End Namespace
