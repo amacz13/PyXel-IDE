@@ -1,4 +1,5 @@
-﻿Imports System.Xml
+﻿Imports System.IO
+Imports System.Xml
 Imports Microsoft.VisualBasic.ApplicationServices
 
 Namespace My
@@ -19,6 +20,18 @@ Namespace My
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
             MsgBox("A fatal error occured, please restart PyXel.", MsgBoxStyle.Critical, "PyXel Error")
+        End Sub
+
+        Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
+            If (File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")) Then
+                File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")
+                Dim sw As StreamWriter = New StreamWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")
+                ApplicationSettings.recentDocs.Reverse()
+                For Each item In ApplicationSettings.recentDocs
+                    sw.WriteLine(item)
+                Next
+                sw.Close()
+            End If
         End Sub
     End Class
 End Namespace

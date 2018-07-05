@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports ComponentFactory.Krypton.Ribbon
 Imports FastColoredTextBoxNS
 
 Public Class Form1
@@ -161,11 +162,19 @@ Public Class Form1
                 menus.Add(pages, menu)
                 firstLoad.Add(pages, True)
                 editor.OpenFile(fileName)
+                If ApplicationSettings.recentDocs.Contains(fileName) Then
+                    ApplicationSettings.recentDocs.Remove(fileName)
+                End If
+                AddRecentDoc(fileName)
             Next
         End If
     End Sub
 
     Private Sub OpenFile(fileName As String)
+        If Not File.Exists(fileName) Then
+            MsgBox("File not Found !")
+            Exit Sub
+        End If
         pages += 1
         pagesSaved.Add(pages, True)
         filesOpened.Add(pages, fileName)
@@ -207,6 +216,10 @@ Public Class Form1
         menus.Add(pages, menu)
         firstLoad.Add(pages, True)
         editor.OpenFile(fileName)
+        If ApplicationSettings.recentDocs.Contains(fileName) Then
+            ApplicationSettings.recentDocs.Remove(fileName)
+        End If
+        AddRecentDoc(fileName)
     End Sub
 
     Private Sub openNewTab(lang As Languages)
@@ -404,6 +417,11 @@ Public Class Form1
 
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'Adding Recent Documents
+        KryptonRibbon1.RibbonAppButton.AppButtonShowRecentDocs = True
+        ReloadRecentDocs()
+
+
         'Updating ImageList
         list.Images.Add(My.Resources.c16)
         list.Images.Add(My.Resources.css16)
@@ -1139,14 +1157,29 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub openRecentDoc(sender As Object, e As EventArgs)
+        Dim item As KryptonRibbonRecentDoc = sender
+        OpenFile(item.Text)
+    End Sub
 
+    Private Sub ReloadRecentDocs()
+        KryptonRibbon1.RibbonAppButton.AppButtonRecentDocs.Clear()
 
+        Dim rcntDocs As ArrayList = ApplicationSettings.recentDocs
+        rcntDocs.Reverse()
+        For Each elem In rcntDocs
+            If elem IsNot "" Then
+                Dim item As New KryptonRibbonRecentDoc()
+                item.Text = elem
+                AddHandler item.Click, AddressOf openRecentDoc
+                KryptonRibbon1.RibbonAppButton.AppButtonRecentDocs.Add(item)
+            End If
+        Next
+    End Sub
 
-    'Private Sub KryptonTextBox1_KeyDown(sender As Object, e As KeyEventArgs)
-    '    If e.KeyCode = Keys.Enter Then
-    '        consoleSender.WriteLine(KryptonTextBox1.Text)
-    '        KryptonTextBox1.Text = ""
-    '    End If
-    'End Sub
+    Private Sub AddRecentDoc(file As String)
+        ApplicationSettings.recentDocs.Add(file)
+        ReloadRecentDocs()
+    End Sub
 
 End Class
