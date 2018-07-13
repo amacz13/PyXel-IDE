@@ -1,4 +1,5 @@
 ﻿Imports System.Xml
+Imports System.IO
 
 Public Class ApplicationSettings
 
@@ -8,7 +9,7 @@ Public Class ApplicationSettings
 
     'General Settings
     Public Shared lang As String = "French"
-    Public Shared theme As ComponentFactory.Krypton.Toolkit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+    Public Shared theme As ComponentFactory.Krypton.Toolkit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
     Public Shared recentDocs As New ArrayList
 
     'Editor Colors
@@ -23,9 +24,12 @@ Public Class ApplicationSettings
 
     'Python Path
     Public Shared python2 As String = ""
-    Public Shared python3 As String = "C:\Windows\py.exe"
+    Public Shared python3 As String = ""
 
     Public Shared Sub createConfig()
+        If File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml") Then
+            File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")
+        End If
         Dim writer As New XmlTextWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml", System.Text.Encoding.UTF8)
         writer.WriteStartDocument(True)
         writer.Formatting = Formatting.Indented
@@ -39,7 +43,18 @@ Public Class ApplicationSettings
         writer.WriteString("French")
         writer.WriteEndElement()
         writer.WriteStartElement("Theme")
-        writer.WriteString("Blue")
+        Select Case theme
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
+                writer.WriteString("Modern")
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
+                writer.WriteString("Blue")
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
+                writer.WriteString("Silver")
+            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
+                writer.WriteString("Black")
+            Case Else
+                writer.WriteString("Modern")
+        End Select
         writer.WriteEndElement()
         writer.WriteEndElement()
         writer.WriteStartElement("Colors")
@@ -62,10 +77,10 @@ Public Class ApplicationSettings
         writer.WriteEndElement()
         writer.WriteStartElement("PythonPath")
         writer.WriteStartElement("Python2")
-        writer.WriteString("")
+        writer.WriteString(python2)
         writer.WriteEndElement()
         writer.WriteStartElement("Python3")
-        writer.WriteString(ApplicationSettings.python3)
+        writer.WriteString(python3)
         writer.WriteEndElement()
         writer.WriteEndElement()
         writer.WriteEndElement()
@@ -81,8 +96,10 @@ Public Class ApplicationSettings
             ApplicationSettings.lang = node.SelectSingleNode("Language").InnerText
             Dim theme As String = node.SelectSingleNode("Theme").InnerText
             Select Case theme
-                Case "Blue"
+                Case "Modern"
                     ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
+                Case "Blue"
+                    ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
                 Case "Silver"
                     ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
                 Case "Black"

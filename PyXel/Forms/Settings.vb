@@ -3,7 +3,7 @@ Imports System.Xml
 Imports ComponentFactory.Krypton.Toolkit
 
 Public Class Settings
-    Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) 
+    Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) Handles KryptonButton1.Click
         Dim openFileDialog1 As New OpenFileDialog()
         openFileDialog1.Filter = "Fichiers Executables|*.exe"
         openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 2"
@@ -13,7 +13,8 @@ Public Class Settings
             KryptonTextBox1.Text = fn
         End If
     End Sub
-    Private Sub KryptonButton2_Click(sender As Object, e As EventArgs) 
+
+    Private Sub KryptonButton2_Click(sender As Object, e As EventArgs) Handles KryptonButton2.Click
         Dim openFileDialog1 As New OpenFileDialog()
         openFileDialog1.Filter = "Fichiers Executables|*.exe"
         openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 3"
@@ -73,13 +74,19 @@ Public Class Settings
         KryptonColorButton4.Strings.RecentColors = "Couleurs récentes..."
         KryptonColorButton4.Strings.ThemeColors = "Couleurs du thème..."
         KryptonColorButton4.Strings.StandardColors = "Couleurs standards..."
+
+        KryptonButton1.Height = KryptonTextBox1.Height
+        KryptonButton2.Height = KryptonTextBox1.Height
+        KryptonButton3.Height = KryptonTextBox1.Height
+        KryptonButton6.Height = KryptonTextBox1.Height
+        KryptonButton7.Height = KryptonTextBox1.Height
+        KryptonButton8.Height = KryptonTextBox1.Height
+        KryptonButton9.Height = KryptonTextBox1.Height
     End Sub
 
     Private Sub UpdatePalettes()
-
         Form1.updatePalette()
         Help.updatePalette()
-
     End Sub
 
     Private Sub KryptonRadioButton1_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton1.Click
@@ -122,63 +129,9 @@ Public Class Settings
     End Sub
 
     Private Sub Settings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        createConfig()
+        ApplicationSettings.createConfig()
     End Sub
 
-    Private Sub createConfig()
-        System.IO.File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")
-        Dim writer As New XmlTextWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml", System.Text.Encoding.UTF8)
-        writer.WriteStartDocument(True)
-        writer.Formatting = Formatting.Indented
-        writer.Indentation = 2
-        writer.WriteStartElement("PyXel")
-        writer.WriteStartElement("General")
-        writer.WriteStartElement("Language")
-        writer.WriteString(ApplicationSettings.lang)
-        writer.WriteEndElement()
-        writer.WriteStartElement("Theme")
-        Select Case ApplicationSettings.theme
-            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
-                writer.WriteString("Blue")
-            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
-                writer.WriteString("Black")
-            Case ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
-                writer.WriteString("Silver")
-            Case Else
-                writer.WriteString("Blue")
-        End Select
-        writer.WriteEndElement()
-        writer.WriteEndElement()
-        writer.WriteStartElement("Colors")
-        writer.WriteStartElement("Editor")
-        writer.WriteStartElement("ForeColor")
-        writer.WriteString(ApplicationSettings.editorForeColor.ToArgb)
-        writer.WriteEndElement()
-        writer.WriteStartElement("BackColor")
-        writer.WriteString(ApplicationSettings.editorBackColor.ToArgb)
-        writer.WriteEndElement()
-        writer.WriteEndElement()
-        writer.WriteStartElement("Interpreter")
-        writer.WriteStartElement("ForeColor")
-        writer.WriteString(ApplicationSettings.interpreterForeColor.ToArgb)
-        writer.WriteEndElement()
-        writer.WriteStartElement("BackColor")
-        writer.WriteString(ApplicationSettings.interpreterBackColor.ToArgb)
-        writer.WriteEndElement()
-        writer.WriteEndElement()
-        writer.WriteEndElement()
-        writer.WriteStartElement("PythonPath")
-        writer.WriteStartElement("Python2")
-        writer.WriteString(ApplicationSettings.python2)
-        writer.WriteEndElement()
-        writer.WriteStartElement("Python3")
-        writer.WriteString(ApplicationSettings.python3)
-        writer.WriteEndElement()
-        writer.WriteEndElement()
-        writer.WriteEndElement()
-        writer.WriteEndDocument()
-        writer.Close()
-    End Sub
 
     Private Sub ChangeLanguage(lang As String)
         Select Case lang
@@ -225,4 +178,9 @@ Public Class Settings
         End If
     End Sub
 
+    Private Sub KryptonRadioButton9_CheckedChanged(sender As Object, e As EventArgs) Handles KryptonRadioButton9.CheckedChanged
+        ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
+        KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
+        UpdatePalettes()
+    End Sub
 End Class

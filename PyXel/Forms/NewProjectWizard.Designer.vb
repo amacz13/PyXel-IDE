@@ -25,15 +25,15 @@ Partial Class NewProjectWizard
         Me.components = New System.ComponentModel.Container()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
         Me.KryptonPanel1 = New ComponentFactory.Krypton.Toolkit.KryptonPanel()
+        Me.KryptonButton3 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
+        Me.KryptonTextBox2 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
+        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonTextBox1 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
         Me.KryptonLabel2 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonLabel1 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
         Me.KryptonButton2 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
-        Me.KryptonButton1 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
-        Me.KryptonTextBox2 = New ComponentFactory.Krypton.Toolkit.KryptonTextBox()
-        Me.KryptonLabel3 = New ComponentFactory.Krypton.Toolkit.KryptonLabel()
-        Me.KryptonButton3 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.KryptonButton1 = New ComponentFactory.Krypton.Toolkit.KryptonButton()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +61,35 @@ Partial Class NewProjectWizard
         Me.KryptonPanel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonPanel1.Size = New System.Drawing.Size(974, 629)
         Me.KryptonPanel1.TabIndex = 0
+        '
+        'KryptonButton3
+        '
+        Me.KryptonButton3.Location = New System.Drawing.Point(894, 261)
+        Me.KryptonButton3.Name = "KryptonButton3"
+        Me.KryptonButton3.Palette = Me.KryptonPalette1
+        Me.KryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton3.Size = New System.Drawing.Size(68, 39)
+        Me.KryptonButton3.TabIndex = 8
+        Me.KryptonButton3.Values.Text = "..."
+        '
+        'KryptonTextBox2
+        '
+        Me.KryptonTextBox2.Location = New System.Drawing.Point(206, 261)
+        Me.KryptonTextBox2.Name = "KryptonTextBox2"
+        Me.KryptonTextBox2.Palette = Me.KryptonPalette1
+        Me.KryptonTextBox2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonTextBox2.Size = New System.Drawing.Size(682, 39)
+        Me.KryptonTextBox2.TabIndex = 7
+        '
+        'KryptonLabel3
+        '
+        Me.KryptonLabel3.Location = New System.Drawing.Point(206, 218)
+        Me.KryptonLabel3.Name = "KryptonLabel3"
+        Me.KryptonLabel3.Palette = Me.KryptonPalette1
+        Me.KryptonLabel3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonLabel3.Size = New System.Drawing.Size(162, 37)
+        Me.KryptonLabel3.TabIndex = 6
+        Me.KryptonLabel3.Values.Text = "Emplacement"
         '
         'KryptonTextBox1
         '
@@ -102,45 +131,6 @@ Partial Class NewProjectWizard
         Me.KryptonButton2.TabIndex = 2
         Me.KryptonButton2.Values.Text = "Annuler"
         '
-        'KryptonButton1
-        '
-        Me.KryptonButton1.Location = New System.Drawing.Point(796, 567)
-        Me.KryptonButton1.Name = "KryptonButton1"
-        Me.KryptonButton1.Palette = Me.KryptonPalette1
-        Me.KryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonButton1.Size = New System.Drawing.Size(166, 50)
-        Me.KryptonButton1.TabIndex = 0
-        Me.KryptonButton1.Values.Text = "Valider"
-        '
-        'KryptonTextBox2
-        '
-        Me.KryptonTextBox2.Location = New System.Drawing.Point(206, 261)
-        Me.KryptonTextBox2.Name = "KryptonTextBox2"
-        Me.KryptonTextBox2.Palette = Me.KryptonPalette1
-        Me.KryptonTextBox2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonTextBox2.Size = New System.Drawing.Size(682, 39)
-        Me.KryptonTextBox2.TabIndex = 7
-        '
-        'KryptonLabel3
-        '
-        Me.KryptonLabel3.Location = New System.Drawing.Point(206, 218)
-        Me.KryptonLabel3.Name = "KryptonLabel3"
-        Me.KryptonLabel3.Palette = Me.KryptonPalette1
-        Me.KryptonLabel3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonLabel3.Size = New System.Drawing.Size(162, 37)
-        Me.KryptonLabel3.TabIndex = 6
-        Me.KryptonLabel3.Values.Text = "Emplacement"
-        '
-        'KryptonButton3
-        '
-        Me.KryptonButton3.Location = New System.Drawing.Point(894, 261)
-        Me.KryptonButton3.Name = "KryptonButton3"
-        Me.KryptonButton3.Palette = Me.KryptonPalette1
-        Me.KryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonButton3.Size = New System.Drawing.Size(68, 39)
-        Me.KryptonButton3.TabIndex = 8
-        Me.KryptonButton3.Values.Text = "..."
-        '
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
@@ -151,6 +141,16 @@ Partial Class NewProjectWizard
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
+        '
+        'KryptonButton1
+        '
+        Me.KryptonButton1.Location = New System.Drawing.Point(796, 567)
+        Me.KryptonButton1.Name = "KryptonButton1"
+        Me.KryptonButton1.Palette = Me.KryptonPalette1
+        Me.KryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
+        Me.KryptonButton1.Size = New System.Drawing.Size(166, 50)
+        Me.KryptonButton1.TabIndex = 0
+        Me.KryptonButton1.Values.Text = "Valider"
         '
         'NewProjectWizard
         '
