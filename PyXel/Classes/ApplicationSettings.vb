@@ -1,5 +1,6 @@
 ﻿Imports System.Xml
 Imports System.IO
+Imports ComponentFactory.Krypton.Toolkit
 
 Public Class ApplicationSettings
 

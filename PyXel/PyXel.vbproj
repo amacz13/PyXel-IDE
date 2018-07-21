@@ -67,7 +67,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Pyxel Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -333,6 +333,8 @@
     <Content Include="Jacksonsoft.CustomTabControl.dll" />
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
+    <Content Include="Pyxel Icon.ico" />
+    <None Include="Resources\PyXel SplashScreen 0.4.png" />
     <None Include="Resources\pyxel1.png" />
     <None Include="Resources\PyXelNewProjWiz.png" />
     <None Include="Resources\edge.png" />

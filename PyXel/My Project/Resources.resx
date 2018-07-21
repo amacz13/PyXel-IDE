@@ -148,6 +148,12 @@
   <data name="PyXelNewProjWiz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PyXelNewProjWiz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="opera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\opera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="open16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\open16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -162,9 +168,6 @@
   </data>
   <data name="redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ie" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,17 +193,11 @@
   <data name="export32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="new161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\new161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="unpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="splash3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\splash3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ftp16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ftp16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mail16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mail16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,9 +223,6 @@
   <data name="js16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\js16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\chrome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="project" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\project.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -247,6 +241,9 @@
   <data name="settings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pyxel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pyxel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="splash2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\splash2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -255,6 +252,9 @@
   </data>
   <data name="open321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\open321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="splash alpha0.3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\splash alpha0.3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="update16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\update16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,6 +286,9 @@
   <data name="html16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\html16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="edge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="onedrive16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\onedrive16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -307,6 +310,9 @@
   <data name="undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="compile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\compile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -319,11 +325,8 @@
   <data name="console1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\console1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="import32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\import32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="paste1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\paste1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="header16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\header16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save322" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -334,29 +337,26 @@
   <data name="eraser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eraser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="python16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\python16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="about" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="header16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\header16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chrome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="edge" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ftp16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ftp16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="compile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\compile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="firefox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\firefox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="open16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\open16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="paste1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\paste1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="help161" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\help161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -370,8 +370,8 @@
   <data name="help16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\help16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="opera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\opera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="import32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\import32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="project16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\project16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -388,14 +388,17 @@
   <data name="find" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\find.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="splash alpha0.3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\splash alpha0.3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="new161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="goto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\goto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\comment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="html161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\html161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -409,16 +412,19 @@
   <data name="run-and-compile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\run-and-compile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="html" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\html.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="python16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\python16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="run16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\run16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="html161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\html161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="html" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\html.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pyxel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pyxel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PyXel SplashScreen 0.4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PyXel SplashScreen 0.4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pyxel_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pyxel Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

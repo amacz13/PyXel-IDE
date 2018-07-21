@@ -417,6 +417,9 @@ Public Class Form1
 
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Icon = My.Resources.Pyxel_Icon
+        'KryptonPalette1.Import(Application.StartupPath() + "\test.xml")
+
         'Adding Recent Documents
         KryptonRibbon1.RibbonAppButton.AppButtonShowRecentDocs = True
         ReloadRecentDocs()

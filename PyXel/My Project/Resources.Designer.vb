@@ -771,6 +771,26 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
+        '''</summary>
+        Friend ReadOnly Property Pyxel_Icon() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Pyxel_Icon", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property PyXel_SplashScreen_0_4() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PyXel SplashScreen 0.4", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property pyxel1() As System.Drawing.Bitmap
