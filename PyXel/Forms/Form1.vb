@@ -344,6 +344,7 @@ Public Class Form1
             editor.AutoCompleteBrackets = True
             editor.CommentPrefix = "#"
             AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
+            AddHandler editor.TextChangedDelayed, AddressOf fctb_TextChangedDelayed
         End If
     End Sub
     Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
@@ -393,6 +394,28 @@ Public Class Form1
         If e.LineText.Trim.Contains("def") Or e.LineText.Trim.Contains("if") Or e.LineText.Trim.Contains("else") Or e.LineText.Trim.Contains("elif") Or e.LineText.Trim.Contains("for") Or e.LineText.Trim.Contains("while") Then
             e.ShiftNextLines = e.TabLength
         End If
+    End Sub
+
+    Private Sub fctb_TextChangedDelayed(sender As Object, e As TextChangedEventArgs)
+        Dim editor As FastColoredTextBox = sender
+        editor.Range.ClearFoldingMarkers()
+        Dim currentIndent As Integer = 0
+        Dim lastNonEmptyLine As Integer = 0
+        For i As Integer = 0 To editor.LinesCount - 1
+            Dim line As Line = editor(i)
+            Dim spacesCount As Integer = line.StartSpacesCount
+            If spacesCount <> line.Count Then
+                If currentIndent < spacesCount Then
+                    editor(lastNonEmptyLine).FoldingStartMarker = "m" + currentIndent.ToString()
+                Else
+                    If currentIndent > spacesCount Then
+                        editor(lastNonEmptyLine).FoldingEndMarker = "m" + spacesCount.ToString()
+                    End If
+                End If
+                currentIndent = spacesCount
+                lastNonEmptyLine = i
+            End If
+        Next
     End Sub
 
     Private Sub checkForUpdates()
