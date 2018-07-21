@@ -1,6 +1,12 @@
-# PyXel IDE [![Build Status](https://travis-ci.org/amacz13/PyXel-IDE.svg?branch=master)](https://travis-ci.org/amacz13/PyXel-IDE)
+# PyXel IDE [![Travis](https://img.shields.io/travis/amacz13/PyXel-IDE.svg?style=flat-square)](https://travis-ci.org/amacz13/PyXel-IDE) [![GitHub license](https://img.shields.io/github/license/amacz13/PyXel-IDE.svg?style=flat-square)](https://github.com/amacz13/PyXel-IDE/blob/master/LICENSE) [![GitHub release](https://img.shields.io/github/release/amacz13/PyXel-IDE.svg?style=flat-square)](https://github.com/amacz13/PyXel-IDE/releases) [![GitHub issues](https://img.shields.io/github/issues/amacz13/PyXel-IDE.svg?style=flat-square)](https://github.com/amacz13/PyXel-IDE/issues)
 
 PyXel is a modern, simple and lightweight Integrated Development Environment (IDE), which is actually on development. It was originally a Python files Editor and during the development, support for other languages was asked and implemented.
+
+
+Current version
+-
+- Stable : [Alpha 0.3](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.3-Alpha)
+- Insider : [Snapshot 18.1307 Alpha-v0.4](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4-Alpha-SNAPSHOT-18.1307)
 
 Downloads
 -
@@ -9,14 +15,35 @@ Despite PyXel is still in alpha, it is stable enough to be used in all day devel
 
 Roadmap
 -
-- Version 0.4-Alpha (Expected release date : August 2018)
+- Version 0.4-Alpha (Expected release date : August, 15 2018)
   - [X] Projects
-  - [ ] New Installer
   - [X] Help Center
   - [X] Interpreter/Console Improvements
   - [X] MultiLanguages Support
-  - [X] Autocompletion
+    - [x] HTML
+    - [ ] CSS  
+    - [X] PHP
+    - [X] JS
+    - [ ] C / C++      
+  - [X] Autocompletion (Partial)
   - [X] Drag'n'Drop
+- Version 0.5-Alpha (Expected release date : October 2018)
+  - [ ] New Installer
+  - [ ] Git Support
+  - [ ] Dictionnary
+  - [ ] Syntax checker
+  - [ ] Sending Files
+    - [ ] FTP server
+    - [ ] OneDrive
+  - [ ] Language specific
+    - [ ] PHP
+      - [ ] Integrated server for local preview
+    - [ ] HTML / JS / CSS
+      - [ ] Integrated browser for live preview
+  - [ ] New supported languages
+    - [ ] VB.NET
+    - [ ] C#
+    - [ ] Lua
 - ...
 - Version 1.0-Beta (Expected release date : 2019)
 
