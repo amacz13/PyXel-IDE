@@ -1,7 +1,9 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.Threading
 Imports ComponentFactory.Krypton.Ribbon
+Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
 
 Public Class Form1
@@ -125,7 +127,12 @@ Public Class Form1
                 newPage.Text = System.IO.Path.GetFileName(fileName)
                 Dim ext As String = System.IO.Path.GetExtension(fileName)
                 'MsgBox(ext)
+                Dim spliter As New KryptonSplitContainer
+                spliter.Dock = DockStyle.Fill
                 Dim editor As New FastColoredTextBox
+                Dim map As New DocumentMap
+                map.Target = editor
+                spliter.SplitterDistance = 700
                 Dim lang As Languages
                 Select Case ext
                     Case ".pxl"
@@ -149,6 +156,7 @@ Public Class Form1
                 End Select
                 configEditor(editor, lang)
                 displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
+                map.Dock = DockStyle.Fill
                 editor.Dock = DockStyle.Fill
                 tabs.Add(pages, newPage)
                 editors.Add(pages, editor)
@@ -156,7 +164,9 @@ Public Class Form1
                 editorsInversed.Add(editor, pages)
                 CustomTabControl1.TabPages.Add(newPage)
                 CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-                newPage.Controls.Add(editor)
+                spliter.Panel1.Controls.Add(editor)
+                spliter.Panel2.Controls.Add(map)
+                newPage.Controls.Add(spliter)
                 Dim menu As New AutocompleteMenu(editor)
                 AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
                 menus.Add(pages, menu)
@@ -182,7 +192,12 @@ Public Class Form1
         newPage.Text = System.IO.Path.GetFileName(fileName)
         Dim ext As String = System.IO.Path.GetExtension(fileName)
         'MsgBox(ext)
+        Dim spliter As New KryptonSplitContainer
+        spliter.Dock = DockStyle.Fill
         Dim editor As New FastColoredTextBox
+        Dim map As New DocumentMap
+        map.Target = editor
+        spliter.SplitterDistance = 700
         Dim lang As Languages
         Select Case ext
             Case ".py"
@@ -203,6 +218,7 @@ Public Class Form1
         End Select
         configEditor(editor, lang)
         displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
+        map.Dock = DockStyle.Fill
         editor.Dock = DockStyle.Fill
         tabs.Add(pages, newPage)
         editors.Add(pages, editor)
@@ -210,7 +226,9 @@ Public Class Form1
         editorsInversed.Add(editor, pages)
         CustomTabControl1.TabPages.Add(newPage)
         CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        newPage.Controls.Add(editor)
+        spliter.Panel1.Controls.Add(editor)
+        spliter.Panel2.Controls.Add(map)
+        newPage.Controls.Add(spliter)
         Dim menu As New AutocompleteMenu(editor)
         AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
         menus.Add(pages, menu)
@@ -223,12 +241,19 @@ Public Class Form1
     End Sub
 
     Private Sub openNewTab(lang As Languages)
+        Dim spliter As New KryptonSplitContainer
+        spliter.Dock = DockStyle.Fill
+        Dim editor As New FastColoredTextBox
+        Dim map As New DocumentMap
+        map.Target = editor
+        spliter.SplitterDistance = 700
+        map.Dock = DockStyle.Fill
+        editor.Dock = DockStyle.Fill
         If lang = Languages.Python Then
             Dim newPage As New TabPage
             newPage.Text = "Sans Nom"
             newPage.ImageIndex = 5
             'editor Configuration
-            Dim editor As New FastColoredTextBox
             configEditor(editor, Languages.Python)
 
 
@@ -242,7 +267,9 @@ Public Class Form1
             editorsInversed.Add(editor, pages)
             CustomTabControl1.TabPages.Add(newPage)
             CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            newPage.Controls.Add(editor)
+            spliter.Panel1.Controls.Add(editor)
+            spliter.Panel2.Controls.Add(map)
+            newPage.Controls.Add(spliter)
             filesOpened.Add(pages, "Sans Nom")
             pagesSaved.Add(pages, True)
             displayNames.Add(pages, "Sans Nom")
@@ -253,7 +280,6 @@ Public Class Form1
             newPage.ImageIndex = 2
 
             'editor Configuration
-            Dim editor As New FastColoredTextBox
             configEditor(editor, Languages.HTML)
             editor.Language = Language.HTML
 
@@ -267,7 +293,9 @@ Public Class Form1
             editorsInversed.Add(editor, pages)
             CustomTabControl1.TabPages.Add(newPage)
             CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            newPage.Controls.Add(editor)
+            spliter.Panel1.Controls.Add(editor)
+            spliter.Panel2.Controls.Add(map)
+            newPage.Controls.Add(spliter)
             filesOpened.Add(pages, "Sans Nom")
             pagesSaved.Add(pages, True)
             displayNames.Add(pages, "Sans Nom")
@@ -277,8 +305,6 @@ Public Class Form1
             newPage.Text = "Sans Nom"
             newPage.ImageIndex = 3
 
-            'editor Configuration
-            Dim editor As New FastColoredTextBox
             configEditor(editor, Languages.PHP)
             editor.Language = Language.PHP
 
@@ -292,7 +318,9 @@ Public Class Form1
             editorsInversed.Add(editor, pages)
             CustomTabControl1.TabPages.Add(newPage)
             CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            newPage.Controls.Add(editor)
+            spliter.Panel1.Controls.Add(editor)
+            spliter.Panel2.Controls.Add(map)
+            newPage.Controls.Add(spliter)
             filesOpened.Add(pages, "Sans Nom")
             pagesSaved.Add(pages, True)
             displayNames.Add(pages, "Sans Nom")
@@ -303,7 +331,6 @@ Public Class Form1
             newPage.ImageIndex = 4
 
             'editor Configuration
-            Dim editor As New FastColoredTextBox
             configEditor(editor, Languages.JS)
             editor.Language = Language.JS
 
@@ -317,7 +344,9 @@ Public Class Form1
             editorsInversed.Add(editor, pages)
             CustomTabControl1.TabPages.Add(newPage)
             CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            newPage.Controls.Add(editor)
+            spliter.Panel1.Controls.Add(editor)
+            spliter.Panel2.Controls.Add(map)
+            newPage.Controls.Add(spliter)
             filesOpened.Add(pages, "Sans Nom")
             pagesSaved.Add(pages, True)
             displayNames.Add(pages, "Sans Nom")
@@ -423,7 +452,11 @@ Public Class Form1
             If (File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")) Then
                 System.IO.File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
             End If
-            My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/currentversion.txt", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            If ApplicationSettings.updateCanal = "Stable" Then
+                My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/currentversion.txt", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            Else
+                My.Computer.Network.DownloadFile("https://amacz13.fr/files/pyxel/insiderversion.txt", My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
+            End If
             Dim versionReader As New System.IO.StreamReader(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\currentversion.txt")
             Dim version As String = versionReader.ReadToEnd
             versionReader.Close()
@@ -432,6 +465,9 @@ Public Class Form1
             Else
                 ButtonSpecAny2.Text = version
                 ButtonSpecAny2.Visible = True
+                If ApplicationSettings.updateType = "Normal" Then
+                    MsgBox("La version " + version + " de PyXel est disponible !", MsgBoxStyle.Information, "PyXel - Mise à jour disponible")
+                End If
             End If
         Catch
             ButtonSpecAny2.Visible = False
@@ -440,6 +476,7 @@ Public Class Form1
 
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ButtonSpecAny2.Visible = False
         Me.Icon = My.Resources.Pyxel_Icon
         'KryptonPalette1.Import(Application.StartupPath() + "\test.xml")
 
@@ -478,7 +515,14 @@ Public Class Form1
         newPage.ImageIndex = 5
 
         'Editor configuration
+        Dim spliter As New KryptonSplitContainer
+        spliter.Dock = DockStyle.Fill
         Dim editor As New FastColoredTextBox
+        Dim map As New DocumentMap
+        map.Target = editor
+        spliter.SplitterDistance = 700
+        map.Dock = DockStyle.Fill
+        editor.Dock = DockStyle.Fill
         configEditor(editor, Languages.Python)
         editor.ContextMenuStrip = ContextMenuStrip2
 
@@ -492,7 +536,9 @@ Public Class Form1
         editorsInversed.Add(editor, pages)
         CustomTabControl1.TabPages.Add(newPage)
         CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        newPage.Controls.Add(editor)
+        spliter.Panel1.Controls.Add(editor)
+        spliter.Panel2.Controls.Add(map)
+        newPage.Controls.Add(spliter)
         pagesSaved.Add(pages, True)
         firstLoad.Add(pages, True)
 
@@ -562,7 +608,10 @@ Public Class Form1
         KryptonSplitContainer2.Panel1Collapsed = True
 
         'Update Checking
-        checkForUpdates()
+        If ApplicationSettings.updateType IsNot "Disabled" Then
+            Dim th As New Thread(AddressOf checkForUpdates)
+
+        End If
 
         'ContextMenus Configuration
         CustomTabControl1.ContextMenuStrip = ContextMenuStrip1
@@ -952,7 +1001,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Async Sub KryptonContextMenuItem6_Click(sender As Object, e As EventArgs)
+    Private Async Sub KryptonContextMenuItem6_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem23.Click
         Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim saveFileDialog As New SaveFileDialog
@@ -1209,4 +1258,19 @@ Public Class Form1
         ReloadRecentDocs()
     End Sub
 
+    Private Async Sub KryptonContextMenuItem21_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem21.Click
+        'Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
+        'Dim editor As FastColoredTextBox = editors.Item(id)
+        'Dim saveFileDialog As New SaveFileDialog
+        'SaveFileDialog.Filter = "Fichiers PDF|*.PDF"
+        'SaveFileDialog.Title = "Exporter en pDF"
+        'If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+        'Dim fileName As String
+        'fileName = saveFileDialog.FileName
+        'Using outputFile As New StreamWriter(fileName)
+        'Await outputFile.WriteAsync(editor.Html)
+        'End Using
+        'filesOpened.Item(id) = fileName
+        'End If
+    End Sub
 End Class

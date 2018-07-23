@@ -48,6 +48,14 @@ Public Class Settings
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
         End If
 
+        If ApplicationSettings.updateCanal = "Stable" Then
+            KryptonRadioButton4.Checked = True
+            KryptonRadioButton5.Checked = False
+        Else
+            KryptonRadioButton4.Checked = False
+            KryptonRadioButton5.Checked = True
+        End If
+
         KryptonComboBox1.SelectedText = "Français"
 
         KryptonColorButton1.SelectedColor = ApplicationSettings.editorBackColor
@@ -182,5 +190,24 @@ Public Class Settings
         ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
         KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
         UpdatePalettes()
+    End Sub
+
+    Private Sub KryptonRadioButton4_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton4.Click
+        ApplicationSettings.updateCanal = "Stable"
+    End Sub
+
+    Private Sub KryptonRadioButton5_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton5.Click
+        ApplicationSettings.updateCanal = "Insider"
+    End Sub
+
+    Private Sub KryptonRadioButton6_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton6.Click
+        ApplicationSettings.updateType = "Normal"
+    End Sub
+
+    Private Sub KryptonRadioButton7_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton7.Click
+        ApplicationSettings.updateType = "Silent"
+    End Sub
+    Private Sub KryptonRadioButton8_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton8.Click
+        ApplicationSettings.updateType = "Disabled"
     End Sub
 End Class

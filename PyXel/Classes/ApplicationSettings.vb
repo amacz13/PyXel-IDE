@@ -12,6 +12,8 @@ Public Class ApplicationSettings
     Public Shared lang As String = "French"
     Public Shared theme As ComponentFactory.Krypton.Toolkit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
     Public Shared recentDocs As New ArrayList
+    Public Shared updateType = "Normal"
+    Public Shared updateCanal = "Stable"
 
     'Editor Colors
     Public Shared editorBackColor As Color = Color.White
@@ -26,6 +28,7 @@ Public Class ApplicationSettings
     'Python Path
     Public Shared python2 As String = ""
     Public Shared python3 As String = ""
+
 
     Public Shared Sub createConfig()
         If File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml") Then
@@ -42,6 +45,12 @@ Public Class ApplicationSettings
         writer.WriteStartElement("General")
         writer.WriteStartElement("Language")
         writer.WriteString("French")
+        writer.WriteEndElement()
+        writer.WriteStartElement("UpdateType")
+        writer.WriteString(updateType)
+        writer.WriteEndElement()
+        writer.WriteStartElement("UpdateCanal")
+        writer.WriteString(updateCanal)
         writer.WriteEndElement()
         writer.WriteStartElement("Theme")
         Select Case theme
@@ -94,7 +103,18 @@ Public Class ApplicationSettings
         xmlDoc.Load(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")
         Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/PyXel/General")
         For Each node As XmlNode In nodes
-            ApplicationSettings.lang = node.SelectSingleNode("Language").InnerText
+            Try
+                ApplicationSettings.lang = node.SelectSingleNode("Language").InnerText
+            Catch
+            End Try
+            Try
+                ApplicationSettings.updateType = node.SelectSingleNode("UpdateType").InnerText
+            Catch
+            End Try
+            Try
+                ApplicationSettings.updateCanal = node.SelectSingleNode("UpdateCanal").InnerText
+            Catch
+            End Try
             Dim theme As String = node.SelectSingleNode("Theme").InnerText
             Select Case theme
                 Case "Modern"
