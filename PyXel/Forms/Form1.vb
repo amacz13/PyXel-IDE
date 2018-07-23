@@ -828,23 +828,6 @@ Public Class Form1
         End If
     End Sub
 
-    'Private Sub proc_Exited(ByVal sender As Object, ByVal e As System.EventArgs) Handles proc.Exited
-    '    inExec = False
-    '    proc.CancelOutputRead()
-    'End Sub
-
-    'Private Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As System.Diagnostics.DataReceivedEventArgs) Handles proc.OutputDataReceived
-    '    If e.Data <> Nothing Then
-    '        Invoke(New OutputRecievedDel(AddressOf OutputRecieved), e.Data)
-    '    End If
-    'End Sub
-
-    'Private Delegate Sub OutputRecievedDel(ByVal out As String)
-
-    'Private Sub OutputRecieved(ByVal out As String)
-    '    FastColoredTextBox1.Text += vbNewLine + out
-    'End Sub
-
     Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
         If ApplicationSettings.python3 = "none" Then
             MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -931,13 +914,31 @@ Public Class Form1
 
     Private Sub KryptonRibbonGroupButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton1.Click
         Dim editor As FastColoredTextBox = editors.Item(tabsInversed.Item(CustomTabControl1.SelectedTab))
-        If editor.SelectedText.Length = 0 Then
-            editor.InsertLinePrefix("#")
-        ElseIf editor.GetLine(editor.Selection.Start.iLine).Text.Chars(0) = "#" Then
-            editor.RemoveLinePrefix("#")
-        Else
-            editor.InsertLinePrefix("#")
-        End If
+        Dim lang As Languages = editorsLanguage.Item(editor)
+        Select Case lang
+            Case Languages.PHP
+            Case Languages.JS
+            Case Languages.C
+                If editor.SelectedText.Length = 0 Then
+                    editor.InsertLinePrefix("//")
+                ElseIf editor.GetLine(editor.Selection.Start.iLine).Text.Chars(0) = "//" Then
+                    editor.RemoveLinePrefix("//")
+                Else
+                    editor.InsertLinePrefix("//")
+                End If
+            Case Languages.Python
+                If editor.SelectedText.Length = 0 Then
+                    editor.InsertLinePrefix("#")
+                ElseIf editor.GetLine(editor.Selection.Start.iLine).Text.Chars(0) = "#" Then
+                    editor.RemoveLinePrefix("#")
+                Else
+                    editor.InsertLinePrefix("#")
+                End If
+            Case Languages.HTML
+                If editor.SelectedText.Length = 0 Then
+                    editor.InsertLinePrefix("<!-- -->")
+                End If
+        End Select
 
     End Sub
 
