@@ -64,4 +64,4 @@ Links
 -
 - Website : [https://pyxel.amacz13.fr](https://pyxel.amacz13.fr)
 - Facebook Page : [https://fb.me/PyXelIDE](https://fb.me/PyXelIDE)
-- My Twitter account : [https://twitter.com/amaczkowiak](https://twitter.com/amaczkowiak)
+- Twitter account : [https://twitter.com/PyXel_IDE](https://twitter.com/PyXel_IDE)
