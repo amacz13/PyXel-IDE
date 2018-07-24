@@ -27,6 +27,7 @@ Roadmap
     - [ ] C / C++      
   - [X] Autocompletion (Partial)
   - [X] Drag'n'Drop
+  - [X] Document Map
 - Version 0.5-Alpha (Expected release date : October 2018)
   - [ ] New Installer
   - [ ] Git Support
@@ -44,6 +45,10 @@ Roadmap
     - [ ] VB.NET
     - [ ] C#
     - [ ] Lua
+    - [ ] Markdown
+    - [ ] XML
+    - [ ] YAML
+    - [ ] SQL
 - ...
 - Version 1.0-Beta (Expected release date : 2019)
 
