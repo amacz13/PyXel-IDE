@@ -5,15 +5,18 @@ Imports System.Threading
 Imports ComponentFactory.Krypton.Ribbon
 Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
+Imports MyAPKapp.VistaUIFramework.TaskDialog
 
 Public Class Form1
 
     Enum Languages
         Python
         C
+        CPP
         HTML
         PHP
         JS
+        CSS
         Lua
         CSharp
         VBNet
@@ -89,6 +92,15 @@ Public Class Form1
                 Case Languages.JS
                     saveFileDialog.Filter = "Fichiers JS|*.js"
                     saveFileDialog.Title = "Enregistrer un fichier JS"
+                Case Languages.CSS
+                    saveFileDialog.Filter = "Fichiers CSS|*.css"
+                    saveFileDialog.Title = "Enregistrer un fichier CSS"
+                Case Languages.C
+                    saveFileDialog.Filter = "Fichiers C|*.c|Fichier Header|*.h"
+                    saveFileDialog.Title = "Enregistrer un fichier C"
+                Case Languages.CPP
+                    saveFileDialog.Filter = "Fichiers C++|*.cpp|Fichier Header|*.h"
+                    saveFileDialog.Title = "Enregistrer un fichier C++"
 
             End Select
             If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -113,7 +125,7 @@ Public Class Form1
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers supportés par PyXel|*.pxl;*.py;*.html;*.php;*.js;*.php3;*.php5|Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js"
+        openFileDialog1.Filter = "Fichiers supportés par PyXel|*.pxl;*.py;*.html;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h|Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js|Fichiers CSS|*.css|Fichiers C|*.c;*.h|Fichiers C++|*.cpp;*.h"
         openFileDialog1.Title = "Ouvrir un fichier"
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -153,6 +165,18 @@ Public Class Form1
                         lang = Languages.JS
                         editor.Language = Language.JS
                         newPage.ImageIndex = 4
+                    Case ".css"
+                        lang = Languages.CSS
+                        newPage.ImageIndex = 1
+                    Case ".cpp"
+                        lang = Languages.CPP
+                        editor.Language = Language.CSharp
+                        newPage.ImageIndex = 6
+                    Case ".c"
+                    Case ".h"
+                        lang = Languages.C
+                        editor.Language = Language.CSharp
+                        newPage.ImageIndex = 0
                 End Select
                 configEditor(editor, lang)
                 displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
@@ -182,7 +206,13 @@ Public Class Form1
 
     Private Sub OpenFile(fileName As String)
         If Not File.Exists(fileName) Then
-            MsgBox("File not Found !")
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Fichier introuvable"
+            td.Content = "Impossible d'ouvrir le fichier suivant :" + vbNewLine + fileName
+            td.ShowDialog()
             Exit Sub
         End If
         pages += 1
@@ -215,6 +245,18 @@ Public Class Form1
                 lang = Languages.JS
                 editor.Language = Language.JS
                 newPage.ImageIndex = 4
+            Case ".css"
+                lang = Languages.CSS
+                newPage.ImageIndex = 1
+            Case ".cpp"
+                lang = Languages.CPP
+                editor.Language = Language.CSharp
+                newPage.ImageIndex = 6
+            Case ".c"
+            Case ".h"
+                lang = Languages.C
+                editor.Language = Language.CSharp
+                newPage.ImageIndex = 0
         End Select
         configEditor(editor, lang)
         displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
@@ -249,109 +291,36 @@ Public Class Form1
         spliter.SplitterDistance = 700
         map.Dock = DockStyle.Fill
         editor.Dock = DockStyle.Fill
-        If lang = Languages.Python Then
-            Dim newPage As New TabPage
-            newPage.Text = "Sans Nom"
-            newPage.ImageIndex = 5
-            'editor Configuration
-            configEditor(editor, Languages.Python)
-
-
-            pages += 1
-            Dim menu As New AutocompleteMenu(editor)
-            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-            menus.Add(pages, menu)
-            tabs.Add(pages, newPage)
-            editors.Add(pages, editor)
-            tabsInversed.Add(newPage, pages)
-            editorsInversed.Add(editor, pages)
-            CustomTabControl1.TabPages.Add(newPage)
-            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            spliter.Panel1.Controls.Add(editor)
-            spliter.Panel2.Controls.Add(map)
-            newPage.Controls.Add(spliter)
-            filesOpened.Add(pages, "Sans Nom")
-            pagesSaved.Add(pages, True)
-            displayNames.Add(pages, "Sans Nom")
-            firstLoad.Add(pages, True)
-        ElseIf lang = Languages.HTML Then
-            Dim newPage As New TabPage
-            newPage.Text = "Sans Nom"
-            newPage.ImageIndex = 2
-
-            'editor Configuration
-            configEditor(editor, Languages.HTML)
-            editor.Language = Language.HTML
-
-            pages += 1
-            Dim menu As New AutocompleteMenu(editor)
-            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-            menus.Add(pages, menu)
-            tabs.Add(pages, newPage)
-            editors.Add(pages, editor)
-            tabsInversed.Add(newPage, pages)
-            editorsInversed.Add(editor, pages)
-            CustomTabControl1.TabPages.Add(newPage)
-            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            spliter.Panel1.Controls.Add(editor)
-            spliter.Panel2.Controls.Add(map)
-            newPage.Controls.Add(spliter)
-            filesOpened.Add(pages, "Sans Nom")
-            pagesSaved.Add(pages, True)
-            displayNames.Add(pages, "Sans Nom")
-            firstLoad.Add(pages, True)
-        ElseIf lang = Languages.PHP Then
-            Dim newPage As New TabPage
-            newPage.Text = "Sans Nom"
-            newPage.ImageIndex = 3
-
-            configEditor(editor, Languages.PHP)
-            editor.Language = Language.PHP
-
-            pages += 1
-            Dim menu As New AutocompleteMenu(editor)
-            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-            menus.Add(pages, menu)
-            tabs.Add(pages, newPage)
-            editors.Add(pages, editor)
-            tabsInversed.Add(newPage, pages)
-            editorsInversed.Add(editor, pages)
-            CustomTabControl1.TabPages.Add(newPage)
-            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            spliter.Panel1.Controls.Add(editor)
-            spliter.Panel2.Controls.Add(map)
-            newPage.Controls.Add(spliter)
-            filesOpened.Add(pages, "Sans Nom")
-            pagesSaved.Add(pages, True)
-            displayNames.Add(pages, "Sans Nom")
-            firstLoad.Add(pages, True)
-        ElseIf lang = Languages.JS Then
-            Dim newPage As New TabPage
-            newPage.Text = "Sans Nom"
-            newPage.ImageIndex = 4
-
-            'editor Configuration
-            configEditor(editor, Languages.JS)
-            editor.Language = Language.JS
-
-            pages += 1
-            Dim menu As New AutocompleteMenu(editor)
-            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-            menus.Add(pages, menu)
-            tabs.Add(pages, newPage)
-            editors.Add(pages, editor)
-            tabsInversed.Add(newPage, pages)
-            editorsInversed.Add(editor, pages)
-            CustomTabControl1.TabPages.Add(newPage)
-            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-            spliter.Panel1.Controls.Add(editor)
-            spliter.Panel2.Controls.Add(map)
-            newPage.Controls.Add(spliter)
-            filesOpened.Add(pages, "Sans Nom")
-            pagesSaved.Add(pages, True)
-            displayNames.Add(pages, "Sans Nom")
-            firstLoad.Add(pages, True)
-        End If
+        Dim newPage As New TabPage
+        newPage.Text = "Sans Nom"
+        configEditor(editor, lang)
+        Select Case lang
+            Case Languages.Python
+                newPage.ImageIndex = 5
+            Case Languages.HTML
+                newPage.ImageIndex = 2
+                editor.Language = Language.HTML
+            Case Languages.PHP
+                newPage.ImageIndex = 3
+                editor.Language = Language.PHP
+            Case Languages.JS
+                newPage.ImageIndex = 4
+                editor.Language = Language.JS
+        End Select
+        pages += 1
+        tabs.Add(pages, newPage)
+        editors.Add(pages, editor)
+        tabsInversed.Add(newPage, pages)
+        editorsInversed.Add(editor, pages)
+        CustomTabControl1.TabPages.Add(newPage)
+        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+        spliter.Panel1.Controls.Add(editor)
+        spliter.Panel2.Controls.Add(map)
+        newPage.Controls.Add(spliter)
+        filesOpened.Add(pages, "Sans Nom")
+        pagesSaved.Add(pages, True)
+        displayNames.Add(pages, "Sans Nom")
+        firstLoad.Add(pages, True)
     End Sub
 
     Private Sub configEditor(editor As FastColoredTextBox, lang As Languages)
@@ -376,6 +345,7 @@ Public Class Form1
             AddHandler editor.TextChangedDelayed, AddressOf fctb_TextChangedDelayed
         End If
     End Sub
+
     Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
         Dim id As Integer = editorsInversed.Item(sender)
         If Not firstLoad.Item(id) Then
@@ -466,7 +436,13 @@ Public Class Form1
                 ButtonSpecAny2.Text = version
                 ButtonSpecAny2.Visible = True
                 If ApplicationSettings.updateType = "Normal" Then
-                    MsgBox("La version " + version + " de PyXel est disponible !", MsgBoxStyle.Information, "PyXel - Mise à jour disponible")
+                    Dim td As New TaskDialog
+                    td.CommonButtons = TaskDialogCommonButton.OK
+                    td.StandardIcon = TaskDialogIcon.ShieldRegular
+                    td.WindowTitle = "PyXel"
+                    td.MainInstruction = "Mise à jour disponible"
+                    td.Content = "La version " + version + " de PyXel est disponible !"
+                    'MsgBox("La version " + version + " de PyXel est disponible !", MsgBoxStyle.Information, "PyXel - Mise à jour disponible")
                 End If
             End If
         Catch
@@ -492,6 +468,7 @@ Public Class Form1
         list.Images.Add(My.Resources.php16)
         list.Images.Add(My.Resources.js16)
         list.Images.Add(My.Resources.python16)
+        list.Images.Add(My.Resources.cpp16)
 
         'Allow Dropping file into Ribbon and TabControl
         KryptonRibbon1.AllowDrop = True
@@ -594,6 +571,7 @@ Public Class Form1
 
         'Create ImageList for TreeView
         ImagesTreeView.Images.Add("c", My.Resources.c16)
+        ImagesTreeView.Images.Add("cpp", My.Resources.cpp16)
         ImagesTreeView.Images.Add("css", My.Resources.css16)
         ImagesTreeView.Images.Add("html", My.Resources.html16)
         ImagesTreeView.Images.Add("php", My.Resources.php16)
@@ -602,6 +580,7 @@ Public Class Form1
         ImagesTreeView.Images.Add("file", My.Resources.new321)
         ImagesTreeView.Images.Add("folder", My.Resources.open321)
         ImagesTreeView.Images.Add("project", My.Resources.project161)
+        ImagesTreeView.Images.Add("h", My.Resources.header16)
         KryptonTreeView1.ImageList = ImagesTreeView
 
         'Hiding Projects panel when no project is loaded
@@ -734,16 +713,16 @@ Public Class Form1
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
                 CustomTabControl1.SelectedTab = page
-                Dim msg As String
-                Dim title As String
-                Dim style As MsgBoxStyle
-                msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-                style = MsgBoxStyle.YesNoCancel
-                title = "PyXel - Fichier non sauvegardé"
-                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = MsgBoxResult.Yes Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Fichier non sauvegardé"
+                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
                     Await SavePage(id)
-                ElseIf result = MsgBoxResult.Cancel Then
+                ElseIf res = DialogResult.Cancel Then
                     Exit Sub
                 End If
             End If
@@ -784,16 +763,16 @@ Public Class Form1
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
                 CustomTabControl1.SelectedTab = page
-                Dim msg As String
-                Dim title As String
-                Dim style As MsgBoxStyle
-                msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"   ' Define message.
-                style = MsgBoxStyle.YesNoCancel
-                title = "PyXel - Fichier non sauvegardé"
-                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = MsgBoxResult.Yes Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Fichier non sauvegardé"
+                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
                     Await SavePage(id)
-                ElseIf result = MsgBoxResult.Cancel Then
+                ElseIf res = DialogResult.Cancel Then
                     Exit Sub
                 End If
             End If
@@ -817,22 +796,29 @@ Public Class Form1
 
     Private Async Sub KryptonRibbonGroupButton14_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton14.Click
         If ApplicationSettings.python3 = "none" Then
-            MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Exécutable Python introuvable"
+            td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
+            td.ShowDialog()
+            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             Dim page As TabPage = CustomTabControl1.SelectedTab
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
-                Dim msg As String
-                Dim title As String
-                Dim style As MsgBoxStyle
-                msg = "Vous devez sauvegarder ce fichier pour l'interpréter. Voulez-vous continuer ?"   ' Define message.
-                style = MsgBoxStyle.YesNoCancel
-                title = "PyXel - Fichier non sauvegardé"
-                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = MsgBoxResult.Yes Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Fichier non sauvegardé"
+                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
                     Await SavePage(id)
-                ElseIf result = MsgBoxResult.Cancel Then
+                ElseIf res = DialogResult.Cancel Then
                     Exit Sub
                 End If
             End If
@@ -855,16 +841,16 @@ Public Class Form1
             'consoleSender = proc.StandardInput
             'inExec = True
             If ConsoleControl1.IsProcessRunning Then
-                Dim msg As String
-                Dim title As String
-                Dim style As MsgBoxStyle
-                msg = "Un processus est en cours d'exécution. Voulez-vous l'interrompre ?"   ' Define message.
-                style = MsgBoxStyle.YesNoCancel
-                title = "PyXel - Processus en cours"
-                Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = MsgBoxResult.Yes Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Processus en cours"
+                td.Content = "Un processus est en cours d'exécution. Voulez-vous l'interrompre ?"
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
                     ConsoleControl1.StopProcess()
-                ElseIf result = MsgBoxResult.Cancel Then
+                ElseIf res = DialogResult.Cancel Then
                     Exit Sub
                 End If
             End If
@@ -872,14 +858,27 @@ Public Class Form1
             Try
                 ConsoleControl1.StartProcess(ApplicationSettings.python3, filesOpened(id))
             Catch
-                MessageBox.Show("Une erreur est survenue lors de l'exécution du programme", "PyXel - Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Erreur d'exécution"
+                td.Content = "Une erreur est survenue lors de l'exécution du programme."
+                td.ShowDialog()
+                'MessageBox.Show("Une erreur est survenue lors de l'exécution du programme", "PyXel - Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub
 
     Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
         If ApplicationSettings.python3 = "none" Then
-            MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Exécutable Python introuvable"
+            td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
+            td.ShowDialog()
             Settings.ShowDialog()
         Else
             Shell(ApplicationSettings.python3)
@@ -910,8 +909,13 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton7_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton7.Click
-
-        MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Dim td As New TaskDialog
+        td.CommonButtons = TaskDialogCommonButton.OK
+        td.StandardIcon = TaskDialogIcon.ShieldRegular
+        td.WindowTitle = "PyXel"
+        td.MainInstruction = "Fonctionnalité non disponible"
+        td.Content = "Cette fonctionnalité n'est pas encore disponible !"
+        td.ShowDialog()
     End Sub
 
     Private Sub KryptonContextMenuItem5_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem5.Click
@@ -927,16 +931,16 @@ Public Class Form1
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Voulez-vous sauvegarder le fichier avant de continuer ?"
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.StandardIcon = TaskDialogIcon.ShieldWarning
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Fichier non sauvegardé"
+            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            Dim res As DialogResult = td.ShowDialog().CommonButton
+            If res = DialogResult.Yes Then
                 Await SavePage(id)
-            ElseIf result = MsgBoxResult.Cancel Then
+            ElseIf res = DialogResult.Cancel Then
                 Exit Sub
             End If
         End If
@@ -992,7 +996,13 @@ Public Class Form1
     End Sub
 
     Private Sub KryptonRibbonGroupButton8_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton8.Click
-        MessageBox.Show("Cette fonctionnalité n'est pas encore disponible !", "Non Disponible", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Dim td As New TaskDialog
+        td.CommonButtons = TaskDialogCommonButton.OK
+        td.StandardIcon = TaskDialogIcon.ShieldRegular
+        td.WindowTitle = "PyXel"
+        td.MainInstruction = "Fonctionnalité non disponible"
+        td.Content = "Cette fonctionnalité n'est pas encore disponible !"
+        td.ShowDialog()
     End Sub
 
     Private Sub KryptonRibbonGroupButton15_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton17.Click
@@ -1106,16 +1116,16 @@ Public Class Form1
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.StandardIcon = TaskDialogIcon.ShieldWarning
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Fichier non sauvegardé"
+            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            Dim res As DialogResult = td.ShowDialog().CommonButton
+            If res = DialogResult.Yes Then
                 Await SavePage(id)
-            ElseIf result = MsgBoxResult.Cancel Then
+            ElseIf res = DialogResult.Cancel Then
                 Exit Sub
             End If
         End If
@@ -1131,16 +1141,16 @@ Public Class Form1
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.StandardIcon = TaskDialogIcon.ShieldWarning
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Fichier non sauvegardé"
+            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            Dim res As DialogResult = td.ShowDialog().CommonButton
+            If res = DialogResult.Yes Then
                 Await SavePage(id)
-            ElseIf result = MsgBoxResult.Cancel Then
+            ElseIf res = DialogResult.Cancel Then
                 Exit Sub
             End If
         End If
@@ -1149,7 +1159,13 @@ Public Class Form1
             Try
                 System.Diagnostics.Process.Start("C:\Program Files\Mozilla Firefox\firefox.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
             Catch
-                MsgBox("Pyxel only support version of Mozilla Firefox corresponding to your os architecture (64 bits here). Please install a 64 bits version of Mozilla Firefox !")
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Navigateur incompatible"
+                td.Content = "PyXel ne supporte que les versions de Mozilla Firefox ayant la même architecture que votre ordinateur." + vbNewLine + "Merci d'installer la version 64 bits de Mozilla Firefox !"
+                td.ShowDialog()
             End Try
 
         End If
@@ -1160,16 +1176,16 @@ Public Class Form1
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.StandardIcon = TaskDialogIcon.ShieldWarning
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Fichier non sauvegardé"
+            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            Dim res As DialogResult = td.ShowDialog().CommonButton
+            If res = DialogResult.Yes Then
                 Await SavePage(id)
-            ElseIf result = MsgBoxResult.Cancel Then
+            ElseIf res = DialogResult.Cancel Then
                 Exit Sub
             End If
         End If
@@ -1182,16 +1198,16 @@ Public Class Form1
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
-            Dim msg As String
-            Dim title As String
-            Dim style As MsgBoxStyle
-            msg = "Vous devez sauvegarder ce fichier pour pouvoir l'ouvrir. Voulez-vous continuer ?"   ' Define message.
-            style = MsgBoxStyle.YesNoCancel
-            title = "PyXel - Fichier non sauvegardé"
-            Dim result As MsgBoxResult = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = MsgBoxResult.Yes Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.StandardIcon = TaskDialogIcon.ShieldWarning
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Fichier non sauvegardé"
+            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            Dim res As DialogResult = td.ShowDialog().CommonButton
+            If res = DialogResult.Yes Then
                 Await SavePage(id)
-            ElseIf result = MsgBoxResult.Cancel Then
+            ElseIf res = DialogResult.Cancel Then
                 Exit Sub
             End If
         End If
@@ -1200,7 +1216,13 @@ Public Class Form1
             Try
                 System.Diagnostics.Process.Start("C:\Program Files\Opera\launcher.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
             Catch
-                MsgBox("Pyxel only support version of Opera corresponding to your os architecture (64 bits here). Please install a 64 bits version of Opera !")
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Navigateur incompatible"
+                td.Content = "PyXel ne supporte que les versions d'Opera ayant la même architecture que votre ordinateur." + vbNewLine + "Merci d'installer la version 64 bits d'Opera !"
+                td.ShowDialog()
             End Try
 
         End If

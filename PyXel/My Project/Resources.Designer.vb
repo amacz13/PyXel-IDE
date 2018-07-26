@@ -123,16 +123,6 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property c__16() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("c++16", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property c16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("c16", resourceCulture)
@@ -276,6 +266,16 @@ Namespace My.Resources
         Friend ReadOnly Property copy1() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("copy1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property cpp16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cpp16", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

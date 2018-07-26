@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
-Imports System.Xml
 Imports ComponentFactory.Krypton.Toolkit
+Imports MyAPKapp.VistaUIFramework.TaskDialog
 
 Public Class Settings
     Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) Handles KryptonButton1.Click
@@ -35,17 +35,26 @@ Public Class Settings
             KryptonRadioButton1.Checked = True
             KryptonRadioButton2.Checked = False
             KryptonRadioButton3.Checked = False
+            KryptonRadioButton9.Checked = False
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue
         ElseIf ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black Then
             KryptonRadioButton1.Checked = False
             KryptonRadioButton2.Checked = False
             KryptonRadioButton3.Checked = True
+            KryptonRadioButton9.Checked = False
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black
-        Else
+        ElseIf ApplicationSettings.theme = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black Then
             KryptonRadioButton1.Checked = False
             KryptonRadioButton2.Checked = True
             KryptonRadioButton3.Checked = False
+            KryptonRadioButton9.Checked = False
             KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver
+        Else
+            KryptonRadioButton1.Checked = False
+            KryptonRadioButton2.Checked = False
+            KryptonRadioButton3.Checked = False
+            KryptonRadioButton9.Checked = True
+            KryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2013
         End If
 
         If ApplicationSettings.updateCanal = "Stable" Then
@@ -55,6 +64,21 @@ Public Class Settings
             KryptonRadioButton4.Checked = False
             KryptonRadioButton5.Checked = True
         End If
+
+        If ApplicationSettings.updateType = "Normal" Then
+            KryptonRadioButton6.Checked = True
+            KryptonRadioButton7.Checked = False
+            KryptonRadioButton8.Checked = False
+        ElseIf ApplicationSettings.updateType = "Silent" Then
+            KryptonRadioButton6.Checked = False
+            KryptonRadioButton7.Checked = True
+            KryptonRadioButton8.Checked = False
+        Else
+            KryptonRadioButton6.Checked = False
+            KryptonRadioButton7.Checked = False
+            KryptonRadioButton8.Checked = True
+        End If
+
 
         KryptonComboBox1.SelectedText = "Français"
 
@@ -141,15 +165,24 @@ Public Class Settings
     End Sub
 
 
-    Private Sub ChangeLanguage(lang As String)
-        Select Case lang
-            Case "fr"
+    Private Sub ChangeLanguage(sender As Object, e As EventArgs) Handles KryptonComboBox1.SelectedValueChanged
+        Dim td As New TaskDialog
+        td.CommonButtons = TaskDialogCommonButton.OK
+        td.StandardIcon = TaskDialogIcon.ShieldOK
+        td.WindowTitle = "PyXel"
+        Select Case KryptonComboBox1.SelectedItem
+            Case "Français"
                 ApplicationSettings.lang = "French"
-                MsgBox("La langue de PyXel a été définie sur : Français." + vbNewLine + "Les changement prendront effet après un redémarrage de l'application.", MsgBoxStyle.Information, "PyXel")
-            Case "en"
+                td.MainInstruction = "Changement de langue"
+                td.Content = "La langue de PyXel a été définie sur : Français." + vbNewLine + "Les changements prendront effet après un redémarrage de l'application."
+                'MsgBox("La langue de PyXel a été définie sur : Français." + vbNewLine + "Les changements prendront effet après un redémarrage de l'application.", MsgBoxStyle.Information, "PyXel")
+            Case "English"
                 ApplicationSettings.lang = "English"
-                MsgBox("PyXel's language is now defined to : English." + vbNewLine + "This modification will be applied after a restart of the application.", MsgBoxStyle.Information, "PyXel")
+                td.MainInstruction = "Language change"
+                td.Content = "PyXel's language is now defined to : English." + vbNewLine + "This modification will be applied after a restart of the application."
+                'MsgBox("PyXel's language is now defined to : English." + vbNewLine + "This modification will be applied after a restart of the application.", MsgBoxStyle.Information, "PyXel")
         End Select
+        td.ShowDialog()
 
     End Sub
 
@@ -210,4 +243,5 @@ Public Class Settings
     Private Sub KryptonRadioButton8_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton8.Click
         ApplicationSettings.updateType = "Disabled"
     End Sub
+
 End Class

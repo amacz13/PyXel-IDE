@@ -325,7 +325,7 @@ Partial Class Form1
         '
         'KryptonContextMenuItem14
         '
-        Me.KryptonContextMenuItem14.Image = Global.PyXel.My.Resources.Resources.c__16
+        Me.KryptonContextMenuItem14.Image = Global.PyXel.My.Resources.Resources.cpp16
         Me.KryptonContextMenuItem14.Text = "Fichier C++"
         '
         'KryptonContextMenuItem16

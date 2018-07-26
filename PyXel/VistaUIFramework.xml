@@ -1,0 +1,2002 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VistaUIFramework</name>
+    </assembly>
+    <members>
+        <member name="M:MyAPKapp.VistaUIFramework.AeroColorChangedEventArgs.#ctor(System.Drawing.Color,System.Boolean)">
+            <summary>
+            Initializes the <code>EventArgs</code>
+            </summary>
+            <param name="Colorization">The Aero glass colro</param>
+            <param name="Blend">Whether glass is opaque or transparent</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.AeroColorChangedEventArgs.Colorization">
+            <summary>
+            Get the Aero glass color
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.AeroColorChangedEventArgs.Blend">
+            <summary>
+            Get if Aero glass is opaque or transparent
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.AeroCompChangedEventArgs.CompositionEnabled">
+            <summary>
+            Get if DWM composition was enabled or disabled
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Button.#ctor">
+            <summary>
+            The native button inherited from WinForms button<br />
+            Use ContextMenu instead of ContextMenuStrip
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Button.FlatStyle">
+            <summary>
+            This property can alter the native purpose of VistaUI
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Button.Icon">
+            <summary>
+            Set the button's icon, the default icon size is defined by Windows API
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Button.ImageOnly">
+            <summary>
+            Set if button has image only
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Button.Shield">
+            <summary>
+            Set the button's shield to tell user action requires administrator privileges
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.CheckBox.FlatStyle">
+            <summary>
+            This property can alter the native purpose of VistaUI
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.CheckBox.Icon">
+            <summary>
+            Set the button's icon, the default icon size is defined by Windows API
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ComboBox.FlatStyle">
+            <summary>
+            This property can alter the native purpose of VistaUI
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ComboBox.Hint">
+            <summary>
+            Set the ComboBox's gray text when ComboBox is editable and empty
+            </summary>
+            <remarks>
+            Unlike <code>TextBox</code>, there's not <code>HideHintOnFocus</code> property available
+            </remarks>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.CommandLink">
+            <summary>
+            CommandLink is a button with green arrow and a description (<code>Note</code> property)
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.CommandLink.#ctor">
+            <summary>
+            CommandLink is a button with green arrow and a description (<code>Note</code> property)
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.CommandLink.Note">
+            <summary>
+            The CommandLink summary
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Form.AeroCompChanged">
+            <summary>
+            Fires when DWM composition changes (e.g.: Aero is enabled/disabled)
+            </summary>
+            <remarks>
+            As of Windows 8, DWM composition is always enabled, so this event is not fired regardless of video mode changes.
+            </remarks>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Form.AeroColorChanged">
+            <summary>
+            Fires when Aero glass color changes
+            </summary>
+            <remarks>
+            As of Windows 8, DWM composition is always enabled, so this event is not fired regardless of video mode changes.
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.CloseBox">
+            <summary>
+            Set if close button is enabled
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.Aero">
+            <summary>
+            Set the aero glass to the form
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.AeroMargin">
+            <summary>
+            The margins between form container and Aero glass
+            </summary>
+            <remarks>
+            If all margins are set to -1, the glass will cover the whole form
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.AeroDrag">
+            <summary>
+            Gets or sets if mouse is able to move the window by dragging the Aero glass
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.AeroKey">
+            <summary>
+            Gets or sets if Aero glass is <code>TransparencyKey</code> compliant
+            </summary>
+            <remarks>
+            It's not recommended to use same-value RGB (eg. 255,255,255) or any shade of green, otherwise, you'd interacting with other windows behind your windows (possibly because window behaves like transparent). Modifying the transparency key can cause some issues with alpha channel (neither 0% nor 100%).
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.AeroBlur">
+            <summary>
+            Gets or sets if background color is Aero blur (different from Aero glass)
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Form.CompositionEnabled">
+            <summary>
+            Gets or sets if Aero glass DWM Composition is enabled
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.GlassColor.Color">
+            <summary>
+            The Aero glass color (includes alpha channel)
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.GlassColor.Blend">
+            <summary>
+            Returns if glass is opaque or transparent
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.IPv4Box">
+            <summary>
+            <see cref="T:MyAPKapp.VistaUIFramework.IPv4Box"/> is a box that shows a field for an IPv4 address
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Label.LabelStyle">
+            <summary>
+            The Vista label styles
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Label.Aero">
+            <summary>
+            Gets or sets if label should be compatible with Aero glass
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Label.GlowSize">
+            <summary>
+            The Label glow size if Aero is enabled. Set to 0 for no glow"
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.LinkLabel.Aero">
+            <summary>
+            Gets or sets if label should be compatible with Aero glass
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.LinkLabel.GlowSize">
+            <summary>
+            The Label glow size if Aero is enabled. Set to 0 for no glow"
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.LinkLabel.HoverLinkColor">
+            <summary>
+            Set link color on cursor hover
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ListView.SelectRequired">
+            <summary>
+            Gets or sets if <see cref="T:MyAPKapp.VistaUIFramework.ListView"/> is not allowed to have zero selected items
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ListView.CollapsibleGroups">
+            <summary>
+            Gets or sets if <see cref="P:System.Windows.Forms.ListView.Groups"/> are collapsible
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.NativeMethods">
+            <summary>
+            NativeMethods is an internal class that contains all unmanaged native classes, interfaces, enums, structs, methods, macros, etc.
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations">
+            <summary>
+                Specifies a raster-operation code. These codes define how the color data for the
+                source rectangle is to be combined with the color data for the destination
+                rectangle to achieve the final color.
+            </summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.SRCCOPY">
+            <summary>dest = source</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.SRCPAINT">
+            <summary>dest = source OR dest</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.SRCAND">
+            <summary>dest = source AND dest</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.SRCINVERT">
+            <summary>dest = source XOR dest</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.SRCERASE">
+            <summary>dest = source AND (NOT dest)</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.NOTSRCCOPY">
+            <summary>dest = (NOT source)</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.NOTSRCERASE">
+            <summary>dest = (NOT src) AND (NOT dest)</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.MERGECOPY">
+            <summary>dest = (source AND pattern)</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.MERGEPAINT">
+            <summary>dest = (NOT source) OR dest</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.PATCOPY">
+            <summary>dest = pattern</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.PATPAINT">
+            <summary>dest = DPSnoo</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.PATINVERT">
+            <summary>dest = pattern XOR dest</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.DSTINVERT">
+            <summary>dest = (NOT dest)</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.BLACKNESS">
+            <summary>dest = BLACK</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.WHITENESS">
+            <summary>dest = WHITE</summary>
+        </member>
+        <member name="F:MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations.CAPTUREBLT">
+            <summary>
+            Capture window as seen on screen.  This includes layered windows 
+            such as WPF windows with AllowsTransparency="true"
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3">
+            <summary>
+            Extends ITaskbarList2 by exposing methods that support the unified launching and switching taskbar button
+            functionality added in Windows 7. This functionality includes thumbnail representations and switch
+            targets based on individual tabs in a tabbed application, thumbnail toolbars, notification and
+            status overlays, and progress indicators.
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.HrInit">
+            <summary>
+            Initializes the taskbar list object. This method must be called before any other ITaskbarList methods can be called.
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.AddTab(System.IntPtr)">
+            <summary>
+            Adds an item to the taskbar.
+            </summary>
+            <param name="hWnd">A handle to the window to be added to the taskbar.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.DeleteTab(System.IntPtr)">
+            <summary>
+            Deletes an item from the taskbar.
+            </summary>
+            <param name="hWnd">A handle to the window to be deleted from the taskbar.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.ActivateTab(System.IntPtr)">
+            <summary>
+            Activates an item on the taskbar. The window is not actually activated; the window's item on the taskbar is merely displayed as active.
+            </summary>
+            <param name="hWnd">A handle to the window on the taskbar to be displayed as active.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetActiveAlt(System.IntPtr)">
+            <summary>
+            Marks a taskbar item as active but does not visually activate it.
+            </summary>
+            <param name="hWnd">A handle to the window to be marked as active.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.MarkFullscreenWindow(System.IntPtr,System.Int32)">
+            <summary>
+            Marks a window as full-screen
+            </summary>
+            <param name="hWnd"></param>
+            <param name="fFullscreen"></param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetProgressValue(System.IntPtr,System.UInt64,System.UInt64)">
+            <summary>
+            Displays or updates a progress bar hosted in a taskbar button to show the specific percentage
+            completed of the full operation.
+            </summary>
+            <param name="hWnd">The handle of the window whose associated taskbar button is being used as
+            a progress indicator.</param>
+            <param name="ullCompleted">An application-defined value that indicates the proportion of the
+            operation that has been completed at the time the method is called.</param>
+            <param name="ullTotal">An application-defined value that specifies the value ullCompleted will
+            have when the operation is complete.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetProgressState(System.IntPtr,MyAPKapp.VistaUIFramework.TaskBarProgressState)">
+            <summary>
+            Sets the type and state of the progress indicator displayed on a taskbar button.
+            </summary>
+            <param name="hWnd">The handle of the window in which the progress of an operation is being
+            shown. This window's associated taskbar button will display the progress bar.</param>
+            <param name="tbpFlags">Flags that control the current state of the progress button. Specify
+            only one of the following flags; all states are mutually exclusive of all others.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.RegisterTab(System.IntPtr,System.IntPtr)">
+            <summary>
+            Informs the taskbar that a new tab or document thumbnail has been provided for display in an
+            application's taskbar group flyout.
+            </summary>
+            <param name="hWndTab">Handle of the tab or document window. This value is required and cannot
+            be NULL.</param>
+            <param name="hWndMDI">Handle of the application's main window. This value tells the taskbar
+            which application's preview group to attach the new thumbnail to. This value is required and
+            cannot be NULL.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.UnregisterTab(System.IntPtr)">
+            <summary>
+            Removes a thumbnail from an application's preview group when that tab or document is closed in the application.
+            </summary>
+            <param name="hWndTab">The handle of the tab window whose thumbnail is being removed. This is the same
+            value with which the thumbnail was registered as part the group through ITaskbarList3::RegisterTab.
+            This value is required and cannot be NULL.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetTabOrder(System.IntPtr,System.IntPtr)">
+            <summary>
+            Inserts a new thumbnail into a tabbed-document interface (TDI) or multiple-document interface
+            (MDI) application's group flyout or moves an existing thumbnail to a new position in the
+            application's group.
+            </summary>
+            <param name="hWndTab">The handle of the tab window whose thumbnail is being placed. This value
+            is required, must already be registered through ITaskbarList3::RegisterTab, and cannot be NULL.</param>
+            <param name="hWndInsertBefore">The handle of the tab window whose thumbnail that hwndTab is
+            inserted to the left of. This handle must already be registered through ITaskbarList3::RegisterTab.
+            If this value is NULL, the new thumbnail is added to the end of the list.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetTabActive(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            Informs the taskbar that a tab or document window has been made the active window.
+            </summary>
+            <param name="hWndTab">Handle of the active tab window. This handle must already be registered
+            through ITaskbarList3::RegisterTab. This value can be NULL if no tab is active.</param>
+            <param name="hWndMDI">Handle of the application's main window. This value tells the taskbar
+            which group the thumbnail is a member of. This value is required and cannot be NULL.</param>
+            <param name="tbatFlags">None, one, or both of the following values that specify a thumbnail
+            and peek view to use in place of a representation of the specific tab or document.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.ThumbBarAddButtons(System.IntPtr,System.Int32,MyAPKapp.VistaUIFramework.NativeMethods.THUMBBUTTON[])">
+            <summary>
+            Adds a thumbnail toolbar with a specified set of buttons to the thumbnail image of a window in a
+            taskbar button flyout.
+            </summary>
+            <param name="hWnd">The handle of the window whose thumbnail representation will receive the toolbar.
+            This handle must belong to the calling process.</param>
+            <param name="cButtons">The number of buttons defined in the array pointed to by pButton. The maximum
+            number of buttons allowed is 7.</param>
+            <param name="pButton">A pointer to an array of THUMBBUTTON structures. Each THUMBBUTTON defines an
+            individual button to be added to the toolbar. Buttons cannot be added or deleted later, so this must
+            be the full defined set. Buttons also cannot be reordered, so their order in the array, which is the
+            order in which they are displayed left to right, will be their permanent order.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.ThumbBarSetImageList(System.IntPtr,System.IntPtr)">
+            <summary>
+            Specifies an image list that contains button images for a toolbar embedded in a thumbnail image of a
+            window in a taskbar button flyout.
+            </summary>
+            <param name="hWnd">The handle of the window whose thumbnail representation contains the toolbar to be
+            updated. This handle must belong to the calling process.</param>
+            <param name="himl">The handle of the image list that contains all button images to be used in the toolbar.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetOverlayIcon(System.IntPtr,System.IntPtr,System.String)">
+            <summary>
+            Applies an overlay to a taskbar button to indicate application status or a notification to the user.
+            </summary>
+            <param name="hWnd">The handle of the window whose associated taskbar button receives the overlay.
+            This handle must belong to a calling process associated with the button's application and must be
+            a valid HWND or the call is ignored.</param>
+            <param name="hIcon">The handle of an icon to use as the overlay. This should be a small icon,
+            measuring 16x16 pixels at 96 dots per inch (dpi). If an overlay icon is already applied to the
+            taskbar button, that existing overlay is replaced.</param>
+            <param name="pszDescription">A pointer to a string that provides an alt text version of the
+            information conveyed by the overlay, for accessibility purposes.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetThumbnailTooltip(System.IntPtr,System.String)">
+            <summary>
+            Specifies or updates the text of the tooltip that is displayed when the mouse pointer rests on an
+            individual preview thumbnail in a taskbar button flyout.
+            </summary>
+            <param name="hWnd">The handle to the window whose thumbnail displays the tooltip. This handle must
+            belong to the calling process.</param>
+            <param name="pszTip">The pointer to the text to be displayed in the tooltip. This value can be NULL,
+            in which case the title of the window specified by hwnd is used as the tooltip.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.ITaskbarList3.SetThumbnailClip(System.IntPtr,System.IntPtr)">
+            <summary>
+            Selects a portion of a window's client area to display as that window's thumbnail in the taskbar.
+            </summary>
+            <param name="hWnd">The handle to a window represented in the taskbar.</param>
+            <param name="prcClip">A pointer to a RECT structure that specifies a selection within the window's
+            client area, relative to the upper-left corner of that client area. To clear a clip that is already
+            in place and return to the default display of the thumbnail, set this parameter to NULL.</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink">
+            <summary>The IShellLink interface allows Shell links to be created, modified, and resolved</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetPath(System.Text.StringBuilder,System.Int32,MyAPKapp.VistaUIFramework.NativeMethods.WIN32_FIND_DATA@,MyAPKapp.VistaUIFramework.NativeMethods.SLGP_FLAGS)">
+            <summary>Retrieves the path and file name of a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetIDList(System.IntPtr@)">
+            <summary>Retrieves the list of item identifiers for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetIDList(System.IntPtr)">
+            <summary>Sets the pointer to an item identifier list (PIDL) for a Shell link object.</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetDescription(System.Text.StringBuilder,System.Int32)">
+            <summary>Retrieves the description string for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetDescription(System.String)">
+            <summary>Sets the description for a Shell link object. The description can be any application-defined string</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetWorkingDirectory(System.Text.StringBuilder,System.Int32)">
+            <summary>Retrieves the name of the working directory for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetWorkingDirectory(System.String)">
+            <summary>Sets the name of the working directory for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetArguments(System.Text.StringBuilder,System.Int32)">
+            <summary>Retrieves the command-line arguments associated with a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetArguments(System.String)">
+            <summary>Sets the command-line arguments for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetHotkey(System.Int16@)">
+            <summary>Retrieves the hot key for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetHotkey(System.Int16)">
+            <summary>Sets a hot key for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetShowCmd(System.Int32@)">
+            <summary>Retrieves the show command for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetShowCmd(System.Int32)">
+            <summary>Sets the show command for a Shell link object. The show command sets the initial show state of the window.</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.GetIconLocation(System.Text.StringBuilder,System.Int32,System.Int32@)">
+            <summary>Retrieves the location (path and index) of the icon for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetIconLocation(System.String,System.Int32)">
+            <summary>Sets the location (path and index) of the icon for a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetRelativePath(System.String,System.Int32)">
+            <summary>Sets the relative path to the Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.Resolve(System.IntPtr,MyAPKapp.VistaUIFramework.NativeMethods.SLR_FLAGS)">
+            <summary>Attempts to find the target of a Shell link, even if it has been moved or renamed</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.IShellLink.SetPath(System.String)">
+            <summary>Sets the path and file name of a Shell link object</summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.CreateCompatibleDC(System.IntPtr)">
+            <summary>
+                   Creates a memory device context (DC) compatible with the specified device.
+            </summary>
+            <param name="hdc">A handle to an existing DC. If this handle is NULL,
+                   the function creates a memory DC compatible with the application's current screen.</param>
+            <returns>
+                   If the function succeeds, the return value is the handle to a memory DC.
+                   If the function fails, the return value is <see cref="F:System.IntPtr.Zero"/>.
+            </returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.SelectObject(System.IntPtr,System.IntPtr)">
+            <summary>Selects an object into the specified device context (DC). The new object replaces the previous object of the same type.</summary>
+            <param name="hdc">A handle to the DC.</param>
+            <param name="hgdiobj">A handle to the object to be selected.</param>
+            <returns>
+              <para>If the selected object is not a region and the function succeeds, the return value is a handle to the object being replaced. If the selected object is a region and the function succeeds, the return value is one of the following values.</para>
+              <para>SIMPLEREGION - Region consists of a single rectangle.</para>
+              <para>COMPLEXREGION - Region consists of more than one rectangle.</para>
+              <para>NULLREGION - Region is empty.</para>
+              <para>If an error occurs and the selected object is not a region, the return value is <c>NULL</c>. Otherwise, it is <c>HGDI_ERROR</c>.</para>
+            </returns>
+            <remarks>
+              <para>This function returns the previously selected object of the specified type. An application should always replace a new object with the original, default object after it has finished drawing with the new object.</para>
+              <para>An application cannot select a single bitmap into more than one DC at a time.</para>
+              <para>ICM: If the object being selected is a brush or a pen, color management is performed.</para>
+            </remarks>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.BitBlt(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,MyAPKapp.VistaUIFramework.NativeMethods.TernaryRasterOperations)">
+            <summary>
+               Performs a bit-block transfer of the color data corresponding to a
+               rectangle of pixels from the specified source device context into
+               a destination device context.
+            </summary>
+            <param name="hdc">Handle to the destination device context.</param>
+            <param name="nXDest">The leftmost x-coordinate of the destination rectangle (in pixels).</param>
+            <param name="nYDest">The topmost y-coordinate of the destination rectangle (in pixels).</param>
+            <param name="nWidth">The width of the source and destination rectangles (in pixels).</param>
+            <param name="nHeight">The height of the source and the destination rectangles (in pixels).</param>
+            <param name="hdcSrc">Handle to the source device context.</param>
+            <param name="nXSrc">The leftmost x-coordinate of the source rectangle (in pixels).</param>
+            <param name="nYSrc">The topmost y-coordinate of the source rectangle (in pixels).</param>
+            <param name="dwRop">A raster-operation code.</param>
+            <returns>
+               <c>true</c> if the operation succeedes, <c>false</c> otherwise. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.
+            </returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.DeleteObject(System.IntPtr)">
+            <summary>Deletes a logical pen, brush, font, bitmap, region, or palette, freeing all system resources associated with the object. After the object is deleted, the specified handle is no longer valid.</summary>
+            <param name="hObject">A handle to a logical pen, brush, font, bitmap, region, or palette.</param>
+            <returns>
+              <para>If the function succeeds, the return value is nonzero.</para>
+              <para>If the specified handle is not valid or is currently selected into a DC, the return value is zero.</para>
+            </returns>
+            <remarks>
+              <para>Do not delete a drawing object (pen or brush) while it is still selected into a DC.</para>
+              <para>When a pattern brush is deleted, the bitmap associated with the brush is not deleted. The bitmap must be deleted independently.</para>
+            </remarks>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.DeleteDC(System.IntPtr)">
+            <summary>Deletes the specified device context (DC).</summary>
+            <param name="hdc">A handle to the device context.</param>
+            <returns><para>If the function succeeds, the return value is nonzero.</para><para>If the function fails, the return value is zero.</para></returns>
+            <remarks>An application must not delete a DC whose handle was obtained by calling the <c>GetDC</c> function. Instead, it must call the <c>ReleaseDC</c> function to free the DC.</remarks>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.SetWindowText(System.IntPtr,System.String)">
+            <summary>
+                Changes the text of the specified window's title bar (if it has one). If the specified window is a control, the
+                text of the control is changed. However, SetWindowText cannot change the text of a control in another application.
+                <para>
+                Go to https://msdn.microsoft.com/en-us/library/windows/desktop/ms633546%28v=vs.85%29.aspx for more
+                information
+                </para>
+            </summary>
+            <param name="hwnd">C++ ( hWnd [in]. Type: HWND )<br />A handle to the window or control whose text is to be changed.</param>
+            <param name="lpString">C++ ( lpString [in, optional]. Type: LPCTSTR )<br />The new title or control text.</param>
+            <returns>
+                If the function succeeds, the return value is nonzero. If the function fails, the return value is zero.<br />
+                To get extended error information, call GetLastError.
+            </returns>
+            <remarks>
+                If the target window is owned by the current process, <see cref="M:MyAPKapp.VistaUIFramework.NativeMethods.SetWindowText(System.IntPtr,System.String)" /> causes a WM_SETTEXT message to
+                be sent to the specified window or control. If the control is a list box control created with the WS_CAPTION style,
+                however, <see cref="M:MyAPKapp.VistaUIFramework.NativeMethods.SetWindowText(System.IntPtr,System.String)" /> sets the text for the control, not for the list box entries.<br />To set the
+                text of a control in another process, send the WM_SETTEXT message directly instead of calling
+                <see cref="M:MyAPKapp.VistaUIFramework.NativeMethods.SetWindowText(System.IntPtr,System.String)" />. The <see cref="M:MyAPKapp.VistaUIFramework.NativeMethods.SetWindowText(System.IntPtr,System.String)" /> function does not expand tab characters (ASCII code
+                0x09). Tab characters are displayed as vertical bar(|) characters.<br />For an example go to
+                <see cref="!:https://msdn.microsoft.com/en-us/library/windows/desktop/ms644928%28v=vs.85%29.aspx#sending">
+                Sending a
+                Message.
+                </see>
+            </remarks>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.NativeMethods.SetForegroundWindow(System.IntPtr)">
+            <summary>
+                Brings the thread that created the specified window into the foreground and activates the window. Keyboard input is
+                directed to the window, and various visual cues are changed for the user. The system assigns a slightly higher
+                priority to the thread that created the foreground window than it does to other threads.
+                <para>See for https://msdn.microsoft.com/en-us/library/windows/desktop/ms633539%28v=vs.85%29.aspx more information.</para>
+            </summary>
+            <param name="hWnd">
+                C++ ( hWnd [in]. Type: HWND )<br />A handle to the window that should be activated and brought to the foreground.
+            </param>
+            <returns>
+                <c>true</c> or nonzero if the window was brought to the foreground, <c>false</c> or zero If the window was not
+                brought to the foreground.
+            </returns>
+            <remarks>
+                The system restricts which processes can set the foreground window. A process can set the foreground window only if
+                one of the following conditions is true:
+                <list type="bullet">
+                <listheader>
+                    <term>Conditions</term><description></description>
+                </listheader>
+                <item>The process is the foreground process.</item>
+                <item>The process was started by the foreground process.</item>
+                <item>The process received the last input event.</item>
+                <item>There is no foreground process.</item>
+                <item>The process is being debugged.</item>
+                <item>The foreground process is not a Modern Application or the Start Screen.</item>
+                <item>The foreground is not locked (see LockSetForegroundWindow).</item>
+                <item>The foreground lock time-out has expired (see SPI_GETFOREGROUNDLOCKTIMEOUT in SystemParametersInfo).</item>
+                <item>No menus are active.</item>
+                </list>
+                <para>
+                An application cannot force a window to the foreground while the user is working with another window.
+                Instead, Windows flashes the taskbar button of the window to notify the user.
+                </para>
+                <para>
+                A process that can set the foreground window can enable another process to set the foreground window by
+                calling the AllowSetForegroundWindow function. The process specified by dwProcessId loses the ability to set
+                the foreground window the next time the user generates input, unless the input is directed at that process, or
+                the next time a process calls AllowSetForegroundWindow, unless that process is specified.
+                </para>
+                <para>
+                The foreground process can disable calls to SetForegroundWindow by calling the LockSetForegroundWindow
+                function.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ProgressBar.State">
+            <summary>
+            Set the progress state as the progress color
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.RadioButton.FlatStyle">
+            <summary>
+            This property can alter the native purpose of VistaUI
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.RadioButton.Icon">
+            <summary>
+            Set the button's icon, the default icon size is defined by Windows API
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Rebar">
+            <summary>
+            Rebar is a bar that acts as a container of bands
+            </summary>
+            <remarks>
+            Rebar is a beta feature and some glitches could occurk
+            </remarks>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.#ctor">
+            <summary>
+            Initializates a new instance of the <code>Rebar</code> class with default settings
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Rebar.Bands">
+            <summary>
+            The collection of bands
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Rebar.BandSeparator">
+            <summary>
+            Gets or sets if bands are separated by a separator
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Rebar.Divider">
+            <summary>
+            Gets or sets if Rebar has a divider on the top
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Rebar.Orientation">
+            <summary>
+            The orientation of the Rebar
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Rebar.VariantHeight">
+            <summary>
+            Gets or sets if Rebar height is defined by the bands and not by the Size property
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.AutoBreak">
+            <summary>
+            Fires when a break should occur
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.BandAutoSize">
+            <summary>
+            Fires when <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/> resizes itself
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.BandBeginDrag">
+            <summary>
+            Fires when an user begins dragging a <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.ChevronPushed">
+            <summary>
+            Fires when an user pushes the chevron button
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.ChildSizeChanged">
+            <summary>
+            Fires when child size of a <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> changes
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.BandDeleted">
+            <summary>
+            Fires after a <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> has been deleted
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.BandDeleting">
+            <summary>
+            Fires when a <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> is about to be deleted
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.BandEndDrag">
+            <summary>
+            Fires when an user stops dragging a <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.LayoutChanged">
+            <summary>
+            Fires when an user changes the layout of the <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/>
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.Rebar.SplitterDrag">
+            <summary>
+            Fires when an user drags a splitter
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnAutoBreak(MyAPKapp.VistaUIFramework.AutoBreakEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.AutoBreak"/> event
+            </summary>
+            <param name="e">An <see cref="T:MyAPKapp.VistaUIFramework.AutoBreakEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnBandAutoSize(MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandAutoSize"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs"/>that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnBandBeginDrag(MyAPKapp.VistaUIFramework.BandCancelEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandBeginDrag"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandCancelEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnChevronPushed(MyAPKapp.VistaUIFramework.ChevronPushedEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.ChevronPushed"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.ChevronPushedEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnChildSizeChanged(MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.ChildSizeChanged"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnBandDeleted(MyAPKapp.VistaUIFramework.BandEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandDeleted"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnBandDeleting(MyAPKapp.VistaUIFramework.BandEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandDeleting"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnBandEndDrag(MyAPKapp.VistaUIFramework.BandEventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandEndDrag"/> event
+            </summary>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.OnLayoutChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.LayoutChanged"/> event
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.HitTest(System.Drawing.Point,MyAPKapp.VistaUIFramework.RebarHitTest)">
+            <summary>
+            Provides hit information given a point
+            </summary>
+            <param name="Point">The <code>Point</code> at which to retrieve the information. The coordinates are relative to the upper-left corner of the control</param>
+            <param name="Element">The element at which to retrieve the information</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.HitTest(System.Drawing.Point,MyAPKapp.VistaUIFramework.RebarHitTest,MyAPKapp.VistaUIFramework.RebarBand)">
+            <summary>
+            Provides hit information given a point
+            </summary>
+            <param name="Point">The <code>Point</code> at which to retrieve the information. The coordinates are relative to the upper-left corner of the control</param>
+            <param name="Element">The element at which to retrieve the information</param>
+            <param name="Band">The <code>RebarBand</code> at which to retrieve the information</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Rebar.HitTest(System.Drawing.Point,MyAPKapp.VistaUIFramework.RebarHitTest,System.Int32)">
+            <summary>
+            Provides hit information given a point
+            </summary>
+            <param name="Point">The <code>Point</code> at which to retrieve the information. The coordinates are relative to the upper-left corner of the control</param>
+            <param name="Element">The element at which to retrieve the information</param>
+            <param name="BandIndex">The <code>RebarBand</code> index at which to retrieve the information</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.RebarBand.Parent">
+            <summary>
+            The parent control that contains the band
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.BandEventArgs">
+            <summary>
+            Provides data for any <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>-related events
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.BandEventArgs.#ctor(MyAPKapp.VistaUIFramework.RebarBand)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.BandEventArgs"/> class
+            </summary>
+            <param name="Band">The <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> that called the event</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.BandEventArgs.Band">
+            <summary>
+            Gets the <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> associated to the event
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.BandCancelEventArgs">
+            <summary>
+            Provides data for any <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>-related cancellable events
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.BandCancelEventArgs.#ctor(MyAPKapp.VistaUIFramework.RebarBand)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.BandCancelEventArgs"/> class
+            </summary>
+            <param name="Band"></param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.BandCancelEventArgs.#ctor(MyAPKapp.VistaUIFramework.RebarBand,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.BandCancelEventArgs"/> class
+            </summary>
+            <param name="Band">The <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> that called the event</param>
+            <param name="Cancel">true to cancel the event; otherwise, false</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.BandCancelEventArgs.Band">
+            <summary>
+            Gets the <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> associated to the event
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.AutoBreakEventArgs">
+            <summary>
+            Provides data for the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.AutoBreak"/> event
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.AutoBreakEventArgs.#ctor(MyAPKapp.VistaUIFramework.RebarBand,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.AutoBreakEventArgs"/> class
+            </summary>
+            <param name="Band">The <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> that called the event</param>
+            <param name="AutoBreak">Should a break occur?</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.AutoBreakEventArgs.AutoBreak">
+            <summary>
+            Gets if a break should occur
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs">
+            <summary>
+            Provides data for the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandAutoSize"/> event
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs.#ctor(System.Boolean,System.Drawing.Size,System.Drawing.Size)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs"/> class
+            </summary>
+            <param name="Changed">The size changed?</param>
+            <param name="Actual">The actual <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/></param>
+            <param name="Target"></param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs.Changed">
+            <summary>
+            Gets if size was changed
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs.Actual">
+            <summary>
+            Gets the actual <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/> size
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs.Target">
+            <summary>
+            Gets the size <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/> tries to resize itself
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.ChevronPushedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.ChevronPushed"/> event
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.ChevronPushedEventArgs.#ctor(MyAPKapp.VistaUIFramework.RebarBand,System.Drawing.Rectangle)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.ChevronPushedEventArgs"/> class
+            </summary>
+            <param name="Band">The <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> that called the event</param>
+            <param name="Area">The area covered by the chevron</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ChevronPushedEventArgs.Area">
+            <summary>
+            Gets the area covered by the chevron
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.ChildSizeChanged"/> event
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs.#ctor(MyAPKapp.VistaUIFramework.RebarBand,System.Drawing.Size,System.Drawing.Size)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs"/> class
+            </summary>
+            <param name="Band">The <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/> that called the event</param>
+            <param name="ChildSize">The <see cref="T:System.Drawing.Size"/> of the <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>'s child</param>
+            <param name="BandSize">The <see cref="T:System.Drawing.Size"/> of the <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/></param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs.ChildSize">
+            <summary>
+            Gets the size of the <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>'s child
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs.BandSize">
+            <summary>
+            Gets the size of the <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.SplitterDragEventArgs">
+            <summary>
+            Provides data for the <see cref="E:MyAPKapp.VistaUIFramework.Rebar.SplitterDrag"/> event
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.SplitterDragEventArgs.#ctor(System.Drawing.Size)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyAPKapp.VistaUIFramework.SplitterDragEventArgs"/> class
+            </summary>
+            <param name="Size">The <see cref="T:System.Drawing.Size"/> of the <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/></param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.SplitterDragEventArgs.RebarSize">
+            <summary>
+            Gets the size of the <see cref="T:MyAPKapp.VistaUIFramework.Rebar"/>
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.BandEventHandler">
+            <summary>
+            Represents the method that handles any <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>-related event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.BandCancelEventHandler">
+            <summary>
+            Represents the method that handles any <see cref="T:MyAPKapp.VistaUIFramework.RebarBand"/>-related cancellable event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandCancelEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.AutoBreakEventHandler">
+            <summary>
+            Represents the method that handles an <see cref="E:MyAPKapp.VistaUIFramework.Rebar.AutoBreak"/> event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">An <see cref="T:MyAPKapp.VistaUIFramework.AutoBreakEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.BandAutoSizeEventHandler">
+            <summary>
+            Represents the method that handles a <see cref="E:MyAPKapp.VistaUIFramework.Rebar.BandAutoSize"/> event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.BandAutoSizeEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.ChevronPushedEventHandler">
+            <summary>
+            Represents the method that handles a <see cref="E:MyAPKapp.VistaUIFramework.Rebar.ChevronPushed"/> event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.ChevronPushedEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.ChildSizeChangedEventHandler">
+            <summary>
+            Represents the method that handles a <see cref="E:MyAPKapp.VistaUIFramework.Rebar.ChildSizeChanged"/> event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.ChildSizeChangedEventArgs"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.SplitterDragEventHandler">
+            <summary>
+            Represents the method that handles a <see cref="E:MyAPKapp.VistaUIFramework.Rebar.SplitterDrag"/> event
+            </summary>
+            <param name="sender">The <see cref="T:System.Object"/> that calls the event</param>
+            <param name="e">A <see cref="T:MyAPKapp.VistaUIFramework.SplitterDragEventHandler"/> that contains the event data</param>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Separator">
+            <summary>
+            Separator are controls that separates
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Separator.FlatStyle">
+            <summary>
+            This property can alter the native purpose of VistaUI
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Shortcut">
+            <summary>
+            Shortcuts are .lnk files that redirects the Windows Explorer to directories or files
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Shortcut.#ctor(System.String)">
+            <summary>
+            Creates a new Shortcut instance, recommended for new .lnk files
+            </summary>
+            <param name="LnkDestPath">The path where the .lnk file will be created</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Shortcut.#ctor(System.Boolean,System.String)">
+            <summary>
+            For Jumplists only
+            </summary>
+            <param name="DestPath">JumpList destination</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Shortcut.Load(System.String)">
+            <summary>
+            Open an existing .lnk shortcut
+            </summary>
+            <param name="LnkSourcePath">The path of the .lnk file</param>
+            <returns>Creates a new istance of Shortcut with the properties of the .lnk file</returns>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.LnkDestPath">
+            <summary>
+            The path where the .lnk file will be created (in case file doesn't exist)
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.DestinationPath">
+            <summary>
+            The path where Windows Explorer will redirect to (without arguments). Environment variables are allowed
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.Arguments">
+            <summary>
+            The arguments for the path
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.Description">
+            <summary>
+            The shortcut link description
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.WorkingDirectory">
+            <summary>
+            The working directory (only directory)
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.IconPath">
+            <summary>
+            The shortcut's icon path (without the index)
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.IconIndex">
+            <summary>
+            The icon index, the default value is 0 so it's not mandatory to set this property
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.ShowMode">
+            <summary>
+            Set if shortcut will start normal, maximized or minimized
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Shortcut.RunAsAdmin">
+            <summary>
+            Set if the shortcut will execute the program as administrator
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Shortcut.ShowModes">
+            <summary>
+            The show modes
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Shortcut.Save">
+            <summary>
+            Once the properties are set, you can save the shortcut .lnk file
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.SplitButton">
+            <summary>
+            It's a splitted button with an arrow
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.SplitButton.SplitClick">
+            <summary>
+            Fires when split arrow is clicked
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.SplitButton.Menu">
+            <summary>
+            Set the split button's menu, set the SplitClick e.cancel to true to prevent the menu from showing
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.SplitClickEventArgs.Menu">
+            <summary>
+            Get the split button's menu, set the SplitClick e.cancel to true to prevent the menu from showing
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList">
+            <summary>
+            The <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList"/> is a feature introduced with Windows 7. The <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList"/> contains tasks, categories and recent files
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.AddToRecentFiles(MyAPKapp.VistaUIFramework.Taskbar.JumpListLink)">
+            <summary>
+            Add a file to the 'Recent' category
+            </summary>
+            <param name="Shortcut">The <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/> as a shortcut, you'll be able to customize arguments, icon, working directory, etc.</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.AddToRecentFiles(System.String)">
+            <summary>
+            Add a file to the 'Recent' category
+            </summary>
+            <param name="Path">The path to the file</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.AddUserTasks(MyAPKapp.VistaUIFramework.Taskbar.JumpListLink[])">
+            <summary>
+            Add <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/>s to the Tasks category, user tasks cannot be unpinned
+            </summary>
+            <param name="Tasks">The list of tasks to add</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.AddCategory(System.String,MyAPKapp.VistaUIFramework.Taskbar.JumpListLink[])">
+            <summary>
+            Add a category of <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/>s, the links are unpinnable
+            </summary>
+            <param name="Title">The title of the category</param>
+            <param name="Links">The links category will contain</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.Delete">
+            <summary>
+            Delete all tasks and categories and start the <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/> from scratch
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.IncludeRecentCategory">
+            <summary>
+            The <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList"/> will include the Recent category
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.Commit">
+            <summary>
+            Commit the changes to the <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/>
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpList.Discard">
+            <summary>
+            Discard any changes made
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.JumpList.MaxVisibleSlots">
+            <summary>
+            Gets the amount of visible slots according to user settings
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.JumpList.Instance">
+            <summary>
+            Gets the instance of the <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList"/>, if Windows version is earlier than Windows 7, an exception will be throwed. Call <see cref="P:MyAPKapp.VistaUIFramework.Taskbar.JumpList.IsSupported"/> property to check if version is Windows 7 or later
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.JumpList.IsSupported">
+            <summary>
+            Check if Windows version supports <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList"/> methods.
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink">
+            <summary>
+            The <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/> is a link based on <see cref="T:MyAPKapp.VistaUIFramework.Shortcut"/> made for <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpList"/>s
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/>
+            </summary>
+            <param name="Title">The title of the <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/></param>
+            <param name="DestPath">The destination path (for example: an executable)</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink.Title">
+            <summary>
+            Gets or sets the title of the <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink"/>
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink.Load(System.String)">
+            <summary>
+            DON'T CALL THIS METHOD, THIS WAS MEANT FOR .LNK FILES, JUMPLISTLINK IS A LINK BUT IT'S NOT A .LNK FILE
+            </summary>
+            <param name="LnkSourcePath">DON'T CALL THIS METHOD</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.JumpListLink.Save">
+            <summary>
+            DON'T CALL THIS METHOD, THIS WAS MEANT FOR .LNK FILES, JUMPLISTLINK IS A LINK BUT IT'S NOT A .LNK FILE
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper">
+            <summary>
+            The <see cref="T:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper"/> is the class for Windows 7 taskbar features
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.SetProgressValue(System.IntPtr,System.Double,System.Double)">
+            <summary>
+            Set progress bar value in the taskbar item of your application
+            </summary>
+            <param name="Handle">The associated handle</param>
+            <param name="value">The current value</param>
+            <param name="max">The maximum value</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.SetProgressValue(System.Double,System.Double)">
+            <summary>
+            Set progress bar value in the taskbar item of your application
+            </summary>
+            <param name="value">The current value</param>
+            <param name="max">The maximum value</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.SetProgressState(System.IntPtr,MyAPKapp.VistaUIFramework.TaskBarProgressState)">
+            <summary>
+            Set progress state in the taskbar item of your application
+            </summary>
+            <param name="Handle">The associated handle</param>
+            <param name="state">The progress state</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.SetProgressState(MyAPKapp.VistaUIFramework.TaskBarProgressState)">
+            <summary>
+            Set progress state in the taskbar item of your application
+            </summary>
+            <param name="state">The progress state</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.SetOverlayIcon(System.IntPtr,System.Drawing.Icon,System.String)">
+            <summary>
+            Set an icon that overlays the main task icon
+            </summary>
+            <param name="Handle">The associated handle</param>
+            <param name="icon">The overlay icon</param>
+            <param name="description">The description or title for accessibility</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.SetOverlayIcon(System.Drawing.Icon,System.String)">
+            <summary>
+            Set an icon that overlays the main task icon
+            </summary>
+            <param name="icon">The overlay icon</param>
+            <param name="description">The description or title for accessibility</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.AddThumbnailButtons(System.IntPtr,MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton[])">
+            <summary>
+            Add buttons below thumbnail preview
+            </summary>
+            <param name="Handle">The associated handle</param>
+            <param name="buttons">Buttons to add, the limit is 7 buttons</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.Instance">
+            <summary>
+            Gets the instance of the taskbar, if Windows version is earlier than Windows 7, an exception will be throwed. Call <see cref="P:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.IsSupported"/> property to check if version is Windows 7 or later
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.TaskbarHelper.IsSupported">
+            <summary>
+            Check if Windows version supports taskbar methods.
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton">
+            <summary>
+            ThumbnailButton is a button below task thumbnail
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.#ctor(System.Drawing.Icon,System.String)">
+            <summary>
+            Initialize the <code>ThumbnailButton</code> button
+            </summary>
+            <param name="icon">The button icon</param>
+            <param name="tip">The tooltip text</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.Tip">
+            <summary>
+            The tooltip of the button
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.Icon">
+            <summary>
+            The icon of the button
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.Enabled">
+            <summary>
+            If false, button will be grayed out and disabled
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.DismissOnClick">
+            <summary>
+            If true, thumbnail preview will dismiss on click
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.Visible">
+            <summary>
+            If false, button will be hidden
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailButton.IsInteractive">
+            <summary>
+            If false, button is disabled without being grayed out
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.Taskbar.ThumbnailToolbar">
+            <summary>
+            <code>ThumbnailToolbar</code> is a nativewindow, the purpose is return a WndProc'd Handle
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog">
+            <summary>
+            TaskDialog is a kind of Windows dialog introduced with Windows Vista.
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.#ctor">
+            <summary>
+            Initializes a new instance of TaskDialog
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ShowDialog">
+            <summary>
+            Shows the TaskDialog according to the properties.
+            </summary>
+            <returns>The TaskDialog result</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.String)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="MainInstruction">The dialog's message</param>
+            <returns>The TaskDialog result</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.Windows.Forms.IWin32Window,System.String)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="Owner">The window owner, this is optional</param>
+            <param name="MainInstruction">The dialog's message</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.String,System.String)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.Windows.Forms.IWin32Window,System.String,System.String)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="Owner">The window owner, this is optional</param>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.String,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <param name="Buttons">The dialog's buttons to show</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.Windows.Forms.IWin32Window,System.String,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="Owner">The window owner, this is optional</param>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <param name="Buttons">The dialog's buttons to show</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.String,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton,System.String)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <param name="Buttons">The dialog's buttons to show</param>
+            <param name="Content">The dialog's text, also known as content</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.Windows.Forms.IWin32Window,System.String,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton,System.String)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="Owner">The window owner, this is optional</param>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <param name="Buttons">The dialog's buttons to show</param>
+            <param name="Content">The dialog's text, also known as content</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.String,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogIcon)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <param name="Buttons">The dialog's buttons to show</param>
+            <param name="Content">The dialog's text, also known as content</param>
+            <param name="Icon">The dialog's icon</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Show(System.Windows.Forms.IWin32Window,System.String,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton,System.String,MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogIcon)">
+            <summary>
+            Shows the basic version of TaskDialog, for the advanced version, use TaskDialog as a object
+            </summary>
+            <param name="Owner">The window owner, this is optional</param>
+            <param name="MainInstruction">The dialog's message</param>
+            <param name="WindowTitle">The dialog's window title</param>
+            <param name="Buttons">The dialog's buttons to show</param>
+            <param name="Content">The dialog's text, also known as content</param>
+            <param name="Icon">The dialog's icon</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.PerformClick(MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogCommonButton)">
+            <summary>
+            Click a common button programmatically
+            </summary>
+            <param name="Button"></param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.NavigateToPage(MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog)">
+            <summary>
+            Recreates a task dialog with new contents, simulating the functionality of a multi-page wizard
+            </summary>
+            <remarks>
+            It only works if dialog is shown
+            </remarks>
+            <param name="Dialog"></param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.WindowTitle">
+            <summary>
+            The window title
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.MainInstruction">
+            <summary>
+            The dialog's header text, also known as Main Instruction
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Content">
+            <summary>
+            Gets or sets the dialog's content
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.FooterText">
+            <summary>
+            Gets or sets the dialog's footer text
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ExpandedInformation">
+            <summary>
+            Gets or sets the additional information to show if Show Details is clicked
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ShowDetailsText">
+            <summary>
+            Gets or sets a text that replaces the classic Show Details
+            </summary>
+            <remarks>
+            If null or empty, the classic Show Details text will be used
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.HideDetailsText">
+            <summary>
+            Gets or sets a text that replaces the classic Hide Details
+            </summary>
+            <remarks>
+            If null or empty, the classic Hide Details text will be used
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.CommonButtons">
+            <summary>
+            Gets or sets the dialog's common buttons like OK, Cancel, Retry, Yes, No and Close.
+            </summary>
+            <remarks>
+            These buttons are not affected by UseCommandLinks property.
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.StandardIcon">
+            <summary>
+            Gets or sets the dialog's icon using standard icons with/without header
+            </summary>
+            <remarks>
+            This property will be unset if Icon is set
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Icon">
+            <summary>
+            Gets or sets the dialog's icon using a custom icon
+            </summary>
+            <remarks>
+            This property will be unset if StandardIcon is set
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.StandardFooterIcon">
+            <summary>
+            Gets or sets the dialog's footer icon using standard icons with/without header
+            </summary>
+            <remarks>
+            This property will be unset if FooterIcon is set
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.FooterIcon">
+            <summary>
+            Gets or sets the dialog's footer icon using a custom icon
+            </summary>
+            <remarks>
+            This property will be unset if StandardFooterIcon is set
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.WindowIcon">
+            <summary>
+            Gets or sets the icon next to window text
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.CustomButtons">
+            <summary>
+            The TaskDialog's custom buttons
+            </summary>
+            <remarks>
+            Unlike common buttons, custom buttons are able to be CommandLinks
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.RadioButtons">
+            <summary>
+            The TaskDialog's radio buttons
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.DefaultButton">
+            <summary>
+            Gets or sets the default button to be focused
+            </summary>
+            <remarks>
+            This property will be unset if DefaultCommonButton is set
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.DefaultCommonButton">
+            <summary>
+            Gets or sets the default button to be focused
+            </summary>
+            <remarks>
+            This property will be unset if DefaultButton is set
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.SelectedRadioButton">
+            <summary>
+            Gets or sets the radio button that is selected by default
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.CheckboxText">
+            <summary>
+            Gets or sets the dialog's checkbox text
+            </summary>
+            <remarks>
+            If null or empty, no checkbox will be shown
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Width">
+            <summary>
+            Gets or sets the dialog's width
+            </summary>
+            <remarks>
+            If value is 0, the dialog width is auto
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ProgressMinimum">
+            <summary>
+            Set the minimum value of progress bar
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ProgressMaximum">
+            <summary>
+            Set the maximum value of progress bar
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ProgressValue">
+            <summary>
+            Set the progress current value
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ProgressMarqueeSpeed">
+            <summary>
+            Set the marquee animation speed
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ProgressMarquee">
+            <summary>
+            Set if progress bar has the marquee animation
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.UseProgressBar">
+            <summary>
+            Gets or sets if progress bar will be used in the dialog
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.EnableHyperlinks">
+            <summary>
+            Gets or sets if &lt;a&gt; tags will be converted into hyperlinks
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.UseCommandLinks">
+            <summary>
+            Gets or sets if custom buttons will be CommandLinks
+            </summary>
+            <remarks>
+            Common buttons are not altered by this property
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.AllowDialogCancelation">
+            <summary>
+            Gets or sets if dialog can be cancelled by close button or Alt+F4
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ExpandedInFooterArea">
+            <summary>
+            Gets or sets if expanded information will be displayed at the bottom of footer instead of immediately after the content
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ExpandedByDefault">
+            <summary>
+            eturns/sets if expanded information is expanded by default
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.CheckboxChecked">
+            <summary>
+            Gets or sets if checkbox is checked by default
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.TimerEnabled">
+            <summary>
+            Gets or sets if TimerTick event is fired approximately every 200 milliseconds
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.PositionRelativeToWindow">
+            <summary>
+            Gets or sets if dialog is positioned (centered) relative to parent window instead of relative to monitor
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.RightToLeft">
+            <summary>
+            Gets or sets if dialog's layout is Right-To-Left instead of Left-To-Right
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Minimizable">
+            <summary>
+            Gets or sets if dialog can be minimized
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.CloseEnabled">
+            <summary>
+            Gets or sets if dialog's clsoe button is enabled
+            </summary>
+            <remarks>
+            This property is ignored if AllowDialogCancelation is false
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Handle">
+            <summary>
+            Get the TaskDialog native handle
+            </summary>
+            <remarks>
+            The handle is not null when dialog is shown
+            </remarks>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.IsShown">
+            <summary>
+            Get if task dialog is shown
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.IsSupported">
+            <summary>
+            Check if TaskDialog is supported (Windows Vista or later)
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Created">
+            <summary>
+            Fires when dialog is created before it is displayed
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ButtonClick">
+            <summary>
+            Fires when a dialog button is clicked
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.RadioButtonClick">
+            <summary>
+            Fires when a dialog radio button is clicked
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.CheckboxCheck">
+            <summary>
+            Fires when checkbox is checked/unchecked
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.TimerTick">
+            <summary>
+            Fires approximately every 200 milliseconds when TimerEnabled is true
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.ExpandCollapse">
+            <summary>
+            Fires when expanded information is expanded or collapsed
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.HelpRequested">
+            <summary>
+            Fires when user presses F1 when dialog is focused
+            </summary>
+        </member>
+        <member name="E:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialog.Destroyed">
+            <summary>
+            Fires when dialog is destroyed
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton">
+            <summary>
+            The button made for TaskDialog
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton.#ctor">
+            <summary>
+            Initializes a new instance of button
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton.PerformClick">
+            <summary>
+            Simulates a click on the button
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton.Text">
+            <summary>
+            Set the button text. If UseCommandLinks is enabled, text beginning from 2nd line will be converted into CommandLink summary
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton.Enabled">
+            <summary>
+            Gets or sets if button is enabled or disabled
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton.Shield">
+            <summary>
+            Gets or sets if button has the UAC Shield
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogRadioButton">
+            <summary>
+            The radio button made for TaskDialog
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogRadioButton.#ctor">
+            <summary>
+            Initializes a new instance of radio button
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogRadioButton.PerformClick">
+            <summary>
+            Simulates a click on the radio button
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogRadioButton.Text">
+            <summary>
+            Set the button base text
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogRadioButton.Enabled">
+            <summary>
+            Set if radio button is enabled or disabled
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogRadioButton.Parent">
+            <summary>
+            Get the dialog that contains this button
+            </summary>
+            <remarks>
+            Parent is not null when dialog is shown
+            </remarks>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs">
+            <summary>
+            Provides data for the ButtonClick event
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.#ctor(MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton)">
+            <summary>
+            Initializes a new instance of ButtonClickEventArgs
+            </summary>
+            <param name="Button">The button clicked in dialog, for custom buttons</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.#ctor(MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton,System.Boolean)">
+            <summary>
+            Initializes a new instance of ButtonClickEventArgs
+            </summary>
+            <param name="Button">The button clicked in dialog, for custom buttons</param>
+            <param name="cancel"></param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.#ctor(System.Windows.Forms.DialogResult)">
+            <summary>
+            Initializes a new instance of ButtonClickEventArgs
+            </summary>
+            <param name="Button">The button clicked in dialog, for common buttons</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.#ctor(System.Windows.Forms.DialogResult,System.Boolean)">
+            <summary>
+            Initializes a new instance of ButtonClickEventArgs
+            </summary>
+            <param name="Button">The button clicked in dialog, for common buttons</param>
+            <param name="cancel"></param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.Button">
+            <summary>
+            The button clicked in dialog, for custom buttons
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.CommonButton">
+            <summary>
+            The button clicked in dialog, for common buttons
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.ButtonClickEventArgs.IsCustomButton">
+            <summary>
+            Check if clicked button is a custom or common button
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.RadioButtonClickEventArgs">
+            <summary>
+            Provides data for the RadioButtonClick event
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.RadioButtonClickEventArgs.RadioButton">
+            <summary>
+            The radio button clicked in dialog
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.CheckboxCheckedEventArgs">
+            <summary>
+            Provides data for the CheckboxChecked event
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.CheckboxCheckedEventArgs.Checked">
+            <summary>
+            Check if checkbox is checked
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.TimerTickEventArgs">
+            <summary>
+            Provides data for the TimerTick event
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TimerTickEventArgs.ElapsedTime">
+            <summary>
+            Get the elapsed time since dialog was created
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TimerTickEventArgs.ResetTimer">
+            <summary>
+            Reset the timer in order to count from beginning
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.ExpandCollapseEventArgs">
+            <summary>
+            Provides data for the ExpandCollapse event
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.ExpandCollapseEventArgs.Expanded">
+            <summary>
+            Get if expanded information was expanded
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult">
+            <summary>
+            The TaskDialog result when button is pressed
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.#ctor(System.Windows.Forms.DialogResult)">
+            <summary>
+            Initializes a new instance of TaskDialogResult
+            </summary>
+            <param name="Button">The common button clicked</param>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.#ctor(MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogButton)">
+            <summary>
+            Initializes a new instance of TaskDialogResult
+            </summary>
+            <param name="Button">The custom button clicked</param>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.CommonButton">
+            <summary>
+            The common button clicked
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.Button">
+            <summary>
+            The custom button clicked
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.IsCustomButton">
+            <summary>
+            Check if button clicked was custom or common
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.RadioButton">
+            <summary>
+            The radio button selected
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TaskDialog.TaskDialogResult.IsCheckboxChecked">
+            <summary>
+            Check if checkbox was checked
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TextBox.Hint">
+            <summary>
+            Set the TextBox's gray text when TextBox is empty
+            </summary>
+        </member>
+        <member name="P:MyAPKapp.VistaUIFramework.TextBox.HideHintOnFocus">
+            <summary>
+            Set if TextBox's hint is hidden on focus, even if TextBox was empty
+            </summary>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.WindowsUtils">
+            <summary>
+            The Windows Utilities contains multiple common features like move the window to top, flicker the window and taskbar, shutdown computer, etc.
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.#ctor">
+            <summary>
+            It's not allowed to create this class
+            </summary>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.FlashWindow(System.Windows.Forms.Form)">
+            <summary>
+            Make the window flash and flicker to get user's attention
+            </summary>
+            <param name="Window">The form to be affected by flash</param>
+            <returns>Window state (active or inactive)</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.FlashWindow(System.Windows.Forms.Form,System.Int32,System.Int32)">
+            <summary>
+            Make the window flash and flicker to get user's attention
+            </summary>
+            <param name="Window"></param>
+            <param name="Count"></param>
+            <param name="Timeout"></param>
+            <returns>Window state (active or inactive)</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.FlashWindow(System.Windows.Forms.Form,System.Int32,System.Int32,MyAPKapp.VistaUIFramework.WindowsUtils.FlashFlags)">
+            <summary>
+            Make the window flash and flicker to get user's attention
+            </summary>
+            <param name="Window"></param>
+            <param name="Count"></param>
+            <param name="Timeout"></param>
+            <param name="Flags"></param>
+            <returns>Window state (active or inactive)</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.MakeWindowTop(System.Windows.Forms.Form)">
+            <summary>
+            Force the window to show in front of everything
+            </summary>
+            <param name="Window"></param>
+            <returns>If window was brought to the top</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.LockComputer">
+            <summary>
+            Lock the computer (with password in case of password-protected users) and current user has to unlock the computer (using password if necessary).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.GetActiveWindow">
+            <summary>
+            Get the current active window in a native way (using Handles).
+            </summary>
+            <returns>Native Handle (HWND)</returns>
+        </member>
+        <member name="M:MyAPKapp.VistaUIFramework.WindowsUtils.GetStockIcon(MyAPKapp.VistaUIFramework.StockIcon,System.Boolean)">
+            <summary>
+            Retrieve a built-in icon
+            </summary>
+            <param name="StockIcon">Icon to be extracted</param>
+            <param name="Large">32z32 or 16x16</param>
+            <returns>The icon according to the arguments</returns>
+        </member>
+        <member name="T:MyAPKapp.VistaUIFramework.WindowsUtils.FlashFlags">
+            <summary>
+            The list of Flags used for flashing the window
+            </summary>
+        </member>
+    </members>
+</doc>
