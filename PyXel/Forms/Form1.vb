@@ -306,6 +306,14 @@ Public Class Form1
             Case Languages.JS
                 newPage.ImageIndex = 4
                 editor.Language = Language.JS
+            Case Languages.CSS
+                newPage.ImageIndex = 1
+            Case Languages.C
+                newPage.ImageIndex = 0
+                editor.Language = Language.CSharp
+            Case Languages.CPP
+                newPage.ImageIndex = 6
+                editor.Language = Language.CSharp
         End Select
         pages += 1
         tabs.Add(pages, newPage)
@@ -334,16 +342,25 @@ Public Class Form1
         editor.AllowDrop = True
         AddHandler editor.DragEnter, AddressOf PyXelDragEnter
         AddHandler editor.DragDrop, AddressOf PyXelDragDrop
-        If lang = Languages.Python Then
-            editor.LeftBracket = "{"
-            editor.RightBracket = "}"
-            editor.LeftBracket2 = "("
-            editor.RightBracket2 = ")"
-            editor.AutoCompleteBrackets = True
-            editor.CommentPrefix = "#"
-            AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
-            AddHandler editor.TextChangedDelayed, AddressOf fctb_TextChangedDelayed
-        End If
+        Select Case lang
+            Case Languages.Python
+                editor.LeftBracket = "{"
+                editor.RightBracket = "}"
+                editor.LeftBracket2 = "("
+                editor.RightBracket2 = ")"
+                editor.AutoCompleteBrackets = True
+                editor.CommentPrefix = "#"
+                AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
+                AddHandler editor.TextChangedDelayed, AddressOf fctb_TextChangedDelayed
+            Case Languages.CSS
+                editor.LeftBracket = "{"
+                editor.RightBracket = "}"
+                editor.LeftBracket2 = "("
+                editor.RightBracket2 = ")"
+                editor.AutoCompleteBrackets = True
+                editor.CommentPrefix = "#"
+                AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
+        End Select
     End Sub
 
     Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
@@ -385,14 +402,38 @@ Public Class Form1
 
                 'set as autocomplete source
                 popupMenu.Items.SetAutocompleteItems(items)
+            Case Languages.CSS
+                e.ChangedRange.ClearStyle(greenStyle)
+                e.ChangedRange.ClearStyle(orangeStyle)
+                e.ChangedRange.ClearStyle(blueStyle)
+                e.ChangedRange.ClearStyle(redStyle)
+                e.ChangedRange.ClearStyle(purpleStyle)
+                e.ChangedRange.SetStyle(greenStyle, "\/\*[^*]*\*+([^/*][^*]*\*+)*\/", RegexOptions.Multiline)
+                e.ChangedRange.SetStyle(blueStyle, "(([.#@]*[a-zA-Z\-_]+))(?: *{)|(})")
+                e.ChangedRange.SetStyle(salmonStyle, "([a-zA-Z\-]+)(?:\s*:)")
+                e.ChangedRange.SetStyle(orangeStyle, "(([a-zA-Z0-9\-_\.\" + Chr(34) + "\" + Chr(39) + "\#\(\)\,]+))(?:\s*;)")
+                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
         End Select
 
     End Sub
 
     Private Sub AutoIndent(sender As Object, e As AutoIndentEventArgs)
-        If e.LineText.Trim.Contains("def") Or e.LineText.Trim.Contains("if") Or e.LineText.Trim.Contains("else") Or e.LineText.Trim.Contains("elif") Or e.LineText.Trim.Contains("for") Or e.LineText.Trim.Contains("while") Then
-            e.ShiftNextLines = e.TabLength
-        End If
+        Dim lang As Languages = editorsLanguage.Item(sender)
+        Select Case lang
+            Case Languages.Python
+                If e.LineText.Trim.Contains("def") Or e.LineText.Trim.Contains("if") Or e.LineText.Trim.Contains("else") Or e.LineText.Trim.Contains("elif") Or e.LineText.Trim.Contains("for") Or e.LineText.Trim.Contains("while") Then
+                    e.ShiftNextLines = e.TabLength
+                End If
+            Case Languages.CSS
+                If e.LineText.Trim.Contains("{") Then
+                    e.ShiftNextLines = e.TabLength
+                ElseIf e.LineText.Trim.Contains("}") Then
+                    e.ShiftNextLines = -e.TabLength
+                End If
+        End Select
+
     End Sub
 
     Private Sub fctb_TextChangedDelayed(sender As Object, e As TextChangedEventArgs)
@@ -656,7 +697,7 @@ Public Class Form1
 
     Private Sub NewCSSClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem9.Click
         'Create New CSS File
-        MsgBox("New CSS File")
+        openNewTab(Languages.CSS)
     End Sub
 
     '
@@ -683,7 +724,7 @@ Public Class Form1
 
     Private Sub NewCClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem12.Click
         'Create New C File
-        MsgBox("New C File")
+        openNewTab(Languages.C)
     End Sub
 
     '
@@ -692,16 +733,7 @@ Public Class Form1
 
     Private Sub NewCPPClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem14.Click
         'Create New C++ File
-        MsgBox("New C++ File")
-    End Sub
-
-    '
-    ' I. New H File
-    '
-
-    Private Sub NewHClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem16.Click
-        'Create New H File
-        MsgBox("New H File")
+        openNewTab(Languages.CPP)
     End Sub
 
     '
@@ -822,24 +854,6 @@ Public Class Form1
                     Exit Sub
                 End If
             End If
-
-            'If inExec Then
-            '    proc.CancelOutputRead()
-            '    proc.Kill()
-            '    KryptonRibbonGroupButton14.Enabled = True
-            '    inExec = False
-            'End If
-            'proc.StartInfo.FileName = ApplicationSettings.python3
-            'proc.StartInfo.Arguments = filesOpened(id)
-            'proc.StartInfo.CreateNoWindow = True
-            'proc.StartInfo.UseShellExecute = False
-            'proc.EnableRaisingEvents = True
-            'proc.StartInfo.RedirectStandardOutput = True
-            'proc.StartInfo.RedirectStandardInput = True
-            'proc.Start()
-            'proc.BeginOutputReadLine()
-            'consoleSender = proc.StandardInput
-            'inExec = True
             If ConsoleControl1.IsProcessRunning Then
                 Dim td As New TaskDialog
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
@@ -865,7 +879,6 @@ Public Class Form1
                 td.MainInstruction = "Erreur d'exécution"
                 td.Content = "Une erreur est survenue lors de l'exécution du programme."
                 td.ShowDialog()
-                'MessageBox.Show("Une erreur est survenue lors de l'exécution du programme", "PyXel - Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub
@@ -881,7 +894,18 @@ Public Class Form1
             td.ShowDialog()
             Settings.ShowDialog()
         Else
-            Shell(ApplicationSettings.python3)
+            Try
+                Shell(ApplicationSettings.python3)
+            Catch
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Exécutable Python introuvable"
+                td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
+                td.ShowDialog()
+                Settings.ShowDialog()
+            End Try
         End If
     End Sub
 
