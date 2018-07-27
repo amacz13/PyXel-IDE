@@ -6,7 +6,7 @@ PyXel is a modern, simple and lightweight Integrated Development Environment (ID
 Current version
 -
 - Stable : [Alpha 0.3](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.3-Alpha)
-- Insider : [Snapshot 18.1307 Alpha-v0.4](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4-Alpha-SNAPSHOT-18.1307)
+- Insider : [Snapshot 18.2707 Alpha-v0.4](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4-Alpha-SNAPSHOT-18.2707)
 
 Downloads
 -
