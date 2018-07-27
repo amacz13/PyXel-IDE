@@ -24,7 +24,7 @@ Roadmap
     - [ ] CSS  
     - [X] PHP
     - [X] JS
-    - [ ] C / C++      
+    - [X] C / C++      
   - [X] Autocompletion (Partial)
   - [X] Drag'n'Drop
   - [X] Document Map
@@ -33,6 +33,7 @@ Roadmap
   - [ ] Git Support
   - [ ] Dictionnary
   - [ ] Syntax checker
+  - [ ] Projects : Media files preview
   - [ ] Sending Files
     - [ ] FTP server
     - [ ] OneDrive
