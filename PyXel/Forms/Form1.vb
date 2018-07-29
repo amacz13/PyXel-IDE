@@ -59,6 +59,7 @@ Public Class Form1
     Dim displayNames As New Dictionary(Of Integer, String)
     Dim menus As New Dictionary(Of Integer, AutocompleteMenu)
 
+
     'Utilities Sub
 
     Public Shared Sub updateEditors()
@@ -352,6 +353,7 @@ Public Class Form1
                 editor.CommentPrefix = "#"
                 AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
                 AddHandler editor.TextChangedDelayed, AddressOf fctb_TextChangedDelayed
+                AddHandler editor.TextChanged, AddressOf PythonHighlight
             Case Languages.CSS
                 editor.LeftBracket = "{"
                 editor.RightBracket = "}"
@@ -360,6 +362,7 @@ Public Class Form1
                 editor.AutoCompleteBrackets = True
                 editor.CommentPrefix = "#"
                 AddHandler editor.AutoIndentNeeded, AddressOf AutoIndent
+                AddHandler editor.TextChanged, AddressOf CSSHighlight
         End Select
     End Sub
 
@@ -373,49 +376,50 @@ Public Class Form1
         If firstLoad.Item(id) Then
             firstLoad.Item(id) = False
         End If
-        Dim lang As Languages = editorsLanguage.Item(sender)
-        Select Case lang
-            Case Languages.Python
-                e.ChangedRange.ClearStyle(greenStyle)
-                e.ChangedRange.ClearStyle(orangeStyle)
-                e.ChangedRange.ClearStyle(blueStyle)
-                e.ChangedRange.ClearStyle(redStyle)
-                e.ChangedRange.ClearStyle(purpleStyle)
-                e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
-                e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
-                e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
-                e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
-                e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
-                e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
-                e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
-                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
-                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+        'Dim lang As Languages = editorsLanguage.Item(sender)
+        'Select Case lang
+        '    Case Languages.Python
+        '        e.ChangedRange.ClearStyle(greenStyle)
+        '        e.ChangedRange.ClearStyle(orangeStyle)
+        '        e.ChangedRange.ClearStyle(blueStyle)
+        '        e.ChangedRange.ClearStyle(redStyle)
+        '        e.ChangedRange.ClearStyle(purpleStyle)
+        '        e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
+        '        e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
+        '        e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
+        '        e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
+        '        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
+        '        e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
+        '        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
+        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
 
-                Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
-                Dim keywords As String() = {"print", "int", "input"}
-                popupMenu.SearchPattern = "[\w\.:=!<>]"
-                Dim items As New List(Of AutocompleteItem)()
-                For Each item As String In keywords
-                    items.Add(New AutocompleteItem(item))
-                Next
+        '        Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
+        '        'AutoCompleteTools.LoadDefaultItems(popupMenu, Languages.Python)
+        '        'Dim Keywords As String() = {"print", "int", "input"}
+        '        'popupMenu.SearchPattern = "[\w\.:=!<>]"
+        '        'Dim items As New List(Of AutocompleteItem)()
+        '        'For Each item As String In keywords
+        '        '    items.Add(New AutocompleteItem(item))
+        '        'Next
 
-                'set as autocomplete source
-                popupMenu.Items.SetAutocompleteItems(items)
-            Case Languages.CSS
-                e.ChangedRange.ClearStyle(greenStyle)
-                e.ChangedRange.ClearStyle(orangeStyle)
-                e.ChangedRange.ClearStyle(blueStyle)
-                e.ChangedRange.ClearStyle(redStyle)
-                e.ChangedRange.ClearStyle(purpleStyle)
-                e.ChangedRange.SetStyle(greenStyle, "\/\*[^*]*\*+([^/*][^*]*\*+)*\/", RegexOptions.Multiline)
-                e.ChangedRange.SetStyle(blueStyle, "(([.#@]*[a-zA-Z\-_]+))(?: *{)|(})")
-                e.ChangedRange.SetStyle(salmonStyle, "([a-zA-Z\-]+)(?:\s*:)")
-                e.ChangedRange.SetStyle(orangeStyle, "(([a-zA-Z0-9\-_\.\" + Chr(34) + "\" + Chr(39) + "\#\(\)\,]+))(?:\s*;)")
-                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
-                e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
-        End Select
+        '        'set as autocomplete source
+        '        'popupMenu.Items.SetAutocompleteItems(items)
+        '    Case Languages.CSS
+        '        e.ChangedRange.ClearStyle(greenStyle)
+        '        e.ChangedRange.ClearStyle(orangeStyle)
+        '        e.ChangedRange.ClearStyle(blueStyle)
+        '        e.ChangedRange.ClearStyle(redStyle)
+        '        e.ChangedRange.ClearStyle(purpleStyle)
+        '        e.ChangedRange.SetStyle(greenStyle, "\/\*[^*]*\*+([^/*][^*]*\*+)*\/", RegexOptions.Multiline)
+        '        e.ChangedRange.SetStyle(blueStyle, "(([.#@]*[a-zA-Z\-_]+))(?: *{)|(})")
+        '        e.ChangedRange.SetStyle(salmonStyle, "([a-zA-Z\-]+)(?:\s*:)")
+        '        e.ChangedRange.SetStyle(orangeStyle, "(([a-zA-Z0-9\-_\.\" + Chr(34) + "\" + Chr(39) + "\#\(\)\,]+))(?:\s*;)")
+        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+        'End Select
 
     End Sub
 
@@ -1267,10 +1271,13 @@ Public Class Form1
     End Sub
 
     Private Sub PyXelDragDrop(sender As Object, e As DragEventArgs)
-        Dim files As String() = e.Data.GetData(DataFormats.FileDrop)
-        For Each file In files
-            OpenFile(file)
-        Next
+        Try
+            Dim files As String() = e.Data.GetData(DataFormats.FileDrop)
+            For Each file In files
+                OpenFile(file)
+            Next
+        Catch
+        End Try
     End Sub
 
     Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
@@ -1318,5 +1325,53 @@ Public Class Form1
         'End Using
         'filesOpened.Item(id) = fileName
         'End If
+    End Sub
+
+    'Syntax Highlighting engine
+
+    Public Delegate Sub highlightDelegate(sender As Object, e As TextChangedEventArgs)
+
+    Private Sub PythonHighlight(sender As Object, e As TextChangedEventArgs)
+        Me.Invoke(New highlightDelegate(AddressOf RunPythonHighlight), New Object() {sender, e})
+    End Sub
+
+    Private Sub RunPythonHighlight(sender As Object, e As TextChangedEventArgs)
+        e.ChangedRange.ClearStyle(greenStyle)
+        e.ChangedRange.ClearStyle(orangeStyle)
+        e.ChangedRange.ClearStyle(blueStyle)
+        e.ChangedRange.ClearStyle(redStyle)
+        e.ChangedRange.ClearStyle(purpleStyle)
+        e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
+        e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
+        e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
+        e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
+        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
+        e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
+        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+
+        Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
+    End Sub
+
+    Private Sub CSSHighlight(sender As Object, e As TextChangedEventArgs)
+        Me.Invoke(New highlightDelegate(AddressOf RunCSSHighlight), New Object() {sender, e})
+    End Sub
+
+
+    Private Sub RunCSSHighlight(sender As Object, e As TextChangedEventArgs)
+        e.ChangedRange.ClearStyle(greenStyle)
+        e.ChangedRange.ClearStyle(orangeStyle)
+        e.ChangedRange.ClearStyle(blueStyle)
+        e.ChangedRange.ClearStyle(redStyle)
+        e.ChangedRange.ClearStyle(purpleStyle)
+        e.ChangedRange.SetStyle(greenStyle, "\/\*[^*]*\*+([^/*][^*]*\*+)*\/", RegexOptions.Multiline)
+        e.ChangedRange.SetStyle(blueStyle, "(([.#@]*[a-zA-Z\-_]+))(?: *{)|(})")
+        e.ChangedRange.SetStyle(salmonStyle, "([a-zA-Z\-]+)(?:\s*:)")
+        e.ChangedRange.SetStyle(orangeStyle, "(([a-zA-Z0-9\-_\.\" + Chr(34) + "\" + Chr(39) + "\#\(\)\,]+))(?:\s*;)")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
     End Sub
 End Class

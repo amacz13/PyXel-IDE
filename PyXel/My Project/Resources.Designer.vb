@@ -533,6 +533,16 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property keyword() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("keyword", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property logo() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("logo", resourceCulture)
@@ -556,6 +566,16 @@ Namespace My.Resources
         Friend ReadOnly Property mail16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("mail16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Method() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Method", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -976,6 +996,16 @@ Namespace My.Resources
         Friend ReadOnly Property settings32() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("settings32", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property snippet() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("snippet", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

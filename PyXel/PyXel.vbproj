@@ -14,6 +14,9 @@
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,11 +29,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -121,7 +121,16 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>PyXelKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>PyXel_Key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>7A238F474ED143DE64D3E9254575A9A1D7761604</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PyXel_Key.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Design, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
@@ -286,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PyXelKey.pfx" />
+    <None Include="PyXel_Key.pfx" />
     <None Include="Resources\new.png" />
   </ItemGroup>
   <ItemGroup>
@@ -337,6 +347,9 @@
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <Content Include="Pyxel Icon.ico" />
+    <None Include="Resources\keyword.png" />
+    <None Include="Resources\function.png" />
+    <None Include="Resources\snippet.png" />
     <None Include="Resources\PyXel SplashScreen 0.4.png" />
     <None Include="Resources\pyxel1.png" />
     <None Include="Resources\PyXelNewProjWiz.png" />
