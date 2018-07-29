@@ -343,6 +343,7 @@ Public Class Form1
         editor.AllowDrop = True
         AddHandler editor.DragEnter, AddressOf PyXelDragEnter
         AddHandler editor.DragDrop, AddressOf PyXelDragDrop
+        AddHandler editor.KeyDown, AddressOf CloseTabShortcut
         Select Case lang
             Case Languages.Python
                 editor.LeftBracket = "{"
@@ -376,51 +377,6 @@ Public Class Form1
         If firstLoad.Item(id) Then
             firstLoad.Item(id) = False
         End If
-        'Dim lang As Languages = editorsLanguage.Item(sender)
-        'Select Case lang
-        '    Case Languages.Python
-        '        e.ChangedRange.ClearStyle(greenStyle)
-        '        e.ChangedRange.ClearStyle(orangeStyle)
-        '        e.ChangedRange.ClearStyle(blueStyle)
-        '        e.ChangedRange.ClearStyle(redStyle)
-        '        e.ChangedRange.ClearStyle(purpleStyle)
-        '        e.ChangedRange.SetStyle(blueStyle, "(([A-z0-9]))\w*\s*\=")
-        '        e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
-        '        e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
-        '        e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
-        '        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
-        '        e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
-        '        e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
-        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
-        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
-
-        '        Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
-        '        'AutoCompleteTools.LoadDefaultItems(popupMenu, Languages.Python)
-        '        'Dim Keywords As String() = {"print", "int", "input"}
-        '        'popupMenu.SearchPattern = "[\w\.:=!<>]"
-        '        'Dim items As New List(Of AutocompleteItem)()
-        '        'For Each item As String In keywords
-        '        '    items.Add(New AutocompleteItem(item))
-        '        'Next
-
-        '        'set as autocomplete source
-        '        'popupMenu.Items.SetAutocompleteItems(items)
-        '    Case Languages.CSS
-        '        e.ChangedRange.ClearStyle(greenStyle)
-        '        e.ChangedRange.ClearStyle(orangeStyle)
-        '        e.ChangedRange.ClearStyle(blueStyle)
-        '        e.ChangedRange.ClearStyle(redStyle)
-        '        e.ChangedRange.ClearStyle(purpleStyle)
-        '        e.ChangedRange.SetStyle(greenStyle, "\/\*[^*]*\*+([^/*][^*]*\*+)*\/", RegexOptions.Multiline)
-        '        e.ChangedRange.SetStyle(blueStyle, "(([.#@]*[a-zA-Z\-_]+))(?: *{)|(})")
-        '        e.ChangedRange.SetStyle(salmonStyle, "([a-zA-Z\-]+)(?:\s*:)")
-        '        e.ChangedRange.SetStyle(orangeStyle, "(([a-zA-Z0-9\-_\.\" + Chr(34) + "\" + Chr(39) + "\#\(\)\,]+))(?:\s*;)")
-        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
-        '        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
-        'End Select
-
     End Sub
 
     Private Sub AutoIndent(sender As Object, e As AutoIndentEventArgs)
@@ -597,21 +553,52 @@ Public Class Form1
 
         End If
 
+        'Detect Installed Python
+        If Not File.Exists(ApplicationSettings.python2) Then
+            KryptonRibbonGroupButton14.Enabled = False
+            KryptonRibbonGroupButton16.Enabled = False
+            KryptonRibbonGroupButton17.Enabled = False
+            KryptonRibbonGroupButton14.ToolTipTitle = "Python 2 missing"
+            KryptonRibbonGroupButton14.ToolTipBody = "Please install Python 2 and restart PyXel in order to execute your Pyhton 2 code. If Python 2 is already installed, you can configure its path in the settings."
+            KryptonRibbonGroupButton16.ToolTipTitle = KryptonRibbonGroupButton14.ToolTipTitle
+            KryptonRibbonGroupButton16.ToolTipBody = KryptonRibbonGroupButton14.ToolTipBody
+        End If
+        If Not File.Exists(ApplicationSettings.python3) Then
+            KryptonRibbonGroupButton18.Enabled = False
+            KryptonRibbonGroupButton19.Enabled = False
+            KryptonRibbonGroupButton20.Enabled = False
+            KryptonRibbonGroupButton18.ToolTipTitle = "Python 3 missing"
+            KryptonRibbonGroupButton18.ToolTipBody = "Please install Python 3 and restart PyXel in order to execute your Pyhton 3 code. If Python 3 is already installed, you can configure its path in the settings."
+            KryptonRibbonGroupButton19.ToolTipTitle = KryptonRibbonGroupButton18.ToolTipTitle
+            KryptonRibbonGroupButton19.ToolTipBody = KryptonRibbonGroupButton18.ToolTipBody
+        End If
+
+        'Detect Installed Compilers
+        If Not File.Exists(ApplicationSettings.gcc) Then
+            KryptonRibbonGroupButton25.Enabled = False
+            KryptonRibbonGroupButton26.Enabled = False
+            KryptonRibbonGroupButton27.Enabled = False
+            KryptonRibbonGroupButton25.ToolTipTitle = "GCC missing"
+            KryptonRibbonGroupButton25.ToolTipBody = "Please install GCC and restart PyXel in order to compile your code. If GCC is already installed, you can configure its path in the settings."
+            KryptonRibbonGroupButton19.ToolTipTitle = KryptonRibbonGroupButton18.ToolTipTitle
+            KryptonRibbonGroupButton19.ToolTipBody = KryptonRibbonGroupButton18.ToolTipBody
+        End If
+
         'Detect Installed Browsers
-        If Not File.Exists("C:\Program Files\Mozilla Firefox\firefox.exe") Then
+        If Not File.Exists(ApplicationSettings.firefox) Then
             KryptonRibbonGroupButton22.Enabled = False
             KryptonRibbonGroupButton22.ToolTipTitle = "Mozilla Firefox missing"
-            KryptonRibbonGroupButton22.ToolTipBody = "Please install Mozilla Firefox and restart PyXel in order to preview your file in Mozilla Firefox."
+            KryptonRibbonGroupButton22.ToolTipBody = "Please install Mozilla Firefox and restart PyXel in order to preview your file in Mozilla Firefox. If Mozilla Firefox is already installed, you can configure its path in the settings."
         End If
-        If Not File.Exists("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") Then
+        If Not File.Exists(ApplicationSettings.chrome) Then
             KryptonRibbonGroupButton23.Enabled = False
             KryptonRibbonGroupButton23.ToolTipTitle = "Google Chrome missing"
-            KryptonRibbonGroupButton23.ToolTipBody = "Please install Google Chrome and restart PyXel in order to preview your file in Google Chrome."
+            KryptonRibbonGroupButton23.ToolTipBody = "Please install Google Chrome and restart PyXel in order to preview your file in Google Chrome. If Google Chrome is already installed, you can configure its path in the settings."
         End If
-        If Not File.Exists("C:\Program Files\Opera\launcher.exe") Then
+        If Not File.Exists(ApplicationSettings.opera) Then
             KryptonRibbonGroupButton24.Enabled = False
             KryptonRibbonGroupButton24.ToolTipTitle = "Opera missing"
-            KryptonRibbonGroupButton24.ToolTipBody = "Please install Opera and restart PyXel in order to preview your file in Opera."
+            KryptonRibbonGroupButton24.ToolTipBody = "Please install Opera and restart PyXel in order to preview your file in Opera. If Opera is already installed, you can configure its path in the settings."
         End If
 
         'Create ImageList for TreeView
@@ -634,12 +621,11 @@ Public Class Form1
         'Update Checking
         If ApplicationSettings.updateType IsNot "Disabled" Then
             Dim th As New Thread(AddressOf checkForUpdates)
-
+            th.Start()
         End If
 
         'ContextMenus Configuration
         CustomTabControl1.ContextMenuStrip = ContextMenuStrip1
-
     End Sub
 
     '
@@ -779,8 +765,6 @@ Public Class Form1
         OpenFile()
     End Sub
 
-
-
     Private Async Sub KryptonContextMenuItem3_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem3.Click
         Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
     End Sub
@@ -788,10 +772,6 @@ Public Class Form1
     Private Async Sub KryptonRibbonQATButton1_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton1.Click
         Await SavePage(tabsInversed.Item(CustomTabControl1.SelectedTab))
     End Sub
-
-
-
-
 
     Private Async Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
@@ -809,6 +789,7 @@ Public Class Form1
                 If res = DialogResult.Yes Then
                     Await SavePage(id)
                 ElseIf res = DialogResult.Cancel Then
+                    e.Cancel = True
                     Exit Sub
                 End If
             End If
@@ -829,9 +810,65 @@ Public Class Form1
         About.ShowDialog()
     End Sub
 
-
     Private Async Sub KryptonRibbonGroupButton14_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton14.Click
-        If ApplicationSettings.python3 = "none" Then
+        If Not File.Exists(ApplicationSettings.python2) Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Exécutable Python introuvable"
+            td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
+            td.ShowDialog()
+            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Settings.ShowDialog()
+        Else
+            Dim page As TabPage = CustomTabControl1.SelectedTab
+            Dim id As Integer = tabsInversed.Item(page)
+            If Not pagesSaved.Item(id) Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Fichier non sauvegardé"
+                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
+                    Await SavePage(id)
+                ElseIf res = DialogResult.Cancel Then
+                    Exit Sub
+                End If
+            End If
+            If ConsoleControl1.IsProcessRunning Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Processus en cours"
+                td.Content = "Un processus est en cours d'exécution. Voulez-vous l'interrompre ?"
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
+                    ConsoleControl1.StopProcess()
+                ElseIf res = DialogResult.Cancel Then
+                    Exit Sub
+                End If
+            End If
+            Threading.Thread.Sleep(500)
+            Try
+                ConsoleControl1.StartProcess(ApplicationSettings.python2, filesOpened(id))
+            Catch
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Erreur d'exécution"
+                td.Content = "Une erreur est survenue lors de l'exécution du programme."
+                td.ShowDialog()
+            End Try
+        End If
+    End Sub
+
+    Private Async Sub KryptonRibbonGroupButton18_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton18.Click
+        If Not File.Exists(ApplicationSettings.python3) Then
             Dim td As New TaskDialog
             td.CommonButtons = TaskDialogCommonButton.OK
             td.StandardIcon = TaskDialogIcon.ShieldError
@@ -887,8 +924,8 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub KryptonRibbonGroupButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
-        If ApplicationSettings.python3 = "none" Then
+    Private Sub KryptonRibbonGroupButton16_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton16.Click
+        If Not File.Exists(ApplicationSettings.python2) Then
             Dim td As New TaskDialog
             td.CommonButtons = TaskDialogCommonButton.OK
             td.StandardIcon = TaskDialogIcon.ShieldError
@@ -896,10 +933,40 @@ Public Class Form1
             td.MainInstruction = "Exécutable Python introuvable"
             td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
             td.ShowDialog()
+            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             Try
-                Shell(ApplicationSettings.python3)
+                ConsoleControl1.StartProcess(ApplicationSettings.python2, "")
+                'Shell(ApplicationSettings.python3)
+            Catch
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = "Exécutable Python introuvable"
+                td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
+                td.ShowDialog()
+                Settings.ShowDialog()
+            End Try
+        End If
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton19_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton19.Click
+        If Not File.Exists(ApplicationSettings.python3) Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Exécutable Python introuvable"
+            td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
+            td.ShowDialog()
+            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Settings.ShowDialog()
+        Else
+            Try
+                ConsoleControl1.StartProcess(ApplicationSettings.python3, "")
+                'Shell(ApplicationSettings.python3)
             Catch
                 Dim td As New TaskDialog
                 td.CommonButtons = TaskDialogCommonButton.OK
@@ -1136,6 +1203,20 @@ Public Class Form1
                     KryptonRibbon1.SelectedContext = "HTML"
                 End If
                 KryptonSplitContainer1.Panel2Collapsed = True
+            Case Languages.C
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    KryptonRibbon1.SelectedContext = "C,Projet"
+                Else
+                    KryptonRibbon1.SelectedContext = "C"
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = True
+            Case Languages.CPP
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    KryptonRibbon1.SelectedContext = "C,Projet"
+                Else
+                    KryptonRibbon1.SelectedContext = "C"
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = True
         End Select
     End Sub
 
@@ -1185,7 +1266,7 @@ Public Class Form1
         'MsgBox(filesOpened(id))
         If Environment.Is64BitOperatingSystem Then
             Try
-                System.Diagnostics.Process.Start("C:\Program Files\Mozilla Firefox\firefox.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
+                System.Diagnostics.Process.Start(ApplicationSettings.firefox, "file:///" + filesOpened(id).Replace(" ", "%20"))
             Catch
                 Dim td As New TaskDialog
                 td.CommonButtons = TaskDialogCommonButton.OK
@@ -1218,7 +1299,7 @@ Public Class Form1
             End If
         End If
         'MsgBox(filesOpened(id))
-        System.Diagnostics.Process.Start("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
+        System.Diagnostics.Process.Start(ApplicationSettings.chrome, "file:///" + filesOpened(id).Replace(" ", "%20"))
     End Sub
 
     'Open web file in Opera
@@ -1242,7 +1323,7 @@ Public Class Form1
         'MsgBox(filesOpened(id))
         If Environment.Is64BitOperatingSystem Then
             Try
-                System.Diagnostics.Process.Start("C:\Program Files\Opera\launcher.exe", "file:///" + filesOpened(id).Replace(" ", "%20"))
+                System.Diagnostics.Process.Start(ApplicationSettings.opera, "file:///" + filesOpened(id).Replace(" ", "%20"))
             Catch
                 Dim td As New TaskDialog
                 td.CommonButtons = TaskDialogCommonButton.OK
@@ -1359,7 +1440,6 @@ Public Class Form1
         Me.Invoke(New highlightDelegate(AddressOf RunCSSHighlight), New Object() {sender, e})
     End Sub
 
-
     Private Sub RunCSSHighlight(sender As Object, e As TextChangedEventArgs)
         e.ChangedRange.ClearStyle(greenStyle)
         e.ChangedRange.ClearStyle(orangeStyle)
@@ -1373,5 +1453,37 @@ Public Class Form1
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
         e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+    End Sub
+
+    Private Async Sub CloseTabShortcut(sender As Object, e As KeyEventArgs)
+        'If e.Control And e.KeyCode = Keys.W Then
+        '    Dim page As TabPage = CustomTabControl1.SelectedTab
+        '    Dim id As Integer = tabsInversed.Item(page)
+        '    If Not pagesSaved.Item(id) Then
+        '        Dim td As New TaskDialog
+        '        td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+        '        td.StandardIcon = TaskDialogIcon.ShieldWarning
+        '        td.WindowTitle = "PyXel"
+        '        td.MainInstruction = "Fichier non sauvegardé"
+        '        td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+        '        Dim res As DialogResult = td.ShowDialog().CommonButton
+        '        If res = DialogResult.Yes Then
+        '            Await SavePage(id)
+        '        ElseIf res = DialogResult.Cancel Then
+        '            Exit Sub
+        '        End If
+        '    End If
+        '    tabsInversed.Remove(tabs.Item(id))
+        '    tabs.Remove(id)
+        '    editorsInversed.Remove(editors.Item(id))
+        '    editors.Remove(id)
+        '    pagesSaved.Remove(id)
+        '    filesOpened.Remove(id)
+        '    displayNames.Remove(id)
+        '    firstLoad.Remove(id)
+        '    If CustomTabControl1.TabCount = 1 Then
+        '        openNewTab(Languages.Python)
+        '    End If
+        'End If
     End Sub
 End Class

@@ -3,29 +3,6 @@ Imports ComponentFactory.Krypton.Toolkit
 Imports MyAPKapp.VistaUIFramework.TaskDialog
 
 Public Class Settings
-    Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) Handles KryptonButton1.Click
-        Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers Executables|*.exe"
-        openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 2"
-        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            Dim fn As String = openFileDialog1.FileName
-            ApplicationSettings.python2 = fn
-            KryptonTextBox1.Text = fn
-        End If
-    End Sub
-
-    Private Sub KryptonButton2_Click(sender As Object, e As EventArgs) Handles KryptonButton2.Click
-        Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers Executables|*.exe"
-        openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 3"
-        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            Dim fn As String = openFileDialog1.FileName
-            ApplicationSettings.python3 = fn
-            KryptonTextBox2.Text = fn
-        End If
-    End Sub
-
-
 
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TextExtra = My.Settings.Version
@@ -243,5 +220,79 @@ Public Class Settings
     Private Sub KryptonRadioButton8_Click(sender As Object, e As EventArgs) Handles KryptonRadioButton8.Click
         ApplicationSettings.updateType = "Disabled"
     End Sub
+    Private Sub KryptonButton1_Click(sender As Object, e As EventArgs) Handles KryptonButton1.Click
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Executables|*.exe"
+        openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 2"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.FileName
+            ApplicationSettings.python2 = fn
+            KryptonTextBox1.Text = fn
+        End If
+    End Sub
 
+    Private Sub KryptonButton2_Click(sender As Object, e As EventArgs) Handles KryptonButton2.Click
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Executables|*.exe"
+        openFileDialog1.Title = "Sélectionnez l'emplacement de l'executable Python 3"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.FileName
+            ApplicationSettings.python3 = fn
+            KryptonTextBox2.Text = fn
+        End If
+    End Sub
+
+    Private Sub KryptonButton8_Click(sender As Object, e As EventArgs) Handles KryptonButton8.Click
+        Dim openFileDialog1 As New FolderBrowserDialog()
+        openFileDialog1.Description = "Emplacement par défaut de création des projets"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.SelectedPath
+            ApplicationSettings.projectsPath = fn
+            KryptonTextBox6.Text = fn
+        End If
+    End Sub
+
+    Private Sub KryptonButton3_Click(sender As Object, e As EventArgs) Handles KryptonButton3.Click
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Executables|*.exe"
+        openFileDialog1.Title = "Sélectionnez l'emplacement de Mozilla Firefox"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.FileName
+            ApplicationSettings.firefox = fn
+            KryptonTextBox3.Text = fn
+        End If
+    End Sub
+
+    Private Sub KryptonButton6_Click(sender As Object, e As EventArgs) Handles KryptonButton6.Click
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Executables|*.exe"
+        openFileDialog1.Title = "Sélectionnez l'emplacement de Chrome"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.FileName
+            ApplicationSettings.chrome = fn
+            KryptonTextBox4.Text = fn
+        End If
+    End Sub
+
+    Private Sub KryptonButton7_Click(sender As Object, e As EventArgs) Handles KryptonButton7.Click
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Executables|*.exe"
+        openFileDialog1.Title = "Sélectionnez l'emplacement d'Opera"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.FileName
+            ApplicationSettings.opera = fn
+            KryptonTextBox5.Text = fn
+        End If
+    End Sub
+
+    Private Sub KryptonButton9_Click(sender As Object, e As EventArgs) Handles KryptonButton9.Click
+        Dim openFileDialog1 As New OpenFileDialog()
+        openFileDialog1.Filter = "Fichiers Executables|*.exe"
+        openFileDialog1.Title = "Sélectionnez l'emplacement du compilateur GCC"
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim fn As String = openFileDialog1.FileName
+            ApplicationSettings.gcc = fn
+            KryptonTextBox7.Text = fn
+        End If
+    End Sub
 End Class

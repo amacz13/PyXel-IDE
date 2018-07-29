@@ -347,6 +347,8 @@
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <Content Include="Pyxel Icon.ico" />
+    <None Include="Resources\add-folder.png" />
+    <None Include="Resources\add-file.png" />
     <None Include="Resources\keyword.png" />
     <None Include="Resources\function.png" />
     <None Include="Resources\snippet.png" />

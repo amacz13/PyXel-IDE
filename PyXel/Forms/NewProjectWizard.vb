@@ -1,4 +1,6 @@
-﻿Imports System.Xml
+﻿Imports System.Threading
+Imports System.Xml
+Imports MyAPKapp.VistaUIFramework.TaskDialog
 
 Public Class NewProjectWizard
     Private Sub NewProjectWizard_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -13,6 +15,7 @@ Public Class NewProjectWizard
 
     Private Sub KryptonButton3_Click(sender As Object, e As EventArgs) Handles KryptonButton3.Click
         Dim fd As New SaveFileDialog
+        fd.InitialDirectory = ApplicationSettings.projectsPath
         fd.Title = "Emplacement de création du projet"
         fd.Filter = "Projet PyXel|*.pxl"
         If fd.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -46,7 +49,25 @@ Public Class NewProjectWizard
         Catch ex As Exception
             MsgBox("Une erreur est survenue lors de la création du projet." + vbNewLine + "Vérifiez que l'emplacement est accessible en écriture", MsgBoxStyle.Critical, "PyXel")
         End Try
+        'Dim th As New Thread(AddressOf Project.OpenProject)
+        'th.Start(KryptonTextBox2.Text)
+        'Dim td As New TaskDialog
+        'Dim th2 As New Thread(AddressOf ShowLoadingDialog)
+        'th2.Start(td)
+        'While th.IsAlive
+        'End While
+        'td.PerformClick(TaskDialogCommonButton.Cancel)
         Project.OpenProject(KryptonTextBox2.Text)
         Me.Close()
+    End Sub
+
+    Private Sub ShowLoadingDialog(td As TaskDialog)
+        td.CommonButtons = TaskDialogCommonButton.Cancel
+        td.StandardIcon = TaskDialogIcon.ShieldHeader
+        td.WindowTitle = "PyXel"
+        td.MainInstruction = "Chargement du projet en cours..."
+        td.UseProgressBar = True
+        td.ProgressMarquee = True
+        td.ShowDialog()
     End Sub
 End Class
