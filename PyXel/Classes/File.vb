@@ -7,11 +7,11 @@ Public Class PyxelFile
     Private isCreated As Boolean
     Private filePath As String
     Private displayName As String
-    Private language As Form1.Languages
+    Private language As MainForm.Languages
     Private tab As KryptonPage
     Private editor As FastColoredTextBox
 
-    Public Sub New(isSaved As Boolean, isCreated As Boolean, filePath As String, displayName As String, language As Form1.Languages, tab As KryptonPage, editor As FastColoredTextBox)
+    Public Sub New(isSaved As Boolean, isCreated As Boolean, filePath As String, displayName As String, language As MainForm.Languages, tab As KryptonPage, editor As FastColoredTextBox)
         Me.isSaved = isSaved
         Me.isCreated = isCreated
         Me.filePath = filePath

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class MainForm
     Inherits ComponentFactory.Krypton.Toolkit.KryptonForm
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.KryptonRibbon1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbon()
         Me.ButtonSpecAny1 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
         Me.ButtonSpecAny2 = New ComponentFactory.Krypton.Toolkit.ButtonSpecAny()
@@ -71,6 +71,9 @@ Partial Class Form1
         Me.KryptonRibbonContext4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
         Me.KryptonRibbonContext5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
         Me.KryptonRibbonContext6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
+        Me.KryptonRibbonContext1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
+        Me.KryptonRibbonContext2 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
+        Me.KryptonRibbonContext7 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
         Me.KryptonRibbonContext3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
         Me.KryptonRibbonTab1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.KryptonRibbonGroup4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
@@ -138,6 +141,30 @@ Partial Class Form1
         Me.KryptonRibbonGroupButton5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         Me.KryptonRibbonGroupButton15 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         Me.KryptonRibbonTab5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
+        Me.KryptonRibbonGroup10 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
+        Me.KryptonRibbonGroupTriple13 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
+        Me.KryptonRibbonGroupButton31 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton32 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton33 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupLines1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLines()
+        Me.KryptonRibbonGroupLabel1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLabel()
+        Me.KryptonRibbonGroupComboBox1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupComboBox()
+        Me.KryptonRibbonTab6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
+        Me.KryptonRibbonTab9 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
+        Me.KryptonRibbonGroup11 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup()
+        Me.KryptonRibbonGroupTriple14 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
+        Me.KryptonRibbonGroupButton37 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton38 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton39 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupTriple15 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
+        Me.KryptonRibbonGroupButton34 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton35 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton36 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupTriple16 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple()
+        Me.KryptonRibbonGroupButton40 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton41 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton42 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonTab10 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.KryptonDockingManager1 = New ComponentFactory.Krypton.Docking.KryptonDockingManager()
@@ -160,6 +187,8 @@ Partial Class Form1
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KryptonRibbonContext8 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext()
+        Me.KryptonRibbonTab11 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
@@ -199,7 +228,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem18, Me.KryptonContextMenuItem19, Me.KryptonContextMenuItem20, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonSpecs.AddRange(New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu() {Me.ButtonSpecAppMenu1, Me.ButtonSpecAppMenu2})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonText = "Fichier"
-        Me.KryptonRibbon1.RibbonContexts.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext() {Me.KryptonRibbonContext4, Me.KryptonRibbonContext5, Me.KryptonRibbonContext6, Me.KryptonRibbonContext3})
+        Me.KryptonRibbon1.RibbonContexts.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext() {Me.KryptonRibbonContext4, Me.KryptonRibbonContext5, Me.KryptonRibbonContext6, Me.KryptonRibbonContext1, Me.KryptonRibbonContext2, Me.KryptonRibbonContext7, Me.KryptonRibbonContext8, Me.KryptonRibbonContext3})
         Me.KryptonRibbon1.RibbonStrings.CustomizeQuickAccessToolbar = "Personnalisez les raccourics"
         Me.KryptonRibbon1.RibbonStrings.Minimize = "Réduire le ruban"
         Me.KryptonRibbon1.RibbonStrings.MoreColors = "&Plus de couleurs..."
@@ -210,7 +239,7 @@ Partial Class Form1
         Me.KryptonRibbon1.RibbonStrings.ShowBelowRibbon = "&Afficher en dessous du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
-        Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5})
+        Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6, Me.KryptonRibbonTab9, Me.KryptonRibbonTab10, Me.KryptonRibbonTab11})
         Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
@@ -435,6 +464,21 @@ Partial Class Form1
         '
         Me.KryptonRibbonContext6.ContextName = "C"
         Me.KryptonRibbonContext6.ContextTitle = "C & C++"
+        '
+        'KryptonRibbonContext1
+        '
+        Me.KryptonRibbonContext1.ContextName = "DotNet"
+        Me.KryptonRibbonContext1.ContextTitle = ".Net"
+        '
+        'KryptonRibbonContext2
+        '
+        Me.KryptonRibbonContext2.ContextName = "Lua"
+        Me.KryptonRibbonContext2.ContextTitle = "Lua"
+        '
+        'KryptonRibbonContext7
+        '
+        Me.KryptonRibbonContext7.ContextName = "Markdown"
+        Me.KryptonRibbonContext7.ContextTitle = "Markdown"
         '
         'KryptonRibbonContext3
         '
@@ -774,7 +818,138 @@ Partial Class Form1
         'KryptonRibbonTab5
         '
         Me.KryptonRibbonTab5.ContextName = "Projet"
+        Me.KryptonRibbonTab5.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup10})
         Me.KryptonRibbonTab5.Text = "Versionning"
+        '
+        'KryptonRibbonGroup10
+        '
+        Me.KryptonRibbonGroup10.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple13, Me.KryptonRibbonGroupLines1})
+        Me.KryptonRibbonGroup10.TextLine1 = "Dépôts"
+        '
+        'KryptonRibbonGroupTriple13
+        '
+        Me.KryptonRibbonGroupTriple13.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton31, Me.KryptonRibbonGroupButton32, Me.KryptonRibbonGroupButton33})
+        '
+        'KryptonRibbonGroupButton31
+        '
+        Me.KryptonRibbonGroupButton31.ImageLarge = Global.PyXel.My.Resources.Resources.github
+        Me.KryptonRibbonGroupButton31.ImageSmall = Global.PyXel.My.Resources.Resources.github
+        Me.KryptonRibbonGroupButton31.TextLine1 = "Connexion à"
+        Me.KryptonRibbonGroupButton31.TextLine2 = "GitHub"
+        '
+        'KryptonRibbonGroupButton32
+        '
+        Me.KryptonRibbonGroupButton32.ImageLarge = Global.PyXel.My.Resources.Resources.gitlab
+        Me.KryptonRibbonGroupButton32.ImageSmall = Global.PyXel.My.Resources.Resources.gitlab
+        Me.KryptonRibbonGroupButton32.TextLine1 = "Connexion à"
+        Me.KryptonRibbonGroupButton32.TextLine2 = "GitLab"
+        '
+        'KryptonRibbonGroupButton33
+        '
+        Me.KryptonRibbonGroupButton33.ImageLarge = Global.PyXel.My.Resources.Resources.vsts
+        Me.KryptonRibbonGroupButton33.ImageSmall = Global.PyXel.My.Resources.Resources.vsts
+        Me.KryptonRibbonGroupButton33.TextLine1 = "Connexion à"
+        Me.KryptonRibbonGroupButton33.TextLine2 = "VSTS"
+        '
+        'KryptonRibbonGroupLines1
+        '
+        Me.KryptonRibbonGroupLines1.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupLabel1, Me.KryptonRibbonGroupComboBox1})
+        '
+        'KryptonRibbonGroupLabel1
+        '
+        Me.KryptonRibbonGroupLabel1.TextLine1 = "Référentiel utilisé :"
+        '
+        'KryptonRibbonGroupComboBox1
+        '
+        Me.KryptonRibbonGroupComboBox1.DropDownWidth = 121
+        Me.KryptonRibbonGroupComboBox1.FormattingEnabled = False
+        Me.KryptonRibbonGroupComboBox1.ItemHeight = 15
+        Me.KryptonRibbonGroupComboBox1.Text = "Aucun dépôt connecté"
+        '
+        'KryptonRibbonTab6
+        '
+        Me.KryptonRibbonTab6.ContextName = "DotNet"
+        Me.KryptonRibbonTab6.Text = "Outils .Net"
+        '
+        'KryptonRibbonTab9
+        '
+        Me.KryptonRibbonTab9.ContextName = "Markdown"
+        Me.KryptonRibbonTab9.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup11})
+        Me.KryptonRibbonTab9.Text = "Outils Markdown"
+        '
+        'KryptonRibbonGroup11
+        '
+        Me.KryptonRibbonGroup11.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple14, Me.KryptonRibbonGroupTriple15, Me.KryptonRibbonGroupTriple16})
+        Me.KryptonRibbonGroup11.TextLine1 = "Formattage"
+        '
+        'KryptonRibbonGroupTriple14
+        '
+        Me.KryptonRibbonGroupTriple14.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton37, Me.KryptonRibbonGroupButton38, Me.KryptonRibbonGroupButton39})
+        Me.KryptonRibbonGroupTriple14.MinimumSize = ComponentFactory.Krypton.Ribbon.GroupItemSize.Large
+        '
+        'KryptonRibbonGroupButton37
+        '
+        Me.KryptonRibbonGroupButton37.ImageLarge = Global.PyXel.My.Resources.Resources.bold
+        Me.KryptonRibbonGroupButton37.ImageSmall = Global.PyXel.My.Resources.Resources.bold
+        Me.KryptonRibbonGroupButton37.TextLine1 = "Gras"
+        '
+        'KryptonRibbonGroupButton38
+        '
+        Me.KryptonRibbonGroupButton38.ImageLarge = Global.PyXel.My.Resources.Resources.italic
+        Me.KryptonRibbonGroupButton38.ImageSmall = Global.PyXel.My.Resources.Resources.italic
+        Me.KryptonRibbonGroupButton38.TextLine1 = "Italique"
+        '
+        'KryptonRibbonGroupButton39
+        '
+        Me.KryptonRibbonGroupButton39.ImageLarge = Global.PyXel.My.Resources.Resources.underline
+        Me.KryptonRibbonGroupButton39.ImageSmall = Global.PyXel.My.Resources.Resources.underline
+        Me.KryptonRibbonGroupButton39.TextLine1 = "Souligné"
+        '
+        'KryptonRibbonGroupTriple15
+        '
+        Me.KryptonRibbonGroupTriple15.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton34, Me.KryptonRibbonGroupButton35, Me.KryptonRibbonGroupButton36})
+        '
+        'KryptonRibbonGroupButton34
+        '
+        Me.KryptonRibbonGroupButton34.ImageLarge = Global.PyXel.My.Resources.Resources.list
+        Me.KryptonRibbonGroupButton34.ImageSmall = Global.PyXel.My.Resources.Resources.list
+        Me.KryptonRibbonGroupButton34.TextLine1 = "Liste"
+        Me.KryptonRibbonGroupButton34.TextLine2 = "à puces"
+        '
+        'KryptonRibbonGroupButton35
+        '
+        Me.KryptonRibbonGroupButton35.ImageLarge = Global.PyXel.My.Resources.Resources.list_nb
+        Me.KryptonRibbonGroupButton35.ImageSmall = Global.PyXel.My.Resources.Resources.list_nb
+        Me.KryptonRibbonGroupButton35.TextLine1 = "Liste"
+        Me.KryptonRibbonGroupButton35.TextLine2 = "numérotée"
+        '
+        'KryptonRibbonGroupButton36
+        '
+        Me.KryptonRibbonGroupButton36.ImageLarge = Global.PyXel.My.Resources.Resources.link
+        Me.KryptonRibbonGroupButton36.ImageSmall = Global.PyXel.My.Resources.Resources.link
+        Me.KryptonRibbonGroupButton36.TextLine1 = "Lien"
+        '
+        'KryptonRibbonGroupTriple16
+        '
+        Me.KryptonRibbonGroupTriple16.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton40, Me.KryptonRibbonGroupButton41, Me.KryptonRibbonGroupButton42})
+        '
+        'KryptonRibbonGroupButton40
+        '
+        Me.KryptonRibbonGroupButton40.ImageLarge = Global.PyXel.My.Resources.Resources.picture
+        Me.KryptonRibbonGroupButton40.ImageSmall = Global.PyXel.My.Resources.Resources.picture
+        Me.KryptonRibbonGroupButton40.TextLine1 = "Image"
+        '
+        'KryptonRibbonGroupButton41
+        '
+        Me.KryptonRibbonGroupButton41.ImageLarge = Global.PyXel.My.Resources.Resources.checkbox
+        Me.KryptonRibbonGroupButton41.ImageSmall = Global.PyXel.My.Resources.Resources.checkbox
+        Me.KryptonRibbonGroupButton41.TextLine1 = "Case"
+        Me.KryptonRibbonGroupButton41.TextLine2 = "à cocher"
+        '
+        'KryptonRibbonTab10
+        '
+        Me.KryptonRibbonTab10.ContextName = "Lua"
+        Me.KryptonRibbonTab10.Text = "Outils Lua"
         '
         'OpenFileDialog1
         '
@@ -971,7 +1146,17 @@ Partial Class Form1
         Me.ToolStripMenuItem6.Size = New System.Drawing.Size(116, 22)
         Me.ToolStripMenuItem6.Text = "Revenir"
         '
-        'Form1
+        'KryptonRibbonContext8
+        '
+        Me.KryptonRibbonContext8.ContextName = "PHP"
+        Me.KryptonRibbonContext8.ContextTitle = "PHP"
+        '
+        'KryptonRibbonTab11
+        '
+        Me.KryptonRibbonTab11.ContextName = "PHP"
+        Me.KryptonRibbonTab11.Text = "Outils PHP"
+        '
+        'MainForm
         '
         Me.AllowButtonSpecToolTips = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -980,7 +1165,7 @@ Partial Class Form1
         Me.Controls.Add(Me.KryptonPanel1)
         Me.Controls.Add(Me.KryptonRibbon1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form1"
+        Me.Name = "MainForm"
         Me.Palette = Me.KryptonPalette1
         Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1150,4 +1335,33 @@ Partial Class Form1
     Friend WithEvents KryptonRibbonGroupButton5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonGroupButton15 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Private WithEvents KryptonPalette1 As ComponentFactory.Krypton.Toolkit.KryptonPalette
+    Friend WithEvents KryptonRibbonGroup10 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup
+    Friend WithEvents KryptonRibbonGroupTriple13 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
+    Friend WithEvents KryptonRibbonGroupButton31 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton32 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton33 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonContext1 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
+    Friend WithEvents KryptonRibbonContext2 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
+    Friend WithEvents KryptonRibbonContext7 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
+    Friend WithEvents KryptonRibbonGroupLines1 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLines
+    Friend WithEvents KryptonRibbonGroupLabel1 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLabel
+    Friend WithEvents KryptonRibbonGroupComboBox1 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupComboBox
+    Friend WithEvents KryptonRibbonTab6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
+    Friend WithEvents KryptonRibbonTab9 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
+    Friend WithEvents KryptonRibbonGroup11 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup
+    Friend WithEvents KryptonRibbonTab10 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
+    Friend WithEvents KryptonRibbonGroupTriple14 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
+    Friend WithEvents KryptonRibbonGroupButton37 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton38 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton39 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupTriple15 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
+    Friend WithEvents KryptonRibbonGroupButton34 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton35 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton36 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupTriple16 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple
+    Friend WithEvents KryptonRibbonGroupButton40 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton41 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton42 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonContext8 As ComponentFactory.Krypton.Ribbon.KryptonRibbonContext
+    Friend WithEvents KryptonRibbonTab11 As ComponentFactory.Krypton.Ribbon.KryptonRibbonTab
 End Class

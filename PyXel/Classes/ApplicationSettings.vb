@@ -40,6 +40,10 @@ Public Class ApplicationSettings
     'C Compilers Path
     Public Shared gcc As String = ""
 
+    'DocumentMap Width
+
+    Public Shared splitterDistance As Integer = 700
+
     Public Shared Sub createConfig()
         If File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml") Then
             File.Delete(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\config.xml")
@@ -61,6 +65,9 @@ Public Class ApplicationSettings
         writer.WriteEndElement()
         writer.WriteStartElement("UpdateCanal")
         writer.WriteString(updateCanal)
+        writer.WriteEndElement()
+        writer.WriteStartElement("DocumentMapWidth")
+        writer.WriteString(splitterDistance)
         writer.WriteEndElement()
         writer.WriteStartElement("Theme")
         Select Case theme
@@ -138,6 +145,7 @@ Public Class ApplicationSettings
                 ApplicationSettings.lang = node.SelectSingleNode("Language").InnerText
                 ApplicationSettings.updateType = node.SelectSingleNode("UpdateType").InnerText
                 ApplicationSettings.updateCanal = node.SelectSingleNode("UpdateCanal").InnerText
+                ApplicationSettings.splitterDistance = node.SelectSingleNode("DocumentMapWidth").InnerText
                 Dim theme As String = node.SelectSingleNode("Theme").InnerText
                 Select Case theme
                     Case "Modern"
@@ -222,6 +230,10 @@ Public Class ApplicationSettings
             End Try
             Try
                 ApplicationSettings.updateCanal = node.SelectSingleNode("UpdateCanal").InnerText
+            Catch
+            End Try
+            Try
+                ApplicationSettings.splitterDistance = node.SelectSingleNode("DocumentMapWidth").InnerText
             Catch
             End Try
             Dim theme As String = node.SelectSingleNode("Theme").InnerText

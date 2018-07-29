@@ -26,14 +26,14 @@ Public Class Project
         Dim dir As String = Path.GetDirectoryName(filePath)
         Dim project As New Project(filePath, projectName, dir)
 
-        Dim ProjectNode As TreeNode = Form1.KryptonTreeView1.Nodes.Add(projectName)
+        Dim ProjectNode As TreeNode = MainForm.KryptonTreeView1.Nodes.Add(projectName)
         ProjectNode.ImageKey = "project"
         ProjectNode.SelectedImageKey = "project"
         ProjectNode.StateImageKey = "project"
         project.projectNode = ProjectNode
         LoadDirectory(dir, project)
-        Form1.KryptonSplitContainer2.Panel1Collapsed = False
-        Form1.KryptonRibbon1.SelectedContext += ",Projet"
+        MainForm.KryptonSplitContainer2.Panel1Collapsed = False
+        MainForm.KryptonRibbon1.SelectedContext += ",Projet"
         Return project
     End Function
 

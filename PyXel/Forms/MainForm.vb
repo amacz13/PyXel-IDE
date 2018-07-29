@@ -7,7 +7,7 @@ Imports ComponentFactory.Krypton.Toolkit
 Imports FastColoredTextBoxNS
 Imports MyAPKapp.VistaUIFramework.TaskDialog
 
-Public Class Form1
+Public Class MainForm
 
     Enum Languages
         Python
@@ -58,7 +58,6 @@ Public Class Form1
     Dim filesOpened As New Dictionary(Of Integer, String)
     Dim displayNames As New Dictionary(Of Integer, String)
     Dim menus As New Dictionary(Of Integer, AutocompleteMenu)
-
 
     'Utilities Sub
 
@@ -140,12 +139,13 @@ Public Class Form1
                 newPage.Text = System.IO.Path.GetFileName(fileName)
                 Dim ext As String = System.IO.Path.GetExtension(fileName)
                 'MsgBox(ext)
-                Dim spliter As New KryptonSplitContainer
-                spliter.Dock = DockStyle.Fill
+                Dim splitter As New KryptonSplitContainer
+                splitter.Dock = DockStyle.Fill
+                AddHandler splitter.SplitterMoved, AddressOf SplitterMoved
                 Dim editor As New FastColoredTextBox
                 Dim map As New DocumentMap
                 map.Target = editor
-                spliter.SplitterDistance = 700
+                splitter.SplitterDistance = ApplicationSettings.splitterDistance
                 Dim lang As Languages
                 Select Case ext
                     Case ".pxl"
@@ -189,9 +189,9 @@ Public Class Form1
                 editorsInversed.Add(editor, pages)
                 CustomTabControl1.TabPages.Add(newPage)
                 CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-                spliter.Panel1.Controls.Add(editor)
-                spliter.Panel2.Controls.Add(map)
-                newPage.Controls.Add(spliter)
+                splitter.Panel1.Controls.Add(editor)
+                splitter.Panel2.Controls.Add(map)
+                newPage.Controls.Add(splitter)
                 Dim menu As New AutocompleteMenu(editor)
                 AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
                 menus.Add(pages, menu)
@@ -204,7 +204,6 @@ Public Class Form1
             Next
         End If
     End Sub
-
     Private Sub OpenFile(fileName As String)
         If Not File.Exists(fileName) Then
             Dim td As New TaskDialog
@@ -223,12 +222,13 @@ Public Class Form1
         newPage.Text = System.IO.Path.GetFileName(fileName)
         Dim ext As String = System.IO.Path.GetExtension(fileName)
         'MsgBox(ext)
-        Dim spliter As New KryptonSplitContainer
-        spliter.Dock = DockStyle.Fill
+        Dim splitter As New KryptonSplitContainer
+        splitter.Dock = DockStyle.Fill
+        AddHandler splitter.SplitterMoved, AddressOf SplitterMoved
         Dim editor As New FastColoredTextBox
         Dim map As New DocumentMap
         map.Target = editor
-        spliter.SplitterDistance = 700
+        splitter.SplitterDistance = ApplicationSettings.splitterDistance
         Dim lang As Languages
         Select Case ext
             Case ".py"
@@ -269,9 +269,9 @@ Public Class Form1
         editorsInversed.Add(editor, pages)
         CustomTabControl1.TabPages.Add(newPage)
         CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        spliter.Panel1.Controls.Add(editor)
-        spliter.Panel2.Controls.Add(map)
-        newPage.Controls.Add(spliter)
+        splitter.Panel1.Controls.Add(editor)
+        splitter.Panel2.Controls.Add(map)
+        newPage.Controls.Add(splitter)
         Dim menu As New AutocompleteMenu(editor)
         AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
         menus.Add(pages, menu)
@@ -284,12 +284,13 @@ Public Class Form1
     End Sub
 
     Private Sub openNewTab(lang As Languages)
-        Dim spliter As New KryptonSplitContainer
-        spliter.Dock = DockStyle.Fill
+        Dim splitter As New KryptonSplitContainer
+        splitter.Dock = DockStyle.Fill
+        AddHandler splitter.SplitterMoved, AddressOf SplitterMoved
         Dim editor As New FastColoredTextBox
         Dim map As New DocumentMap
         map.Target = editor
-        spliter.SplitterDistance = 700
+        splitter.SplitterDistance = ApplicationSettings.splitterDistance
         map.Dock = DockStyle.Fill
         editor.Dock = DockStyle.Fill
         Dim newPage As New TabPage
@@ -323,9 +324,9 @@ Public Class Form1
         editorsInversed.Add(editor, pages)
         CustomTabControl1.TabPages.Add(newPage)
         CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        spliter.Panel1.Controls.Add(editor)
-        spliter.Panel2.Controls.Add(map)
-        newPage.Controls.Add(spliter)
+        splitter.Panel1.Controls.Add(editor)
+        splitter.Panel2.Controls.Add(map)
+        newPage.Controls.Add(splitter)
         filesOpened.Add(pages, "Sans Nom")
         pagesSaved.Add(pages, True)
         displayNames.Add(pages, "Sans Nom")
@@ -493,12 +494,13 @@ Public Class Form1
         newPage.ImageIndex = 5
 
         'Editor configuration
-        Dim spliter As New KryptonSplitContainer
-        spliter.Dock = DockStyle.Fill
+        Dim splitter As New KryptonSplitContainer
+        splitter.Dock = DockStyle.Fill
+        AddHandler splitter.SplitterMoved, AddressOf SplitterMoved
         Dim editor As New FastColoredTextBox
         Dim map As New DocumentMap
         map.Target = editor
-        spliter.SplitterDistance = 700
+        splitter.SplitterDistance = ApplicationSettings.splitterDistance
         map.Dock = DockStyle.Fill
         editor.Dock = DockStyle.Fill
         configEditor(editor, Languages.Python)
@@ -514,9 +516,9 @@ Public Class Form1
         editorsInversed.Add(editor, pages)
         CustomTabControl1.TabPages.Add(newPage)
         CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        spliter.Panel1.Controls.Add(editor)
-        spliter.Panel2.Controls.Add(map)
-        newPage.Controls.Add(spliter)
+        splitter.Panel1.Controls.Add(editor)
+        splitter.Panel2.Controls.Add(map)
+        newPage.Controls.Add(splitter)
         pagesSaved.Add(pages, True)
         firstLoad.Add(pages, True)
 
@@ -558,19 +560,23 @@ Public Class Form1
             KryptonRibbonGroupButton14.Enabled = False
             KryptonRibbonGroupButton16.Enabled = False
             KryptonRibbonGroupButton17.Enabled = False
+            KryptonRibbonGroupButton14.ToolTipImage = My.Resources.warning24
             KryptonRibbonGroupButton14.ToolTipTitle = "Python 2 missing"
             KryptonRibbonGroupButton14.ToolTipBody = "Please install Python 2 and restart PyXel in order to execute your Pyhton 2 code. If Python 2 is already installed, you can configure its path in the settings."
             KryptonRibbonGroupButton16.ToolTipTitle = KryptonRibbonGroupButton14.ToolTipTitle
             KryptonRibbonGroupButton16.ToolTipBody = KryptonRibbonGroupButton14.ToolTipBody
+            KryptonRibbonGroupButton16.ToolTipImage = KryptonRibbonGroupButton14.ToolTipImage
         End If
         If Not File.Exists(ApplicationSettings.python3) Then
             KryptonRibbonGroupButton18.Enabled = False
             KryptonRibbonGroupButton19.Enabled = False
             KryptonRibbonGroupButton20.Enabled = False
+            KryptonRibbonGroupButton18.ToolTipImage = My.Resources.warning24
             KryptonRibbonGroupButton18.ToolTipTitle = "Python 3 missing"
             KryptonRibbonGroupButton18.ToolTipBody = "Please install Python 3 and restart PyXel in order to execute your Pyhton 3 code. If Python 3 is already installed, you can configure its path in the settings."
             KryptonRibbonGroupButton19.ToolTipTitle = KryptonRibbonGroupButton18.ToolTipTitle
             KryptonRibbonGroupButton19.ToolTipBody = KryptonRibbonGroupButton18.ToolTipBody
+            KryptonRibbonGroupButton19.ToolTipImage = KryptonRibbonGroupButton18.ToolTipImage
         End If
 
         'Detect Installed Compilers
@@ -578,25 +584,34 @@ Public Class Form1
             KryptonRibbonGroupButton25.Enabled = False
             KryptonRibbonGroupButton26.Enabled = False
             KryptonRibbonGroupButton27.Enabled = False
+            KryptonRibbonGroupButton25.ToolTipImage = My.Resources.warning24
             KryptonRibbonGroupButton25.ToolTipTitle = "GCC missing"
             KryptonRibbonGroupButton25.ToolTipBody = "Please install GCC and restart PyXel in order to compile your code. If GCC is already installed, you can configure its path in the settings."
-            KryptonRibbonGroupButton19.ToolTipTitle = KryptonRibbonGroupButton18.ToolTipTitle
-            KryptonRibbonGroupButton19.ToolTipBody = KryptonRibbonGroupButton18.ToolTipBody
+            KryptonRibbonGroupButton26.ToolTipTitle = KryptonRibbonGroupButton25.ToolTipTitle
+            KryptonRibbonGroupButton27.ToolTipTitle = KryptonRibbonGroupButton25.ToolTipTitle
+            KryptonRibbonGroupButton26.ToolTipBody = KryptonRibbonGroupButton25.ToolTipBody
+            KryptonRibbonGroupButton27.ToolTipBody = KryptonRibbonGroupButton25.ToolTipBody
+            KryptonRibbonGroupButton26.ToolTipImage = KryptonRibbonGroupButton25.ToolTipImage
+            KryptonRibbonGroupButton27.ToolTipImage = KryptonRibbonGroupButton25.ToolTipImage
+
         End If
 
         'Detect Installed Browsers
         If Not File.Exists(ApplicationSettings.firefox) Then
             KryptonRibbonGroupButton22.Enabled = False
+            KryptonRibbonGroupButton22.ToolTipImage = My.Resources.warning24
             KryptonRibbonGroupButton22.ToolTipTitle = "Mozilla Firefox missing"
             KryptonRibbonGroupButton22.ToolTipBody = "Please install Mozilla Firefox and restart PyXel in order to preview your file in Mozilla Firefox. If Mozilla Firefox is already installed, you can configure its path in the settings."
         End If
         If Not File.Exists(ApplicationSettings.chrome) Then
             KryptonRibbonGroupButton23.Enabled = False
+            KryptonRibbonGroupButton23.ToolTipImage = My.Resources.warning24
             KryptonRibbonGroupButton23.ToolTipTitle = "Google Chrome missing"
             KryptonRibbonGroupButton23.ToolTipBody = "Please install Google Chrome and restart PyXel in order to preview your file in Google Chrome. If Google Chrome is already installed, you can configure its path in the settings."
         End If
         If Not File.Exists(ApplicationSettings.opera) Then
             KryptonRibbonGroupButton24.Enabled = False
+            KryptonRibbonGroupButton24.ToolTipImage = My.Resources.warning24
             KryptonRibbonGroupButton24.ToolTipTitle = "Opera missing"
             KryptonRibbonGroupButton24.ToolTipBody = "Please install Opera and restart PyXel in order to preview your file in Opera. If Opera is already installed, you can configure its path in the settings."
         End If
@@ -736,7 +751,7 @@ Public Class Form1
             If Not pagesSaved.Item(id) Then
                 CustomTabControl1.SelectedTab = page
                 Dim td As New TaskDialog
-                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
                 td.MainInstruction = "Fichier non sauvegardé"
@@ -780,7 +795,7 @@ Public Class Form1
             If Not pagesSaved.Item(id) Then
                 CustomTabControl1.SelectedTab = page
                 Dim td As New TaskDialog
-                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
                 td.MainInstruction = "Fichier non sauvegardé"
@@ -819,14 +834,13 @@ Public Class Form1
             td.MainInstruction = "Exécutable Python introuvable"
             td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
             td.ShowDialog()
-            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             Dim page As TabPage = CustomTabControl1.SelectedTab
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
                 Dim td As New TaskDialog
-                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
                 td.MainInstruction = "Fichier non sauvegardé"
@@ -840,7 +854,7 @@ Public Class Form1
             End If
             If ConsoleControl1.IsProcessRunning Then
                 Dim td As New TaskDialog
-                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
                 td.MainInstruction = "Processus en cours"
@@ -876,14 +890,13 @@ Public Class Form1
             td.MainInstruction = "Exécutable Python introuvable"
             td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
             td.ShowDialog()
-            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             Dim page As TabPage = CustomTabControl1.SelectedTab
             Dim id As Integer = tabsInversed.Item(page)
             If Not pagesSaved.Item(id) Then
                 Dim td As New TaskDialog
-                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
                 td.MainInstruction = "Fichier non sauvegardé"
@@ -897,7 +910,7 @@ Public Class Form1
             End If
             If ConsoleControl1.IsProcessRunning Then
                 Dim td As New TaskDialog
-                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
                 td.MainInstruction = "Processus en cours"
@@ -933,7 +946,6 @@ Public Class Form1
             td.MainInstruction = "Exécutable Python introuvable"
             td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
             td.ShowDialog()
-            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             Try
@@ -961,7 +973,6 @@ Public Class Form1
             td.MainInstruction = "Exécutable Python introuvable"
             td.Content = "Veuillez configurer l'emplacement de l'exécutable Python avant de continuer."
             td.ShowDialog()
-            'MessageBox.Show("Veuillez configurer l'emplacement de l'exécutable Python", "Exécutable Python introuvable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Settings.ShowDialog()
         Else
             Try
@@ -1027,7 +1038,7 @@ Public Class Form1
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim td As New TaskDialog
-            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
             td.MainInstruction = "Fichier non sauvegardé"
@@ -1226,7 +1237,7 @@ Public Class Form1
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim td As New TaskDialog
-            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
             td.MainInstruction = "Fichier non sauvegardé"
@@ -1251,7 +1262,7 @@ Public Class Form1
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim td As New TaskDialog
-            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
             td.MainInstruction = "Fichier non sauvegardé"
@@ -1286,7 +1297,7 @@ Public Class Form1
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim td As New TaskDialog
-            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
             td.MainInstruction = "Fichier non sauvegardé"
@@ -1308,7 +1319,7 @@ Public Class Form1
         Dim id As Integer = tabsInversed.Item(page)
         If Not pagesSaved.Item(id) Then
             Dim td As New TaskDialog
-            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
             td.MainInstruction = "Fichier non sauvegardé"
@@ -1486,4 +1497,11 @@ Public Class Form1
         '    End If
         'End If
     End Sub
+
+    Private Sub SplitterMoved(sender As Object, e As SplitterEventArgs)
+        Dim spl As KryptonSplitContainer = sender
+        MsgBox(spl.SplitterDistance)
+        ApplicationSettings.splitterDistance = spl.SplitterDistance
+    End Sub
+
 End Class
