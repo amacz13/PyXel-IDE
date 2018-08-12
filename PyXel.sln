@@ -25,8 +25,8 @@ Global
 		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|x64.ActiveCfg = Release|Any CPU
 		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|x64.Build.0 = Release|Any CPU
-		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|x86.ActiveCfg = Release|Any CPU
-		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|x86.Build.0 = Release|Any CPU
+		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|x86.ActiveCfg = Release|x86
+		{A69B3A66-E67F-4780-88B0-7A1134421E98}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

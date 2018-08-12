@@ -1500,7 +1500,7 @@ Public Class MainForm
 
     Private Sub SplitterMoved(sender As Object, e As SplitterEventArgs)
         Dim spl As KryptonSplitContainer = sender
-        MsgBox(spl.SplitterDistance)
+        'MsgBox(spl.SplitterDistance)
         ApplicationSettings.splitterDistance = spl.SplitterDistance
     End Sub
 

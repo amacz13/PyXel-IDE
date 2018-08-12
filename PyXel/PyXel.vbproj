@@ -197,6 +197,7 @@
     <Compile Include="Classes\AutoCompleteTools.vb" />
     <Compile Include="Classes\File.vb" />
     <Compile Include="Classes\Project.vb" />
+    <Compile Include="Classes\PyXelTranslations.vb" />
     <Compile Include="Forms\About.Designer.vb">
       <DependentUpon>About.vb</DependentUpon>
     </Compile>
