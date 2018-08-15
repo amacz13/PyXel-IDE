@@ -73,7 +73,7 @@ Partial Class About
         Me.KryptonHeader1.Size = New System.Drawing.Size(501, 31)
         Me.KryptonHeader1.TabIndex = 0
         Me.KryptonHeader1.Values.Description = ""
-        Me.KryptonHeader1.Values.Heading = "Licence"
+        Me.KryptonHeader1.Values.Heading = PyXelTranslations.strings.Item("license")
         Me.KryptonHeader1.Values.Image = Nothing
         '
         'Label1
@@ -102,7 +102,7 @@ Partial Class About
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "A propos de PyXel IDE"
+        Me.Text = PyXelTranslations.strings.Item("about_pyxel")
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -89,7 +89,7 @@ Partial Class NewProjectWizard
         Me.KryptonLabel3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel3.Size = New System.Drawing.Size(162, 37)
         Me.KryptonLabel3.TabIndex = 6
-        Me.KryptonLabel3.Values.Text = "Emplacement"
+        Me.KryptonLabel3.Values.Text = PyXelTranslations.strings.Item("location")
         '
         'KryptonTextBox1
         '
@@ -108,7 +108,7 @@ Partial Class NewProjectWizard
         Me.KryptonLabel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel2.Size = New System.Drawing.Size(176, 37)
         Me.KryptonLabel2.TabIndex = 4
-        Me.KryptonLabel2.Values.Text = "Nom du projet"
+        Me.KryptonLabel2.Values.Text = PyXelTranslations.strings.Item("project_name")
         '
         'KryptonLabel1
         '
@@ -119,7 +119,7 @@ Partial Class NewProjectWizard
         Me.KryptonLabel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel1.Size = New System.Drawing.Size(291, 55)
         Me.KryptonLabel1.TabIndex = 3
-        Me.KryptonLabel1.Values.Text = "Nouveau Projet"
+        Me.KryptonLabel1.Values.Text = PyXelTranslations.strings.Item("new_project")
         '
         'KryptonButton2
         '
@@ -129,7 +129,7 @@ Partial Class NewProjectWizard
         Me.KryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonButton2.Size = New System.Drawing.Size(166, 50)
         Me.KryptonButton2.TabIndex = 2
-        Me.KryptonButton2.Values.Text = "Annuler"
+        Me.KryptonButton2.Values.Text = PyXelTranslations.strings.Item("cancel")
         '
         'PictureBox1
         '
@@ -150,7 +150,7 @@ Partial Class NewProjectWizard
         Me.KryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonButton1.Size = New System.Drawing.Size(166, 50)
         Me.KryptonButton1.TabIndex = 0
-        Me.KryptonButton1.Values.Text = "Valider"
+        Me.KryptonButton1.Values.Text = PyXelTranslations.strings.Item("confirm")
         '
         'NewProjectWizard
         '
@@ -165,7 +165,7 @@ Partial Class NewProjectWizard
         Me.Palette = Me.KryptonPalette1
         Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.ShowIcon = False
-        Me.Text = "NewProjectWizard"
+        Me.Text = PyXelTranslations.strings.Item("new_project_wizard")
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel1.ResumeLayout(False)
         Me.KryptonPanel1.PerformLayout()

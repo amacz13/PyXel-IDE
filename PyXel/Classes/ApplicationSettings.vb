@@ -58,7 +58,7 @@ Public Class ApplicationSettings
         writer.WriteEndElement()
         writer.WriteStartElement("General")
         writer.WriteStartElement("Language")
-        writer.WriteString("French")
+        writer.WriteString(lang)
         writer.WriteEndElement()
         writer.WriteStartElement("UpdateType")
         writer.WriteString(updateType)

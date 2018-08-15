@@ -77,30 +77,24 @@ Public Class MainForm
     Public Async Function SavePage(id As Integer) As Task
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim lang As Languages = editorsLanguage.Item(editor)
-        If filesOpened.Item(id) = "Sans Nom" Then
+        If filesOpened.Item(id) = PyXelTranslations.strings.Item("untitled") Then
             Dim saveFileDialog As New SaveFileDialog
+            saveFileDialog.Title = PyXelTranslations.strings.Item("save_file")
             Select Case lang
                 Case Languages.Python
-                    saveFileDialog.Filter = "Fichiers Python|*.py"
-                    saveFileDialog.Title = "Enregistrer un fichier Python"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("python_file") + "|*.py"
                 Case Languages.HTML
-                    saveFileDialog.Filter = "Fichiers HTML|*.html"
-                    saveFileDialog.Title = "Enregistrer un fichier HTML"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("html_file") + "|*.html"
                 Case Languages.PHP
-                    saveFileDialog.Filter = "Fichiers PHP|*.php"
-                    saveFileDialog.Title = "Enregistrer un fichier PHP"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("php_file") + "|*.php"
                 Case Languages.JS
-                    saveFileDialog.Filter = "Fichiers JS|*.js"
-                    saveFileDialog.Title = "Enregistrer un fichier JS"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("js_file") + "|*.js"
                 Case Languages.CSS
-                    saveFileDialog.Filter = "Fichiers CSS|*.css"
-                    saveFileDialog.Title = "Enregistrer un fichier CSS"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("css_file") + "|*.css"
                 Case Languages.C
-                    saveFileDialog.Filter = "Fichiers C|*.c|Fichier Header|*.h"
-                    saveFileDialog.Title = "Enregistrer un fichier C"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("c_file") + "*.c|" + PyXelTranslations.strings.Item("h_file") + "|*.h"
                 Case Languages.CPP
-                    saveFileDialog.Filter = "Fichiers C++|*.cpp|Fichier Header|*.h"
-                    saveFileDialog.Title = "Enregistrer un fichier C++"
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("cpp_file") + "*.cpp|" + PyXelTranslations.strings.Item("h_file") + "|*.h"
 
             End Select
             If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -125,8 +119,8 @@ Public Class MainForm
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = "Fichiers supportés par PyXel|*.pxl;*.py;*.html;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h|Fichiers Python|*.py|Fichiers HTML|*.html|Fichiers PHP|*.php|Fichiers JS|*.js|Fichiers CSS|*.css|Fichiers C|*.c;*.h|Fichiers C++|*.cpp;*.h"
-        openFileDialog1.Title = "Ouvrir un fichier"
+        openFileDialog1.Filter = PyXelTranslations.strings.Item("pyxel_supported_files") + "|*.pxl;*.py;*.html;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h|" + PyXelTranslations.strings.Item("python_file") + "|*.py|" + PyXelTranslations.strings.Item("html_file") + "|*.html|" + PyXelTranslations.strings.Item("php_file") + "|*.php|" + PyXelTranslations.strings.Item("js_file") + "|*.js|" + PyXelTranslations.strings.Item("css_file") + "|*.css|" + PyXelTranslations.strings.Item("c_file") + "|*.c;*.h|" + PyXelTranslations.strings.Item("cpp_file") + "|*.cpp;*.h"
+        openFileDialog1.Title = PyXelTranslations.strings.Item("open_files")
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             For x = 0 To openFileDialog1.FileNames.Count - 1
@@ -210,8 +204,8 @@ Public Class MainForm
             td.CommonButtons = TaskDialogCommonButton.OK
             td.StandardIcon = TaskDialogIcon.ShieldError
             td.WindowTitle = "PyXel"
-            td.MainInstruction = "Fichier introuvable"
-            td.Content = "Impossible d'ouvrir le fichier suivant :" + vbNewLine + fileName
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_found")
+            td.Content = PyXelTranslations.strings.Item("cannot_find_file") + ":" + vbNewLine + fileName
             td.ShowDialog()
             Exit Sub
         End If
@@ -294,7 +288,7 @@ Public Class MainForm
         map.Dock = DockStyle.Fill
         editor.Dock = DockStyle.Fill
         Dim newPage As New TabPage
-        newPage.Text = "Sans Nom"
+        newPage.Text = PyXelTranslations.strings.Item("untitled")
         configEditor(editor, lang)
         Select Case lang
             Case Languages.Python
@@ -327,9 +321,9 @@ Public Class MainForm
         splitter.Panel1.Controls.Add(editor)
         splitter.Panel2.Controls.Add(map)
         newPage.Controls.Add(splitter)
-        filesOpened.Add(pages, "Sans Nom")
+        filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
         pagesSaved.Add(pages, True)
-        displayNames.Add(pages, "Sans Nom")
+        displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
         firstLoad.Add(pages, True)
     End Sub
 
@@ -442,8 +436,8 @@ Public Class MainForm
                     td.CommonButtons = TaskDialogCommonButton.OK
                     td.StandardIcon = TaskDialogIcon.ShieldRegular
                     td.WindowTitle = "PyXel"
-                    td.MainInstruction = "Mise à jour disponible"
-                    td.Content = "La version " + version + " de PyXel est disponible !"
+                    td.MainInstruction = PyXelTranslations.strings.Item("update_available")
+                    td.Content = PyXelTranslations.strings.Item("version") + version + PyXelTranslations.strings.Item("available") + " !"
                     'MsgBox("La version " + version + " de PyXel est disponible !", MsgBoxStyle.Information, "PyXel - Mise à jour disponible")
                 End If
             End If
@@ -490,7 +484,7 @@ Public Class MainForm
         KryptonPalette1.BasePaletteMode = ApplicationSettings.theme
 
         Dim newPage As New TabPage
-        newPage.Text = "Sans Nom"
+        newPage.Text = PyXelTranslations.strings.Item("untitled")
         newPage.ImageIndex = 5
 
         'Editor configuration
@@ -531,15 +525,15 @@ Public Class MainForm
                 editor.Text = sr.ReadToEnd
                 sr.Close()
             Catch
-                MessageBox.Show("Une erreur est survenue lors de l'ouverture du fichier", "PyXel - Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                filesOpened.Add(pages, "Sans Nom")
-                displayNames.Add(pages, "Sans Nom")
+                MessageBox.Show(PyXelTranslations.strings.Item("file_open_error"), "PyXel", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
+                displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
             End Try
 
         Else
             'No file launched the app, just adding a blank tab
-            filesOpened.Add(pages, "Sans Nom")
-            displayNames.Add(pages, "Sans Nom")
+            filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
+            displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
         End If
 
         'Interpreter Console Configuration
@@ -754,8 +748,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Fichier non sauvegardé"
-                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+                td.Content = PyXelTranslations.strings.Item("save_before_continue")
                 Dim res As DialogResult = td.ShowDialog().CommonButton
                 If res = DialogResult.Yes Then
                     Await SavePage(id)
@@ -798,8 +792,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Fichier non sauvegardé"
-                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+                td.Content = PyXelTranslations.strings.Item("save_before_continue")
                 Dim res As DialogResult = td.ShowDialog().CommonButton
                 If res = DialogResult.Yes Then
                     Await SavePage(id)
@@ -843,8 +837,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Fichier non sauvegardé"
-                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+                td.Content = PyXelTranslations.strings.Item("save_before_continue")
                 Dim res As DialogResult = td.ShowDialog().CommonButton
                 If res = DialogResult.Yes Then
                     Await SavePage(id)
@@ -857,8 +851,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Processus en cours"
-                td.Content = "Un processus est en cours d'exécution. Voulez-vous l'interrompre ?"
+                td.MainInstruction = PyXelTranslations.strings.Item("process_active")
+                td.Content = PyXelTranslations.strings.Item("interrupt_process")
                 Dim res As DialogResult = td.ShowDialog().CommonButton
                 If res = DialogResult.Yes Then
                     ConsoleControl1.StopProcess()
@@ -874,8 +868,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.OK
                 td.StandardIcon = TaskDialogIcon.ShieldError
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Erreur d'exécution"
-                td.Content = "Une erreur est survenue lors de l'exécution du programme."
+                td.MainInstruction = PyXelTranslations.strings.Item("execution_error")
+                td.Content = PyXelTranslations.strings.Item("execution_error_msg")
                 td.ShowDialog()
             End Try
         End If
@@ -899,8 +893,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Fichier non sauvegardé"
-                td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+                td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+                td.Content = PyXelTranslations.strings.Item("save_before_continue")
                 Dim res As DialogResult = td.ShowDialog().CommonButton
                 If res = DialogResult.Yes Then
                     Await SavePage(id)
@@ -913,8 +907,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
                 td.StandardIcon = TaskDialogIcon.ShieldWarning
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Processus en cours"
-                td.Content = "Un processus est en cours d'exécution. Voulez-vous l'interrompre ?"
+                td.MainInstruction = PyXelTranslations.strings.Item("process_active")
+                td.Content = PyXelTranslations.strings.Item("interrupt_process")
                 Dim res As DialogResult = td.ShowDialog().CommonButton
                 If res = DialogResult.Yes Then
                     ConsoleControl1.StopProcess()
@@ -930,8 +924,8 @@ Public Class MainForm
                 td.CommonButtons = TaskDialogCommonButton.OK
                 td.StandardIcon = TaskDialogIcon.ShieldError
                 td.WindowTitle = "PyXel"
-                td.MainInstruction = "Erreur d'exécution"
-                td.Content = "Une erreur est survenue lors de l'exécution du programme."
+                td.MainInstruction = PyXelTranslations.strings.Item("execution_error")
+                td.Content = PyXelTranslations.strings.Item("execution_error_msg")
                 td.ShowDialog()
             End Try
         End If
@@ -1041,8 +1035,8 @@ Public Class MainForm
             td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
-            td.MainInstruction = "Fichier non sauvegardé"
-            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+            td.Content = PyXelTranslations.strings.Item("save_before_continue")
             Dim res As DialogResult = td.ShowDialog().CommonButton
             If res = DialogResult.Yes Then
                 Await SavePage(id)
@@ -1121,8 +1115,8 @@ Public Class MainForm
         Dim id As Integer = tabsInversed.Item(CustomTabControl1.SelectedTab)
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim saveFileDialog As New SaveFileDialog
-        saveFileDialog.Filter = "Fichiers HTML|*.html"
-        saveFileDialog.Title = "Exporter en HTML"
+        saveFileDialog.Filter = PyXelTranslations.strings.Item("html_file") + "|*.html"
+        saveFileDialog.Title = PyXelTranslations.strings.Item("export_html")
         If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Dim fileName As String
             fileName = saveFileDialog.FileName
@@ -1240,8 +1234,8 @@ Public Class MainForm
             td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
-            td.MainInstruction = "Fichier non sauvegardé"
-            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+            td.Content = PyXelTranslations.strings.Item("save_before_continue")
             Dim res As DialogResult = td.ShowDialog().CommonButton
             If res = DialogResult.Yes Then
                 Await SavePage(id)
@@ -1265,8 +1259,8 @@ Public Class MainForm
             td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
-            td.MainInstruction = "Fichier non sauvegardé"
-            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+            td.Content = PyXelTranslations.strings.Item("save_before_continue")
             Dim res As DialogResult = td.ShowDialog().CommonButton
             If res = DialogResult.Yes Then
                 Await SavePage(id)
@@ -1300,8 +1294,8 @@ Public Class MainForm
             td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
-            td.MainInstruction = "Fichier non sauvegardé"
-            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+            td.Content = PyXelTranslations.strings.Item("save_before_continue")
             Dim res As DialogResult = td.ShowDialog().CommonButton
             If res = DialogResult.Yes Then
                 Await SavePage(id)
@@ -1322,8 +1316,8 @@ Public Class MainForm
             td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
             td.StandardIcon = TaskDialogIcon.ShieldWarning
             td.WindowTitle = "PyXel"
-            td.MainInstruction = "Fichier non sauvegardé"
-            td.Content = "Voulez-vous sauvegarder le fichier avant de continuer ?"
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+            td.Content = PyXelTranslations.strings.Item("save_before_continue")
             Dim res As DialogResult = td.ShowDialog().CommonButton
             If res = DialogResult.Yes Then
                 Await SavePage(id)
@@ -1504,4 +1498,75 @@ Public Class MainForm
         ApplicationSettings.splitterDistance = spl.SplitterDistance
     End Sub
 
+    Private Async Sub KryptonRibbonGroupButton25_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton25.Click
+        If Not File.Exists(ApplicationSettings.gcc) Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = "Compilateur GCC introuvable"
+            td.Content = "Veuillez configurer l'emplacement du Compilateur GCC avant de continuer."
+            td.ShowDialog()
+            Settings.ShowDialog()
+        Else
+            Dim page As TabPage = CustomTabControl1.SelectedTab
+            Dim id As Integer = tabsInversed.Item(page)
+            If Not pagesSaved.Item(id) Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+                td.Content = PyXelTranslations.strings.Item("save_before_continue")
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
+                    Await SavePage(id)
+                ElseIf res = DialogResult.Cancel Then
+                    Exit Sub
+                End If
+            End If
+            If ConsoleControl1.IsProcessRunning Then
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
+                td.StandardIcon = TaskDialogIcon.ShieldWarning
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = PyXelTranslations.strings.Item("process_active")
+                td.Content = PyXelTranslations.strings.Item("interrupt_process")
+                Dim res As DialogResult = td.ShowDialog().CommonButton
+                If res = DialogResult.Yes Then
+                    ConsoleControl1.StopProcess()
+                ElseIf res = DialogResult.Cancel Then
+                    Exit Sub
+                End If
+            End If
+            Threading.Thread.Sleep(500)
+            Try
+                ConsoleControl1.StartProcess(ApplicationSettings.gcc, filesOpened(id) + " -o " + filesOpened(id) + ".exe")
+            Catch
+                Dim td As New TaskDialog
+                td.CommonButtons = TaskDialogCommonButton.OK
+                td.StandardIcon = TaskDialogIcon.ShieldError
+                td.WindowTitle = "PyXel"
+                td.MainInstruction = PyXelTranslations.strings.Item("execution_error")
+                td.Content = PyXelTranslations.strings.Item("execution_error_msg")
+                td.ShowDialog()
+            End Try
+        End If
+    End Sub
+
+    Private Sub KryptonRibbonGroupButton26_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton26.Click
+        Try
+            Dim page As TabPage = CustomTabControl1.SelectedTab
+            Dim id As Integer = tabsInversed.Item(page)
+            ConsoleControl1.StartProcess(filesOpened(id) + ".exe", "")
+        Catch
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.OK
+            td.StandardIcon = TaskDialogIcon.ShieldError
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = PyXelTranslations.strings.Item("execution_error")
+            td.Content = PyXelTranslations.strings.Item("execution_error_msg")
+            td.ShowDialog()
+        End Try
+    End Sub
 End Class

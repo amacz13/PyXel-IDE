@@ -139,7 +139,7 @@ Partial Class Settings
         Me.KryptonPage1.MinimumSize = New System.Drawing.Size(50, 50)
         Me.KryptonPage1.Name = "KryptonPage1"
         Me.KryptonPage1.Size = New System.Drawing.Size(945, 432)
-        Me.KryptonPage1.Text = "Général"
+        Me.KryptonPage1.Text = PyXelTranslations.strings.Item("general")
         Me.KryptonPage1.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage1.UniqueName = "54201FA19EA54097D69B7DEE6263BA24"
         '
@@ -165,7 +165,7 @@ Partial Class Settings
         Me.KryptonRadioButton6.Name = "KryptonRadioButton6"
         Me.KryptonRadioButton6.Size = New System.Drawing.Size(42, 20)
         Me.KryptonRadioButton6.TabIndex = 9
-        Me.KryptonRadioButton6.Values.Text = "Oui"
+        Me.KryptonRadioButton6.Values.Text = PyXelTranslations.strings.Item("yes")
         '
         'KryptonRadioButton7
         '
@@ -174,7 +174,7 @@ Partial Class Settings
         Me.KryptonRadioButton7.Name = "KryptonRadioButton7"
         Me.KryptonRadioButton7.Size = New System.Drawing.Size(60, 20)
         Me.KryptonRadioButton7.TabIndex = 10
-        Me.KryptonRadioButton7.Values.Text = "Discret"
+        Me.KryptonRadioButton7.Values.Text = PyXelTranslations.strings.Item("discreet")
         '
         'KryptonRadioButton8
         '
@@ -183,7 +183,7 @@ Partial Class Settings
         Me.KryptonRadioButton8.Name = "KryptonRadioButton8"
         Me.KryptonRadioButton8.Size = New System.Drawing.Size(46, 20)
         Me.KryptonRadioButton8.TabIndex = 11
-        Me.KryptonRadioButton8.Values.Text = "Non"
+        Me.KryptonRadioButton8.Values.Text = PyXelTranslations.strings.Item("no")
         '
         'KryptonPalette1
         '
@@ -197,7 +197,7 @@ Partial Class Settings
         Me.KryptonLabel8.Name = "KryptonLabel8"
         Me.KryptonLabel8.Size = New System.Drawing.Size(161, 20)
         Me.KryptonLabel8.TabIndex = 8
-        Me.KryptonLabel8.Values.Text = "Recherche de mises à jour"
+        Me.KryptonLabel8.Values.Text = PyXelTranslations.strings.Item("update_research")
         '
         'KryptonRadioButton5
         '
@@ -206,7 +206,7 @@ Partial Class Settings
         Me.KryptonRadioButton5.Name = "KryptonRadioButton5"
         Me.KryptonRadioButton5.Size = New System.Drawing.Size(59, 20)
         Me.KryptonRadioButton5.TabIndex = 7
-        Me.KryptonRadioButton5.Values.Text = "Insider"
+        Me.KryptonRadioButton5.Values.Text = PyXelTranslations.strings.Item("insider")
         '
         'KryptonRadioButton4
         '
@@ -216,7 +216,7 @@ Partial Class Settings
         Me.KryptonRadioButton4.Name = "KryptonRadioButton4"
         Me.KryptonRadioButton4.Size = New System.Drawing.Size(56, 20)
         Me.KryptonRadioButton4.TabIndex = 6
-        Me.KryptonRadioButton4.Values.Text = "Stable"
+        Me.KryptonRadioButton4.Values.Text = PyXelTranslations.strings.Item("stable")
         '
         'KryptonLabel4
         '
@@ -226,7 +226,7 @@ Partial Class Settings
         Me.KryptonLabel4.Name = "KryptonLabel4"
         Me.KryptonLabel4.Size = New System.Drawing.Size(128, 20)
         Me.KryptonLabel4.TabIndex = 5
-        Me.KryptonLabel4.Values.Text = "Canal de Mise à jour"
+        Me.KryptonLabel4.Values.Text = PyXelTranslations.strings.Item("update_canal")
         '
         'KryptonComboBox1
         '
@@ -249,7 +249,7 @@ Partial Class Settings
         Me.KryptonLabel2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonLabel2.Size = New System.Drawing.Size(53, 20)
         Me.KryptonLabel2.TabIndex = 3
-        Me.KryptonLabel2.Values.Text = "Langue"
+        Me.KryptonLabel2.Values.Text = PyXelTranslations.strings.Item("language")
         '
         'KryptonPage2
         '
@@ -272,7 +272,7 @@ Partial Class Settings
         Me.KryptonPage2.MinimumSize = New System.Drawing.Size(50, 50)
         Me.KryptonPage2.Name = "KryptonPage2"
         Me.KryptonPage2.Size = New System.Drawing.Size(945, 432)
-        Me.KryptonPage2.Text = "Personnalisation"
+        Me.KryptonPage2.Text = PyXelTranslations.strings.Item("customize")
         Me.KryptonPage2.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage2.UniqueName = "1388149E86964C206FA093B3F59F40FA"
         '
@@ -284,7 +284,7 @@ Partial Class Settings
         Me.KryptonRadioButton9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonRadioButton9.Size = New System.Drawing.Size(66, 20)
         Me.KryptonRadioButton9.TabIndex = 13
-        Me.KryptonRadioButton9.Values.Text = "Modern"
+        Me.KryptonRadioButton9.Values.Text = PyXelTranslations.strings.Item("modern_theme")
         '
         'KryptonButton5
         '
@@ -294,7 +294,7 @@ Partial Class Settings
         Me.KryptonButton5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonButton5.Size = New System.Drawing.Size(142, 25)
         Me.KryptonButton5.TabIndex = 12
-        Me.KryptonButton5.Values.Text = "Plus de paramètres"
+        Me.KryptonButton5.Values.Text = PyXelTranslations.strings.Item("more_settings")
         '
         'KryptonButton4
         '
@@ -304,7 +304,7 @@ Partial Class Settings
         Me.KryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonButton4.Size = New System.Drawing.Size(142, 25)
         Me.KryptonButton4.TabIndex = 11
-        Me.KryptonButton4.Values.Text = "Plus de paramètres"
+        Me.KryptonButton4.Values.Text = PyXelTranslations.strings.Item("more_settings")
         '
         'KryptonColorButton3
         '
@@ -315,7 +315,7 @@ Partial Class Settings
         Me.KryptonColorButton3.Size = New System.Drawing.Size(185, 25)
         Me.KryptonColorButton3.Splitter = False
         Me.KryptonColorButton3.TabIndex = 10
-        Me.KryptonColorButton3.Values.Text = "Texte"
+        Me.KryptonColorButton3.Values.Text = PyXelTranslations.strings.Item("fore_color")
         '
         'KryptonColorButton4
         '
@@ -326,7 +326,7 @@ Partial Class Settings
         Me.KryptonColorButton4.Size = New System.Drawing.Size(185, 25)
         Me.KryptonColorButton4.Splitter = False
         Me.KryptonColorButton4.TabIndex = 9
-        Me.KryptonColorButton4.Values.Text = "Arrière Plan"
+        Me.KryptonColorButton4.Values.Text = PyXelTranslations.strings.Item("back_color")
         '
         'KryptonLabel7
         '
@@ -335,7 +335,7 @@ Partial Class Settings
         Me.KryptonLabel7.Name = "KryptonLabel7"
         Me.KryptonLabel7.Size = New System.Drawing.Size(81, 20)
         Me.KryptonLabel7.TabIndex = 8
-        Me.KryptonLabel7.Values.Text = "Interpréteur"
+        Me.KryptonLabel7.Values.Text = PyXelTranslations.strings.Item("interpreter")
         '
         'KryptonColorButton2
         '
@@ -346,7 +346,7 @@ Partial Class Settings
         Me.KryptonColorButton2.Size = New System.Drawing.Size(185, 25)
         Me.KryptonColorButton2.Splitter = False
         Me.KryptonColorButton2.TabIndex = 7
-        Me.KryptonColorButton2.Values.Text = "Texte"
+        Me.KryptonColorButton2.Values.Text = PyXelTranslations.strings.Item("fore_color")
         '
         'KryptonColorButton1
         '
@@ -357,7 +357,7 @@ Partial Class Settings
         Me.KryptonColorButton1.Size = New System.Drawing.Size(185, 25)
         Me.KryptonColorButton1.Splitter = False
         Me.KryptonColorButton1.TabIndex = 6
-        Me.KryptonColorButton1.Values.Text = "Arrière Plan"
+        Me.KryptonColorButton1.Values.Text = PyXelTranslations.strings.Item("back_color")
         '
         'KryptonLabel6
         '
@@ -366,7 +366,7 @@ Partial Class Settings
         Me.KryptonLabel6.Name = "KryptonLabel6"
         Me.KryptonLabel6.Size = New System.Drawing.Size(52, 20)
         Me.KryptonLabel6.TabIndex = 5
-        Me.KryptonLabel6.Values.Text = "Editeur"
+        Me.KryptonLabel6.Values.Text = PyXelTranslations.strings.Item("editor")
         '
         'KryptonLabel5
         '
@@ -375,7 +375,7 @@ Partial Class Settings
         Me.KryptonLabel5.Name = "KryptonLabel5"
         Me.KryptonLabel5.Size = New System.Drawing.Size(104, 20)
         Me.KryptonLabel5.TabIndex = 4
-        Me.KryptonLabel5.Values.Text = "Thème de PyXel"
+        Me.KryptonLabel5.Values.Text = PyXelTranslations.strings.Item("pyxel_theme")
         '
         'KryptonRadioButton3
         '
@@ -385,7 +385,7 @@ Partial Class Settings
         Me.KryptonRadioButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonRadioButton3.Size = New System.Drawing.Size(87, 20)
         Me.KryptonRadioButton3.TabIndex = 2
-        Me.KryptonRadioButton3.Values.Text = "Thème Noir"
+        Me.KryptonRadioButton3.Values.Text = PyXelTranslations.strings.Item("black_theme")
         '
         'KryptonRadioButton2
         '
@@ -395,7 +395,7 @@ Partial Class Settings
         Me.KryptonRadioButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonRadioButton2.Size = New System.Drawing.Size(100, 20)
         Me.KryptonRadioButton2.TabIndex = 1
-        Me.KryptonRadioButton2.Values.Text = "Thème Argent"
+        Me.KryptonRadioButton2.Values.Text = PyXelTranslations.strings.Item("silver_theme")
         '
         'KryptonRadioButton1
         '
@@ -405,7 +405,7 @@ Partial Class Settings
         Me.KryptonRadioButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonRadioButton1.Size = New System.Drawing.Size(86, 20)
         Me.KryptonRadioButton1.TabIndex = 0
-        Me.KryptonRadioButton1.Values.Text = "Thème Bleu"
+        Me.KryptonRadioButton1.Values.Text = PyXelTranslations.strings.Item("blue_theme")
         '
         'KryptonPage3
         '
@@ -419,7 +419,7 @@ Partial Class Settings
         Me.KryptonPage3.MinimumSize = New System.Drawing.Size(25, 26)
         Me.KryptonPage3.Name = "KryptonPage3"
         Me.KryptonPage3.Size = New System.Drawing.Size(945, 432)
-        Me.KryptonPage3.Text = "Projets"
+        Me.KryptonPage3.Text = PyXelTranslations.strings.Item("projects")
         Me.KryptonPage3.ToolTipTitle = "Page ToolTip"
         Me.KryptonPage3.UniqueName = "E20B0E02484F48EEF59672E5E22B045C"
         '
@@ -448,7 +448,7 @@ Partial Class Settings
         Me.KryptonLabel12.Name = "KryptonLabel12"
         Me.KryptonLabel12.Size = New System.Drawing.Size(174, 20)
         Me.KryptonLabel12.TabIndex = 12
-        Me.KryptonLabel12.Values.Text = "Espace de Travail par défaut"
+        Me.KryptonLabel12.Values.Text = PyXelTranslations.strings.Item("default_workspace")
         '
         'KryptonPage4
         '
@@ -494,7 +494,7 @@ Partial Class Settings
         Me.KryptonLabel3.Name = "KryptonLabel3"
         Me.KryptonLabel3.Size = New System.Drawing.Size(246, 20)
         Me.KryptonLabel3.TabIndex = 12
-        Me.KryptonLabel3.Values.Text = "Emplacement de l'exécutable Python 3.x"
+        Me.KryptonLabel3.Values.Text = PyXelTranslations.strings.Item("python3_exe_path")
         '
         'KryptonButton1
         '
@@ -521,7 +521,7 @@ Partial Class Settings
         Me.KryptonLabel1.Name = "KryptonLabel1"
         Me.KryptonLabel1.Size = New System.Drawing.Size(246, 20)
         Me.KryptonLabel1.TabIndex = 9
-        Me.KryptonLabel1.Values.Text = "Emplacement de l'exécutable Python 2.x"
+        Me.KryptonLabel1.Values.Text = PyXelTranslations.strings.Item("python2_exe_path")
         '
         'KryptonPage5
         '
@@ -570,7 +570,7 @@ Partial Class Settings
         Me.KryptonLabel11.Name = "KryptonLabel11"
         Me.KryptonLabel11.Size = New System.Drawing.Size(212, 20)
         Me.KryptonLabel11.TabIndex = 18
-        Me.KryptonLabel11.Values.Text = "Emplacement du navigateur Opera"
+        Me.KryptonLabel11.Values.Text = PyXelTranslations.strings.Item("opera_path")
         '
         'KryptonButton6
         '
@@ -597,7 +597,7 @@ Partial Class Settings
         Me.KryptonLabel10.Name = "KryptonLabel10"
         Me.KryptonLabel10.Size = New System.Drawing.Size(268, 20)
         Me.KryptonLabel10.TabIndex = 15
-        Me.KryptonLabel10.Values.Text = "Emplacement du navigateur Google Chrome"
+        Me.KryptonLabel10.Values.Text = PyXelTranslations.strings.Item("chrome_path")
         '
         'KryptonButton3
         '
@@ -624,7 +624,7 @@ Partial Class Settings
         Me.KryptonLabel9.Name = "KryptonLabel9"
         Me.KryptonLabel9.Size = New System.Drawing.Size(264, 20)
         Me.KryptonLabel9.TabIndex = 12
-        Me.KryptonLabel9.Values.Text = "Emplacement du navigateur Mozilla Firefox"
+        Me.KryptonLabel9.Values.Text = PyXelTranslations.strings.Item("firefox_path")
         '
         'KryptonPage6
         '
@@ -667,7 +667,7 @@ Partial Class Settings
         Me.KryptonLabel13.Name = "KryptonLabel13"
         Me.KryptonLabel13.Size = New System.Drawing.Size(209, 20)
         Me.KryptonLabel13.TabIndex = 12
-        Me.KryptonLabel13.Values.Text = "Emplacement du compilateur GCC"
+        Me.KryptonLabel13.Values.Text = PyXelTranslations.strings.Item("gcc_path")
         '
         'Settings
         '
@@ -682,7 +682,7 @@ Partial Class Settings
         Me.Name = "Settings"
         Me.Palette = Me.KryptonPalette1
         Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.Text = "Paramètres"
+        Me.Text = PyXelTranslations.strings.Item("settings")
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel1.ResumeLayout(False)
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).EndInit()

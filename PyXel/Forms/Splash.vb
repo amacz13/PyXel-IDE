@@ -17,6 +17,7 @@ Public Class Splash
         Else
             ApplicationSettings.readConfig()
         End If
+        PyXelTranslations.LoadStrings()
         If (Not File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")) Then
             Dim sw As StreamWriter = New StreamWriter(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\recentDocs.txt")
             sw.Close()
@@ -32,6 +33,7 @@ Public Class Splash
             Loop
             sr.Close()
         End If
+
     End Sub
 
     Private Function CheckForInternetConnection() As Boolean

@@ -227,18 +227,18 @@ Partial Class MainForm
         Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorLight = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(83, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem18, Me.KryptonContextMenuItem19, Me.KryptonContextMenuItem20, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonSpecs.AddRange(New ComponentFactory.Krypton.Ribbon.ButtonSpecAppMenu() {Me.ButtonSpecAppMenu1, Me.ButtonSpecAppMenu2})
-        Me.KryptonRibbon1.RibbonAppButton.AppButtonText = "Fichier"
+        Me.KryptonRibbon1.RibbonAppButton.AppButtonText = PyXelTranslations.strings.Item("menu")
         Me.KryptonRibbon1.RibbonContexts.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonContext() {Me.KryptonRibbonContext4, Me.KryptonRibbonContext5, Me.KryptonRibbonContext6, Me.KryptonRibbonContext1, Me.KryptonRibbonContext2, Me.KryptonRibbonContext7, Me.KryptonRibbonContext8, Me.KryptonRibbonContext3})
-        Me.KryptonRibbon1.RibbonStrings.CustomizeQuickAccessToolbar = "Personnalisez les raccourics"
-        Me.KryptonRibbon1.RibbonStrings.Minimize = "Réduire le ruban"
+        Me.KryptonRibbon1.RibbonStrings.CustomizeQuickAccessToolbar = PyXelTranslations.strings.Item("customize_shortcuts")
+        Me.KryptonRibbon1.RibbonStrings.Minimize = PyXelTranslations.strings.Item("reduce_ribbon")
         Me.KryptonRibbon1.RibbonStrings.MoreColors = "&Plus de couleurs..."
         Me.KryptonRibbon1.RibbonStrings.NoColor = "&Pas de couleurs"
         Me.KryptonRibbon1.RibbonStrings.RecentColors = "Couleurs récentes"
-        Me.KryptonRibbon1.RibbonStrings.RecentDocuments = "Fichiers récents"
-        Me.KryptonRibbon1.RibbonStrings.ShowAboveRibbon = "&Afficher au dessus du Ruban"
-        Me.KryptonRibbon1.RibbonStrings.ShowBelowRibbon = "&Afficher en dessous du Ruban"
-        Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "&Afficher les raccourcis au dessus du Ruban"
-        Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "&Afficher les raccourcis en dessous du Ruban"
+        Me.KryptonRibbon1.RibbonStrings.RecentDocuments = PyXelTranslations.strings.Item("recent_docs")
+        Me.KryptonRibbon1.RibbonStrings.ShowAboveRibbon = PyXelTranslations.strings.Item("show_above_ribbon")
+        Me.KryptonRibbon1.RibbonStrings.ShowBelowRibbon = PyXelTranslations.strings.Item("show_below_ribbon")
+        Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = PyXelTranslations.strings.Item("show_qat_above")
+        Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = PyXelTranslations.strings.Item("show_qat_below")
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6, Me.KryptonRibbonTab9, Me.KryptonRibbonTab10, Me.KryptonRibbonTab11})
         Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
@@ -259,17 +259,17 @@ Partial Class MainForm
         'KryptonRibbonQATButton3
         '
         Me.KryptonRibbonQATButton3.Image = Global.PyXel.My.Resources.Resources.new161
-        Me.KryptonRibbonQATButton3.Text = "Nouveau"
+        Me.KryptonRibbonQATButton3.Text = PyXelTranslations.strings.Item("new")
         '
         'KryptonRibbonQATButton4
         '
         Me.KryptonRibbonQATButton4.Image = Global.PyXel.My.Resources.Resources.open16
-        Me.KryptonRibbonQATButton4.Text = "Ouvrir"
+        Me.KryptonRibbonQATButton4.Text = PyXelTranslations.strings.Item("open")
         '
         'KryptonRibbonQATButton1
         '
         Me.KryptonRibbonQATButton1.Image = Global.PyXel.My.Resources.Resources.save161
-        Me.KryptonRibbonQATButton1.Text = "Enregistrer"
+        Me.KryptonRibbonQATButton1.Text = PyXelTranslations.strings.Item("save")
         '
         'KryptonContextMenuItem1
         '
@@ -277,12 +277,12 @@ Partial Class MainForm
         Me.KryptonContextMenuItem1.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuHeading4, Me.KryptonContextMenuItems7, Me.KryptonContextMenuSeparator4, Me.KryptonContextMenuHeading1, Me.KryptonContextMenuItems2, Me.KryptonContextMenuSeparator1, Me.KryptonContextMenuHeading2, Me.KryptonContextMenuItems3, Me.KryptonContextMenuSeparator2, Me.KryptonContextMenuHeading3, Me.KryptonContextMenuItems4})
         Me.KryptonContextMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
         Me.KryptonContextMenuItem1.SplitSubMenu = True
-        Me.KryptonContextMenuItem1.Text = "Nouveau"
+        Me.KryptonContextMenuItem1.Text = PyXelTranslations.strings.Item("new")
         '
         'KryptonContextMenuHeading4
         '
         Me.KryptonContextMenuHeading4.ExtraText = ""
-        Me.KryptonContextMenuHeading4.Text = "Projet"
+        Me.KryptonContextMenuHeading4.Text = PyXelTranslations.strings.Item("project")
         '
         'KryptonContextMenuItems7
         '
@@ -291,7 +291,7 @@ Partial Class MainForm
         'KryptonContextMenuItem13
         '
         Me.KryptonContextMenuItem13.Image = Global.PyXel.My.Resources.Resources.project16
-        Me.KryptonContextMenuItem13.Text = "Projet..."
+        Me.KryptonContextMenuItem13.Text = PyXelTranslations.strings.Item("new_project")
         '
         'KryptonContextMenuHeading1
         '
@@ -305,7 +305,7 @@ Partial Class MainForm
         'KryptonContextMenuItem7
         '
         Me.KryptonContextMenuItem7.Image = Global.PyXel.My.Resources.Resources.python16
-        Me.KryptonContextMenuItem7.Text = "Fichier Python"
+        Me.KryptonContextMenuItem7.Text = PyXelTranslations.strings.Item("python_file")
         '
         'KryptonContextMenuSeparator1
         '
@@ -323,22 +323,22 @@ Partial Class MainForm
         'KryptonContextMenuItem8
         '
         Me.KryptonContextMenuItem8.Image = Global.PyXel.My.Resources.Resources.html16
-        Me.KryptonContextMenuItem8.Text = "Fichier HTML"
+        Me.KryptonContextMenuItem8.Text = PyXelTranslations.strings.Item("html_file")
         '
         'KryptonContextMenuItem9
         '
         Me.KryptonContextMenuItem9.Image = Global.PyXel.My.Resources.Resources.css16
-        Me.KryptonContextMenuItem9.Text = "Fichier CSS"
+        Me.KryptonContextMenuItem9.Text = PyXelTranslations.strings.Item("css_file")
         '
         'KryptonContextMenuItem10
         '
         Me.KryptonContextMenuItem10.Image = Global.PyXel.My.Resources.Resources.js16
-        Me.KryptonContextMenuItem10.Text = "Fichier JS"
+        Me.KryptonContextMenuItem10.Text = PyXelTranslations.strings.Item("js_file")
         '
         'KryptonContextMenuItem11
         '
         Me.KryptonContextMenuItem11.Image = Global.PyXel.My.Resources.Resources.php16
-        Me.KryptonContextMenuItem11.Text = "Fichier PHP"
+        Me.KryptonContextMenuItem11.Text = PyXelTranslations.strings.Item("php_file")
         '
         'KryptonContextMenuHeading3
         '
@@ -352,35 +352,36 @@ Partial Class MainForm
         'KryptonContextMenuItem12
         '
         Me.KryptonContextMenuItem12.Image = Global.PyXel.My.Resources.Resources.c16
-        Me.KryptonContextMenuItem12.Text = "Fichier C"
+        Me.KryptonContextMenuItem12.Text = PyXelTranslations.strings.Item("c_file")
         '
         'KryptonContextMenuItem14
         '
         Me.KryptonContextMenuItem14.Image = Global.PyXel.My.Resources.Resources.cpp16
-        Me.KryptonContextMenuItem14.Text = "Fichier C++"
+        Me.KryptonContextMenuItem14.Text = PyXelTranslations.strings.Item("cpp_file")
         '
         'KryptonContextMenuItem2
         '
         Me.KryptonContextMenuItem2.Image = Global.PyXel.My.Resources.Resources.open321
         Me.KryptonContextMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.KryptonContextMenuItem2.Text = "Ouvrir"
+        Me.KryptonContextMenuItem2.Text = PyXelTranslations.strings.Item("open")
         '
         'KryptonContextMenuItem3
         '
         Me.KryptonContextMenuItem3.Image = Global.PyXel.My.Resources.Resources.save322
         Me.KryptonContextMenuItem3.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.KryptonContextMenuItem3.Text = "Enregistrer"
+        Me.KryptonContextMenuItem3.Text = PyXelTranslations.strings.Item("save")
         '
         'KryptonContextMenuItem18
         '
         Me.KryptonContextMenuItem18.Image = Global.PyXel.My.Resources.Resources.import32
-        Me.KryptonContextMenuItem18.Text = "Importer"
+        Me.KryptonContextMenuItem18.Text = PyXelTranslations.strings.Item("import")
+        Me.KryptonContextMenuItem18.Visible = False
         '
         'KryptonContextMenuItem19
         '
         Me.KryptonContextMenuItem19.Image = Global.PyXel.My.Resources.Resources.export32
         Me.KryptonContextMenuItem19.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems8})
-        Me.KryptonContextMenuItem19.Text = "Exporter"
+        Me.KryptonContextMenuItem19.Text = PyXelTranslations.strings.Item("export")
         '
         'KryptonContextMenuItems8
         '
@@ -389,23 +390,26 @@ Partial Class MainForm
         'KryptonContextMenuItem21
         '
         Me.KryptonContextMenuItem21.Image = Global.PyXel.My.Resources.Resources.pdf16
-        Me.KryptonContextMenuItem21.Text = "Fichier PDF"
+        Me.KryptonContextMenuItem21.Text = PyXelTranslations.strings.Item("pdf_file")
+        Me.KryptonContextMenuItem21.Visible = False
         '
         'KryptonContextMenuItem22
         '
         Me.KryptonContextMenuItem22.Image = Global.PyXel.My.Resources.Resources.word16
-        Me.KryptonContextMenuItem22.Text = "Fichier Microsoft Word"
+        Me.KryptonContextMenuItem22.Text = PyXelTranslations.strings.Item("word_file")
+        Me.KryptonContextMenuItem22.Visible = False
         '
         'KryptonContextMenuItem23
         '
         Me.KryptonContextMenuItem23.Image = Global.PyXel.My.Resources.Resources.html16
-        Me.KryptonContextMenuItem23.Text = "Fichier HTML"
+        Me.KryptonContextMenuItem23.Text = PyXelTranslations.strings.Item("html_file")
         '
         'KryptonContextMenuItem20
         '
         Me.KryptonContextMenuItem20.Image = Global.PyXel.My.Resources.Resources.send32
         Me.KryptonContextMenuItem20.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItems9})
         Me.KryptonContextMenuItem20.Text = "Envoyer"
+        Me.KryptonContextMenuItem20.Visible = False
         '
         'KryptonContextMenuItems9
         '
@@ -432,22 +436,23 @@ Partial Class MainForm
         Me.KryptonContextMenuItem5.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
         Me.KryptonContextMenuItem5.SplitSubMenu = True
         Me.KryptonContextMenuItem5.Text = "Imprimer"
+        Me.KryptonContextMenuItem5.Visible = False
         '
         'KryptonContextMenuItem4
         '
         Me.KryptonContextMenuItem4.Image = Global.PyXel.My.Resources.Resources.settings32
-        Me.KryptonContextMenuItem4.Text = "Paramètres"
+        Me.KryptonContextMenuItem4.Text = PyXelTranslations.strings.Item("settings")
         '
         'ButtonSpecAppMenu1
         '
         Me.ButtonSpecAppMenu1.Image = Global.PyXel.My.Resources.Resources.about16
-        Me.ButtonSpecAppMenu1.Text = "A propos"
+        Me.ButtonSpecAppMenu1.Text = PyXelTranslations.strings.Item("about")
         Me.ButtonSpecAppMenu1.UniqueName = "03656E50B816453706A5AE29FD944B66"
         '
         'ButtonSpecAppMenu2
         '
         Me.ButtonSpecAppMenu2.Image = Global.PyXel.My.Resources.Resources.quit16
-        Me.ButtonSpecAppMenu2.Text = "Quitter"
+        Me.ButtonSpecAppMenu2.Text = PyXelTranslations.strings.Item("quit")
         Me.ButtonSpecAppMenu2.UniqueName = "148F529BABBC45FE508A6EDA6486F2E3"
         '
         'KryptonRibbonContext4
@@ -490,12 +495,12 @@ Partial Class MainForm
         '
         Me.KryptonRibbonTab1.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup4, Me.KryptonRibbonGroup1})
         Me.KryptonRibbonTab1.KeyTip = "A"
-        Me.KryptonRibbonTab1.Text = "Accueil"
+        Me.KryptonRibbonTab1.Text = PyXelTranslations.strings.Item("tab_Home")
         '
         'KryptonRibbonGroup4
         '
         Me.KryptonRibbonGroup4.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple1})
-        Me.KryptonRibbonGroup4.TextLine1 = "Presse-Papier"
+        Me.KryptonRibbonGroup4.TextLine1 = PyXelTranslations.strings.Item("clipboard")
         '
         'KryptonRibbonGroupTriple1
         '
@@ -506,26 +511,26 @@ Partial Class MainForm
         Me.KryptonRibbonGroupButton2.ImageLarge = Global.PyXel.My.Resources.Resources.cut1
         Me.KryptonRibbonGroupButton2.ImageSmall = Global.PyXel.My.Resources.Resources.cut1
         Me.KryptonRibbonGroupButton2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.KryptonRibbonGroupButton2.TextLine1 = "Couper"
+        Me.KryptonRibbonGroupButton2.TextLine1 = PyXelTranslations.strings.Item("cut")
         '
         'KryptonRibbonGroupButton3
         '
         Me.KryptonRibbonGroupButton3.ImageLarge = Global.PyXel.My.Resources.Resources.copy1
         Me.KryptonRibbonGroupButton3.ImageSmall = Global.PyXel.My.Resources.Resources.copy1
         Me.KryptonRibbonGroupButton3.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.KryptonRibbonGroupButton3.TextLine1 = "Copier"
+        Me.KryptonRibbonGroupButton3.TextLine1 = PyXelTranslations.strings.Item("copy")
         '
         'KryptonRibbonGroupButton6
         '
         Me.KryptonRibbonGroupButton6.ImageLarge = Global.PyXel.My.Resources.Resources.paste1
         Me.KryptonRibbonGroupButton6.ImageSmall = Global.PyXel.My.Resources.Resources.paste1
         Me.KryptonRibbonGroupButton6.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.KryptonRibbonGroupButton6.TextLine1 = "Coller"
+        Me.KryptonRibbonGroupButton6.TextLine1 = PyXelTranslations.strings.Item("paste")
         '
         'KryptonRibbonGroup1
         '
         Me.KryptonRibbonGroup1.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple3, Me.KryptonRibbonGroupSeparator2, Me.KryptonRibbonGroupTriple5, Me.KryptonRibbonGroupSeparator3, Me.KryptonRibbonGroupTriple2})
-        Me.KryptonRibbonGroup1.TextLine1 = "Code"
+        Me.KryptonRibbonGroup1.TextLine1 = PyXelTranslations.strings.Item("code")
         '
         'KryptonRibbonGroupTriple3
         '
@@ -536,21 +541,21 @@ Partial Class MainForm
         Me.KryptonRibbonGroupButton1.ImageLarge = Global.PyXel.My.Resources.Resources.comment1
         Me.KryptonRibbonGroupButton1.ImageSmall = Global.PyXel.My.Resources.Resources.comment1
         Me.KryptonRibbonGroupButton1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.KryptonRibbonGroupButton1.TextLine1 = "Commenter"
+        Me.KryptonRibbonGroupButton1.TextLine1 = PyXelTranslations.strings.Item("comment")
         '
         'KryptonRibbonGroupButton9
         '
         Me.KryptonRibbonGroupButton9.ImageLarge = Global.PyXel.My.Resources.Resources.pin
         Me.KryptonRibbonGroupButton9.ImageSmall = Global.PyXel.My.Resources.Resources.pin
-        Me.KryptonRibbonGroupButton9.TextLine1 = "Créer un"
-        Me.KryptonRibbonGroupButton9.TextLine2 = "Bookmark"
+        Me.KryptonRibbonGroupButton9.TextLine1 = PyXelTranslations.strings.Item("create_Bookmark_1")
+        Me.KryptonRibbonGroupButton9.TextLine2 = PyXelTranslations.strings.Item("create_Bookmark_2")
         '
         'KryptonRibbonGroupButton10
         '
         Me.KryptonRibbonGroupButton10.ImageLarge = Global.PyXel.My.Resources.Resources.unpin
         Me.KryptonRibbonGroupButton10.ImageSmall = Global.PyXel.My.Resources.Resources.unpin
-        Me.KryptonRibbonGroupButton10.TextLine1 = "Supprimer un"
-        Me.KryptonRibbonGroupButton10.TextLine2 = "Bookmark"
+        Me.KryptonRibbonGroupButton10.TextLine1 = PyXelTranslations.strings.Item("remove_Bookmark_1")
+        Me.KryptonRibbonGroupButton10.TextLine2 = PyXelTranslations.strings.Item("remove_Bookmark_2")
         '
         'KryptonRibbonGroupTriple5
         '
@@ -560,20 +565,21 @@ Partial Class MainForm
         '
         Me.KryptonRibbonGroupButton11.ImageLarge = Global.PyXel.My.Resources.Resources.find
         Me.KryptonRibbonGroupButton11.ImageSmall = Global.PyXel.My.Resources.Resources.find
-        Me.KryptonRibbonGroupButton11.TextLine1 = "Find"
+        Me.KryptonRibbonGroupButton11.TextLine1 = PyXelTranslations.strings.Item("find")
         '
         'KryptonRibbonGroupButton12
         '
         Me.KryptonRibbonGroupButton12.ImageLarge = Global.PyXel.My.Resources.Resources.replace
         Me.KryptonRibbonGroupButton12.ImageSmall = Global.PyXel.My.Resources.Resources.replace
-        Me.KryptonRibbonGroupButton12.TextLine1 = "Find and"
-        Me.KryptonRibbonGroupButton12.TextLine2 = "replace"
+        Me.KryptonRibbonGroupButton12.TextLine1 = PyXelTranslations.strings.Item("find_replace_1")
+        Me.KryptonRibbonGroupButton12.TextLine2 = PyXelTranslations.strings.Item("find_replace_2")
         '
         'KryptonRibbonGroupButton13
         '
         Me.KryptonRibbonGroupButton13.ImageLarge = Global.PyXel.My.Resources.Resources._goto
         Me.KryptonRibbonGroupButton13.ImageSmall = Global.PyXel.My.Resources.Resources._goto
-        Me.KryptonRibbonGroupButton13.TextLine1 = "Go To"
+        Me.KryptonRibbonGroupButton13.TextLine1 = PyXelTranslations.strings.Item("go_to_line_1")
+        Me.KryptonRibbonGroupButton13.TextLine2 = PyXelTranslations.strings.Item("go_to_line_2")
         '
         'KryptonRibbonGroupTriple2
         '
@@ -583,18 +589,20 @@ Partial Class MainForm
         '
         Me.KryptonRibbonGroupButton4.ImageLarge = Global.PyXel.My.Resources.Resources.collapse
         Me.KryptonRibbonGroupButton4.ImageSmall = Global.PyXel.My.Resources.Resources.collapse
-        Me.KryptonRibbonGroupButton4.TextLine1 = "Collapse Code"
+        Me.KryptonRibbonGroupButton4.TextLine1 = PyXelTranslations.strings.Item("collapse")
         '
         'KryptonRibbonTab2
         '
         Me.KryptonRibbonTab2.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup3})
         Me.KryptonRibbonTab2.KeyTip = "D"
-        Me.KryptonRibbonTab2.Text = "Débogage"
+        Me.KryptonRibbonTab2.Text = PyXelTranslations.strings.Item("tab_Debug")
+        Me.KryptonRibbonTab2.Visible = False
         '
         'KryptonRibbonGroup3
         '
         Me.KryptonRibbonGroup3.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple4})
         Me.KryptonRibbonGroup3.TextLine1 = "Syntaxe"
+        Me.KryptonRibbonGroup3.Visible = False
         '
         'KryptonRibbonGroupTriple4
         '
@@ -616,7 +624,7 @@ Partial Class MainForm
         '
         Me.KryptonRibbonTab7.ContextName = "Python"
         Me.KryptonRibbonTab7.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup5, Me.KryptonRibbonGroup6})
-        Me.KryptonRibbonTab7.Text = "Outils Python"
+        Me.KryptonRibbonTab7.Text = PyXelTranslations.strings.Item("tab_Python")
         '
         'KryptonRibbonGroup5
         '
@@ -633,7 +641,7 @@ Partial Class MainForm
         Me.KryptonRibbonGroupButton14.ImageSmall = Global.PyXel.My.Resources.Resources.run1
         Me.KryptonRibbonGroupButton14.KryptonContextMenu = Me.KryptonContextMenu1
         Me.KryptonRibbonGroupButton14.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.KryptonRibbonGroupButton14.TextLine1 = "Executer"
+        Me.KryptonRibbonGroupButton14.TextLine1 = PyXelTranslations.strings.Item("execute")
         '
         'KryptonContextMenu1
         '
@@ -652,7 +660,7 @@ Partial Class MainForm
         Me.KryptonRibbonGroupButton16.ImageLarge = Global.PyXel.My.Resources.Resources.console1
         Me.KryptonRibbonGroupButton16.ImageSmall = Global.PyXel.My.Resources.Resources.console1
         Me.KryptonRibbonGroupButton16.KryptonContextMenu = Me.KryptonContextMenu2
-        Me.KryptonRibbonGroupButton16.TextLine1 = "Console"
+        Me.KryptonRibbonGroupButton16.TextLine1 = PyXelTranslations.strings.Item("console")
         '
         'KryptonContextMenu2
         '
@@ -670,8 +678,8 @@ Partial Class MainForm
         '
         Me.KryptonRibbonGroupButton17.ImageLarge = Global.PyXel.My.Resources.Resources._stop
         Me.KryptonRibbonGroupButton17.ImageSmall = Global.PyXel.My.Resources.Resources._stop
-        Me.KryptonRibbonGroupButton17.TextLine1 = "Arrêter"
-        Me.KryptonRibbonGroupButton17.TextLine2 = "l'exécution"
+        Me.KryptonRibbonGroupButton17.TextLine1 = PyXelTranslations.strings.Item("stop_execution_1")
+        Me.KryptonRibbonGroupButton17.TextLine2 = PyXelTranslations.strings.Item("stop_execution_2")
         '
         'KryptonRibbonGroup6
         '
@@ -686,31 +694,31 @@ Partial Class MainForm
         '
         Me.KryptonRibbonGroupButton18.ImageLarge = Global.PyXel.My.Resources.Resources.run1
         Me.KryptonRibbonGroupButton18.ImageSmall = Global.PyXel.My.Resources.Resources.run1
-        Me.KryptonRibbonGroupButton18.TextLine1 = "Exécuter"
+        Me.KryptonRibbonGroupButton18.TextLine1 = PyXelTranslations.strings.Item("execute")
         '
         'KryptonRibbonGroupButton19
         '
         Me.KryptonRibbonGroupButton19.ImageLarge = Global.PyXel.My.Resources.Resources.console1
         Me.KryptonRibbonGroupButton19.ImageSmall = Global.PyXel.My.Resources.Resources.console1
-        Me.KryptonRibbonGroupButton19.TextLine1 = "Console"
+        Me.KryptonRibbonGroupButton19.TextLine1 = PyXelTranslations.strings.Item("console")
         '
         'KryptonRibbonGroupButton20
         '
         Me.KryptonRibbonGroupButton20.ImageLarge = Global.PyXel.My.Resources.Resources._stop
         Me.KryptonRibbonGroupButton20.ImageSmall = Global.PyXel.My.Resources.Resources._stop
-        Me.KryptonRibbonGroupButton20.TextLine1 = "Arrêter"
-        Me.KryptonRibbonGroupButton20.TextLine2 = "l'exécution"
+        Me.KryptonRibbonGroupButton20.TextLine1 = PyXelTranslations.strings.Item("stop_execution_1")
+        Me.KryptonRibbonGroupButton20.TextLine2 = PyXelTranslations.strings.Item("stop_execution_2")
         '
         'KryptonRibbonTab8
         '
         Me.KryptonRibbonTab8.ContextName = "HTML"
         Me.KryptonRibbonTab8.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup7})
-        Me.KryptonRibbonTab8.Text = "Outils Web"
+        Me.KryptonRibbonTab8.Text = PyXelTranslations.strings.Item("tab_Web")
         '
         'KryptonRibbonGroup7
         '
         Me.KryptonRibbonGroup7.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple8, Me.KryptonRibbonGroupTriple9})
-        Me.KryptonRibbonGroup7.TextLine1 = "Prévisualisation"
+        Me.KryptonRibbonGroup7.TextLine1 = PyXelTranslations.strings.Item("preview")
         '
         'KryptonRibbonGroupTriple8
         '
@@ -749,12 +757,12 @@ Partial Class MainForm
         '
         Me.KryptonRibbonTab3.ContextName = "C"
         Me.KryptonRibbonTab3.Groups.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroup() {Me.KryptonRibbonGroup8, Me.KryptonRibbonGroup9})
-        Me.KryptonRibbonTab3.Text = "Outils C"
+        Me.KryptonRibbonTab3.Text = PyXelTranslations.strings.Item("tab_C")
         '
         'KryptonRibbonGroup8
         '
         Me.KryptonRibbonGroup8.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple10})
-        Me.KryptonRibbonGroup8.TextLine1 = "Compilation et Execution"
+        Me.KryptonRibbonGroup8.TextLine1 = PyXelTranslations.strings.Item("compilation")
         '
         'KryptonRibbonGroupTriple10
         '
@@ -764,23 +772,26 @@ Partial Class MainForm
         '
         Me.KryptonRibbonGroupButton25.ImageLarge = Global.PyXel.My.Resources.Resources.compile
         Me.KryptonRibbonGroupButton25.ImageSmall = Global.PyXel.My.Resources.Resources.compile
-        Me.KryptonRibbonGroupButton25.TextLine1 = "Compiler"
+        Me.KryptonRibbonGroupButton25.TextLine1 = PyXelTranslations.strings.Item("compile")
         '
         'KryptonRibbonGroupButton26
         '
         Me.KryptonRibbonGroupButton26.ImageLarge = Global.PyXel.My.Resources.Resources.run1
-        Me.KryptonRibbonGroupButton26.TextLine1 = "Exécuter"
+        Me.KryptonRibbonGroupButton26.TextLine1 = PyXelTranslations.strings.Item("execute")
         '
         'KryptonRibbonGroupButton27
         '
         Me.KryptonRibbonGroupButton27.ImageLarge = Global.PyXel.My.Resources.Resources.run_and_compile
         Me.KryptonRibbonGroupButton27.TextLine1 = "Compiler"
         Me.KryptonRibbonGroupButton27.TextLine2 = "et Exécuter"
+        Me.KryptonRibbonGroupButton27.Visible = False
         '
         'KryptonRibbonGroup9
         '
         Me.KryptonRibbonGroup9.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer() {Me.KryptonRibbonGroupTriple11})
         Me.KryptonRibbonGroup9.TextLine1 = "Débogage"
+        Me.KryptonRibbonGroup9.Visible = False
+
         '
         'KryptonRibbonGroupTriple11
         '
@@ -982,7 +993,7 @@ Partial Class MainForm
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonDockableNavigator1)
         Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(468, 437)
         Me.KryptonHeaderGroup1.TabIndex = 5
-        Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Projets"
+        Me.KryptonHeaderGroup1.ValuesPrimary.Heading = PyXelTranslations.strings.Item("projects")
         Me.KryptonHeaderGroup1.ValuesPrimary.Image = Global.PyXel.My.Resources.Resources.project16
         '
         'KryptonTreeView1
@@ -1096,7 +1107,7 @@ Partial Class MainForm
         Me.ToolStripMenuItem1.Image = Global.PyXel.My.Resources.Resources.close1
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(154, 22)
-        Me.ToolStripMenuItem1.Text = "Fermer l'onglet"
+        Me.ToolStripMenuItem1.Text = PyXelTranslations.strings.Item("close_tab")
         '
         'ContextMenuStrip2
         '
@@ -1110,21 +1121,21 @@ Partial Class MainForm
         Me.ToolStripMenuItem2.Image = Global.PyXel.My.Resources.Resources.cut1
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(116, 22)
-        Me.ToolStripMenuItem2.Text = "Couper"
+        Me.ToolStripMenuItem2.Text = PyXelTranslations.strings.Item("cut")
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Image = Global.PyXel.My.Resources.Resources.copy1
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
         Me.ToolStripMenuItem3.Size = New System.Drawing.Size(116, 22)
-        Me.ToolStripMenuItem3.Text = "Copier"
+        Me.ToolStripMenuItem3.Text = PyXelTranslations.strings.Item("copy")
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Image = Global.PyXel.My.Resources.Resources.paste1
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
         Me.ToolStripMenuItem4.Size = New System.Drawing.Size(116, 22)
-        Me.ToolStripMenuItem4.Text = "Coller"
+        Me.ToolStripMenuItem4.Text = PyXelTranslations.strings.Item("paste")
         '
         'ToolStripSeparator1
         '
@@ -1136,7 +1147,7 @@ Partial Class MainForm
         Me.ToolStripMenuItem5.Image = Global.PyXel.My.Resources.Resources.undo
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
         Me.ToolStripMenuItem5.Size = New System.Drawing.Size(116, 22)
-        Me.ToolStripMenuItem5.Text = "Annuler"
+        Me.ToolStripMenuItem5.Text = PyXelTranslations.strings.Item("back")
         '
         'ToolStripMenuItem6
         '
@@ -1144,7 +1155,7 @@ Partial Class MainForm
         Me.ToolStripMenuItem6.Image = Global.PyXel.My.Resources.Resources.redo
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
         Me.ToolStripMenuItem6.Size = New System.Drawing.Size(116, 22)
-        Me.ToolStripMenuItem6.Text = "Revenir"
+        Me.ToolStripMenuItem6.Text = PyXelTranslations.strings.Item("forward")
         '
         'KryptonRibbonContext8
         '
