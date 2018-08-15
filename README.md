@@ -5,8 +5,8 @@ PyXel is a modern, simple and lightweight Integrated Development Environment (ID
 
 Current version
 -
-- Stable : [Alpha 0.3](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.3-Alpha)
-- Insider : [Snapshot 18.2707 Alpha-v0.4](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4-Alpha-SNAPSHOT-18.2707)
+- Stable : [Alpha 0.4](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4-Alpha)
+- Insider : Soon :)
 
 Downloads
 -
@@ -15,20 +15,7 @@ Despite PyXel is still in alpha, it is stable enough to be used in all day devel
 
 Roadmap
 -
-- Version 0.4-Alpha (Expected release date : August, 15 2018)
-  - [X] Projects
-  - [X] Help Center
-  - [X] Interpreter/Console Improvements
-  - [X] MultiLanguages Support
-    - [x] HTML
-    - [ ] CSS  
-    - [X] PHP
-    - [X] JS
-    - [X] C / C++      
-  - [X] Autocompletion (Partial)
-  - [X] Drag'n'Drop
-  - [X] Document Map
-- Version 0.5-Alpha (Expected release date : October 2018)
+- Version 0.5-Alpha (Expected release date : October/November 2018)
   - [ ] New Installer
   - [ ] Git Support
   - [ ] Dictionnary
