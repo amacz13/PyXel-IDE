@@ -225,6 +225,12 @@
     <Compile Include="Forms\NewProjectWizard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\PictureViewer.Designer.vb">
+      <DependentUpon>PictureViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PictureViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -266,6 +272,9 @@
     <EmbeddedResource Include="Forms\NewProjectWizard.resx">
       <DependentUpon>NewProjectWizard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PictureViewer.resx">
+      <DependentUpon>PictureViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -280,6 +289,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="lang\English">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="lang\French">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\app.manifest">
       <SubType>Designer</SubType>
     </None>
@@ -348,6 +363,8 @@
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <Content Include="Pyxel Icon.ico" />
+    <None Include="Resources\undo16.png" />
+    <None Include="Resources\redo16.png" />
     <None Include="Resources\checkbox.png" />
     <None Include="Resources\picture.png" />
     <None Include="Resources\link.png" />

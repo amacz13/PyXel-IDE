@@ -187,7 +187,7 @@ Public Class MainForm
                 splitter.Panel2.Controls.Add(map)
                 newPage.Controls.Add(splitter)
                 Dim menu As New AutocompleteMenu(editor)
-                AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+                AutoCompleteTools.LoadDefaultItems(menu, lang)
                 menus.Add(pages, menu)
                 firstLoad.Add(pages, True)
                 editor.OpenFile(fileName)
@@ -267,7 +267,7 @@ Public Class MainForm
         splitter.Panel2.Controls.Add(map)
         newPage.Controls.Add(splitter)
         Dim menu As New AutocompleteMenu(editor)
-        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+        AutoCompleteTools.LoadDefaultItems(menu, lang)
         menus.Add(pages, menu)
         firstLoad.Add(pages, True)
         editor.OpenFile(fileName)
@@ -321,6 +321,9 @@ Public Class MainForm
         splitter.Panel1.Controls.Add(editor)
         splitter.Panel2.Controls.Add(map)
         newPage.Controls.Add(splitter)
+        Dim menu As New AutocompleteMenu(editor)
+        AutoCompleteTools.LoadDefaultItems(menu, lang)
+        menus.Add(pages, menu)
         filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
         pagesSaved.Add(pages, True)
         displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
@@ -434,10 +437,11 @@ Public Class MainForm
                 If ApplicationSettings.updateType = "Normal" Then
                     Dim td As New TaskDialog
                     td.CommonButtons = TaskDialogCommonButton.OK
-                    td.StandardIcon = TaskDialogIcon.ShieldRegular
+                    td.StandardIcon = TaskDialogIcon.ShieldOK
                     td.WindowTitle = "PyXel"
                     td.MainInstruction = PyXelTranslations.strings.Item("update_available")
-                    td.Content = PyXelTranslations.strings.Item("version") + version + PyXelTranslations.strings.Item("available") + " !"
+                    td.Content = PyXelTranslations.strings.Item("version") + " " + version + " " + PyXelTranslations.strings.Item("available") + " !"
+                    td.ShowDialog()
                     'MsgBox("La version " + version + " de PyXel est disponible !", MsgBoxStyle.Information, "PyXel - Mise à jour disponible")
                 End If
             End If
@@ -454,8 +458,8 @@ Public Class MainForm
 
         'Adding Recent Documents
         KryptonRibbon1.RibbonAppButton.AppButtonShowRecentDocs = True
+        KryptonRibbon1.RibbonAppButton.AppButtonMinRecentSize = New Size(KryptonRibbon1.RibbonAppButton.AppButtonMinRecentSize.Width, 300)
         ReloadRecentDocs()
-
 
         'Updating ImageList
         list.Images.Add(My.Resources.c16)
@@ -622,6 +626,7 @@ Public Class MainForm
         ImagesTreeView.Images.Add("folder", My.Resources.open321)
         ImagesTreeView.Images.Add("project", My.Resources.project161)
         ImagesTreeView.Images.Add("h", My.Resources.header16)
+        ImagesTreeView.Images.Add("img", My.Resources.picture)
         KryptonTreeView1.ImageList = ImagesTreeView
 
         'Hiding Projects panel when no project is loaded
@@ -1182,42 +1187,48 @@ Public Class MainForm
         Select Case lang
             Case Languages.Python
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
-                    KryptonRibbon1.SelectedContext = "Python,Projet"
+                    'KryptonRibbon1.SelectedContext = "Python,Projet"
+                    KryptonRibbon1.SelectedContext = "Python"
                 Else
                     KryptonRibbon1.SelectedContext = "Python"
                 End If
                 KryptonSplitContainer1.Panel2Collapsed = False
             Case Languages.HTML
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
-                    KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    'KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    KryptonRibbon1.SelectedContext = "HTML"
                 Else
                     KryptonRibbon1.SelectedContext = "HTML"
                 End If
                 KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.PHP
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
-                    KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    'KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    KryptonRibbon1.SelectedContext = "HTML"
                 Else
                     KryptonRibbon1.SelectedContext = "HTML"
                 End If
                 KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.JS
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
-                    KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    'KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    KryptonRibbon1.SelectedContext = "HTML"
                 Else
                     KryptonRibbon1.SelectedContext = "HTML"
                 End If
                 KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.C
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
-                    KryptonRibbon1.SelectedContext = "C,Projet"
+                    'KryptonRibbon1.SelectedContext = "C,Projet"
+                    KryptonRibbon1.SelectedContext = "C"
                 Else
                     KryptonRibbon1.SelectedContext = "C"
                 End If
                 KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.CPP
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
-                    KryptonRibbon1.SelectedContext = "C,Projet"
+                    'KryptonRibbon1.SelectedContext = "C,Projet"
+                    KryptonRibbon1.SelectedContext = "C"
                 Else
                     KryptonRibbon1.SelectedContext = "C"
                 End If
@@ -1344,8 +1355,12 @@ Public Class MainForm
 
     Private Sub KryptonTreeView1_NodeMouseDoubleClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles KryptonTreeView1.NodeMouseDoubleClick
         Dim clickedNode As TreeNode = e.Node
-        If clickedNode.SelectedImageKey IsNot "project" And clickedNode.SelectedImageKey IsNot "folder" And clickedNode.SelectedImageKey IsNot "file" Then
+        If clickedNode.SelectedImageKey IsNot "project" And clickedNode.SelectedImageKey IsNot "folder" And clickedNode.SelectedImageKey IsNot "file" And clickedNode.SelectedImageKey IsNot "img" Then
             OpenFile(clickedNode.Tag)
+        ElseIf clickedNode.SelectedImageKey = "img" Then
+            Dim pw As New PictureViewer
+            pw.img = clickedNode.Tag
+            pw.Show()
         End If
 
     End Sub
@@ -1568,5 +1583,30 @@ Public Class MainForm
             td.Content = PyXelTranslations.strings.Item("execution_error_msg")
             td.ShowDialog()
         End Try
+    End Sub
+
+    Private Sub KryptonRibbonQATButton5_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton5.Click
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Undo()
+    End Sub
+    Private Sub KryptonRibbonQATButton6_Click(sender As Object, e As EventArgs) Handles KryptonRibbonQATButton6.Click
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Redo()
+    End Sub
+    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem5.Click
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Undo()
+    End Sub
+    Private Sub ToolStripMenuItem6_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem6.Click
+        Dim tab As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(tab)
+        editors.Item(id).Redo()
+    End Sub
+
+    Private Sub KryptonRibbon1_ShowQATCustomizeMenu(sender As Object, e As EventArgs) Handles KryptonRibbon1.Click
+
     End Sub
 End Class

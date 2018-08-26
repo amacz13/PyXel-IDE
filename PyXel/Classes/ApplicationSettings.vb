@@ -40,7 +40,8 @@ Public Class ApplicationSettings
     'C Compilers Path
     Public Shared gcc As String = ""
 
-    'DocumentMap Width
+    'DocumentMap
+    Public Shared docmapEnabled As Boolean = True
 
     Public Shared splitterDistance As Integer = 700
 
@@ -66,8 +67,12 @@ Public Class ApplicationSettings
         writer.WriteStartElement("UpdateCanal")
         writer.WriteString(updateCanal)
         writer.WriteEndElement()
-        writer.WriteStartElement("DocumentMapWidth")
-        writer.WriteString(splitterDistance)
+        writer.WriteStartElement("DocumentMapEnabled")
+        If docmapEnabled Then
+            writer.WriteString("Yes")
+        Else
+            writer.WriteString("No")
+        End If
         writer.WriteEndElement()
         writer.WriteStartElement("Theme")
         Select Case theme
@@ -145,7 +150,12 @@ Public Class ApplicationSettings
                 ApplicationSettings.lang = node.SelectSingleNode("Language").InnerText
                 ApplicationSettings.updateType = node.SelectSingleNode("UpdateType").InnerText
                 ApplicationSettings.updateCanal = node.SelectSingleNode("UpdateCanal").InnerText
-                ApplicationSettings.splitterDistance = node.SelectSingleNode("DocumentMapWidth").InnerText
+                Dim docmap As String = node.SelectSingleNode("DocumentMapEnabled").InnerText
+                If docmap = "Yes" Then
+                    ApplicationSettings.docmapEnabled = True
+                Else
+                    ApplicationSettings.docmapEnabled = False
+                End If
                 Dim theme As String = node.SelectSingleNode("Theme").InnerText
                 Select Case theme
                     Case "Modern"
@@ -233,7 +243,12 @@ Public Class ApplicationSettings
             Catch
             End Try
             Try
-                ApplicationSettings.splitterDistance = node.SelectSingleNode("DocumentMapWidth").InnerText
+                Dim docmap As String = node.SelectSingleNode("DocumentMapEnabled").InnerText
+                If docmap = "Yes" Then
+                    ApplicationSettings.docmapEnabled = True
+                Else
+                    ApplicationSettings.docmapEnabled = False
+                End If
             Catch
             End Try
             Dim theme As String = node.SelectSingleNode("Theme").InnerText

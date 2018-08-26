@@ -31,6 +31,8 @@ Partial Class MainForm
         Me.KryptonRibbonQATButton3 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonRibbonQATButton4 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonRibbonQATButton1 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
+        Me.KryptonRibbonQATButton5 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
+        Me.KryptonRibbonQATButton6 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton()
         Me.KryptonContextMenuItem1 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuHeading4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuHeading()
         Me.KryptonContextMenuItems7 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
@@ -222,7 +224,7 @@ Partial Class MainForm
         Me.KryptonRibbon1.Name = "KryptonRibbon1"
         Me.KryptonRibbon1.Palette = Me.KryptonPalette1
         Me.KryptonRibbon1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.KryptonRibbon1.QATButtons.AddRange(New System.ComponentModel.Component() {Me.KryptonRibbonQATButton3, Me.KryptonRibbonQATButton4, Me.KryptonRibbonQATButton1})
+        Me.KryptonRibbon1.QATButtons.AddRange(New System.ComponentModel.Component() {Me.KryptonRibbonQATButton3, Me.KryptonRibbonQATButton4, Me.KryptonRibbonQATButton1, Me.KryptonRibbonQATButton5, Me.KryptonRibbonQATButton6})
         Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorDark = System.Drawing.Color.FromArgb(CType(CType(79, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.KryptonRibbon1.RibbonAppButton.AppButtonBaseColorLight = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(83, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.KryptonRibbon1.RibbonAppButton.AppButtonMenuItems.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem1, Me.KryptonContextMenuItem2, Me.KryptonContextMenuItem3, Me.KryptonContextMenuItem18, Me.KryptonContextMenuItem19, Me.KryptonContextMenuItem20, Me.KryptonContextMenuItem5, Me.KryptonContextMenuItem4})
@@ -260,16 +262,31 @@ Partial Class MainForm
         '
         Me.KryptonRibbonQATButton3.Image = Global.PyXel.My.Resources.Resources.new161
         Me.KryptonRibbonQATButton3.Text = PyXelTranslations.strings.Item("new")
+        Me.KryptonRibbonQATButton3.ToolTipTitle = PyXelTranslations.strings.Item("new")
         '
         'KryptonRibbonQATButton4
         '
         Me.KryptonRibbonQATButton4.Image = Global.PyXel.My.Resources.Resources.open16
         Me.KryptonRibbonQATButton4.Text = PyXelTranslations.strings.Item("open")
+        Me.KryptonRibbonQATButton4.ToolTipTitle = PyXelTranslations.strings.Item("open")
         '
         'KryptonRibbonQATButton1
         '
         Me.KryptonRibbonQATButton1.Image = Global.PyXel.My.Resources.Resources.save161
         Me.KryptonRibbonQATButton1.Text = PyXelTranslations.strings.Item("save")
+        Me.KryptonRibbonQATButton1.ToolTipTitle = PyXelTranslations.strings.Item("save")
+        '
+        'KryptonRibbonQATButton5
+        '
+        Me.KryptonRibbonQATButton5.Image = Global.PyXel.My.Resources.Resources.undo16
+        Me.KryptonRibbonQATButton5.Text = PyXelTranslations.strings.Item("back")
+        Me.KryptonRibbonQATButton5.ToolTipTitle = PyXelTranslations.strings.Item("back")
+        '
+        'KryptonRibbonQATButton6
+        '
+        Me.KryptonRibbonQATButton6.Image = Global.PyXel.My.Resources.Resources.redo16
+        Me.KryptonRibbonQATButton6.Text = PyXelTranslations.strings.Item("forward")
+        Me.KryptonRibbonQATButton6.ToolTipTitle = PyXelTranslations.strings.Item("forward")
         '
         'KryptonContextMenuItem1
         '
@@ -1151,7 +1168,6 @@ Partial Class MainForm
         '
         'ToolStripMenuItem6
         '
-        Me.ToolStripMenuItem6.Enabled = False
         Me.ToolStripMenuItem6.Image = Global.PyXel.My.Resources.Resources.redo
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
         Me.ToolStripMenuItem6.Size = New System.Drawing.Size(116, 22)
@@ -1277,6 +1293,8 @@ Partial Class MainForm
     Friend WithEvents KryptonRibbonGroupButton20 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
     Friend WithEvents KryptonRibbonQATButton3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
     Friend WithEvents KryptonRibbonQATButton4 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
+    Friend WithEvents KryptonRibbonQATButton5 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
+    Friend WithEvents KryptonRibbonQATButton6 As ComponentFactory.Krypton.Ribbon.KryptonRibbonQATButton
     Friend WithEvents ButtonSpecAny2 As ComponentFactory.Krypton.Toolkit.ButtonSpecAny
     Friend WithEvents KryptonRibbonGroupSeparator3 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupSeparator
     Friend WithEvents KryptonRibbonGroupTriple2 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupTriple

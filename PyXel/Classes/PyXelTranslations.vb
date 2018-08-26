@@ -6,7 +6,7 @@ Public Class PyXelTranslations
 
     Public Shared Sub LoadStrings()
         Try
-            Dim sr As StreamReader = New StreamReader(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData + "\lang\" + ApplicationSettings.lang)
+            Dim sr As StreamReader = New StreamReader(Application.StartupPath + "\lang\" + ApplicationSettings.lang)
             Do While sr.Peek() >= 0
                 Try
                     Dim str As String = sr.ReadLine()
