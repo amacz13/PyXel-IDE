@@ -5,7 +5,7 @@ PyXel is a modern, simple and lightweight Integrated Development Environment (ID
 
 Current version
 -
-- Stable : [Alpha 0.4](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4-Alpha)
+- Stable : [Alpha 0.4.1](https://github.com/amacz13/PyXel-IDE/releases/tag/v0.4.1-Alpha)
 - Insider : Soon :)
 
 Downloads
@@ -20,7 +20,7 @@ Roadmap
   - [ ] Git Support
   - [ ] Dictionnary
   - [ ] Syntax checker
-  - [ ] Projects : Media files preview
+  - [ ] Projects : Media files preview (Partially implemented in Alpha 0.4.1)
   - [ ] Sending Files
     - [ ] FTP server
     - [ ] OneDrive
@@ -34,7 +34,7 @@ Roadmap
     - [ ] C#
     - [ ] Lua
     - [ ] Markdown
-    - [ ] XML
+    - [X] XML (Implemented in Alpha 0.4.1)
     - [ ] YAML
     - [ ] SQL
 - ...
