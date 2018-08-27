@@ -14,6 +14,7 @@ Public Class MainForm
         C
         CPP
         HTML
+        XML
         PHP
         JS
         CSS
@@ -85,6 +86,8 @@ Public Class MainForm
                     saveFileDialog.Filter = PyXelTranslations.strings.Item("python_file") + "|*.py"
                 Case Languages.HTML
                     saveFileDialog.Filter = PyXelTranslations.strings.Item("html_file") + "|*.html"
+                Case Languages.XML
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("xml_file") + "|*.xml"
                 Case Languages.PHP
                     saveFileDialog.Filter = PyXelTranslations.strings.Item("php_file") + "|*.php"
                 Case Languages.JS
@@ -119,7 +122,7 @@ Public Class MainForm
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = PyXelTranslations.strings.Item("pyxel_supported_files") + "|*.pxl;*.py;*.html;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h|" + PyXelTranslations.strings.Item("python_file") + "|*.py|" + PyXelTranslations.strings.Item("html_file") + "|*.html|" + PyXelTranslations.strings.Item("php_file") + "|*.php|" + PyXelTranslations.strings.Item("js_file") + "|*.js|" + PyXelTranslations.strings.Item("css_file") + "|*.css|" + PyXelTranslations.strings.Item("c_file") + "|*.c;*.h|" + PyXelTranslations.strings.Item("cpp_file") + "|*.cpp;*.h"
+        openFileDialog1.Filter = PyXelTranslations.strings.Item("pyxel_supported_files") + "|*.pxl;*.py;*.html;*.xml;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h|" + PyXelTranslations.strings.Item("python_file") + "|*.py|" + PyXelTranslations.strings.Item("html_file") + "|*.html|" + PyXelTranslations.strings.Item("php_file") + "|*.php|" + PyXelTranslations.strings.Item("js_file") + "|*.js|" + PyXelTranslations.strings.Item("css_file") + "|*.css|" + PyXelTranslations.strings.Item("c_file") + "|*.c;*.h|" + PyXelTranslations.strings.Item("cpp_file") + "|*.cpp;*.h"
         openFileDialog1.Title = PyXelTranslations.strings.Item("open_files")
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -152,6 +155,10 @@ Public Class MainForm
                         lang = Languages.HTML
                         editor.Language = Language.HTML
                         newPage.ImageIndex = 2
+                    Case ".xml"
+                        lang = Languages.XML
+                        editor.Language = Language.XML
+                        newPage.ImageIndex = 7
                     Case ".php"
                         lang = Languages.PHP
                         editor.Language = Language.PHP
@@ -232,6 +239,10 @@ Public Class MainForm
                 lang = Languages.HTML
                 editor.Language = Language.HTML
                 newPage.ImageIndex = 2
+            Case ".xml"
+                lang = Languages.XML
+                editor.Language = Language.XML
+                newPage.ImageIndex = 7
             Case ".php"
                 lang = Languages.PHP
                 editor.Language = Language.PHP
@@ -296,6 +307,9 @@ Public Class MainForm
             Case Languages.HTML
                 newPage.ImageIndex = 2
                 editor.Language = Language.HTML
+            Case Languages.XML
+                newPage.ImageIndex = 7
+                editor.Language = Language.XML
             Case Languages.PHP
                 newPage.ImageIndex = 3
                 editor.Language = Language.PHP
@@ -469,6 +483,7 @@ Public Class MainForm
         list.Images.Add(My.Resources.js16)
         list.Images.Add(My.Resources.python16)
         list.Images.Add(My.Resources.cpp16)
+        list.Images.Add(My.Resources.xml16)
 
         'Allow Dropping file into Ribbon and TabControl
         KryptonRibbon1.AllowDrop = True
@@ -627,6 +642,7 @@ Public Class MainForm
         ImagesTreeView.Images.Add("project", My.Resources.project161)
         ImagesTreeView.Images.Add("h", My.Resources.header16)
         ImagesTreeView.Images.Add("img", My.Resources.picture)
+        ImagesTreeView.Images.Add("xml", My.Resources.xml16)
         KryptonTreeView1.ImageList = ImagesTreeView
 
         'Hiding Projects panel when no project is loaded
@@ -738,6 +754,10 @@ Public Class MainForm
     Private Sub NewCPPClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem14.Click
         'Create New C++ File
         openNewTab(Languages.CPP)
+    End Sub
+    Private Sub NewXMLClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem27.Click
+        'Create New HTML File
+        openNewTab(Languages.XML)
     End Sub
 
     '
@@ -1232,6 +1252,9 @@ Public Class MainForm
                 Else
                     KryptonRibbon1.SelectedContext = "C"
                 End If
+                KryptonSplitContainer1.Panel2Collapsed = True
+            Case Languages.XML
+                KryptonRibbon1.SelectedContext = ""
                 KryptonSplitContainer1.Panel2Collapsed = True
         End Select
     End Sub

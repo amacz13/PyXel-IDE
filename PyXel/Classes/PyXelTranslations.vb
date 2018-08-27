@@ -30,7 +30,6 @@ Public Class PyXelTranslations
             sr.Close()
         Catch ex As Exception
             MsgBox("An error occured while loading translations !")
-
         End Try
     End Sub
 

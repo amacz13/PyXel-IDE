@@ -358,11 +358,18 @@
     <Content Include="ComponentFactory.Krypton.Toolkit.dll" />
     <Content Include="ComponentFactory.Krypton.Workspace.dll" />
     <Content Include="FastColoredTextBox.dll" />
+    <Content Include="help\English\welcome.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\French\welcome.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icon.ico" />
     <Content Include="Jacksonsoft.CustomTabControl.dll" />
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <Content Include="Pyxel Icon.ico" />
+    <None Include="Resources\xml16.png" />
     <None Include="Resources\undo16.png" />
     <None Include="Resources\redo16.png" />
     <None Include="Resources\checkbox.png" />

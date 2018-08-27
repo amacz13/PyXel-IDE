@@ -48,6 +48,7 @@ Partial Class MainForm
         Me.KryptonContextMenuItem9 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem10 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuItem11 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
+        Me.KryptonContextMenuItem27 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem()
         Me.KryptonContextMenuSeparator2 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuSeparator()
         Me.KryptonContextMenuHeading3 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuHeading()
         Me.KryptonContextMenuItems4 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems()
@@ -335,7 +336,7 @@ Partial Class MainForm
         '
         'KryptonContextMenuItems3
         '
-        Me.KryptonContextMenuItems3.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem8, Me.KryptonContextMenuItem9, Me.KryptonContextMenuItem10, Me.KryptonContextMenuItem11})
+        Me.KryptonContextMenuItems3.Items.AddRange(New ComponentFactory.Krypton.Toolkit.KryptonContextMenuItemBase() {Me.KryptonContextMenuItem8, Me.KryptonContextMenuItem9, Me.KryptonContextMenuItem10, Me.KryptonContextMenuItem11, Me.KryptonContextMenuItem27})
         '
         'KryptonContextMenuItem8
         '
@@ -356,6 +357,11 @@ Partial Class MainForm
         '
         Me.KryptonContextMenuItem11.Image = Global.PyXel.My.Resources.Resources.php16
         Me.KryptonContextMenuItem11.Text = PyXelTranslations.strings.Item("php_file")
+        '
+        'KryptonContextMenuItem27
+        '
+        Me.KryptonContextMenuItem27.Image = Global.PyXel.My.Resources.Resources.xml16
+        Me.KryptonContextMenuItem27.Text = PyXelTranslations.strings.Item("xml_file")
         '
         'KryptonContextMenuHeading3
         '
@@ -1348,6 +1354,7 @@ Partial Class MainForm
     Friend WithEvents KryptonContextMenuItem24 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItem25 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItem26 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
+    Friend WithEvents KryptonContextMenuItem27 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonSplitContainer2 As ComponentFactory.Krypton.Toolkit.KryptonSplitContainer
     Friend WithEvents ConsoleControl1 As ConsoleControl.ConsoleControl
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip

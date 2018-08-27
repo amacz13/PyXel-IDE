@@ -45,6 +45,7 @@ new_project=New Project
 projects=Projects
 python_file=Python File
 html_file=HTML File
+xml_file=XML File
 css_file=CSS File
 js_file=JS File
 php_file=PHP File
@@ -98,6 +99,8 @@ opera_path=Opera path
 gcc_path=GCC compiler path
 #Help
 help=Help
+help_general=PyXel - General
+help_welcome=Welcome !
 #About
 license=License
 about_pyxel=About PyXel

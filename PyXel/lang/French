@@ -45,6 +45,7 @@ new_project=Nouveau Projet
 projects=Projets
 python_file=Fichier Python
 html_file=Fichier HTML
+xml_file=Fichier XML
 css_file=Fichier CSS
 js_file=Fichier JS
 php_file=Fichier PHP
@@ -98,6 +99,8 @@ opera_path=Emplacement du navigateur Opera
 gcc_path=Emplacement du compilateur GCC
 #Help
 help=Aide
+help_general=PyXel - Général
+help_welcome=Bienvenue !
 #About
 license=Licence
 about_pyxel=A propos de PyXel

@@ -23,11 +23,6 @@ Partial Class Help
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bienvenue !")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Configuration Requise")
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Prise en main")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("PyXel - Général", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("PyXel - Extensions")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Help))
         Me.KryptonHeaderGroup1 = New ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup()
         Me.KryptonPalette1 = New ComponentFactory.Krypton.Toolkit.KryptonPalette(Me.components)
@@ -70,22 +65,6 @@ Partial Class Help
         Me.KryptonTreeView1.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorOverflow
         Me.KryptonTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.KryptonTreeView1.Name = "KryptonTreeView1"
-        TreeNode1.Name = "Nœud2"
-        TreeNode1.Tag = "welcome"
-        TreeNode1.Text = "Bienvenue !"
-        TreeNode2.Name = "Nœud5"
-        TreeNode2.Tag = "configuration"
-        TreeNode2.Text = "Configuration Requise"
-        TreeNode3.Name = "Nœud2"
-        TreeNode3.Tag = "getstarted"
-        TreeNode3.Text = "Prise en main"
-        TreeNode4.Checked = True
-        TreeNode4.Name = "Nœud0"
-        TreeNode4.Tag = "general"
-        TreeNode4.Text = "PyXel - Général"
-        TreeNode5.Name = "Nœud1"
-        TreeNode5.Text = "PyXel - Extensions"
-        Me.KryptonTreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode5})
         Me.KryptonTreeView1.Palette = Me.KryptonPalette1
         Me.KryptonTreeView1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
         Me.KryptonTreeView1.Size = New System.Drawing.Size(516, 877)
@@ -124,7 +103,6 @@ Partial Class Help
         Me.Name = "Help"
         Me.Palette = Me.KryptonPalette1
         Me.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom
-        Me.Text = PyXelTranslations.strings.Item("help")
         CType(Me.KryptonHeaderGroup1.Panel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonHeaderGroup1.Panel.ResumeLayout(False)
         CType(Me.KryptonHeaderGroup1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -132,7 +110,7 @@ Partial Class Help
         CType(Me.KryptonPanel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.KryptonPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
-
+        Me.Text = PyXelTranslations.strings.Item("help")
     End Sub
 
     Friend WithEvents KryptonHeaderGroup1 As ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup

@@ -61,8 +61,13 @@ Public Class Settings
             KryptonRadioButton8.Checked = True
         End If
 
+        Select Case ApplicationSettings.lang
+            Case "French"
+                KryptonComboBox1.SelectedText = "Français"
+            Case "English"
+                KryptonComboBox1.SelectedText = "English"
+        End Select
 
-        KryptonComboBox1.SelectedText = "Français"
 
         KryptonColorButton1.SelectedColor = ApplicationSettings.editorBackColor
         KryptonColorButton2.SelectedColor = ApplicationSettings.editorForeColor
