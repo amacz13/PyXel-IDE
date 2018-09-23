@@ -143,6 +143,16 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property arduino() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("arduino", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property bold() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("bold", resourceCulture)

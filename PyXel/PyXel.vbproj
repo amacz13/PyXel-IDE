@@ -369,6 +369,7 @@
     <Content Include="Licence.txt" />
     <Content Include="logo.ico" />
     <Content Include="Pyxel Icon.ico" />
+    <None Include="Resources\arduino.png" />
     <None Include="Resources\xml16.png" />
     <None Include="Resources\undo16.png" />
     <None Include="Resources\redo16.png" />

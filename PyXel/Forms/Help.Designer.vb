@@ -52,7 +52,7 @@ Partial Class Help
         Me.KryptonHeaderGroup1.Panel.Controls.Add(Me.KryptonTreeView1)
         Me.KryptonHeaderGroup1.Size = New System.Drawing.Size(518, 935)
         Me.KryptonHeaderGroup1.TabIndex = 0
-        Me.KryptonHeaderGroup1.ValuesPrimary.Heading = "Aide"
+        Me.KryptonHeaderGroup1.ValuesPrimary.Heading = PyXelTranslations.strings.Item("help")
         Me.KryptonHeaderGroup1.ValuesPrimary.Image = Nothing
         '
         'KryptonPalette1

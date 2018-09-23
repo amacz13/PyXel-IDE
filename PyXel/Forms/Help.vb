@@ -8,6 +8,8 @@ Public Class Help
     End Sub
 
     Private Sub Help_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Text = PyXelTranslations.strings.Item("help")
+        KryptonHeaderGroup1.ValuesPrimary.Heading = PyXelTranslations.strings.Item("help")
 
         Me.TextExtra = My.Settings.Version
         KryptonPalette1.BasePaletteMode = ApplicationSettings.theme

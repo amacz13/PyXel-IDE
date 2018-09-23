@@ -472,7 +472,7 @@ Public Class MainForm
 
         'Adding Recent Documents
         KryptonRibbon1.RibbonAppButton.AppButtonShowRecentDocs = True
-        KryptonRibbon1.RibbonAppButton.AppButtonMinRecentSize = New Size(KryptonRibbon1.RibbonAppButton.AppButtonMinRecentSize.Width, 300)
+        KryptonRibbon1.RibbonAppButton.AppButtonMinRecentSize = New Size(KryptonRibbon1.RibbonAppButton.AppButtonMinRecentSize.Width, 400)
         ReloadRecentDocs()
 
         'Updating ImageList
