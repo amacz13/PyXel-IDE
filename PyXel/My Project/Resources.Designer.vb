@@ -333,6 +333,16 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property csharp16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("csharp16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property css16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("css16", resourceCulture)
@@ -1253,6 +1263,16 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property vb16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("vb16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property verify() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("verify", resourceCulture)
@@ -1296,6 +1316,16 @@ Namespace My.Resources
         Friend ReadOnly Property word16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("word16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property xaml16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("xaml16", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

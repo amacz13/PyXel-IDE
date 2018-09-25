@@ -21,6 +21,7 @@ Public Class MainForm
         Lua
         CSharp
         VBNet
+        XAML
     End Enum
 
     'Styles CodeEditor
@@ -60,6 +61,91 @@ Public Class MainForm
     Dim displayNames As New Dictionary(Of Integer, String)
     Dim menus As New Dictionary(Of Integer, AutocompleteMenu)
 
+    '
+    ' Loading translations strings
+    '
+    Public Shared Sub ApplyStrings()
+        MainForm.KryptonRibbon1.RibbonAppButton.AppButtonText = PyXelTranslations.strings.Item("menu")
+        MainForm.KryptonRibbon1.RibbonStrings.RecentDocuments = PyXelTranslations.strings.Item("recent_docs")
+        MainForm.KryptonRibbon1.RibbonStrings.ShowAboveRibbon = PyXelTranslations.strings.Item("show_above_ribbon")
+        MainForm.KryptonRibbon1.RibbonStrings.ShowBelowRibbon = PyXelTranslations.strings.Item("show_below_ribbon")
+        MainForm.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = PyXelTranslations.strings.Item("show_qat_above")
+        MainForm.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = PyXelTranslations.strings.Item("show_qat_below")
+        MainForm.KryptonRibbonQATButton3.Text = PyXelTranslations.strings.Item("new")
+        MainForm.KryptonRibbonQATButton3.ToolTipTitle = PyXelTranslations.strings.Item("new")
+        MainForm.KryptonRibbonQATButton4.Text = PyXelTranslations.strings.Item("open")
+        MainForm.KryptonRibbonQATButton4.ToolTipTitle = PyXelTranslations.strings.Item("open")
+        MainForm.KryptonRibbonQATButton1.Text = PyXelTranslations.strings.Item("save")
+        MainForm.KryptonRibbonQATButton1.ToolTipTitle = PyXelTranslations.strings.Item("save")
+        MainForm.KryptonRibbonQATButton5.Text = PyXelTranslations.strings.Item("back")
+        MainForm.KryptonRibbonQATButton5.ToolTipTitle = PyXelTranslations.strings.Item("back")
+        MainForm.KryptonRibbonQATButton6.Text = PyXelTranslations.strings.Item("forward")
+        MainForm.KryptonRibbonQATButton6.ToolTipTitle = PyXelTranslations.strings.Item("forward")
+        MainForm.KryptonContextMenuItem1.Text = PyXelTranslations.strings.Item("new")
+        MainForm.KryptonContextMenuHeading4.Text = PyXelTranslations.strings.Item("project")
+        MainForm.KryptonContextMenuItem13.Text = PyXelTranslations.strings.Item("new_project")
+        MainForm.KryptonContextMenuItem7.Text = PyXelTranslations.strings.Item("python_file")
+        MainForm.KryptonContextMenuItem8.Text = PyXelTranslations.strings.Item("html_file")
+        MainForm.KryptonContextMenuItem9.Text = PyXelTranslations.strings.Item("css_file")
+        MainForm.KryptonContextMenuItem10.Text = PyXelTranslations.strings.Item("js_file")
+        MainForm.KryptonContextMenuItem11.Text = PyXelTranslations.strings.Item("php_file")
+        MainForm.KryptonContextMenuItem27.Text = PyXelTranslations.strings.Item("xml_file")
+        MainForm.KryptonContextMenuItem12.Text = PyXelTranslations.strings.Item("c_file")
+        MainForm.KryptonContextMenuItem14.Text = PyXelTranslations.strings.Item("cpp_file")
+        MainForm.KryptonContextMenuItem6.Text = PyXelTranslations.strings.Item("csharp_file")
+        MainForm.KryptonContextMenuItem16.Text = PyXelTranslations.strings.Item("vb_file")
+        MainForm.KryptonContextMenuItem28.Text = PyXelTranslations.strings.Item("xaml_file")
+        MainForm.KryptonContextMenuItem2.Text = PyXelTranslations.strings.Item("open")
+        MainForm.KryptonContextMenuItem3.Text = PyXelTranslations.strings.Item("save")
+        MainForm.KryptonContextMenuItem18.Text = PyXelTranslations.strings.Item("import")
+        MainForm.KryptonContextMenuItem19.Text = PyXelTranslations.strings.Item("export")
+        MainForm.KryptonContextMenuItem21.Text = PyXelTranslations.strings.Item("pdf_file")
+        MainForm.KryptonContextMenuItem22.Text = PyXelTranslations.strings.Item("word_file")
+        MainForm.KryptonContextMenuItem23.Text = PyXelTranslations.strings.Item("html_file")
+        MainForm.KryptonContextMenuItem4.Text = PyXelTranslations.strings.Item("settings")
+        MainForm.ButtonSpecAppMenu1.Text = PyXelTranslations.strings.Item("about")
+        MainForm.ButtonSpecAppMenu2.Text = PyXelTranslations.strings.Item("quit")
+        MainForm.KryptonRibbonTab1.Text = PyXelTranslations.strings.Item("tab_Home")
+        MainForm.KryptonRibbonGroupButton2.TextLine1 = PyXelTranslations.strings.Item("cut")
+        MainForm.KryptonRibbonGroupButton3.TextLine1 = PyXelTranslations.strings.Item("copy")
+        MainForm.KryptonRibbonGroupButton6.TextLine1 = PyXelTranslations.strings.Item("paste")
+        MainForm.KryptonRibbonGroup1.TextLine1 = PyXelTranslations.strings.Item("code")
+        MainForm.KryptonRibbonGroupButton1.TextLine1 = PyXelTranslations.strings.Item("comment")
+        MainForm.KryptonRibbonGroupButton9.TextLine1 = PyXelTranslations.strings.Item("create_Bookmark_1")
+        MainForm.KryptonRibbonGroupButton9.TextLine2 = PyXelTranslations.strings.Item("create_Bookmark_2")
+        MainForm.KryptonRibbonGroupButton10.TextLine1 = PyXelTranslations.strings.Item("remove_Bookmark_1")
+        MainForm.KryptonRibbonGroupButton10.TextLine2 = PyXelTranslations.strings.Item("remove_Bookmark_2")
+        MainForm.KryptonRibbonGroupButton11.TextLine1 = PyXelTranslations.strings.Item("find")
+        MainForm.KryptonRibbonGroupButton12.TextLine1 = PyXelTranslations.strings.Item("find_replace_1")
+        MainForm.KryptonRibbonGroupButton12.TextLine2 = PyXelTranslations.strings.Item("find_replace_2")
+        MainForm.KryptonRibbonGroupButton13.TextLine1 = PyXelTranslations.strings.Item("go_to_line_1")
+        MainForm.KryptonRibbonGroupButton13.TextLine2 = PyXelTranslations.strings.Item("go_to_line_2")
+        MainForm.KryptonRibbonGroupButton4.TextLine1 = PyXelTranslations.strings.Item("collapse")
+        MainForm.KryptonRibbonTab2.Text = PyXelTranslations.strings.Item("tab_Debug")
+        MainForm.KryptonRibbonTab7.Text = PyXelTranslations.strings.Item("tab_Python")
+        MainForm.KryptonRibbonGroupButton14.TextLine1 = PyXelTranslations.strings.Item("execute")
+        MainForm.KryptonRibbonGroupButton16.TextLine1 = PyXelTranslations.strings.Item("console")
+        MainForm.KryptonRibbonGroupButton17.TextLine1 = PyXelTranslations.strings.Item("stop_execution_1")
+        MainForm.KryptonRibbonGroupButton17.TextLine2 = PyXelTranslations.strings.Item("stop_execution_2")
+        MainForm.KryptonRibbonGroupButton18.TextLine1 = PyXelTranslations.strings.Item("execute")
+        MainForm.KryptonRibbonGroupButton19.TextLine1 = PyXelTranslations.strings.Item("console")
+        MainForm.KryptonRibbonGroupButton20.TextLine1 = PyXelTranslations.strings.Item("stop_execution_1")
+        MainForm.KryptonRibbonGroupButton20.TextLine2 = PyXelTranslations.strings.Item("stop_execution_2")
+        MainForm.KryptonRibbonTab8.Text = PyXelTranslations.strings.Item("tab_Web")
+        MainForm.KryptonRibbonGroup7.TextLine1 = PyXelTranslations.strings.Item("preview")
+        MainForm.KryptonRibbonTab3.Text = PyXelTranslations.strings.Item("tab_C")
+        MainForm.KryptonRibbonGroup8.TextLine1 = PyXelTranslations.strings.Item("compilation")
+        MainForm.KryptonRibbonGroupButton25.TextLine1 = PyXelTranslations.strings.Item("compile")
+        MainForm.KryptonRibbonGroupButton26.TextLine1 = PyXelTranslations.strings.Item("execute")
+        MainForm.KryptonHeaderGroup1.ValuesPrimary.Heading = PyXelTranslations.strings.Item("projects")
+        MainForm.ToolStripMenuItem1.Text = PyXelTranslations.strings.Item("close_tab")
+        MainForm.ToolStripMenuItem2.Text = PyXelTranslations.strings.Item("cut")
+        MainForm.ToolStripMenuItem3.Text = PyXelTranslations.strings.Item("copy")
+        MainForm.ToolStripMenuItem4.Text = PyXelTranslations.strings.Item("paste")
+        MainForm.ToolStripMenuItem5.Text = PyXelTranslations.strings.Item("back")
+        MainForm.ToolStripMenuItem6.Text = PyXelTranslations.strings.Item("forward")
+    End Sub
+
     'Utilities Sub
 
     Public Shared Sub updateEditors()
@@ -98,6 +184,12 @@ Public Class MainForm
                     saveFileDialog.Filter = PyXelTranslations.strings.Item("c_file") + "*.c|" + PyXelTranslations.strings.Item("h_file") + "|*.h"
                 Case Languages.CPP
                     saveFileDialog.Filter = PyXelTranslations.strings.Item("cpp_file") + "*.cpp|" + PyXelTranslations.strings.Item("h_file") + "|*.h"
+                Case Languages.CSharp
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("csharp_file") + "*.cs|"
+                Case Languages.VBNet
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("vb_file") + "*.vb|"
+                Case Languages.XAML
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("xaml_file") + "*.xaml|"
 
             End Select
             If saveFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -122,7 +214,7 @@ Public Class MainForm
     End Function
     Private Sub OpenFile()
         Dim openFileDialog1 As New OpenFileDialog()
-        openFileDialog1.Filter = PyXelTranslations.strings.Item("pyxel_supported_files") + "|*.pxl;*.py;*.html;*.xml;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h|" + PyXelTranslations.strings.Item("python_file") + "|*.py|" + PyXelTranslations.strings.Item("html_file") + "|*.html|" + PyXelTranslations.strings.Item("php_file") + "|*.php|" + PyXelTranslations.strings.Item("js_file") + "|*.js|" + PyXelTranslations.strings.Item("css_file") + "|*.css|" + PyXelTranslations.strings.Item("c_file") + "|*.c;*.h|" + PyXelTranslations.strings.Item("cpp_file") + "|*.cpp;*.h"
+        openFileDialog1.Filter = PyXelTranslations.strings.Item("pyxel_supported_files") + "|*.pxl;*.py;*.html;*.xml;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h;*.cs;*.vb;*.xaml|" + PyXelTranslations.strings.Item("python_file") + "|*.py|" + PyXelTranslations.strings.Item("html_file") + "|*.html|" + PyXelTranslations.strings.Item("php_file") + "|*.php|" + PyXelTranslations.strings.Item("js_file") + "|*.js|" + PyXelTranslations.strings.Item("css_file") + "|*.css|" + PyXelTranslations.strings.Item("c_file") + "|*.c;*.h|" + PyXelTranslations.strings.Item("cpp_file") + "|*.cpp;*.h|" + PyXelTranslations.strings.Item("csharp_file") + "|*.cs|" + PyXelTranslations.strings.Item("vb_file") + "|*.vb|" + PyXelTranslations.strings.Item("xaml_file") + "|*.xaml"
         openFileDialog1.Title = PyXelTranslations.strings.Item("open_files")
         openFileDialog1.Multiselect = True
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -179,6 +271,18 @@ Public Class MainForm
                         lang = Languages.C
                         editor.Language = Language.CSharp
                         newPage.ImageIndex = 0
+                    Case ".cs"
+                        lang = Languages.CSharp
+                        editor.Language = Language.CSharp
+                        newPage.ImageIndex = 8
+                    Case ".vb"
+                        lang = Languages.VBNet
+                        editor.Language = Language.VB
+                        newPage.ImageIndex = 9
+                    Case ".xaml"
+                        lang = Languages.XAML
+                        editor.Language = Language.HTML
+                        newPage.ImageIndex = 10
                 End Select
                 configEditor(editor, lang)
                 displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
@@ -263,6 +367,18 @@ Public Class MainForm
                 lang = Languages.C
                 editor.Language = Language.CSharp
                 newPage.ImageIndex = 0
+            Case ".cs"
+                lang = Languages.CSharp
+                editor.Language = Language.CSharp
+                newPage.ImageIndex = 8
+            Case ".vb"
+                lang = Languages.VBNet
+                editor.Language = Language.VB
+                newPage.ImageIndex = 9
+            Case ".xaml"
+                lang = Languages.XAML
+                editor.Language = Language.HTML
+                newPage.ImageIndex = 10
         End Select
         configEditor(editor, lang)
         displayNames.Add(pages, System.IO.Path.GetFileName(fileName))
@@ -324,6 +440,15 @@ Public Class MainForm
             Case Languages.CPP
                 newPage.ImageIndex = 6
                 editor.Language = Language.CSharp
+            Case Languages.CSharp
+                newPage.ImageIndex = 8
+                editor.Language = Language.CSharp
+            Case Languages.VBNet
+                newPage.ImageIndex = 9
+                editor.Language = Language.VB
+            Case Languages.XAML
+                newPage.ImageIndex = 10
+                editor.Language = Language.HTML
         End Select
         pages += 1
         tabs.Add(pages, newPage)
@@ -466,6 +591,9 @@ Public Class MainForm
 
     'Form Loading Event
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        ApplyStrings()
+
         ButtonSpecAny2.Visible = False
         Me.Icon = My.Resources.Pyxel_Icon
         'KryptonPalette1.Import(Application.StartupPath() + "\test.xml")
@@ -484,6 +612,9 @@ Public Class MainForm
         list.Images.Add(My.Resources.python16)
         list.Images.Add(My.Resources.cpp16)
         list.Images.Add(My.Resources.xml16)
+        list.Images.Add(My.Resources.csharp16)
+        list.Images.Add(My.Resources.vb16)
+        list.Images.Add(My.Resources.xaml16)
 
         'Allow Dropping file into Ribbon and TabControl
         KryptonRibbon1.AllowDrop = True
@@ -507,52 +638,53 @@ Public Class MainForm
         newPage.ImageIndex = 5
 
         'Editor configuration
-        Dim splitter As New KryptonSplitContainer
-        splitter.Dock = DockStyle.Fill
-        AddHandler splitter.SplitterMoved, AddressOf SplitterMoved
-        Dim editor As New FastColoredTextBox
-        Dim map As New DocumentMap
-        map.Target = editor
-        splitter.SplitterDistance = ApplicationSettings.splitterDistance
-        map.Dock = DockStyle.Fill
-        editor.Dock = DockStyle.Fill
-        configEditor(editor, Languages.Python)
-        editor.ContextMenuStrip = ContextMenuStrip2
-
-        pages += 1
-        Dim menu As New AutocompleteMenu(editor)
-        AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
-        menus.Add(pages, menu)
-        tabs.Add(pages, newPage)
-        editors.Add(pages, editor)
-        tabsInversed.Add(newPage, pages)
-        editorsInversed.Add(editor, pages)
-        CustomTabControl1.TabPages.Add(newPage)
-        CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
-        splitter.Panel1.Controls.Add(editor)
-        splitter.Panel2.Controls.Add(map)
-        newPage.Controls.Add(splitter)
-        pagesSaved.Add(pages, True)
-        firstLoad.Add(pages, True)
 
         'Open file which launched the app
         If ApplicationSettings.isFileOpened = True Then
             Try
-                filesOpened.Add(pages, ApplicationSettings.fileOpened)
-                displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
-                Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
-                editor.Text = sr.ReadToEnd
-                sr.Close()
+                OpenFile(ApplicationSettings.fileOpened)
+                'filesOpened.Add(pages, ApplicationSettings.fileOpened)
+                'displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
+                'Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
+                'editor.Text = sr.ReadToEnd
+                'SR.Close()
             Catch
                 MessageBox.Show(PyXelTranslations.strings.Item("file_open_error"), "PyXel", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
-                displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
+                'filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
+                'displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
             End Try
 
         Else
             'No file launched the app, just adding a blank tab
             filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
             displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
+            Dim splitter As New KryptonSplitContainer
+            splitter.Dock = DockStyle.Fill
+            AddHandler splitter.SplitterMoved, AddressOf SplitterMoved
+            Dim editor As New FastColoredTextBox
+            Dim map As New DocumentMap
+            map.Target = editor
+            splitter.SplitterDistance = ApplicationSettings.splitterDistance
+            map.Dock = DockStyle.Fill
+            editor.Dock = DockStyle.Fill
+            configEditor(editor, Languages.Python)
+            editor.ContextMenuStrip = ContextMenuStrip2
+
+            pages += 1
+            Dim menu As New AutocompleteMenu(editor)
+            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+            menus.Add(pages, menu)
+            tabs.Add(pages, newPage)
+            editors.Add(pages, editor)
+            tabsInversed.Add(newPage, pages)
+            editorsInversed.Add(editor, pages)
+            CustomTabControl1.TabPages.Add(newPage)
+            CustomTabControl1.SelectedIndex = CustomTabControl1.TabCount - 1
+            splitter.Panel1.Controls.Add(editor)
+            splitter.Panel2.Controls.Add(map)
+            newPage.Controls.Add(splitter)
+            pagesSaved.Add(pages, True)
+            firstLoad.Add(pages, True)
         End If
 
         'Interpreter Console Configuration
@@ -643,6 +775,9 @@ Public Class MainForm
         ImagesTreeView.Images.Add("h", My.Resources.header16)
         ImagesTreeView.Images.Add("img", My.Resources.picture)
         ImagesTreeView.Images.Add("xml", My.Resources.xml16)
+        ImagesTreeView.Images.Add("cs", My.Resources.csharp16)
+        ImagesTreeView.Images.Add("vb", My.Resources.vb16)
+        ImagesTreeView.Images.Add("xaml", My.Resources.xaml16)
         KryptonTreeView1.ImageList = ImagesTreeView
 
         'Hiding Projects panel when no project is loaded
@@ -758,6 +893,18 @@ Public Class MainForm
     Private Sub NewXMLClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem27.Click
         'Create New HTML File
         openNewTab(Languages.XML)
+    End Sub
+    Private Sub NewCSharpClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem6.Click
+        'Create New HTML File
+        openNewTab(Languages.CSharp)
+    End Sub
+    Private Sub NewVBClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem16.Click
+        'Create New HTML File
+        openNewTab(Languages.VBNet)
+    End Sub
+    Private Sub NewXAMLClick(sender As Object, e As EventArgs) Handles KryptonContextMenuItem28.Click
+        'Create New HTML File
+        openNewTab(Languages.XAML)
     End Sub
 
     '
@@ -1255,6 +1402,9 @@ Public Class MainForm
                 KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.XML
                 KryptonRibbon1.SelectedContext = ""
+                KryptonSplitContainer1.Panel2Collapsed = True
+            Case Languages.CSharp, Languages.VBNet, Languages.XAML
+                KryptonRibbon1.SelectedContext = "DotNet"
                 KryptonSplitContainer1.Panel2Collapsed = True
         End Select
     End Sub
