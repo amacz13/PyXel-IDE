@@ -476,7 +476,7 @@ Public Class MainForm
         editor.ContextMenuStrip = ContextMenuStrip2
         editor.Dock = DockStyle.Fill
         editor.Font = ApplicationSettings.editorFont
-        AddHandler editor.TextChanged, AddressOf TextChanged
+        AddHandler editor.TextChanged, AddressOf SyntaxHighlightAsked
         editor.AllowDrop = True
         AddHandler editor.DragEnter, AddressOf PyXelDragEnter
         AddHandler editor.DragDrop, AddressOf PyXelDragDrop
@@ -504,11 +504,10 @@ Public Class MainForm
         End Select
     End Sub
 
-    Private Sub TextChanged(sender As Object, e As TextChangedEventArgs)
+    Private Sub SyntaxHighlightAsked(sender As Object, e As TextChangedEventArgs)
         Dim id As Integer = editorsInversed.Item(sender)
         If Not firstLoad.Item(id) Then
             Dim tab As TabPage = tabs.Item(id)
-            tab.Text = displayNames.Item(id) + "*"
             pagesSaved.Item(id) = False
         End If
         If firstLoad.Item(id) Then
@@ -581,7 +580,6 @@ Public Class MainForm
                     td.MainInstruction = PyXelTranslations.strings.Item("update_available")
                     td.Content = PyXelTranslations.strings.Item("version") + " " + version + " " + PyXelTranslations.strings.Item("available") + " !"
                     td.ShowDialog()
-                    'MsgBox("La version " + version + " de PyXel est disponible !", MsgBoxStyle.Information, "PyXel - Mise à jour disponible")
                 End If
             End If
         Catch
@@ -593,6 +591,7 @@ Public Class MainForm
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         ApplyStrings()
+
 
         ButtonSpecAny2.Visible = False
         Me.Icon = My.Resources.Pyxel_Icon
@@ -643,15 +642,8 @@ Public Class MainForm
         If ApplicationSettings.isFileOpened = True Then
             Try
                 OpenFile(ApplicationSettings.fileOpened)
-                'filesOpened.Add(pages, ApplicationSettings.fileOpened)
-                'displayNames.Add(pages, System.IO.Path.GetFileName(ApplicationSettings.fileOpened))
-                'Dim sr As New System.IO.StreamReader(ApplicationSettings.fileOpened)
-                'editor.Text = sr.ReadToEnd
-                'SR.Close()
             Catch
                 MessageBox.Show(PyXelTranslations.strings.Item("file_open_error"), "PyXel", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                'filesOpened.Add(pages, PyXelTranslations.strings.Item("untitled"))
-                'displayNames.Add(pages, PyXelTranslations.strings.Item("untitled"))
             End Try
 
         Else
@@ -669,6 +661,10 @@ Public Class MainForm
             editor.Dock = DockStyle.Fill
             configEditor(editor, Languages.Python)
             editor.ContextMenuStrip = ContextMenuStrip2
+            If ApplicationSettings.theme = PaletteMode.Office2010Black Then
+                editor.BackColor = Color.FromArgb(30, 30, 30)
+                editor.ForeColor = Color.FromArgb(220, 220, 220)
+            End If
 
             pages += 1
             Dim menu As New AutocompleteMenu(editor)
@@ -1090,7 +1086,7 @@ Public Class MainForm
             End If
             Threading.Thread.Sleep(500)
             Try
-                ConsoleControl1.StartProcess(ApplicationSettings.python3, filesOpened(id))
+                ConsoleControl1.StartProcess(ApplicationSettings.python3, """" + filesOpened(id) + """")
             Catch
                 Dim td As New TaskDialog
                 td.CommonButtons = TaskDialogCommonButton.OK

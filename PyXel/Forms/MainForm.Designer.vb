@@ -251,7 +251,6 @@ Partial Class MainForm
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "show_qat_above"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "show_qat_below"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6, Me.KryptonRibbonTab9, Me.KryptonRibbonTab10, Me.KryptonRibbonTab11})
-        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
