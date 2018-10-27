@@ -10,6 +10,7 @@ Imports MyAPKapp.VistaUIFramework.TaskDialog
 Public Class MainForm
 
     Enum Languages
+        None
         Python
         C
         CPP
@@ -168,6 +169,8 @@ Public Class MainForm
             Dim saveFileDialog As New SaveFileDialog
             saveFileDialog.Title = PyXelTranslations.strings.Item("save_file")
             Select Case lang
+                Case Languages.None
+                    saveFileDialog.Filter = PyXelTranslations.strings.Item("pyxel_supported_files") + "|*.pxl;*.py;*.html;*.xml;*.php;*.js;*.php3;*.php5;*.css;*.c;*.cpp;*.h;*.cs;*.vb;*.xaml|" + PyXelTranslations.strings.Item("python_file") + "|*.py|" + PyXelTranslations.strings.Item("html_file") + "|*.html|" + PyXelTranslations.strings.Item("php_file") + "|*.php|" + PyXelTranslations.strings.Item("js_file") + "|*.js|" + PyXelTranslations.strings.Item("css_file") + "|*.css|" + PyXelTranslations.strings.Item("c_file") + "|*.c;*.h|" + PyXelTranslations.strings.Item("cpp_file") + "|*.cpp;*.h|" + PyXelTranslations.strings.Item("csharp_file") + "|*.cs|" + PyXelTranslations.strings.Item("vb_file") + "|*.vb|" + PyXelTranslations.strings.Item("xaml_file") + "|*.xaml"
                 Case Languages.Python
                     saveFileDialog.Filter = PyXelTranslations.strings.Item("python_file") + "|*.py"
                 Case Languages.HTML
@@ -202,6 +205,9 @@ Public Class MainForm
                 filesOpened.Item(id) = fileName
                 displayNames.Item(id) = System.IO.Path.GetFileName(fileName)
                 tabs.Item(id).Text = System.IO.Path.GetFileName(filesOpened.Item(id))
+                If lang = Languages.None Then
+
+                End If
             End If
         Else
             Dim fileName As String = filesOpened.Item(id)
@@ -418,6 +424,9 @@ Public Class MainForm
         newPage.Text = PyXelTranslations.strings.Item("untitled")
         configEditor(editor, lang)
         Select Case lang
+            Case Languages.None
+                newPage.ImageIndex = 5
+                editor.Language = Language.Custom
             Case Languages.Python
                 newPage.ImageIndex = 5
             Case Languages.HTML
@@ -626,7 +635,7 @@ Public Class MainForm
 
         CustomTabControl1.ImageList = list
         KryptonRibbon1.AllowFormIntegrate = False
-        KryptonRibbon1.SelectedContext = "Python"
+        KryptonRibbon1.SelectedContext = ""
         Me.TextExtra = My.Settings.Version
         pages = 0
         KryptonPanel1.Palette = KryptonPalette1
@@ -659,7 +668,7 @@ Public Class MainForm
             splitter.SplitterDistance = ApplicationSettings.splitterDistance
             map.Dock = DockStyle.Fill
             editor.Dock = DockStyle.Fill
-            configEditor(editor, Languages.Python)
+            configEditor(editor, Languages.None)
             editor.ContextMenuStrip = ContextMenuStrip2
             If ApplicationSettings.theme = PaletteMode.Office2010Black Then
                 editor.BackColor = Color.FromArgb(30, 30, 30)
@@ -668,7 +677,7 @@ Public Class MainForm
 
             pages += 1
             Dim menu As New AutocompleteMenu(editor)
-            AutoCompleteTools.LoadDefaultItems(menu, Languages.Python)
+            AutoCompleteTools.LoadDefaultItems(menu, Languages.None)
             menus.Add(pages, menu)
             tabs.Add(pages, newPage)
             editors.Add(pages, editor)
@@ -681,6 +690,7 @@ Public Class MainForm
             newPage.Controls.Add(splitter)
             pagesSaved.Add(pages, True)
             firstLoad.Add(pages, True)
+            KryptonSplitContainer1.Panel2Collapsed = True
         End If
 
         'Interpreter Console Configuration
@@ -693,7 +703,14 @@ Public Class MainForm
             KryptonRibbonGroupButton21.ImageSmall = My.Resources.edge
             KryptonRibbonGroupButton21.TextLine1 = "Microsoft"
             KryptonRibbonGroupButton21.TextLine2 = "Edge"
-
+            KryptonRibbonGroupButton21.ButtonType = GroupButtonType.Split
+            Dim ieStrip As New ContextMenuStrip()
+            Dim ieItem As New ToolStripMenuItem
+            ieItem.Text = "Internet Explorer"
+            ieItem.Image = My.Resources.ie
+            AddHandler ieItem.Click, AddressOf OpenInIE_Click
+            ieStrip.Items.Add(ieItem)
+            KryptonRibbonGroupButton21.ContextMenuStrip = ieStrip
         End If
 
         'Detect Installed Python
@@ -813,7 +830,7 @@ Public Class MainForm
     '
 
     Private Sub KryptonContextMenuItem1_Click(sender As Object, e As EventArgs) Handles KryptonContextMenuItem1.Click
-        openNewTab(Languages.Python)
+        openNewTab(Languages.None)
     End Sub
 
     '
@@ -1138,7 +1155,8 @@ Public Class MainForm
             Settings.ShowDialog()
         Else
             Try
-                ConsoleControl1.StartProcess(ApplicationSettings.python3, "")
+                ConsoleControl1.StartProcess("python", "")
+                'ConsoleControl1.StartProcess(ApplicationSettings.python3.Replace(" ", "/ "), "")
                 'Shell(ApplicationSettings.python3)
             Catch
                 Dim td As New TaskDialog
@@ -1348,6 +1366,14 @@ Public Class MainForm
         Dim editor As FastColoredTextBox = editors.Item(id)
         Dim lang As Languages = editorsLanguage.Item(editor)
         Select Case lang
+            Case Languages.None
+                If Not KryptonSplitContainer2.Panel1Collapsed Then
+                    'KryptonRibbon1.SelectedContext = "HTML,Projet"
+                    KryptonRibbon1.SelectedContext = ""
+                Else
+                    KryptonRibbon1.SelectedContext = ""
+                End If
+                KryptonSplitContainer1.Panel2Collapsed = True
             Case Languages.Python
                 If Not KryptonSplitContainer2.Panel1Collapsed Then
                     'KryptonRibbon1.SelectedContext = "Python,Projet"
@@ -1405,7 +1431,7 @@ Public Class MainForm
         End Select
     End Sub
 
-    'Open web file in IE
+    'Open web file in Edge/IE
     Private Async Sub KryptonRibbonGroupButton21_Click(sender As Object, e As EventArgs) Handles KryptonRibbonGroupButton21.Click
         Dim page As TabPage = CustomTabControl1.SelectedTab
         Dim id As Integer = tabsInversed.Item(page)
@@ -1428,6 +1454,26 @@ Public Class MainForm
         Else
             System.Diagnostics.Process.Start("iexplore.exe", filesOpened(id))
         End If
+    End Sub
+
+    Private Async Sub OpenInIE_Click(sender As Object, e As EventArgs)
+        Dim page As TabPage = CustomTabControl1.SelectedTab
+        Dim id As Integer = tabsInversed.Item(page)
+        If Not pagesSaved.Item(id) Then
+            Dim td As New TaskDialog
+            td.CommonButtons = TaskDialogCommonButton.Yes Or TaskDialogCommonButton.No Or TaskDialogCommonButton.Cancel
+            td.StandardIcon = TaskDialogIcon.ShieldWarning
+            td.WindowTitle = "PyXel"
+            td.MainInstruction = PyXelTranslations.strings.Item("file_not_saved")
+            td.Content = PyXelTranslations.strings.Item("save_before_continue")
+            Dim res As DialogResult = td.ShowDialog().CommonButton
+            If res = DialogResult.Yes Then
+                Await SavePage(id)
+            ElseIf res = DialogResult.Cancel Then
+                Exit Sub
+            End If
+        End If
+        System.Diagnostics.Process.Start("iexplore.exe", filesOpened(id))
     End Sub
 
     'Open web file in Firefox
@@ -1615,12 +1661,12 @@ Public Class MainForm
         e.ChangedRange.SetStyle(greenStyle, "#.*$", RegexOptions.Multiline)
         e.ChangedRange.SetStyle(greenStyle, "(''')(.*?(\n))+.*(''')", RegexOptions.Multiline)
         e.ChangedRange.SetStyle(blueStyle, "(abs|all|any|ascii|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|memoryview|min|next|oct|open|ord|pow|print|range|repr|reversed|round|setattr|sorted|sum|super|vars|zip|\(|\)|\{|\}|\[|\])")
-        e.ChangedRange.SetStyle(orangeStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
-        e.ChangedRange.SetStyle(redStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
+        e.ChangedRange.SetStyle(blueStyle, "(int|long|float|complex|str|tuple|list|set|dict|frozenset|chr|unichr|ord|hex|oct)(\s|\()")
+        e.ChangedRange.SetStyle(blueStyle, "(def\s|import\s|\sas\s|\sfrom\s)")
         e.ChangedRange.SetStyle(salmonStyle, "(if\s|else(\s|\:)|elif\s|for\s|while\s)|try(\s|\:)|except(\s|\:)|raise(\s)")
-        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
-        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
-        e.ChangedRange.SetStyle(purpleStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
+        e.ChangedRange.SetStyle(orangeStyle, "" + Chr(34) + "(.*?)" + Chr(34) + "")
+        e.ChangedRange.SetStyle(orangeStyle, "" + Chr(39) + "(.*?)" + Chr(39) + "")
+        e.ChangedRange.SetStyle(orangeStyle, "" + Chr(44) + "(.*?)" + Chr(44) + "")
 
         Dim popupMenu As AutocompleteMenu = New AutocompleteMenu(sender)
     End Sub

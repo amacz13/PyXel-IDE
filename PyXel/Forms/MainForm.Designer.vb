@@ -200,6 +200,8 @@ Partial Class MainForm
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KryptonContextMenuHeading5 = New ComponentFactory.Krypton.Toolkit.KryptonContextMenuHeading()
+        Me.KryptonRibbonGroupButton43 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
+        Me.KryptonRibbonGroupButton44 = New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton()
         CType(Me.KryptonRibbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KryptonDockableNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.KryptonDockableNavigator1.SuspendLayout()
@@ -251,6 +253,7 @@ Partial Class MainForm
         Me.KryptonRibbon1.RibbonStrings.ShowQATAboveRibbon = "show_qat_above"
         Me.KryptonRibbon1.RibbonStrings.ShowQATBelowRibbon = "show_qat_below"
         Me.KryptonRibbon1.RibbonTabs.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonTab() {Me.KryptonRibbonTab1, Me.KryptonRibbonTab2, Me.KryptonRibbonTab7, Me.KryptonRibbonTab8, Me.KryptonRibbonTab3, Me.KryptonRibbonTab4, Me.KryptonRibbonTab5, Me.KryptonRibbonTab6, Me.KryptonRibbonTab9, Me.KryptonRibbonTab10, Me.KryptonRibbonTab11})
+        Me.KryptonRibbon1.SelectedContext = Nothing
         Me.KryptonRibbon1.SelectedTab = Me.KryptonRibbonTab1
         Me.KryptonRibbon1.Size = New System.Drawing.Size(1408, 115)
         Me.KryptonRibbon1.TabIndex = 0
@@ -813,7 +816,7 @@ Partial Class MainForm
         '
         'KryptonRibbonGroupTriple9
         '
-        Me.KryptonRibbonGroupTriple9.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton24})
+        Me.KryptonRibbonGroupTriple9.Items.AddRange(New ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem() {Me.KryptonRibbonGroupButton24, Me.KryptonRibbonGroupButton43, Me.KryptonRibbonGroupButton44})
         '
         'KryptonRibbonGroupButton24
         '
@@ -1232,6 +1235,14 @@ Partial Class MainForm
         '
         Me.KryptonContextMenuHeading5.ExtraText = ""
         '
+        'KryptonRibbonGroupButton43
+        '
+        Me.KryptonRibbonGroupButton43.TextLine1 = "Vivaldi"
+        '
+        'KryptonRibbonGroupButton44
+        '
+        Me.KryptonRibbonGroupButton44.TextLine1 = "Brave"
+        '
         'MainForm
         '
         Me.AllowButtonSpecToolTips = True
@@ -1451,4 +1462,6 @@ Partial Class MainForm
     Friend WithEvents KryptonContextMenuItem16 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuItem28 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem
     Friend WithEvents KryptonContextMenuHeading5 As ComponentFactory.Krypton.Toolkit.KryptonContextMenuHeading
+    Friend WithEvents KryptonRibbonGroupButton43 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
+    Friend WithEvents KryptonRibbonGroupButton44 As ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton
 End Class
